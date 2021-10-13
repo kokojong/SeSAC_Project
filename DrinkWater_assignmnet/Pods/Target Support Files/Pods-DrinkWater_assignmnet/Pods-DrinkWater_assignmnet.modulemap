@@ -1,0 +1,6 @@
+framework module Pods_DrinkWater_assignmnet {
+  umbrella header "Pods-DrinkWater_assignmnet-umbrella.h"
+
+  export *
+  module * { export * }
+}
