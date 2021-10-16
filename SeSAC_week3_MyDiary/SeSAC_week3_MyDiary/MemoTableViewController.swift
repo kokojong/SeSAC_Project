@@ -9,24 +9,51 @@ import UIKit
 
 class MemoTableViewController: UITableViewController {
 
-    var list : [String] = ["장 보기", "메모메모", "영화 보러 가기", "WWDC 시청하기"] {
+//    var list = [Memo](){
+//
+//    }
+    var list : [Memo] = [] {
         didSet{ // 변경이 되는지 감시자를 붙인다
-            tableView.reloadData()
+//            tableView.reloadData()
+            saveData()
         }
     }
+    
+    @IBOutlet weak var categorySegmentControl: UISegmentedControl!
     
     @IBOutlet weak var memoTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        UITableView.automaticDimension
+//        자동으로 정렬? -> 찾아보기
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action:#selector(closeButtonClicked) )
+        
+        loadData()
 
     }
+    
+    @objc func closeButtonClicked () {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         // 배열에 textview에 text의 값을 추가해보기
         if let text = memoTextView.text { // optional이 해제가 된다면
-            list.append(text)
+//            list.append(text)
+            
+            let segmentIndex = categorySegmentControl.selectedSegmentIndex
+            let segmentCategory = Category(rawValue: segmentIndex) ?? .others // optional 처리
+            
+            let memo = Memo(content: text, category: segmentCategory)
+            
+            list.append(memo)
+            
 //            tableView.reloadData() // 테이블뷰 갱신
             
             print(list)
@@ -38,6 +65,51 @@ class MemoTableViewController: UITableViewController {
 //        list.append(text)
         
     }
+    
+    func saveData() {
+        var memo : [[String : Any]] = []
+        
+        for i in list {
+            let data : [String : Any] = [
+                "category" : i.category.rawValue,
+                "content" : i.content
+                
+            ]
+            print("data : \(data)")
+            memo.append(data)
+        }
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(memo, forKey: "memoList")
+        tableView.reloadData()
+        
+//
+    }
+    
+    func loadData() {
+        let userDefaults = UserDefaults.standard
+        
+        if let data = userDefaults.object(forKey: "memoList") as? [[String : Any]]{
+            
+            var memo = [Memo]()
+            
+            for datum in data {
+                
+                guard let category = datum["category"] as? Int else { return }
+                guard let content = datum["content"] as? String else { return }
+                
+                let enumCategory = Category(rawValue: category) ?? .others
+                
+                memo.append(Memo(content: content, category: enumCategory))
+                
+            }
+            
+            self.list = memo // 옵저버가 있어서 갱신이 되게함
+            
+        }
+    }
+    
+    
     
     // (옵션) 섹션의 수 numberOfSections (default가 1)
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,24 +146,26 @@ class MemoTableViewController: UITableViewController {
             cell.textLabel?.text = "첫번째 섹션입니다 -\(indexPath)"
             cell.textLabel?.textColor = .brown
             cell.textLabel?.font = .boldSystemFont(ofSize: 15)
+            cell.imageView?.image = nil
+            cell.detailTextLabel?.text = nil
             
         } else {
             
-//            if indexPath.row == 0 {
-//                cell?.textLabel?.text = list[indexPath.row]
-//            } else if indexPath.row == 1 {
-//                cell?.textLabel?.text = list[indexPath.row]
-//            } else if indexPath.row == 2 {
-//                cell?.textLabel?.text = list[indexPath.row]
-//            } else if indexPath.row == 3 {
-//                cell?.textLabel?.text = list[indexPath.row]
-//            } else {
-//                cell?.textLabel?.text = "데이터 없음"
-//            }
-            cell.textLabel?.text = list[indexPath.row]
+            let row = list[indexPath.row]
+            
+            cell.textLabel?.text = list[indexPath.row].content
+            cell.detailTextLabel?.text = list[indexPath.row].category.description
+            // basic은 detail이 없기 때문에 안나옴 -> 속성 바꿔주면 된다
             cell.textLabel?.textColor = .red
             cell.textLabel?.font = .italicSystemFont(ofSize: 20)
             
+            switch row.category {
+            case .business : cell.imageView?.image = UIImage(systemName: "building.2")
+            case .personal : cell.imageView?.image = UIImage(systemName: "person")
+            case .others : cell.imageView?.image = UIImage(systemName: "square.and.pencil")
+            }
+            
+            cell.imageView?.tintColor = .red
         }
         
         

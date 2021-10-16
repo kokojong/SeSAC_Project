@@ -20,6 +20,14 @@
 		0478CAA827165EA600D8C03C /* BoxOfficeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAA727165EA600D8C03C /* BoxOfficeTableViewCell.swift */; };
 		0478CAAA2716BA4700D8C03C /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAA92716BA4700D8C03C /* ShoppingListTableViewController.swift */; };
 		0478CAAC2716BB4200D8C03C /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAAB2716BB4200D8C03C /* ShoppingListTableViewCell.swift */; };
+		0478CAB02717AD9D00D8C03C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAAF2717AD9D00D8C03C /* Movie.swift */; };
+		0478CAB22717AEED00D8C03C /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAB12717AEED00D8C03C /* MovieInfo.swift */; };
+		0478CAB42717B59A00D8C03C /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAB32717B59A00D8C03C /* Memo.swift */; };
+		0478CAB62717D2DD00D8C03C /* UIVIewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAB52717D2DD00D8C03C /* UIVIewController+Extension.swift */; };
+		0478CAB82717F77000D8C03C /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAB72717F77000D8C03C /* ShoppingList.swift */; };
+		0478CABA27190E9800D8C03C /* Movie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0478CAB927190E9800D8C03C /* Movie.storyboard */; };
+		0478CABC2719100A00D8C03C /* BoxOfficeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CABB2719100A00D8C03C /* BoxOfficeDetailViewController.swift */; };
+		0478CABE271918CF00D8C03C /* BoxOfficeCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CABD271918CF00D8C03C /* BoxOfficeCastViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +46,14 @@
 		0478CAA727165EA600D8C03C /* BoxOfficeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeTableViewCell.swift; sourceTree = "<group>"; };
 		0478CAA92716BA4700D8C03C /* ShoppingListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewController.swift; sourceTree = "<group>"; };
 		0478CAAB2716BB4200D8C03C /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		0478CAAF2717AD9D00D8C03C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		0478CAB12717AEED00D8C03C /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
+		0478CAB32717B59A00D8C03C /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		0478CAB52717D2DD00D8C03C /* UIVIewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Extension.swift"; sourceTree = "<group>"; };
+		0478CAB72717F77000D8C03C /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
+		0478CAB927190E9800D8C03C /* Movie.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Movie.storyboard; sourceTree = "<group>"; };
+		0478CABB2719100A00D8C03C /* BoxOfficeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeDetailViewController.swift; sourceTree = "<group>"; };
+		0478CABD271918CF00D8C03C /* BoxOfficeCastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeCastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,19 +87,27 @@
 			isa = PBXGroup;
 			children = (
 				0478CAA92716BA4700D8C03C /* ShoppingListTableViewController.swift */,
-				0478CAA727165EA600D8C03C /* BoxOfficeTableViewCell.swift */,
 				0478CAAB2716BB4200D8C03C /* ShoppingListTableViewCell.swift */,
 				0478CAA527165DA600D8C03C /* BoxOfficeTableViewController.swift */,
+				0478CAA727165EA600D8C03C /* BoxOfficeTableViewCell.swift */,
+				0478CAB12717AEED00D8C03C /* MovieInfo.swift */,
 				0478CA6A27150AA800D8C03C /* AppDelegate.swift */,
 				0478CA6C27150AA800D8C03C /* SceneDelegate.swift */,
 				0478CA6E27150AA800D8C03C /* ViewController.swift */,
+				0478CAB927190E9800D8C03C /* Movie.storyboard */,
+				0478CABD271918CF00D8C03C /* BoxOfficeCastViewController.swift */,
+				0478CABB2719100A00D8C03C /* BoxOfficeDetailViewController.swift */,
 				0478CA7027150AA800D8C03C /* Main.storyboard */,
+				0478CAB52717D2DD00D8C03C /* UIVIewController+Extension.swift */,
 				0478CAA327155F8600D8C03C /* Case2TableViewController.swift */,
 				0478CA81271516AD00D8C03C /* MemoTableViewController.swift */,
+				0478CAB32717B59A00D8C03C /* Memo.swift */,
+				0478CAB72717F77000D8C03C /* ShoppingList.swift */,
 				0478CA7627150AAA00D8C03C /* Assets.xcassets */,
 				0478CA7827150AAA00D8C03C /* LaunchScreen.storyboard */,
 				0478CA7B27150AAA00D8C03C /* Info.plist */,
 				0478CA7327150AA800D8C03C /* SeSAC_week3_MyDiary.xcdatamodeld */,
+				0478CAAF2717AD9D00D8C03C /* Movie.swift */,
 			);
 			path = SeSAC_week3_MyDiary;
 			sourceTree = "<group>";
@@ -149,6 +173,7 @@
 				0478CA7A27150AAA00D8C03C /* LaunchScreen.storyboard in Resources */,
 				0478CA7727150AAA00D8C03C /* Assets.xcassets in Resources */,
 				0478CA7227150AA800D8C03C /* Main.storyboard in Resources */,
+				0478CABA27190E9800D8C03C /* Movie.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,15 +184,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0478CAB62717D2DD00D8C03C /* UIVIewController+Extension.swift in Sources */,
 				0478CA82271516AD00D8C03C /* MemoTableViewController.swift in Sources */,
 				0478CA6F27150AA800D8C03C /* ViewController.swift in Sources */,
 				0478CAA427155F8600D8C03C /* Case2TableViewController.swift in Sources */,
 				0478CA6B27150AA800D8C03C /* AppDelegate.swift in Sources */,
 				0478CA7527150AA800D8C03C /* SeSAC_week3_MyDiary.xcdatamodeld in Sources */,
 				0478CAAC2716BB4200D8C03C /* ShoppingListTableViewCell.swift in Sources */,
+				0478CAB82717F77000D8C03C /* ShoppingList.swift in Sources */,
 				0478CAA627165DA600D8C03C /* BoxOfficeTableViewController.swift in Sources */,
 				0478CA6D27150AA800D8C03C /* SceneDelegate.swift in Sources */,
 				0478CAA827165EA600D8C03C /* BoxOfficeTableViewCell.swift in Sources */,
+				0478CAB02717AD9D00D8C03C /* Movie.swift in Sources */,
+				0478CABE271918CF00D8C03C /* BoxOfficeCastViewController.swift in Sources */,
+				0478CAB42717B59A00D8C03C /* Memo.swift in Sources */,
+				0478CABC2719100A00D8C03C /* BoxOfficeDetailViewController.swift in Sources */,
+				0478CAB22717AEED00D8C03C /* MovieInfo.swift in Sources */,
 				0478CAAA2716BA4700D8C03C /* ShoppingListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

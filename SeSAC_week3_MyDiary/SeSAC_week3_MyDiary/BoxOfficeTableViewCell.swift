@@ -14,6 +14,7 @@ class BoxOfficeTableViewCell: UITableViewCell {
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
+    static let identifier = "BoxOfficeTableViewCell"
     
     
     override func awakeFromNib() {

@@ -16,6 +16,10 @@ class ShoppingListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        shoppingListLabel.numberOfLines = 0
+        checkBoxButton.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        bookmarkButton.setImage(UIImage(systemName: "star"), for: .normal)
+        
 //        checkBoxButton.setImage(UIImage.init(named: "heart"), for: .normal)
         
         // Initialization code
@@ -28,14 +32,18 @@ class ShoppingListTableViewCell: UITableViewCell {
     }
     @IBAction func onCheckBoxButtonClicked(_ sender: UIButton) {
         
-        if sender.image(for: .normal) == UIImage(named: "checkmark.square"){
-            sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
+        // 이미지를 바꾸려고 했는데 실패함 ㅜ (한번 돌아오면 바뀌질 않네여..)
+        if sender.image(for: .normal) == UIImage(systemName: "checkmark.square") {
+//            sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
+            sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
 //            sender.image(for: .normal) = UIImage(named: "checkmark.square.fill")
             
-            print("same")
+            print("checked")
         } else {
-            sender.setImage(UIImage(named: "checkmark.square"), for: .normal)
-            print("is not same")
+//            sender.setImage(UIImage(named: "checkmark.square"), for: .normal)
+            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+            print("unchecked")
+         
         }
         
         
@@ -43,6 +51,18 @@ class ShoppingListTableViewCell: UITableViewCell {
     
     @IBAction func onbookmarkButtonClicked(_ sender: UIButton) {
         
+        if sender.image(for: .normal) == UIImage(systemName: "star") {
+//            sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
+            sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//            sender.image(for: .normal) = UIImage(named: "checkmark.square.fill")
+            
+            print("marked")
+        } else if sender.image(for: .normal) == UIImage(systemName: "star.fill"){
+//            sender.setImage(UIImage(named: "checkmark.square"), for: .normal)
+            sender.setImage(UIImage(systemName: "star"), for: .normal)
+            print("unmarked")
+         
+        }
        
     }
 }

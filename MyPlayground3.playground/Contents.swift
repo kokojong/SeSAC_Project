@@ -199,3 +199,127 @@ bmi.BMIResult = "KK"
 
 print(bmi.BMIResult)
 print(bmi.changeNameCount)
+
+
+class User {
+    let nickname = "koko"
+    
+    static let nickname2 = "koko 2"
+    // 모든 코드에서 공통적일때 사용
+    
+    static var totalOrderCount = 0 {
+        didSet{
+            print("총 주문 횟수: \(oldValue) -> \(totalOrderCount)")
+        }
+    }
+    
+    static var orderProduct : Int {
+        get {
+            return totalOrderCount
+        }
+        
+        set {
+            totalOrderCount += newValue
+        }
+    }
+    
+}
+//
+//let user = User()
+//user.nickname
+//User.nickname2
+
+User.nickname2
+User.totalOrderCount
+User.orderProduct
+
+User.orderProduct = 10
+User.totalOrderCount
+User.orderProduct = 20
+User.totalOrderCount
+
+
+
+
+struct Point {
+    var x = 0.0
+    var y = 0.0
+    
+    mutating func moveBy(x: Double, y: Double){ // mutating : 자신의 값을 바꿀때(struct)
+        self.x += x
+        self.y += y
+    }
+    
+}
+
+var somePoint = Point()
+print("POINT : \(somePoint.x), \(somePoint.y)")
+somePoint.moveBy(x: 3.0, y: 5.0)
+print("POINT : \(somePoint.x), \(somePoint.y)")
+
+
+class Coffee {
+    static var name = "아메리카노"
+    static var shot = 2
+    
+    static func plusShot() { // 상속을 해도 재정의가 불가능
+        shot += 1
+    }
+
+    class func minusShot(){ // 상속을 해서 재정의가 가능
+        shot -= 1
+    }
+    
+    func hello(){
+        
+    }
+}
+
+
+Coffee.plusShot()
+
+class Latte : Coffee {
+    override class func minusShot() {
+        print("타입 메소드를 상속받아서 재정의 하고싶을 경우, 부모 클래스에서 타입 메서드를 선언할 때 static이 아니라 class를 쓰면 재정의 할 수 있다")
+    }
+}
+
+// property wrapper - 이걸 더 간단하게 쓰려고 만들어짐
+class UserDefaultsHelper {
+    
+    static let shared = UserDefaultsHelper()
+    
+    let userDefaults = UserDefaults.standard
+    
+    enum Key : String {
+        case nickname, age, rate
+    }
+    
+    var userNickname : String?{
+        get{
+            return userDefaults.string(forKey: Key.nickname.rawValue)
+        }
+        set{
+            userDefaults.set(newValue, forKey: Key.nickname.rawValue)
+        }
+    }
+    
+    var userAge : Int? {
+        get{
+            return userDefaults.integer(forKey: Key.age.rawValue)
+        }
+        set{
+            userDefaults.set(newValue, forKey: Key.age.rawValue)
+        }
+    }
+    
+}
+
+UserDefaultsHelper.shared.userNickname
+UserDefaultsHelper.shared.userAge
+
+UserDefaultsHelper.shared.userNickname = "고고"
+UserDefaultsHelper.shared.userAge = 15
+
+UserDefaultsHelper.shared.userNickname
+UserDefaultsHelper.shared.userAge
