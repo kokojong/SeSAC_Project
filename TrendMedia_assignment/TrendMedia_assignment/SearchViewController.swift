@@ -18,7 +18,7 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     var searchedTvshow = TvshowList()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return searchedTvshow.tvShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

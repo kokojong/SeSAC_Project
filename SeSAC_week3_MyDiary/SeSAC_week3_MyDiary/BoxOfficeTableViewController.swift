@@ -9,10 +9,18 @@ import UIKit
 
 class BoxOfficeTableViewController: UITableViewController {
     
+    // Pass Data
+    // 1. 값을 전달받을 공간, type 명시
+    var titleSpace : String?
+    
     let movieInfo = MovieInfo()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 2. 표현
+        title = titleSpace ?? "내용이 없을 때 타이틀"
+        
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(closeButtonClicked))
 
@@ -73,6 +81,16 @@ class BoxOfficeTableViewController: UITableViewController {
             print("Error")
             return
         }
+        
+        let row = movieInfo.movie[indexPath.row]
+        
+        // pass data3
+//        vc.releaseDate = row.releaseDate
+//        vc.overview = row.overview
+//        vc.rate = row.rate
+//        vc.movieTitle = row.title
+//        vc.runtime = row.runtime
+        vc.movieData = row
         
 //        let vc = sb.instantiateViewController(withIdentifier: "BoxOfficeDetailViewController") as! BoxOfficeDetailViewController
 //

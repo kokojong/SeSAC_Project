@@ -11,6 +11,18 @@ class BoxOfficeDetailViewController: UIViewController , UITextViewDelegate, UIPi
     
     let pickerList : [String] = ["감자","고구마","딸끼","ㅁ","ㄴ"]
     
+    // 전달받을 데이터가 여러개
+    // pass data 1. 받을 공간을 할당
+//    var movieTitle : String?
+//    var releaseDate : String?
+//    var runtime : Int?
+//    var overview : String?
+//    var rate : Double?
+    
+    // 구조체로 한방에 받기
+    var movieData : Movie?
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -38,6 +50,16 @@ class BoxOfficeDetailViewController: UIViewController , UITextViewDelegate, UIPi
         // textField InputView 써보기
 //        titleTextField.inputView = UIDatePicker() // 아래에 뺴꼼ㅋㅋㅋ
         
+        // pass data 2.
+//        titleTextField.text = movieTitle
+//        overviewTextView.text = overview
+//        print(runtime, releaseDate, rate)
+        
+        titleTextField.text = movieData?.title
+        overviewTextView.text = movieData?.overview
+        print(movieData?.runtime, movieData?.rate, movieData?.releaseDate)
+        
+        
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -50,7 +72,7 @@ class BoxOfficeDetailViewController: UIViewController , UITextViewDelegate, UIPi
         overviewTextView.delegate = self
         
         // 텍스트뷰 플레이스 홀더 : 글자, 글자색
-        overviewTextView.text = "줄거리를 남겨 보시지요"
+//        overviewTextView.text = "줄거리를 남겨 보시지요"
         overviewTextView.textColor = .lightGray
         
         // Do any additional setup after loading the view.

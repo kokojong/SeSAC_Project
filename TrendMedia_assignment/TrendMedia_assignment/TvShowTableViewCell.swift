@@ -9,6 +9,7 @@ import UIKit
 
 class TvShowTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var linkButton: UIButton!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
@@ -23,5 +24,8 @@ class TvShowTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func linkButtonClicked(_ sender: UIButton) {
+        
+    }
+    
 }

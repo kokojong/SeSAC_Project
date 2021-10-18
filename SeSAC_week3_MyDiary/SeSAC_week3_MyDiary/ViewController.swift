@@ -52,6 +52,11 @@ class ViewController: UIViewController {
         // 동일한 스토리보드 안에 있다면 아래와 같이 가능하다(위에 storyboard 생략가능)
         // vc = self.storyboard
         
+        // pass data 3
+        vc.titleSpace = "박스오피스"
+        
+        
+        
         // push
         // 네이게이션 컨트롤러가 없다면 Nil
         self.navigationController?.pushViewController(vc, animated: true)

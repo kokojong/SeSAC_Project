@@ -20,6 +20,8 @@
 		0478CAE8271A9D4F00D8C03C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAE7271A9D4F00D8C03C /* SearchTableViewCell.swift */; };
 		0478CAEA271AD33B00D8C03C /* CastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAE9271AD33B00D8C03C /* CastViewController.swift */; };
 		0478CAEC271AD4F100D8C03C /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CAEB271AD4F100D8C03C /* CastTableViewCell.swift */; };
+		0478CB20271D550A00D8C03C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0478CB1F271D550A00D8C03C /* Kingfisher */; };
+		0478CB22271D5B0F00D8C03C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB21271D5B0F00D8C03C /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,7 @@
 		0478CAE7271A9D4F00D8C03C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		0478CAE9271AD33B00D8C03C /* CastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastViewController.swift; sourceTree = "<group>"; };
 		0478CAEB271AD4F100D8C03C /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
+		0478CB21271D5B0F00D8C03C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0478CB20271D550A00D8C03C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +88,7 @@
 				0478CAE12719769300D8C03C /* TvShow.swift */,
 				0478CAD627196F1400D8C03C /* LaunchScreen.storyboard */,
 				0478CAD927196F1400D8C03C /* Info.plist */,
+				0478CB21271D5B0F00D8C03C /* WebViewController.swift */,
 			);
 			path = TrendMedia_assignment;
 			sourceTree = "<group>";
@@ -104,6 +109,9 @@
 			dependencies = (
 			);
 			name = TrendMedia_assignment;
+			packageProductDependencies = (
+				0478CB1F271D550A00D8C03C /* Kingfisher */,
+			);
 			productName = TrendMedia_assignment;
 			productReference = 0478CAC827196F1100D8C03C /* TrendMedia_assignment.app */;
 			productType = "com.apple.product-type.application";
@@ -132,6 +140,9 @@
 				Base,
 			);
 			mainGroup = 0478CABF27196F1100D8C03C;
+			packageReferences = (
+				0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 0478CAC927196F1100D8C03C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -160,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0478CAE42719F03C00D8C03C /* TvShowTableViewCell.swift in Sources */,
+				0478CB22271D5B0F00D8C03C /* WebViewController.swift in Sources */,
 				0478CAE6271A9B0D00D8C03C /* SearchViewController.swift in Sources */,
 				0478CAD027196F1100D8C03C /* TvshowListViewController.swift in Sources */,
 				0478CACC27196F1100D8C03C /* AppDelegate.swift in Sources */,
@@ -388,6 +400,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0478CB1F271D550A00D8C03C /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0478CAC027196F1100D8C03C /* Project object */;
 }

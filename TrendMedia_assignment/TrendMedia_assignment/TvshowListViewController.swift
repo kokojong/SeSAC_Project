@@ -11,58 +11,7 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let tvshowList = TvshowList() // 구조체를 가져옴
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tvshowList.tvShow.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TvShowTableViewCell") as? TvShowTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        let row = tvshowList.tvShow[indexPath.row] // 몇번째 요소인지 특정
-        
-        // data 삽입
-        cell.genreLabel.text = row.genre
-        cell.titleLabel.text = row.title
-        cell.rateLabel.text = "\(row.rate)"
-        
-        let url = URL(string: row.backdropImage)
-        let data = try? Data(contentsOf: url!)
-        cell.posterImageView.image = UIImage(data: data!)
-        
-        // UI 꾸미기
-        cell.backgroundColor = .white
-        cell.layer.borderColor = UIColor.gray.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 5
-        
-        cell.genreLabel.textColor = .gray
-        cell.genreLabel.font = .systemFont(ofSize: 13)
-        
-        cell.titleLabel.font = .boldSystemFont(ofSize: 20)
-        cell.rateLabel.font = .systemFont(ofSize: 15)
-        
-        
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // 1. sb
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        
-        // 2. vc
-        guard let vc = sb.instantiateViewController(withIdentifier: "CastViewController") as? CastViewController else { return }
-        
-        // 3.push
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-    }
+    var indexPathRow = 0
     
     @IBOutlet weak var tvshowTableView: UITableView!
     @IBOutlet weak var topButtonsView: UIView!
@@ -111,6 +60,91 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         present(nav, animated: true, completion: nil)
     }
     
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tvshowList.tvShow.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TvShowTableViewCell") as? TvShowTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let row = tvshowList.tvShow[indexPath.row] // 몇번째 요소인지 특정
+        
+        // data 삽입
+        cell.genreLabel.text = row.genre
+        cell.titleLabel.text = row.title
+        cell.rateLabel.text = "\(row.rate)"
+        
+        let url = URL(string: row.backdropImage)
+        let data = try? Data(contentsOf: url!)
+        cell.posterImageView.image = UIImage(data: data!)
+        
+        // UI 꾸미기
+        cell.backgroundColor = .white
+        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 5
+        
+        cell.genreLabel.textColor = .gray
+        cell.genreLabel.font = .systemFont(ofSize: 13)
+        
+        cell.titleLabel.font = .boldSystemFont(ofSize: 20)
+        cell.rateLabel.font = .systemFont(ofSize: 15)
+        
+        
+        indexPathRow = indexPath.row
+        print("\(indexPathRow)")
+        
+        cell.linkButton.addTarget(self, action: #selector(linkButtonClicked), for: .touchUpInside)
+           
+        
+        
+        
+        
+        return cell
+    }
+    
+    @objc func linkButtonClicked() {
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+
+
+        vc.tvShowData = tvshowList.tvShow[indexPathRow]
+        
+        let nav = UINavigationController(rootViewController: vc)
+        
+        nav.modalPresentationStyle = .automatic
+        
+        present(nav, animated: true, completion: nil)
+        
+    }
+    
+    // go to CastVC
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // 1. sb
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        // 2. vc
+        guard let vc = sb.instantiateViewController(withIdentifier: "CastViewController") as? CastViewController else { return }
+        
+        
+        // pass data
+        let row = tvshowList.tvShow[indexPath.row]
+        vc.tvshowData = row
+        
+        // 3.push
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
+    
+
     
 }
 
