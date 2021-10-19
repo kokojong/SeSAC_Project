@@ -17,31 +17,7 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     var searchedTvshow = TvshowList()
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchedTvshow.tvShow.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell else { return UITableViewCell() }
-        
-        let row = searchedTvshow.tvShow[indexPath.row]
-        
-        cell.titleLabel.text = row.title
-        cell.releaseDateLabel.text = row.releaseDate
-        cell.overviewLable.text = row.overview
-        
-        let url = URL(string: row.backdropImage)
-        let data = try? Data(contentsOf: url!)
-        cell.posterImageView.image = UIImage(data: data!)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +37,35 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         
     }
     
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return searchedTvshow.tvShow.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+      
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell else { return UITableViewCell() }
+            
+            let row = searchedTvshow.tvShow[indexPath.row]
+            
+            cell.titleLabel.text = row.title
+            cell.releaseDateLabel.text = row.releaseDate
+            cell.overviewLable.text = row.overview
+            
+            let url = URL(string: row.backdropImage)
+            let data = try? Data(contentsOf: url!)
+            cell.posterImageView.image = UIImage(data: data!)
+            
+            return cell
+        
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     
 
 }

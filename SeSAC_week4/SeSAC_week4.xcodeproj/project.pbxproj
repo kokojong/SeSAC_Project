@@ -17,6 +17,13 @@
 		0478CB19271CFAD100D8C03C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB18271CFAD100D8C03C /* SettingViewController.swift */; };
 		0478CB1C271CFB3000D8C03C /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB1A271CFB3000D8C03C /* DefaultTableViewCell.swift */; };
 		0478CB1D271CFB3000D8C03C /* DefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0478CB1B271CFB3000D8C03C /* DefaultTableViewCell.xib */; };
+		0478CB26271E4AAC00D8C03C /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB25271E4AAC00D8C03C /* MainCollectionViewController.swift */; };
+		0478CB29271E4B4000D8C03C /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB27271E4B4000D8C03C /* MainCollectionViewCell.swift */; };
+		0478CB2A271E4B4000D8C03C /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0478CB28271E4B4000D8C03C /* MainCollectionViewCell.xib */; };
+		0478CB2D271E539500D8C03C /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB2B271E539500D8C03C /* TagCollectionViewCell.swift */; };
+		0478CB2E271E539500D8C03C /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0478CB2C271E539500D8C03C /* TagCollectionViewCell.xib */; };
+		0478CB30271E662800D8C03C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB2F271E662800D8C03C /* WebViewController.swift */; };
+		0478CB3F271EEBA400D8C03C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0478CB3E271EEBA400D8C03C /* Toast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,12 @@
 		0478CB18271CFAD100D8C03C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0478CB1A271CFB3000D8C03C /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		0478CB1B271CFB3000D8C03C /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
+		0478CB25271E4AAC00D8C03C /* MainCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
+		0478CB27271E4B4000D8C03C /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		0478CB28271E4B4000D8C03C /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
+		0478CB2B271E539500D8C03C /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		0478CB2C271E539500D8C03C /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
+		0478CB2F271E662800D8C03C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0478CB3F271EEBA400D8C03C /* Toast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +82,12 @@
 				0478CB04271CF7AC00D8C03C /* SceneDelegate.swift */,
 				0478CB06271CF7AC00D8C03C /* ViewController.swift */,
 				0478CB08271CF7AC00D8C03C /* Main.storyboard */,
+				0478CB2F271E662800D8C03C /* WebViewController.swift */,
+				0478CB2B271E539500D8C03C /* TagCollectionViewCell.swift */,
+				0478CB2C271E539500D8C03C /* TagCollectionViewCell.xib */,
+				0478CB27271E4B4000D8C03C /* MainCollectionViewCell.swift */,
+				0478CB28271E4B4000D8C03C /* MainCollectionViewCell.xib */,
+				0478CB25271E4AAC00D8C03C /* MainCollectionViewController.swift */,
 				0478CB16271CF89600D8C03C /* Setting.storyboard */,
 				0478CB1A271CFB3000D8C03C /* DefaultTableViewCell.swift */,
 				0478CB1B271CFB3000D8C03C /* DefaultTableViewCell.xib */,
@@ -95,6 +115,9 @@
 			dependencies = (
 			);
 			name = SeSAC_week4;
+			packageProductDependencies = (
+				0478CB3E271EEBA400D8C03C /* Toast */,
+			);
 			productName = SeSAC_week4;
 			productReference = 0478CAFF271CF7AC00D8C03C /* SeSAC_week4.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +146,9 @@
 				Base,
 			);
 			mainGroup = 0478CAF6271CF7AC00D8C03C;
+			packageReferences = (
+				0478CB3D271EEBA400D8C03C /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+			);
 			productRefGroup = 0478CB00271CF7AC00D8C03C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +164,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0478CB0F271CF7AE00D8C03C /* LaunchScreen.storyboard in Resources */,
+				0478CB2E271E539500D8C03C /* TagCollectionViewCell.xib in Resources */,
+				0478CB2A271E4B4000D8C03C /* MainCollectionViewCell.xib in Resources */,
 				0478CB0C271CF7AE00D8C03C /* Assets.xcassets in Resources */,
 				0478CB0A271CF7AC00D8C03C /* Main.storyboard in Resources */,
 				0478CB1D271CFB3000D8C03C /* DefaultTableViewCell.xib in Resources */,
@@ -152,7 +180,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0478CB29271E4B4000D8C03C /* MainCollectionViewCell.swift in Sources */,
+				0478CB30271E662800D8C03C /* WebViewController.swift in Sources */,
+				0478CB2D271E539500D8C03C /* TagCollectionViewCell.swift in Sources */,
 				0478CB07271CF7AC00D8C03C /* ViewController.swift in Sources */,
+				0478CB26271E4AAC00D8C03C /* MainCollectionViewController.swift in Sources */,
 				0478CB03271CF7AC00D8C03C /* AppDelegate.swift in Sources */,
 				0478CB05271CF7AC00D8C03C /* SceneDelegate.swift in Sources */,
 				0478CB19271CFAD100D8C03C /* SettingViewController.swift in Sources */,
@@ -376,6 +408,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0478CB3D271EEBA400D8C03C /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0478CB3E271EEBA400D8C03C /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0478CB3D271EEBA400D8C03C /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0478CAF7271CF7AC00D8C03C /* Project object */;
 }

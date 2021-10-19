@@ -144,7 +144,18 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-
+    // go to BookVC
+    @IBAction func bookButtonClicked(_ sender: UIButton) {
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let vc = sb.instantiateViewController(withIdentifier: BookViewController.identifier) as? BookViewController else { return }
+                
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
+    
     
 }
 

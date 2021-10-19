@@ -6,9 +6,56 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Book View Controller-->
+        <scene sceneID="yFf-5g-XmR">
+            <objects>
+                <viewController storyboardIdentifier="BookViewController" id="jMc-Mw-ZfL" customClass="BookViewController" customModule="TrendMedia_assignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ca6-lc-uln">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EIf-Ls-DMI">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Q6-KI-FOn">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookCollectionViewCell" id="KhH-Dl-kYh" customClass="BookCollectionViewCell" customModule="TrendMedia_assignment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gg8-qw-txc">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SfR-Gp-aZo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SfR-Gp-aZo" firstAttribute="bottom" secondItem="EIf-Ls-DMI" secondAttribute="bottom" id="Q5s-XH-wSa"/>
+                            <constraint firstItem="EIf-Ls-DMI" firstAttribute="leading" secondItem="SfR-Gp-aZo" secondAttribute="leading" id="kTb-3x-rdG"/>
+                            <constraint firstItem="EIf-Ls-DMI" firstAttribute="top" secondItem="SfR-Gp-aZo" secondAttribute="top" id="ne5-jp-YwU"/>
+                            <constraint firstItem="SfR-Gp-aZo" firstAttribute="trailing" secondItem="EIf-Ls-DMI" secondAttribute="trailing" id="njT-Q6-yNR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bookCollectionView" destination="EIf-Ls-DMI" id="N4D-qf-MPy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eCl-AA-WVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1819" y="-708"/>
+        </scene>
         <!--Trend Media-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -68,6 +115,9 @@
                                                         <imageReference key="image" image="book.closed" catalog="system" symbolScale="large"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="bookButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pHZ-8j-mzV"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -346,8 +396,48 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="OverviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OverviewTableViewCell" rowHeight="97" id="lTB-D2-2Ue" customClass="OverviewTableViewCell" customModule="TrendMedia_assignment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="176.5" width="398" height="97"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lTB-D2-2Ue" id="bKL-Gq-afA">
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="97"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-Pg-Q7K">
+                                                    <rect key="frame" x="184" y="59" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="EYh-gR-2z1"/>
+                                                        <constraint firstAttribute="width" constant="30" id="YK5-Ws-66P"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="13"/>
+                                                    </buttonConfiguration>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcO-5h-Rfl">
+                                                    <rect key="frame" x="28" y="11" width="342" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TcO-5h-Rfl" firstAttribute="top" secondItem="bKL-Gq-afA" secondAttribute="topMargin" id="0tZ-0P-IZi"/>
+                                                <constraint firstItem="TcO-5h-Rfl" firstAttribute="centerX" secondItem="bKL-Gq-afA" secondAttribute="centerX" id="APd-m1-63P"/>
+                                                <constraint firstAttribute="bottom" secondItem="YYo-Pg-Q7K" secondAttribute="bottom" constant="8" id="NX1-fn-bbn"/>
+                                                <constraint firstItem="TcO-5h-Rfl" firstAttribute="leading" secondItem="bKL-Gq-afA" secondAttribute="leadingMargin" constant="8" id="NtD-GT-a4H"/>
+                                                <constraint firstItem="YYo-Pg-Q7K" firstAttribute="centerX" secondItem="bKL-Gq-afA" secondAttribute="centerX" id="Oro-Pu-sOU"/>
+                                                <constraint firstItem="YYo-Pg-Q7K" firstAttribute="top" secondItem="TcO-5h-Rfl" secondAttribute="bottom" constant="8" id="gSk-gT-vYH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TcO-5h-Rfl" secondAttribute="trailing" constant="8" id="vmU-nT-dVO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="overviewButton" destination="YYo-Pg-Q7K" id="07r-si-rYh"/>
+                                            <outlet property="overviewLabel" destination="TcO-5h-Rfl" id="rPd-53-ZF7"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CastTableViewCell" rowHeight="95" id="eYR-d1-F5E" customClass="CastTableViewCell" customModule="TrendMedia_assignment" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="176.5" width="398" height="95"/>
+                                        <rect key="frame" x="0.0" y="273.5" width="398" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eYR-d1-F5E" id="KWW-EJ-mHD">
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="95"/>
@@ -450,6 +540,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down" catalog="system" width="120" height="128"/>
         <image name="book.closed" catalog="system" width="115" height="128"/>
         <image name="film" catalog="system" width="128" height="93"/>
         <image name="greys_anatomy" width="350" height="525"/>
