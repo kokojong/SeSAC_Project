@@ -10,6 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Theater View Controller-->
+        <scene sceneID="36m-61-yuN">
+            <objects>
+                <viewController storyboardIdentifier="TheaterViewController" id="jeu-tS-Zfa" customClass="TheaterViewController" customModule="TrendMedia_assignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9e7-lE-i8a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-c9-3uf">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lOc-Kw-HB6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8ML-c9-3uf" firstAttribute="top" secondItem="lOc-Kw-HB6" secondAttribute="top" id="9oo-9F-Glk"/>
+                            <constraint firstItem="8ML-c9-3uf" firstAttribute="leading" secondItem="lOc-Kw-HB6" secondAttribute="leading" id="MF3-FN-uaG"/>
+                            <constraint firstItem="lOc-Kw-HB6" firstAttribute="bottom" secondItem="8ML-c9-3uf" secondAttribute="bottom" id="StO-3C-ouO"/>
+                            <constraint firstItem="lOc-Kw-HB6" firstAttribute="trailing" secondItem="8ML-c9-3uf" secondAttribute="trailing" id="ZWm-mx-KJ2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="8ML-c9-3uf" id="jH1-0F-a4J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eUe-p4-j0G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="949" y="-697"/>
+        </scene>
         <!--Book View Controller-->
         <scene sceneID="yFf-5g-XmR">
             <objects>
@@ -54,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCl-AA-WVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1819" y="-708"/>
+            <point key="canvasLocation" x="1819" y="-697"/>
         </scene>
         <!--Trend Media-->
         <scene sceneID="tne-QT-ifu">
@@ -237,9 +266,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Trend Media" id="cWl-DI-5dd">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="oMx-QW-wsp">
+                        <barButtonItem key="leftBarButtonItem" title="theaters" id="ag7-7M-18R">
                             <connections>
-                                <action selector="searchButtonClicked:" destination="BYZ-38-t0r" id="fiE-Ai-um5"/>
+                                <action selector="leftBarButtonClicked:" destination="BYZ-38-t0r" id="4WJ-G7-D2L"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="search" id="oMx-QW-wsp">
+                            <connections>
+                                <action selector="rightBarButtonClicked:" destination="BYZ-38-t0r" id="TgC-vP-9py"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -410,7 +444,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="YK5-Ws-66P"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system">
+                                                    <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system" title="">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="13"/>
                                                     </buttonConfiguration>
                                                 </button>

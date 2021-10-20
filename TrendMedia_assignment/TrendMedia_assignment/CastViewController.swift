@@ -14,7 +14,6 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
     var tvshowData : TvShow?
    
     
-    
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -115,6 +114,7 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
             castTableView.reloadData()
             // reloadRows는 왜 안되는지 모르겠다..
 //            castTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            self.castTableView.rowHeight = UITableView.automaticDimension
             print("button \(overviewButton.tag)")
             
         } else {

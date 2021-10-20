@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gJ2-jy-ZVb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lny-Hb-wUv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -161,6 +161,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qx-Zj-BmW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957.9710144927537" y="77.678571428571431"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="5eY-py-3mb">
+            <objects>
+                <viewController storyboardIdentifier="LocationViewController" id="lny-Hb-wUv" customClass="LocationViewController" customModule="SeSAC_week4" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aLQ-bR-d8V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lm-lv-c2d">
+                                <rect key="frame" x="20" y="64" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Km3-Y0-s0c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UoM-9X-blq">
+                                <rect key="frame" x="0.0" y="164" width="414" height="698"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eGQ-D9-bDJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5lm-lv-c2d" firstAttribute="top" secondItem="eGQ-D9-bDJ" secondAttribute="top" constant="20" id="3Dg-wU-3tl"/>
+                            <constraint firstItem="UoM-9X-blq" firstAttribute="top" secondItem="5lm-lv-c2d" secondAttribute="bottom" id="5W0-xP-M8k"/>
+                            <constraint firstItem="UoM-9X-blq" firstAttribute="leading" secondItem="eGQ-D9-bDJ" secondAttribute="leading" id="P8s-6w-LNR"/>
+                            <constraint firstItem="5lm-lv-c2d" firstAttribute="leading" secondItem="eGQ-D9-bDJ" secondAttribute="leading" constant="20" id="lPp-bM-Hla"/>
+                            <constraint firstItem="eGQ-D9-bDJ" firstAttribute="bottom" secondItem="UoM-9X-blq" secondAttribute="bottom" id="nr9-X5-rro"/>
+                            <constraint firstItem="eGQ-D9-bDJ" firstAttribute="trailing" secondItem="UoM-9X-blq" secondAttribute="trailing" id="sfU-1w-ZKV"/>
+                            <constraint firstItem="eGQ-D9-bDJ" firstAttribute="trailing" secondItem="5lm-lv-c2d" secondAttribute="trailing" constant="20" id="xAd-Wm-c9M"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="UoM-9X-blq" id="igR-bl-VCo"/>
+                        <outlet property="userCurrentLocation" destination="5lm-lv-c2d" id="Zqf-wx-YIX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q03-Eg-xkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2824.6376811594205" y="77.678571428571431"/>
         </scene>
         <!--Setting-->
         <scene sceneID="tPX-j3-jMd">

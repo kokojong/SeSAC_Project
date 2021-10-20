@@ -32,6 +32,8 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.title = "TREND MEDIA"
         self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "magnifyingglass")
         
+        self.navigationItem.leftBarButtonItem?.image = UIImage(systemName: "paperplane")
+        
         let backBarButtonItem = UIBarButtonItem(title: "뒤뒤", style: .plain, target: self, action: #selector(onBackBarButtonClicked))
         
         self.navigationItem.backBarButtonItem = backBarButtonItem
@@ -42,7 +44,18 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
+    @IBAction func leftBarButtonClicked(_ sender: UIBarButtonItem) {
+    
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = sb.instantiateViewController(withIdentifier: "TheaterViewController") as! TheaterViewController
+        
+        vc.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    
+    }
+    @IBAction func rightBarButtonClicked(_ sender: UIBarButtonItem) {
     
         // 1. sb
         let sb = UIStoryboard(name: "Main", bundle: nil)

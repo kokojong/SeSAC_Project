@@ -26,6 +26,9 @@
 		0478CB36271EACB200D8C03C /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB35271EACB200D8C03C /* BookViewController.swift */; };
 		0478CB3B271EAD9D00D8C03C /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB39271EAD9D00D8C03C /* BookCollectionViewCell.swift */; };
 		0478CB3C271EAD9D00D8C03C /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0478CB3A271EAD9D00D8C03C /* BookCollectionViewCell.xib */; };
+		0478CB43271FE88500D8C03C /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB42271FE88500D8C03C /* TheaterViewController.swift */; };
+		0478CB45271FF13C00D8C03C /* TheaterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB44271FF13C00D8C03C /* TheaterList.swift */; };
+		0478CB47271FF16800D8C03C /* Theater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB46271FF16800D8C03C /* Theater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		0478CB35271EACB200D8C03C /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		0478CB39271EAD9D00D8C03C /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		0478CB3A271EAD9D00D8C03C /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
+		0478CB42271FE88500D8C03C /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
+		0478CB44271FF13C00D8C03C /* TheaterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterList.swift; sourceTree = "<group>"; };
+		0478CB46271FF16800D8C03C /* Theater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 				0478CB35271EACB200D8C03C /* BookViewController.swift */,
 				0478CAE32719F03C00D8C03C /* TvShowTableViewCell.swift */,
 				0478CAD127196F1100D8C03C /* Main.storyboard */,
+				0478CB42271FE88500D8C03C /* TheaterViewController.swift */,
 				0478CB39271EAD9D00D8C03C /* BookCollectionViewCell.swift */,
 				0478CB3A271EAD9D00D8C03C /* BookCollectionViewCell.xib */,
 				0478CB31271E90A800D8C03C /* OverviewTableViewCell.swift */,
@@ -96,6 +103,8 @@
 				0478CAE5271A9B0D00D8C03C /* SearchViewController.swift */,
 				0478CAE7271A9D4F00D8C03C /* SearchTableViewCell.swift */,
 				0478CAD427196F1400D8C03C /* Assets.xcassets */,
+				0478CB44271FF13C00D8C03C /* TheaterList.swift */,
+				0478CB46271FF16800D8C03C /* Theater.swift */,
 				0478CADF2719763900D8C03C /* TvShowList.swift */,
 				0478CAE12719769300D8C03C /* TvShow.swift */,
 				0478CAD627196F1400D8C03C /* LaunchScreen.storyboard */,
@@ -186,14 +195,17 @@
 				0478CAE42719F03C00D8C03C /* TvShowTableViewCell.swift in Sources */,
 				0478CB22271D5B0F00D8C03C /* WebViewController.swift in Sources */,
 				0478CAE6271A9B0D00D8C03C /* SearchViewController.swift in Sources */,
+				0478CB43271FE88500D8C03C /* TheaterViewController.swift in Sources */,
 				0478CAD027196F1100D8C03C /* TvshowListViewController.swift in Sources */,
 				0478CB32271E90A800D8C03C /* OverviewTableViewCell.swift in Sources */,
 				0478CACC27196F1100D8C03C /* AppDelegate.swift in Sources */,
 				0478CAE22719769300D8C03C /* TvShow.swift in Sources */,
 				0478CAEA271AD33B00D8C03C /* CastViewController.swift in Sources */,
+				0478CB45271FF13C00D8C03C /* TheaterList.swift in Sources */,
 				0478CAEC271AD4F100D8C03C /* CastTableViewCell.swift in Sources */,
 				0478CB36271EACB200D8C03C /* BookViewController.swift in Sources */,
 				0478CAE8271A9D4F00D8C03C /* SearchTableViewCell.swift in Sources */,
+				0478CB47271FF16800D8C03C /* Theater.swift in Sources */,
 				0478CB3B271EAD9D00D8C03C /* BookCollectionViewCell.swift in Sources */,
 				0478CAE02719763900D8C03C /* TvShowList.swift in Sources */,
 				0478CACE27196F1100D8C03C /* SceneDelegate.swift in Sources */,
