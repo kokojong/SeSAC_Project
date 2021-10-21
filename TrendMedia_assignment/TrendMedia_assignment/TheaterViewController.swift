@@ -107,6 +107,25 @@ class TheaterViewController: UIViewController {
         }
     }
     
+    func showAlert(title: String, message: String, okTitle: String, okAction: @escaping () -> ()) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancle = UIAlertAction(title: "취소", style: .cancel)
+        
+        let ok = UIAlertAction(title: okTitle, style: .default) { _ in
+            okAction()
+        }
+
+        
+        alert.addAction(cancle)
+        alert.addAction(ok)
+        
+        self.present(alert, animated: true) {
+            print("alert 띄움")
+        }
+    }
+    
 
 }
 
@@ -133,8 +152,9 @@ extension TheaterViewController: CLLocationManagerDelegate {
             let region = MKCoordinateRegion(center: coordinate, span: span)
             mapView.setRegion(region, animated: true)
             
-            // 10 위치업데이트
-            locationManager.startUpdatingLocation()
+            // 10 위치업데이트 멈춰!
+            locationManager.stopUpdatingLocation()
+//            locationManager.startUpdatingLocation()
             
             // 00구 00동 으로 표기하기
             showTitle(coordi: coordinate)
@@ -159,6 +179,20 @@ extension TheaterViewController: CLLocationManagerDelegate {
         })
     }
     
+    func goToSetting() {
+        
+        guard let url = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url) { success in
+                print("잘 열렸다 \(success)")
+            }
+        }
+
+    }
+    
     
     // 5. 위치 접근에 실패
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -173,6 +207,8 @@ extension TheaterViewController: CLLocationManagerDelegate {
         mapView.addAnnotation(annotation)
         
         mapView.setRegion(region, animated: true)
+        
+        print("didFailWithError")
 
     }
     
@@ -217,8 +253,14 @@ extension TheaterViewController: CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization() // 앱을 사용하는 동안에 대한 위치 권한 요청
             locationManager.startUpdatingLocation() // 위치 접근 시작! -> didUpdateLocations 실행
+            
         case .restricted, .denied:
             print("DENIED, 설정으로 유도")
+            showAlert(title: "위치 권한", message: "위치 권한이 없으면 서울시청으로 간닷", okTitle: "설정하기") {
+                self.goToSetting()
+            }
+            
+                        
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation() // 위치 접근 시작! -> didUpdateLocations 실행
         case .authorizedAlways:

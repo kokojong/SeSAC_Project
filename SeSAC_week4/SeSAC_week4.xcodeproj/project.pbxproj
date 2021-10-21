@@ -25,6 +25,7 @@
 		0478CB30271E662800D8C03C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB2F271E662800D8C03C /* WebViewController.swift */; };
 		0478CB3F271EEBA400D8C03C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0478CB3E271EEBA400D8C03C /* Toast */; };
 		0478CB41271FAC9300D8C03C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB40271FAC9300D8C03C /* LocationViewController.swift */; };
+		04CDDF35272107F100F70B0B /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDDF34272107F100F70B0B /* Alert+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		0478CB2C271E539500D8C03C /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		0478CB2F271E662800D8C03C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0478CB40271FAC9300D8C03C /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		04CDDF34272107F100F70B0B /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				0478CB06271CF7AC00D8C03C /* ViewController.swift */,
 				0478CB08271CF7AC00D8C03C /* Main.storyboard */,
 				0478CB40271FAC9300D8C03C /* LocationViewController.swift */,
+				04CDDF34272107F100F70B0B /* Alert+Extension.swift */,
 				0478CB2F271E662800D8C03C /* WebViewController.swift */,
 				0478CB2B271E539500D8C03C /* TagCollectionViewCell.swift */,
 				0478CB2C271E539500D8C03C /* TagCollectionViewCell.xib */,
@@ -185,6 +188,7 @@
 			files = (
 				0478CB29271E4B4000D8C03C /* MainCollectionViewCell.swift in Sources */,
 				0478CB30271E662800D8C03C /* WebViewController.swift in Sources */,
+				04CDDF35272107F100F70B0B /* Alert+Extension.swift in Sources */,
 				0478CB2D271E539500D8C03C /* TagCollectionViewCell.swift in Sources */,
 				0478CB07271CF7AC00D8C03C /* ViewController.swift in Sources */,
 				0478CB26271E4AAC00D8C03C /* MainCollectionViewController.swift in Sources */,

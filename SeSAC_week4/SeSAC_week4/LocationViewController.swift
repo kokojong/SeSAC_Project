@@ -28,9 +28,16 @@ class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userCurrentLocation.backgroundColor = .red
+        
+        UIView.animate(withDuration: 5) {
+            self.userCurrentLocation.alpha = 0.1
+        }
+        
+        
 
         // 37.540576151212015, 127.06923308241498
-        
         // 지역을 설정
         let location = CLLocationCoordinate2D(latitude: 37.540576151212015, longitude: 127.06923308241498)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
@@ -55,7 +62,32 @@ class LocationViewController: UIViewController {
         
         
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    @IBAction func alertButtonClicked(_ sender: UIButton) {
+        showAlert(title: "설정", message: "권한 허용해죠", okTitle: "설정으로 이동") {
+            
+            guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url) { success in
+                    print("잘 열렸다 \(success)")
+                }
+            }
+        }
+    }
+    
+    @IBAction func updateLabelButtonClicked(_ sender: UIButton) {
+        showAlert(title: "텍스트 변경", message: "레이블의 글자를 바꿀게요", okTitle: "꾸랭") {
+            self.userCurrentLocation.text = "asldkfasdf"
+        }
+    }
 }
 
 // 3.
@@ -93,6 +125,7 @@ extension LocationViewController : CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization() // 앱을 사용하는 동안에 대한 위치 권한 요청
             locationManager.startUpdatingLocation() // 위치 접근 시작! -> didUpdateLocations 실행
+        
         case .restricted, .denied:
             print("DENIED, 설정으로 유도")
             
@@ -142,7 +175,8 @@ extension LocationViewController : CLLocationManagerDelegate {
             mapView.setRegion(region, animated: true)
             
             // 10.(중요) 비슷한 위치라면? 업데이트를 중지해라
-            locationManager.startUpdatingLocation()
+            locationManager.stopUpdatingLocation()
+//            locationManager.startUpdatingLocation()
             
             
         } else {
