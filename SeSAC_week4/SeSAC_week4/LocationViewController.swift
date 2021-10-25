@@ -26,6 +26,7 @@ class LocationViewController: UIViewController {
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +35,6 @@ class LocationViewController: UIViewController {
         UIView.animate(withDuration: 5) {
             self.userCurrentLocation.alpha = 0.1
         }
-        
         
 
         // 37.540576151212015, 127.06923308241498
