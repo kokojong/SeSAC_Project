@@ -8,6 +8,8 @@
 import UIKit
 
 class SearchTableViewCell: UITableViewCell {
+    
+    static let identifier = "SearchTableViewCell"
 
     @IBOutlet weak var overviewLable: UILabel!
     @IBOutlet weak var titleLabel: UILabel!

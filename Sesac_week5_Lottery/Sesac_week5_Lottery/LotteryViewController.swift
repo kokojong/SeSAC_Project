@@ -15,7 +15,18 @@ class LotteryViewController: UIViewController {
     @IBOutlet weak var resultMainLabel: UILabel!
     @IBOutlet weak var mainPickerView: UIPickerView!
     
+    @IBOutlet weak var drwDateLabel: UILabel!
+    @IBOutlet weak var result1Label: UILabel!
+    @IBOutlet weak var result2Label: UILabel!
+    @IBOutlet weak var result3Label: UILabel!
+    
+    @IBOutlet weak var result4Label: UILabel!
+    @IBOutlet weak var result5Label: UILabel!
+    @IBOutlet weak var result6Label: UILabel!
+    @IBOutlet weak var resultBonusLabel: UILabel!
+    
     let numberList: [Int] = Array(1...986).reversed()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +35,14 @@ class LotteryViewController: UIViewController {
         searchTextField.inputView = mainPickerView
         searchTextField.text = "\(numberList[0])"
         getLotteryInfo(drwNo: searchTextField.text!)
+        
+        setLabelUI(label: result1Label)
+        setLabelUI(label: result2Label)
+        setLabelUI(label: result3Label)
+        setLabelUI(label: result4Label)
+        setLabelUI(label: result5Label)
+        setLabelUI(label: result6Label)
+        setLabelUI(label: resultBonusLabel)
         
     }
     
@@ -35,19 +54,51 @@ class LotteryViewController: UIViewController {
             
             AF.request(url, method: .get).validate().responseJSON { response in
                 switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-            case .failure(let error):
-                print(error)
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    let drwtNo1 = json["drwtNo1"].intValue
+                    let drwtNo2 = json["drwtNo2"].intValue
+                    let drwtNo3 = json["drwtNo3"].intValue
+                    let drwtNo4 = json["drwtNo4"].intValue
+                    let drwtNo5 = json["drwtNo5"].intValue
+                    let drwtNo6 = json["drwtNo6"].intValue
+                    let bnusNo = json["bnusNo"].intValue
+                    
+                    let date = json["drwNoDate"].stringValue
+                    self.drwDateLabel.text = "\(date) 추첨"
+                    
+                    self.result1Label.text = "\(drwtNo1)"
+                    self.result2Label.text = "\(drwtNo2)"
+                    self.result3Label.text = "\(drwtNo3)"
+                    self.result4Label.text = "\(drwtNo4)"
+                    self.result5Label.text = "\(drwtNo5)"
+                    self.result6Label.text = "\(drwtNo6)"
+                    
+                    self.resultBonusLabel.text = "\(bnusNo)"
+                    
+                    
+                case .failure(let error):
+                    print(error)
             }
         }
-
         
     }
     
-
-
+    func setLabelUI(label: UILabel) {
+        label.clipsToBounds = true
+        label.layer.cornerRadius = label.bounds.width / 2
+        
+    }
+    
+    @IBAction func mainTextFieldDidEnd(_ sender: UITextField) {
+        let search = sender.text
+        getLotteryInfo(drwNo: search!)
+        
+    }
+    
+    
+    
 
 }
 

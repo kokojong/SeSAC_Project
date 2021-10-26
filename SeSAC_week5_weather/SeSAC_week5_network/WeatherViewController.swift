@@ -7,18 +7,32 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
+import Alamofire
+import Kingfisher
 
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var locationLabel: UILabel!
     
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var weatherImageView: UIImageView!
     
     let locationManager = CLLocationManager()
+    
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationManager.delegate = self
+        
+        loadOpenWeatherData()
+        
+        
         
     }
     
@@ -42,7 +56,41 @@ class WeatherViewController: UIViewController {
     }
     
     
-
+    
+    func loadOpenWeatherData() {
+        
+        let url = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=cbb08215c4818146e8ec274c270bdce9"
+        
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                let temp = json["main"]["temp"].doubleValue - 273.15
+                let humidity = json["main"]["humidity"].doubleValue
+                let windSpeed = json["wind"]["speed"].doubleValue
+               
+                self.temperatureLabel.text = String(format: " 현재 온도는 %.2f도 입니다", temp)
+                self.humidityLabel.text = String(format: "현재 습도는 %.2f 입니다", humidity)
+                self.windSpeedLabel.text = String(format: "현재 풍속은 %.2f 입니다", windSpeed)
+                
+                
+                let icon = json["weather"][0]["icon"].stringValue
+                let url = URL(string: "http://openweathermap.org/img/wn/\(icon)@2x.png")
+                self.weatherImageView.kf.setImage(with: url)
+                print(url!)
+                
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+        
+    }
+    
 }
 
 extension WeatherViewController: CLLocationManagerDelegate {
@@ -53,6 +101,8 @@ extension WeatherViewController: CLLocationManagerDelegate {
         if let coordinate = locations.last?.coordinate{ // 여기서는 미국이 나오니까 일단은 건대에 고정으로 하기
             // 37.540559136949575, 127.06919016707388
             
+            self.latitude = coordinate.latitude
+            self.longitude = coordinate.longitude
             // 10 위치업데이트 멈춰!
             locationManager.stopUpdatingLocation()
             
@@ -77,6 +127,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
             }
             
         })
+        
     }
     // 실패
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

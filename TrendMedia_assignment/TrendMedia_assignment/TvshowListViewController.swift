@@ -169,6 +169,15 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    @IBAction func BoxOfficeButton(_ sender: UIButton) {
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let vc = sb.instantiateViewController(withIdentifier: BoxOfficeViewController.identifier) as? BoxOfficeViewController else { return }
+                
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
 }
 

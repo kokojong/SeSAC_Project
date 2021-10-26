@@ -29,6 +29,12 @@
 		0478CB43271FE88500D8C03C /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB42271FE88500D8C03C /* TheaterViewController.swift */; };
 		0478CB45271FF13C00D8C03C /* TheaterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB44271FF13C00D8C03C /* TheaterList.swift */; };
 		0478CB47271FF16800D8C03C /* Theater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CB46271FF16800D8C03C /* Theater.swift */; };
+		04FECCF527279D3900FEF9F7 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 04FECCF427279D3900FEF9F7 /* SwiftyJSON */; };
+		04FECCF827279D4700FEF9F7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04FECCF727279D4700FEF9F7 /* Alamofire */; };
+		04FECCFA2727A7DD00FEF9F7 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECCF92727A7DD00FEF9F7 /* MovieModel.swift */; };
+		04FECCFF2728002F00FEF9F7 /* BoxOfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECCFE2728002F00FEF9F7 /* BoxOfficeViewController.swift */; };
+		04FECD0127280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD0027280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift */; };
+		04FECD032728381500FEF9F7 /* BoxOfficeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD022728381500FEF9F7 /* BoxOfficeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +61,10 @@
 		0478CB42271FE88500D8C03C /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
 		0478CB44271FF13C00D8C03C /* TheaterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterList.swift; sourceTree = "<group>"; };
 		0478CB46271FF16800D8C03C /* Theater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theater.swift; sourceTree = "<group>"; };
+		04FECCF92727A7DD00FEF9F7 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		04FECCFE2728002F00FEF9F7 /* BoxOfficeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewController.swift; sourceTree = "<group>"; };
+		04FECD0027280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeTableViewCell.swift; sourceTree = "<group>"; };
+		04FECD022728381500FEF9F7 /* BoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FECCF827279D4700FEF9F7 /* Alamofire in Frameworks */,
+				04FECCF527279D3900FEF9F7 /* SwiftyJSON in Frameworks */,
 				0478CB20271D550A00D8C03C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +106,8 @@
 				0478CB35271EACB200D8C03C /* BookViewController.swift */,
 				0478CAE32719F03C00D8C03C /* TvShowTableViewCell.swift */,
 				0478CAD127196F1100D8C03C /* Main.storyboard */,
+				04FECCFE2728002F00FEF9F7 /* BoxOfficeViewController.swift */,
+				04FECD0027280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift */,
 				0478CB42271FE88500D8C03C /* TheaterViewController.swift */,
 				0478CB39271EAD9D00D8C03C /* BookCollectionViewCell.swift */,
 				0478CB3A271EAD9D00D8C03C /* BookCollectionViewCell.xib */,
@@ -103,8 +117,10 @@
 				0478CAE5271A9B0D00D8C03C /* SearchViewController.swift */,
 				0478CAE7271A9D4F00D8C03C /* SearchTableViewCell.swift */,
 				0478CAD427196F1400D8C03C /* Assets.xcassets */,
+				04FECCF92727A7DD00FEF9F7 /* MovieModel.swift */,
 				0478CB44271FF13C00D8C03C /* TheaterList.swift */,
 				0478CB46271FF16800D8C03C /* Theater.swift */,
+				04FECD022728381500FEF9F7 /* BoxOfficeModel.swift */,
 				0478CADF2719763900D8C03C /* TvShowList.swift */,
 				0478CAE12719769300D8C03C /* TvShow.swift */,
 				0478CAD627196F1400D8C03C /* LaunchScreen.storyboard */,
@@ -132,6 +148,8 @@
 			name = TrendMedia_assignment;
 			packageProductDependencies = (
 				0478CB1F271D550A00D8C03C /* Kingfisher */,
+				04FECCF427279D3900FEF9F7 /* SwiftyJSON */,
+				04FECCF727279D4700FEF9F7 /* Alamofire */,
 			);
 			productName = TrendMedia_assignment;
 			productReference = 0478CAC827196F1100D8C03C /* TrendMedia_assignment.app */;
@@ -163,6 +181,8 @@
 			mainGroup = 0478CABF27196F1100D8C03C;
 			packageReferences = (
 				0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				04FECCF327279D3900FEF9F7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				04FECCF627279D4700FEF9F7 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 0478CAC927196F1100D8C03C /* Products */;
 			projectDirPath = "";
@@ -192,7 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FECCFA2727A7DD00FEF9F7 /* MovieModel.swift in Sources */,
+				04FECCFF2728002F00FEF9F7 /* BoxOfficeViewController.swift in Sources */,
 				0478CAE42719F03C00D8C03C /* TvShowTableViewCell.swift in Sources */,
+				04FECD032728381500FEF9F7 /* BoxOfficeModel.swift in Sources */,
 				0478CB22271D5B0F00D8C03C /* WebViewController.swift in Sources */,
 				0478CAE6271A9B0D00D8C03C /* SearchViewController.swift in Sources */,
 				0478CB43271FE88500D8C03C /* TheaterViewController.swift in Sources */,
@@ -201,6 +224,7 @@
 				0478CACC27196F1100D8C03C /* AppDelegate.swift in Sources */,
 				0478CAE22719769300D8C03C /* TvShow.swift in Sources */,
 				0478CAEA271AD33B00D8C03C /* CastViewController.swift in Sources */,
+				04FECD0127280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift in Sources */,
 				0478CB45271FF13C00D8C03C /* TheaterList.swift in Sources */,
 				0478CAEC271AD4F100D8C03C /* CastTableViewCell.swift in Sources */,
 				0478CB36271EACB200D8C03C /* BookViewController.swift in Sources */,
@@ -438,6 +462,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		04FECCF327279D3900FEF9F7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+		04FECCF627279D4700FEF9F7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -445,6 +485,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		04FECCF427279D3900FEF9F7 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04FECCF327279D3900FEF9F7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		04FECCF727279D4700FEF9F7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04FECCF627279D4700FEF9F7 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
