@@ -7,11 +7,19 @@
 
 import UIKit
 
-class TvshowListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TvshowListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+    
+    
     
     let tvshowList = TvshowList() // 구조체를 가져옴
     
     var indexPathRow = 0
+    
+    var trendMediaTVList: [TrendMediaTVModel] = []
+    
+    var pageNum = 1
+    
+    let totalPageCount = 1000 // api에서 정해짐
     
     @IBOutlet weak var tvshowTableView: UITableView!
     @IBOutlet weak var topButtonsView: UIView!
@@ -37,6 +45,10 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         let backBarButtonItem = UIBarButtonItem(title: "뒤뒤", style: .plain, target: self, action: #selector(onBackBarButtonClicked))
         
         self.navigationItem.backBarButtonItem = backBarButtonItem
+        
+        tvshowTableView.prefetchDataSource = self
+        
+        loadTvshowData()
         
     }
     
@@ -73,9 +85,24 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         present(nav, animated: true, completion: nil)
     }
     
+
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+            if trendMediaTVList.count - 1 == indexPath.row && trendMediaTVList.count < totalPageCount { // 마지막에 도달하면
+                pageNum += 1
+                loadTvshowData()
+                print("prefetch: \(indexPath)")
+            }
+            
+        }
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tvshowList.tvShow.count
+//        return tvshowList.tvShow.count
+        return trendMediaTVList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,16 +111,25 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
             return UITableViewCell()
         }
         
-        let row = tvshowList.tvShow[indexPath.row] // 몇번째 요소인지 특정
+
+        let row = trendMediaTVList[indexPath.row]
         
+        cell.titleLabel.text = row.original_name
+        cell.rateLabel.text = "\(row.vote_average)"
+
+        let url = URL(string: EndPoint.TMDB_POSETER_URL + row.poster_path)
+
+        cell.posterImageView.kf.setImage(with: url)
+
+//        let row = tvshowList.tvShow[indexPath.row] // 몇번째 요소인지 특정
         // data 삽입
-        cell.genreLabel.text = row.genre
-        cell.titleLabel.text = row.title
-        cell.rateLabel.text = "\(row.rate)"
-        
-        let url = URL(string: row.backdropImage)
-        let data = try? Data(contentsOf: url!)
-        cell.posterImageView.image = UIImage(data: data!)
+//        cell.genreLabel.text = row.genre
+//        cell.titleLabel.text = row.title
+//        cell.rateLabel.text = "\(row.rate)"
+//
+//        let url = URL(string: row.backdropImage)
+//        let data = try? Data(contentsOf: url!)
+//        cell.posterImageView.image = UIImage(data: data!)
         
         // UI 꾸미기
         cell.backgroundColor = .white
@@ -112,10 +148,6 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         print("\(indexPathRow)")
         
         cell.linkButton.addTarget(self, action: #selector(linkButtonClicked), for: .touchUpInside)
-           
-        
-        
-        
         
         return cell
     }
@@ -125,7 +157,6 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         let sb = UIStoryboard(name: "Main", bundle: nil)
         
         let vc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-
 
         vc.tvShowData = tvshowList.tvShow[indexPathRow]
         
@@ -176,6 +207,28 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let vc = sb.instantiateViewController(withIdentifier: BoxOfficeViewController.identifier) as? BoxOfficeViewController else { return }
                 
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func loadTvshowData() {
+        
+        TrendMediaAPIManager.shared.fetchTrendMediaData(page: pageNum) { json in
+            
+            for tvshow in json["results"].arrayValue {
+                let title = tvshow["original_name"].stringValue
+                let rate = tvshow["vote_average"].doubleValue
+                let posterImage = tvshow["poster_path"].stringValue
+                
+                let data = TrendMediaTVModel(original_name: title, vote_average: rate, poster_path: posterImage)
+                self.trendMediaTVList.append(data)
+                
+            }
+            
+            self.tvshowTableView.reloadData()
+            print("trendMediaTVList: \(self.trendMediaTVList)") // 20개가 나온다
+            print(self.trendMediaTVList.count)
+            
+        }
         
     }
     

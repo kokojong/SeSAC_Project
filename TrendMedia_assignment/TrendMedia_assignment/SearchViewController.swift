@@ -10,7 +10,8 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
+class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching{
+    
     
     
     @IBOutlet weak var searchTableView: UITableView!
@@ -22,13 +23,15 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     var movieData: [MovieModel] = []
     
-    
+    var startPage = 1
+    var totalCount = 200
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        searchTableView.prefetchDataSource = self
         
         fetchMovieData()
         
@@ -42,6 +45,25 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         self.dismiss(animated: true, completion: nil)
         
     }
+    
+    // 셀이 화면에 보여지기 전에 필요한 리소스를 미리 다운받는 기능
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    
+        for indexPath in indexPaths {
+            if movieData.count - 1 == indexPath.row && movieData.count < totalCount { // 마지막에 도달하면
+                startPage += 10 // 시작점을 재설정
+                fetchMovieData()
+                print("prefetch: \(indexPaths)")
+            }
+        }
+        
+    }
+    
+    // 취소
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print("취소: \(indexPaths)")
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -69,6 +91,7 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         cell.overviewLable.text = row.subtitle
         
         let url = URL(string: row.imageData)
+        
         cell.posterImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
         
         return cell
@@ -81,9 +104,9 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     // 네이버 영화 네트워크 통신
     func fetchMovieData() {
         
-        if let query = "스파이더맨".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+        if let query = "오늘".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
             
-            let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=15&start=1"
+            let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=15&start=\(startPage)"
             let headers : HTTPHeaders = [
                 "X-Naver-Client-Id": "sHXg6cdzeK4giS0SuZA2",
                 "X-Naver-Client-Secret": "yrsXMsOkxI"
@@ -111,6 +134,8 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                     }
                     
                     print(self.movieData)
+                    
+                    self.totalCount = json["total"].intValue
                     
                     self.searchTableView.reloadData()
 //

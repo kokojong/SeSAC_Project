@@ -35,6 +35,9 @@
 		04FECCFF2728002F00FEF9F7 /* BoxOfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECCFE2728002F00FEF9F7 /* BoxOfficeViewController.swift */; };
 		04FECD0127280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD0027280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift */; };
 		04FECD032728381500FEF9F7 /* BoxOfficeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD022728381500FEF9F7 /* BoxOfficeModel.swift */; };
+		04FECD132729435800FEF9F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD122729435800FEF9F7 /* Constants.swift */; };
+		04FECD152729483600FEF9F7 /* TrendMediaAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD142729483600FEF9F7 /* TrendMediaAPIManager.swift */; };
+		04FECD172729648D00FEF9F7 /* TrendMediaTVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD162729648D00FEF9F7 /* TrendMediaTVModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,9 @@
 		04FECCFE2728002F00FEF9F7 /* BoxOfficeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewController.swift; sourceTree = "<group>"; };
 		04FECD0027280EEB00FEF9F7 /* BoxOfficeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeTableViewCell.swift; sourceTree = "<group>"; };
 		04FECD022728381500FEF9F7 /* BoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeModel.swift; sourceTree = "<group>"; };
+		04FECD122729435800FEF9F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		04FECD142729483600FEF9F7 /* TrendMediaAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMediaAPIManager.swift; sourceTree = "<group>"; };
+		04FECD162729648D00FEF9F7 /* TrendMediaTVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMediaTVModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,8 @@
 				0478CACB27196F1100D8C03C /* AppDelegate.swift */,
 				0478CACD27196F1100D8C03C /* SceneDelegate.swift */,
 				0478CACF27196F1100D8C03C /* TvshowListViewController.swift */,
+				04FECD142729483600FEF9F7 /* TrendMediaAPIManager.swift */,
+				04FECD122729435800FEF9F7 /* Constants.swift */,
 				0478CB35271EACB200D8C03C /* BookViewController.swift */,
 				0478CAE32719F03C00D8C03C /* TvShowTableViewCell.swift */,
 				0478CAD127196F1100D8C03C /* Main.storyboard */,
@@ -117,6 +125,7 @@
 				0478CAE5271A9B0D00D8C03C /* SearchViewController.swift */,
 				0478CAE7271A9D4F00D8C03C /* SearchTableViewCell.swift */,
 				0478CAD427196F1400D8C03C /* Assets.xcassets */,
+				04FECD162729648D00FEF9F7 /* TrendMediaTVModel.swift */,
 				04FECCF92727A7DD00FEF9F7 /* MovieModel.swift */,
 				0478CB44271FF13C00D8C03C /* TheaterList.swift */,
 				0478CB46271FF16800D8C03C /* Theater.swift */,
@@ -213,13 +222,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				04FECCFA2727A7DD00FEF9F7 /* MovieModel.swift in Sources */,
+				04FECD132729435800FEF9F7 /* Constants.swift in Sources */,
 				04FECCFF2728002F00FEF9F7 /* BoxOfficeViewController.swift in Sources */,
 				0478CAE42719F03C00D8C03C /* TvShowTableViewCell.swift in Sources */,
 				04FECD032728381500FEF9F7 /* BoxOfficeModel.swift in Sources */,
 				0478CB22271D5B0F00D8C03C /* WebViewController.swift in Sources */,
 				0478CAE6271A9B0D00D8C03C /* SearchViewController.swift in Sources */,
+				04FECD152729483600FEF9F7 /* TrendMediaAPIManager.swift in Sources */,
 				0478CB43271FE88500D8C03C /* TheaterViewController.swift in Sources */,
 				0478CAD027196F1100D8C03C /* TvshowListViewController.swift in Sources */,
+				04FECD172729648D00FEF9F7 /* TrendMediaTVModel.swift in Sources */,
 				0478CB32271E90A800D8C03C /* OverviewTableViewCell.swift in Sources */,
 				0478CACC27196F1100D8C03C /* AppDelegate.swift in Sources */,
 				0478CAE22719769300D8C03C /* TvShow.swift in Sources */,
