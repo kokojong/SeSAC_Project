@@ -13,7 +13,11 @@ class OCRViewController: UIViewController {
     @IBOutlet weak var resultTextView: UITextView!
     
     var wordList: [String] = []
-    var resultSting: String = ""
+    var resultSting: String = "" {
+        didSet{
+            resultTextView.text = resultSting
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
