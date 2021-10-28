@@ -9,6 +9,12 @@ import UIKit
 
 class CrewTableViewCell: UITableViewCell {
 
+    static let identifier = "CrewTableViewCell"
+    
+    @IBOutlet weak var crewImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var roleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

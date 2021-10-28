@@ -143,22 +143,19 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.titleLabel.font = .boldSystemFont(ofSize: 20)
         cell.rateLabel.font = .systemFont(ofSize: 15)
         
-        
-        indexPathRow = indexPath.row
-        print("\(indexPathRow)")
-        
-        cell.linkButton.addTarget(self, action: #selector(linkButtonClicked), for: .touchUpInside)
+        cell.linkButton.tag = indexPath.row // 몇번째인지
+        cell.linkButton.addTarget(self, action: #selector(linkButtonClicked(selected: )), for: .touchUpInside)
         
         return cell
     }
     
-    @objc func linkButtonClicked() {
+    @objc func linkButtonClicked(selected: UIButton) {
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         
-        let vc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        let vc = sb.instantiateViewController(withIdentifier: WebViewController.identifier) as! WebViewController
 
-        vc.tvShowData = tvshowList.tvShow[indexPathRow]
+        vc.trendMediaTVData = trendMediaTVList[selected.tag]
         
         let nav = UINavigationController(rootViewController: vc)
         
@@ -168,7 +165,7 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    // go to CastVC
+    // go to CastVC - TvShowTableViewCell 클릭
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // 1. sb
@@ -177,15 +174,13 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         // 2. vc
         guard let vc = sb.instantiateViewController(withIdentifier: "CastViewController") as? CastViewController else { return }
         
-        
-        // pass data
-        let row = tvshowList.tvShow[indexPath.row]
-        vc.tvshowData = row
+        // new pass data
+        let row = trendMediaTVList[indexPath.row]
+        vc.trendMediaTVData = row
         
         // 3.push
         self.navigationController?.pushViewController(vc, animated: true)
-        
-        
+
     }
     
     // go to BookVC
@@ -218,8 +213,11 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let title = tvshow["original_name"].stringValue
                 let rate = tvshow["vote_average"].doubleValue
                 let posterImage = tvshow["poster_path"].stringValue
+                let backdropImage = tvshow["backdrop_path"].stringValue
+                let id = tvshow["id"].intValue
+                let overview = tvshow["overview"].stringValue
                 
-                let data = TrendMediaTVModel(original_name: title, vote_average: rate, poster_path: posterImage)
+                let data = TrendMediaTVModel(original_name: title, vote_average: rate, poster_path: posterImage, backdrop_path: backdropImage, id: id, overview: overview)
                 self.trendMediaTVList.append(data)
                 
             }

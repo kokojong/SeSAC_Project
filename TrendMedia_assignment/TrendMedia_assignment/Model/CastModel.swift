@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct CastModel {
+    
+    var name : String
+    var character: String
+    var profile_path: String
+    
+}

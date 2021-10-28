@@ -12,5 +12,8 @@ struct TrendMediaTVModel {
     var original_name: String
     var vote_average: Double
     var poster_path: String
+    var backdrop_path: String
+    var id: Int
+    var overview: String
     
 }

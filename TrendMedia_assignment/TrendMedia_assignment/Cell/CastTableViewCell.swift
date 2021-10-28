@@ -8,6 +8,8 @@
 import UIKit
 
 class CastTableViewCell: UITableViewCell {
+    
+    static let identifier = "CastTableViewCell"
 
     @IBOutlet weak var castImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

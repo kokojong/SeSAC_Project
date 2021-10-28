@@ -12,6 +12,12 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
     
     // pass data 1. 받을 공간 만들기
     var tvshowData : TvShow?
+    
+    // new pass data
+    var trendMediaTVData : TrendMediaTVModel?
+    
+    var castList: [CastModel] = []
+    var crewList : [CrewModel] = []
    
     
     @IBOutlet weak var posterImageView: UIImageView!
@@ -31,7 +37,8 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
         
         // pass data 2. 받은 데이터로 뭘할지 정하기
         titleLabel.textColor = .white
-        titleLabel.text = tvshowData?.title
+        titleLabel.text = trendMediaTVData?.original_name
+        
         
         // 기본적인 방법으로 URL -> Image
 //        let url = URL(string: tvshowData?.backdropImage ?? "")
@@ -40,32 +47,35 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
 //        posterImageView.image = UIImage(data: data!)
         
         // kingfisher를 사용한 버전
-        let url = URL(string: tvshowData?.backdropImage ?? "")
-        backgroundImageView.kf.setImage(with: url)
-        posterImageView.kf.setImage(with: url)
+//        let url = URL(string: EndPoint.TMDB_POSETER_URL + row.poster_path)
+//
+//        cell.posterImageView.kf.setImage(with: url)
         
+        let posterUrl = URL(string: EndPoint.TMDB_POSETER_URL + trendMediaTVData!.poster_path)
+        posterImageView.kf.setImage(with: posterUrl)
+        let backdropUrl = URL(string: EndPoint.TMDB_POSETER_URL + trendMediaTVData!.backdrop_path)
+        backgroundImageView.kf.setImage(with: backdropUrl)
         
         // 뒤로가기 버튼을 커스텀(주석 부분은 실패)
 //        navigationController?.popViewController(animated: true)
 //        navigationItem.backButtonTitle = "뒤로가기"
         navigationItem.title = "출연/제작"
-        self.navigationController?.navigationBar.topItem?.title = "뒤로가기"
         
         // overviewCell
-        castTableView.estimatedRowHeight = 44
-        castTableView.rowHeight = UITableView.automaticDimension
+
         
-        
+        loadCreditsData()
         
         
         
 }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return 3
+        switch section {
+        case 0: return 1
+        case 1: return castList.count
+        case 2: return crewList.count
+        default: return 1
         }
     }
     
@@ -75,7 +85,6 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier) as? OverviewTableViewCell else { return UITableViewCell() }
             
- 
             print(cell.overviewButton.tag)
             if cell.overviewButton.tag == 0 {
                 cell.overviewLabel.numberOfLines = 1
@@ -83,26 +92,42 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
                 cell.overviewLabel.numberOfLines = 0
             }
             
-            cell.overviewLabel.text = "asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg asdfasdgasdg "
+            cell.overviewLabel.text = trendMediaTVData?.overview
             
             cell.overviewButton.addTarget(self, action: #selector(overviewButtonClicked(overviewButton: )), for: .touchUpInside)
             
             return cell
             
-        } else {
+        } else if indexPath.section == 1 {
             
             guard let cell = castTableView.dequeueReusableCell(withIdentifier: "CastTableViewCell") as? CastTableViewCell else {
                 return UITableViewCell()
             }
             
-            cell.castImageView.image = UIImage(systemName: "person")
-            cell.nameLabel.text = "kokojong"
-            cell.roleLabel.text = "iOS - dev"
+            let row = castList[indexPath.row]
+            let url = URL(string: EndPoint.TMDB_POSETER_URL + row.profile_path)
             
-            
+            cell.castImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+            cell.nameLabel.text = row.name
+            cell.roleLabel.text = row.character
             
             return cell
+            
+        } else {
+            
+            guard let cell = castTableView.dequeueReusableCell(withIdentifier: CrewTableViewCell.identifier) as? CrewTableViewCell else { return UITableViewCell() }
+            
+            let row = crewList[indexPath.row]
+            let url = URL(string: EndPoint.TMDB_POSETER_URL + row.profile_path)
+            
+            cell.crewImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+            cell.nameLabel.text = row.name
+            cell.roleLabel.text = row.department
+            
+            return cell
+            
         }
+    
         
     }
     
@@ -129,12 +154,45 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "출연"
+        } else if section == 2 {
+            return "제작"
+        } else {
+            return ""
+        }
     }
 
-    
-    
-
-    
-
+    func loadCreditsData() {
+        
+        TrendMediaCreditsAPIManager.shared.fetchTrendMediaCreditsData(movie_id: trendMediaTVData!.id) { json in
+            
+            for cast in json["cast"].arrayValue {
+                let name = cast["name"].stringValue
+                let character = cast["character"].stringValue
+                let profile_path = cast["profile_path"].stringValue
+                
+                let data = CastModel(name: name, character: character, profile_path: profile_path)
+                self.castList.append(data)
+                
+            }
+            
+            for crew in json["crew"].arrayValue {
+                let name = crew["name"].stringValue
+                let department = crew["department"].stringValue
+                let profile_path = crew["profile_path"].stringValue
+                
+                let data = CrewModel(name: name, department: department, profile_path: profile_path)
+                self.crewList.append(data)
+            }
+            
+            self.castTableView.reloadData()
+            
+        }
+        
+    }
 }
