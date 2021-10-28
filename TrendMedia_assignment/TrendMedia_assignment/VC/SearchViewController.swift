@@ -33,11 +33,14 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         searchTableView.dataSource = self
         searchTableView.prefetchDataSource = self
         
-        fetchMovieData()
+        fetchMovieData(query: "안녕")
         
         // 임베드 된 nav에서 동작을 구현(스토리보드 상에는 임베드 되지 않음)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action:#selector(closeButtonClicked) )
       
+        searchBar.delegate = self
+        searchBar.showsCancelButton = false
+        
     }
     
     @objc func closeButtonClicked () {
@@ -52,7 +55,7 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         for indexPath in indexPaths {
             if movieData.count - 1 == indexPath.row && movieData.count < totalCount { // 마지막에 도달하면
                 startPage += 10 // 시작점을 재설정
-                fetchMovieData()
+                fetchMovieData(query: "안녕")
                 print("prefetch: \(indexPaths)")
             }
         }
@@ -102,9 +105,9 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     }
     
     // 네이버 영화 네트워크 통신
-    func fetchMovieData() {
+    func fetchMovieData(query: String) {
         
-        if let query = "오늘".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+        if let query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
             
             let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=15&start=\(startPage)"
             let headers : HTTPHeaders = [
@@ -151,4 +154,33 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     }
     
 
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    // 검색버튼(키보드의 리턴버튼) 눌렀을 때
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+        if let text = searchBar.text {
+            movieData.removeAll()
+            startPage = 1
+            fetchMovieData(query: text)
+        }
+    }
+    
+    // 취소버튼 눌렀을 때
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+        movieData.removeAll()
+        searchTableView.reloadData()
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    // 서치바에서 커서 깜빡이기 시작할 때
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print(#function)
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    
+    
 }
