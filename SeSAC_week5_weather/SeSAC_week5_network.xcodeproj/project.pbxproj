@@ -26,6 +26,8 @@
 		04FECD0F2729313200FEF9F7 /* OCRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD0E2729313200FEF9F7 /* OCRViewController.swift */; };
 		04FECD11272932CE00FEF9F7 /* OCR_APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD10272932CE00FEF9F7 /* OCR_APIManager.swift */; };
 		04FECD1C272A21FD00FEF9F7 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 04FECD1B272A21FD00FEF9F7 /* JGProgressHUD */; };
+		04FECD2C272B7ED100FEF9F7 /* AsyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD2B272B7ED100FEF9F7 /* AsyncViewController.swift */; };
+		04FECD2E272B947E00FEF9F7 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FECD2D272B947E00FEF9F7 /* UILabel+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		04FECD0C2729258C00FEF9F7 /* WeatherAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIManager.swift; sourceTree = "<group>"; };
 		04FECD0E2729313200FEF9F7 /* OCRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRViewController.swift; sourceTree = "<group>"; };
 		04FECD10272932CE00FEF9F7 /* OCR_APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCR_APIManager.swift; sourceTree = "<group>"; };
+		04FECD2B272B7ED100FEF9F7 /* AsyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewController.swift; sourceTree = "<group>"; };
+		04FECD2D272B947E00FEF9F7 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 				04E65FC42726446A00BC9707 /* SceneDelegate.swift */,
 				04E65FC82726446A00BC9707 /* Main.storyboard */,
 				04FECD042728D19100FEF9F7 /* Constants.swift */,
+				04FECD2D272B947E00FEF9F7 /* UILabel+Extension.swift */,
 				04FECD19272993CD00FEF9F7 /* VC */,
 				04FECD18272993A800FEF9F7 /* APIManager */,
 				04E65FCB2726446E00BC9707 /* Assets.xcassets */,
@@ -114,6 +119,7 @@
 				04FECD082728E9F400FEF9F7 /* VisionViewController.swift */,
 				04FECCF12727928300FEF9F7 /* PapagoViewController.swift */,
 				04FECD0E2729313200FEF9F7 /* OCRViewController.swift */,
+				04FECD2B272B7ED100FEF9F7 /* AsyncViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -211,7 +217,9 @@
 				04FECD092728E9F400FEF9F7 /* VisionViewController.swift in Sources */,
 				04FECD0B2728EC8000FEF9F7 /* VisionAPIManager.swift in Sources */,
 				04E65FC52726446A00BC9707 /* SceneDelegate.swift in Sources */,
+				04FECD2E272B947E00FEF9F7 /* UILabel+Extension.swift in Sources */,
 				04FECD072728D33F00FEF9F7 /* TranslatedAPIManager.swift in Sources */,
+				04FECD2C272B7ED100FEF9F7 /* AsyncViewController.swift in Sources */,
 				04FECD052728D19100FEF9F7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
