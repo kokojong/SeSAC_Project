@@ -1,8 +1,8 @@
 //
-//  TrendMediaAPIManager.swift
+//  TrendMediaPersonSearchAPIManager.swift
 //  TrendMedia_assignment
 //
-//  Created by kokojong on 2021/10/27.
+//  Created by kokojong on 2021/10/31.
 //
 
 import Foundation
@@ -10,16 +10,15 @@ import SwiftyJSON
 import Alamofire
 import UIKit
 
-class TrendMediaAPIManager {
+class TrendMediaPersonSearchAPIManager {
     
-    static let shared = TrendMediaAPIManager()
+    static let shared = TrendMediaPersonSearchAPIManager()
     
     typealias CompleteHandler = (JSON) -> ()
     
-    
-    func fetchTrendMediaData(page: Int, result: @escaping CompleteHandler ) {
+    func fetchTrendMediaPersonSearchData(person_id: Int, result: @escaping CompleteHandler ) {
         
-        let url = EndPoint.TMDB_URL + "api_key=\(API_KEY.TMDB_ID)" + "&query=&page=\(page)"
+        let url = EndPoint.TMDB_PERSON_SEARCH_URL + "\(person_id)" + "/movie_credits?" + "api_key=\(API_KEY.TMDB_ID)" + "&language=en-US"
         
         // UIImage를 바이너리 타입으로 변환
         
@@ -27,7 +26,6 @@ class TrendMediaAPIManager {
             switch response.result {
             case .success(let value):
                 let json =  JSON(value)
-                print("JSON: \(json)")
                 result(json)
             
             case .failure(let error):

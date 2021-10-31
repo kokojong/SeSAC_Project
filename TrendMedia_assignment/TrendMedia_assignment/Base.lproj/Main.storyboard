@@ -700,6 +700,74 @@
             </objects>
             <point key="canvasLocation" x="1818.840579710145" y="784.82142857142856"/>
         </scene>
+        <!--Person Search View Controller-->
+        <scene sceneID="n5T-Ro-4wV">
+            <objects>
+                <viewController storyboardIdentifier="PersonSearchViewController" id="LqV-nb-dSG" customClass="PersonSearchViewController" customModule="TrendMedia_assignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QjB-LX-O6R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ETD-ha-3JE">
+                                <rect key="frame" x="8" y="52" width="398" height="802"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonSearchTableViewCell" rowHeight="65" id="UTJ-vm-oPq" customClass="PersonSearchTableViewCell" customModule="TrendMedia_assignment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="398" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UTJ-vm-oPq" id="MMP-72-Sdp">
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vc-oj-xLV">
+                                                    <rect key="frame" x="20" y="20.5" width="310" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmO-Sh-ddi">
+                                                    <rect key="frame" x="338" y="22" width="40" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Ui3-Bl-oqn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZmO-Sh-ddi" firstAttribute="centerY" secondItem="MMP-72-Sdp" secondAttribute="centerY" id="Cbc-MI-jVk"/>
+                                                <constraint firstItem="0vc-oj-xLV" firstAttribute="centerY" secondItem="MMP-72-Sdp" secondAttribute="centerY" id="RJb-lZ-u8a"/>
+                                                <constraint firstItem="0vc-oj-xLV" firstAttribute="leading" secondItem="MMP-72-Sdp" secondAttribute="leadingMargin" id="add-H6-hoh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZmO-Sh-ddi" secondAttribute="trailing" id="c2L-2b-C1w"/>
+                                                <constraint firstItem="ZmO-Sh-ddi" firstAttribute="leading" secondItem="0vc-oj-xLV" secondAttribute="trailing" constant="8" id="cmj-LX-bcX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="rateLabel" destination="ZmO-Sh-ddi" id="yZb-Vp-wcN"/>
+                                            <outlet property="titleLabel" destination="0vc-oj-xLV" id="zHK-CJ-Vzo"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="u8P-yR-hsW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ETD-ha-3JE" firstAttribute="leading" secondItem="u8P-yR-hsW" secondAttribute="leading" constant="8" id="Di1-JM-JqR"/>
+                            <constraint firstItem="u8P-yR-hsW" firstAttribute="trailing" secondItem="ETD-ha-3JE" secondAttribute="trailing" constant="8" id="cdd-fb-XK4"/>
+                            <constraint firstItem="ETD-ha-3JE" firstAttribute="top" secondItem="u8P-yR-hsW" secondAttribute="top" constant="8" id="rQo-H2-GcP"/>
+                            <constraint firstItem="u8P-yR-hsW" firstAttribute="bottom" secondItem="ETD-ha-3JE" secondAttribute="bottom" constant="8" id="rzH-jR-X58"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="personSearchTableView" destination="ETD-ha-3JE" id="yE9-Kv-Ve5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="439-s1-OmX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2662.3188405797105" y="784.82142857142856"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="vmr-b0-A8L">
             <objects>

@@ -39,7 +39,6 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
         titleLabel.textColor = .white
         titleLabel.text = trendMediaTVData?.original_name
         
-        
         // 기본적인 방법으로 URL -> Image
 //        let url = URL(string: tvshowData?.backdropImage ?? "")
 //        let data = try? Data(contentsOf: url!)
@@ -48,20 +47,16 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
         
         // kingfisher를 사용한 버전
 //        let url = URL(string: EndPoint.TMDB_POSETER_URL + row.poster_path)
-//
 //        cell.posterImageView.kf.setImage(with: url)
         
         let posterUrl = URL(string: EndPoint.TMDB_POSETER_URL + trendMediaTVData!.poster_path)
-        posterImageView.kf.setImage(with: posterUrl)
         let backdropUrl = URL(string: EndPoint.TMDB_POSETER_URL + trendMediaTVData!.backdrop_path)
-        backgroundImageView.kf.setImage(with: backdropUrl)
+        DispatchQueue.main.async {
+            self.posterImageView.kf.setImage(with: posterUrl)
+            self.backgroundImageView.kf.setImage(with: backdropUrl)
+        }
         
-        // 뒤로가기 버튼을 커스텀(주석 부분은 실패)
-//        navigationController?.popViewController(animated: true)
-//        navigationItem.backButtonTitle = "뒤로가기"
         navigationItem.title = "출연/제작"
-        
-        // overviewCell
 
         
         loadCreditsData()
@@ -107,7 +102,10 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
             let row = castList[indexPath.row]
             let url = URL(string: EndPoint.TMDB_POSETER_URL + row.profile_path)
             
-            cell.castImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+            DispatchQueue.main.async {
+                cell.castImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+            }
+            
             cell.nameLabel.text = row.name
             cell.roleLabel.text = row.character
             
@@ -120,7 +118,10 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
             let row = crewList[indexPath.row]
             let url = URL(string: EndPoint.TMDB_POSETER_URL + row.profile_path)
             
-            cell.crewImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+            DispatchQueue.main.async {
+                cell.crewImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+            }
+            
             cell.nameLabel.text = row.name
             cell.roleLabel.text = row.department
             
@@ -146,7 +147,6 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
             overviewButton.setImage(UIImage(systemName: "arrow.down"), for: .normal)
             overviewButton.tag = 0 // off
             castTableView.reloadData()
-//            castTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             print("button \(overviewButton.tag)")
         }
         
@@ -166,6 +166,23 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
             return ""
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // 1. sb
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        // 2. vc
+        guard let vc = sb.instantiateViewController(withIdentifier: "PersonSearchViewController") as? PersonSearchViewController else { return }
+        
+        // new pass data
+        let row = castList[indexPath.row]
+        vc.person_id = row.person_id
+        
+        // 3.push
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 
     func loadCreditsData() {
         
@@ -175,8 +192,9 @@ class CastViewController: UIViewController , UITableViewDelegate, UITableViewDat
                 let name = cast["name"].stringValue
                 let character = cast["character"].stringValue
                 let profile_path = cast["profile_path"].stringValue
+                let person_id = cast["id"].intValue
                 
-                let data = CastModel(name: name, character: character, profile_path: profile_path)
+                let data = CastModel(name: name, character: character, profile_path: profile_path, person_id: person_id)
                 self.castList.append(data)
                 
             }

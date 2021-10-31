@@ -23,5 +23,7 @@ struct EndPoint {
     
     static let TMDB_TV_URL = "https://api.themoviedb.org/3/tv/"
     
+    static let TMDB_PERSON_SEARCH_URL = "https://api.themoviedb.org/3/person/"
+    
 }
 

@@ -12,5 +12,6 @@ struct CastModel {
     var name : String
     var character: String
     var profile_path: String
+    var person_id: Int
     
 }

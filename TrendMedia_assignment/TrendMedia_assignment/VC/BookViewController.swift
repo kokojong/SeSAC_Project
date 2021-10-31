@@ -25,7 +25,6 @@ class BookViewController: UIViewController {
         let nibName = UINib(nibName: BookCollectionViewCell.identifier, bundle: nil)
         bookCollectionView.register(nibName, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         
-   
         let layout = UICollectionViewFlowLayout()
         let spacing : CGFloat = 20
         let width = UIScreen.main.bounds.width - (spacing * 3) // spacing을 뺀 가로
@@ -40,9 +39,6 @@ class BookViewController: UIViewController {
         bookCollectionView.backgroundColor = .gray
         
     }
-    
-
-    
 
 }
 
@@ -62,12 +58,13 @@ extension BookViewController : UICollectionViewDelegate, UICollectionViewDataSou
         cell.rateLabel.text = "\(row.rate)"
         cell.titleLabel.text = row.title
         let url = URL(string: row.backdropImage)
-        cell.bookImageView.kf.setImage(with: url)
+        
+        DispatchQueue.main.async {
+            cell.bookImageView.kf.setImage(with: url)
+        }
         
         cell.backgroundColor = .blue
         cell.layer.cornerRadius = 8
-        
-        
         
         return cell
         

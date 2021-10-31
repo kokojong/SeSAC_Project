@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Network
 
 class BoxOfficeViewController: UIViewController {
     
@@ -28,9 +29,11 @@ class BoxOfficeViewController: UIViewController {
         
         loadBoxOfficeData()
         
-        // Do any additional setup after loading the view.
+        networkMonitor()
+        
     }
     
+ 
 
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
     
@@ -45,6 +48,8 @@ class BoxOfficeViewController: UIViewController {
     
 
 }
+
+
 
 extension BoxOfficeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +85,6 @@ extension BoxOfficeViewController: UITableViewDelegate, UITableViewDataSource {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
                 
                 for movie in json["boxOfficeResult"]["dailyBoxOfficeList"].arrayValue {
                     let rank = movie["rank"].stringValue

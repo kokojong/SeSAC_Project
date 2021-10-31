@@ -50,6 +50,8 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         loadTvshowData()
         
+        networkMonitor()
+        
     }
     
     @objc func onBackBarButtonClicked () {
@@ -111,27 +113,28 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
             return UITableViewCell()
         }
         
+        // UI 업데이트
 
         let row = trendMediaTVList[indexPath.row]
         
         cell.titleLabel.text = row.original_name
         cell.rateLabel.text = "\(row.vote_average)"
 
-        let url = URL(string: EndPoint.TMDB_POSETER_URL + row.poster_path)
-
-        cell.posterImageView.kf.setImage(with: url)
-
-//        let row = tvshowList.tvShow[indexPath.row] // 몇번째 요소인지 특정
-        // data 삽입
-//        cell.genreLabel.text = row.genre
-//        cell.titleLabel.text = row.title
-//        cell.rateLabel.text = "\(row.rate)"
+//        let url = URL(string: EndPoint.TMDB_POSETER_URL + row.poster_path)
 //
-//        let url = URL(string: row.backdropImage)
-//        let data = try? Data(contentsOf: url!)
-//        cell.posterImageView.image = UIImage(data: data!)
+//        cell.posterImageView.kf.setImage(with: url)
         
-        // UI 꾸미기
+        
+        if let url = URL(string: EndPoint.TMDB_POSETER_URL + row.poster_path) {
+            DispatchQueue.main.async {
+                cell.posterImageView.kf.setImage(with: url)
+            }
+        }
+        
+
+
+        
+        // UI 설정하기
         cell.backgroundColor = .white
         cell.layer.borderColor = UIColor.gray.cgColor
         cell.layer.borderWidth = 1
@@ -207,7 +210,7 @@ class TvshowListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func loadTvshowData() {
         
-        TrendMediaAPIManager.shared.fetchTrendMediaData(page: pageNum) { json in
+        TrendMediaRankAPIManager.shared.fetchTrendMediaData(page: pageNum) { json in
             
             for tvshow in json["results"].arrayValue {
                 let title = tvshow["original_name"].stringValue

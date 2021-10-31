@@ -56,7 +56,6 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             if movieData.count - 1 == indexPath.row && movieData.count < totalCount { // 마지막에 도달하면
                 startPage += 10 // 시작점을 재설정
                 fetchMovieData(query: "안녕")
-                print("prefetch: \(indexPaths)")
             }
         }
         
@@ -95,7 +94,10 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         
         let url = URL(string: row.imageData)
         
-        cell.posterImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+        DispatchQueue.main.async {
+            cell.posterImageView.kf.setImage(with: url,placeholder: UIImage(systemName: "person"))
+
+        }
         
         return cell
     }
@@ -115,38 +117,44 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                 "X-Naver-Client-Secret": "yrsXMsOkxI"
             ]
             
-            AF.request(url, method: .get, headers: headers).validate().responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    
-//                    let title = json["items"][0]["title"].stringValue
-//                    print(title)
-                    
-                    for item in json["items"].arrayValue {
-                        let title = item["title"].stringValue.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
-                        let image = item["image"].stringValue
-                        let link = item["link"].stringValue
-                        let userRating = item["userRating"].stringValue
-                        let subtitle = item["subtitle"].stringValue
+            DispatchQueue.global().async {
+                AF.request(url, method: .get, headers: headers).validate().responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+
+    //                    let title = json["items"][0]["title"].stringValue
+    //                    print(title)
                         
-                        let data = MovieModel(titleData: title, imageData: image, linkData: link, userRatingData: userRating, subtitle: subtitle)
-                        self.movieData.append(data)
+                        for item in json["items"].arrayValue {
+                            let title = item["title"].stringValue.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
+                            let image = item["image"].stringValue
+                            let link = item["link"].stringValue
+                            let userRating = item["userRating"].stringValue
+                            let subtitle = item["subtitle"].stringValue
+                            
+                            let data = MovieModel(titleData: title, imageData: image, linkData: link, userRatingData: userRating, subtitle: subtitle)
+                            self.movieData.append(data)
+                            
+                        }
                         
+                        self.totalCount = json["total"].intValue
+                        
+                        // UIUpdate는 메인쓰레드에서 해야한다.
+                        DispatchQueue.main.async {
+                            self.searchTableView.reloadData()
+                        }
+                        
+                        
+
+                        
+                    case .failure(let error):
+                        print(error)
                     }
-                    
-                    print(self.movieData)
-                    
-                    self.totalCount = json["total"].intValue
-                    
-                    self.searchTableView.reloadData()
-//
-                    
-                case .failure(let error):
-                    print(error)
                 }
             }
+            
+           
             
         }
         
