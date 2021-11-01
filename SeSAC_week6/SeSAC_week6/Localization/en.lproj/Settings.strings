@@ -1,0 +1,13 @@
+/* 
+  Settings.strings
+  SeSAC_week6
+
+  Created by kokojong on 2021/11/01.
+  
+*/
+
+"data_backup" = "Backup";
+"data_restore" = "Restore";
+
+"homeTitle" = "home";
+

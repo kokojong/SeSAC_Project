@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  SeSAC_week6
+
+  Created by kokojong on 2021/11/01.
+  
+*/
+CFBundleDisplayName = "내 일기장";
+NSCameraUsageDescription = "카메라 권한을 허용해주세요";
