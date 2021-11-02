@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchTableView: UITableView!
+    
+    let localRealm = try! Realm()
+    
+    var tasks: Results<UserDiary>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +26,9 @@ class SearchViewController: UIViewController {
         searchTableView.rowHeight = UITableView.automaticDimension
         
         title = NSLocalizedString("searchTitle", tableName: "TabBarSetting", bundle: .main, value: "", comment: "")
+     
+        tasks = localRealm.objects(UserDiary.self)
+        print(tasks)
         
     }
     
@@ -36,7 +44,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,11 +53,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.titleLabel.text = "타 이 틀"
+        let row = tasks[indexPath.row]
+        
+        cell.titleLabel.text = row.diaryTitle
         cell.titleLabel.font = UIFont().mainBlack
-        cell.dateLabel.text = "날 짜"
+        cell.dateLabel.text = "\(row.diaryDate)"
         cell.mainImageView.image = UIImage(systemName: "person")
-        cell.contentLabel.text = "내요용용내요용용내요용용내요용용내요용용내요용용내요용용내요용용"
+        cell.contentLabel.text = row.diaryContent
         
         return cell
         

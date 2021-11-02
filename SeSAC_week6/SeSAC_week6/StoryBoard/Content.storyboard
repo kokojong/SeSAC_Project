@@ -65,7 +65,10 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" id="KXR-1x-y2s"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentTextView" destination="xm1-JO-IBS" id="ed0-yy-vxU"/>
+                        <outlet property="dateButton" destination="ETa-Xz-A7x" id="I0w-C9-5nj"/>
                         <outlet property="mainImageView" destination="Gko-2B-oIl" id="c3j-kV-sQi"/>
+                        <outlet property="titleTextField" destination="Ld0-Wg-ssT" id="jF2-tF-AV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

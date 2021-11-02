@@ -126,9 +126,6 @@ class ShoppingListTableViewController: UITableViewController {
 //        let encoded = NSKeyedArchiver.archivedData(withRootObject: shopping, requiringSecureCoding: false)
 //        userDefaults.set(encoded, forKey: "shoppintList")
         
-        
-       
-        
     }
     
     func loadData() {

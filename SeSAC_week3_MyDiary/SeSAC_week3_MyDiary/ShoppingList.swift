@@ -19,9 +19,6 @@ enum CheckBox : Int {
         }
     }
     
-    
-    // 얘는 굳이 string등으로 return 하지 않아도 될듯?
-    
 }
 
 enum BookMark : Int {

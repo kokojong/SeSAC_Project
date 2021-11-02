@@ -41,7 +41,7 @@
         <scene sceneID="ss7-27-18f">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IMM-g6-qbd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="person.circle" catalog="system" selectedImage="person.circle" id="1BQ-di-JUi"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="gearshape" catalog="system" selectedImage="person.circle" id="1BQ-di-JUi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5P9-z8-Rjq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -58,6 +58,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

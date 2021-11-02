@@ -67,6 +67,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046AF0D12731010B002A03C7 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				0478CA6E27150AA800D8C03C /* ViewController.swift */,
+				0478CAA527165DA600D8C03C /* BoxOfficeTableViewController.swift */,
+				0478CAA92716BA4700D8C03C /* ShoppingListTableViewController.swift */,
+				0478CABD271918CF00D8C03C /* BoxOfficeCastViewController.swift */,
+				0478CABB2719100A00D8C03C /* BoxOfficeDetailViewController.swift */,
+				0478CAA327155F8600D8C03C /* Case2TableViewController.swift */,
+				0478CA81271516AD00D8C03C /* MemoTableViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		046AF0D227310129002A03C7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0478CAA727165EA600D8C03C /* BoxOfficeTableViewCell.swift */,
+				0478CAAB2716BB4200D8C03C /* ShoppingListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		0478CA5E27150AA800D8C03C = {
 			isa = PBXGroup;
 			children = (
@@ -86,21 +109,14 @@
 		0478CA6927150AA800D8C03C /* SeSAC_week3_MyDiary */ = {
 			isa = PBXGroup;
 			children = (
-				0478CAA92716BA4700D8C03C /* ShoppingListTableViewController.swift */,
-				0478CAAB2716BB4200D8C03C /* ShoppingListTableViewCell.swift */,
-				0478CAA527165DA600D8C03C /* BoxOfficeTableViewController.swift */,
-				0478CAA727165EA600D8C03C /* BoxOfficeTableViewCell.swift */,
+				046AF0D227310129002A03C7 /* Cell */,
+				0478CAB52717D2DD00D8C03C /* UIVIewController+Extension.swift */,
+				046AF0D12731010B002A03C7 /* VC */,
 				0478CAB12717AEED00D8C03C /* MovieInfo.swift */,
 				0478CA6A27150AA800D8C03C /* AppDelegate.swift */,
 				0478CA6C27150AA800D8C03C /* SceneDelegate.swift */,
-				0478CA6E27150AA800D8C03C /* ViewController.swift */,
 				0478CAB927190E9800D8C03C /* Movie.storyboard */,
-				0478CABD271918CF00D8C03C /* BoxOfficeCastViewController.swift */,
-				0478CABB2719100A00D8C03C /* BoxOfficeDetailViewController.swift */,
 				0478CA7027150AA800D8C03C /* Main.storyboard */,
-				0478CAB52717D2DD00D8C03C /* UIVIewController+Extension.swift */,
-				0478CAA327155F8600D8C03C /* Case2TableViewController.swift */,
-				0478CA81271516AD00D8C03C /* MemoTableViewController.swift */,
 				0478CAB32717B59A00D8C03C /* Memo.swift */,
 				0478CAB72717F77000D8C03C /* ShoppingList.swift */,
 				0478CA7627150AAA00D8C03C /* Assets.xcassets */,
