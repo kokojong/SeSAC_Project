@@ -9,7 +9,7 @@ import Foundation
 
 struct BoxOfficeModel {
     
-    var rank: String
+//    var rank: String
     var title: String
     var releaseDate: String
     

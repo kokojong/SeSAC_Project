@@ -11,6 +11,9 @@
 		046AF03F272EDC97002A03C7 /* PersonSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF03E272EDC97002A03C7 /* PersonSearchTableViewCell.swift */; };
 		046AF041272EE3DD002A03C7 /* PersonSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF040272EE3DD002A03C7 /* PersonSearchModel.swift */; };
 		046AF043272EE574002A03C7 /* PersonSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF042272EE574002A03C7 /* PersonSearchViewController.swift */; };
+		046AF101273123BB002A03C7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF100273123BB002A03C7 /* RealmModel.swift */; };
+		046AF104273124F7002A03C7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 046AF103273124F7002A03C7 /* Realm */; };
+		046AF106273124F7002A03C7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 046AF105273124F7002A03C7 /* RealmSwift */; };
 		0478CACC27196F1100D8C03C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CACB27196F1100D8C03C /* AppDelegate.swift */; };
 		0478CACE27196F1100D8C03C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CACD27196F1100D8C03C /* SceneDelegate.swift */; };
 		0478CAD027196F1100D8C03C /* TvshowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478CACF27196F1100D8C03C /* TvshowListViewController.swift */; };
@@ -55,6 +58,7 @@
 		046AF03E272EDC97002A03C7 /* PersonSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewCell.swift; sourceTree = "<group>"; };
 		046AF040272EE3DD002A03C7 /* PersonSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSearchModel.swift; sourceTree = "<group>"; };
 		046AF042272EE574002A03C7 /* PersonSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSearchViewController.swift; sourceTree = "<group>"; };
+		046AF100273123BB002A03C7 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		0478CAC827196F1100D8C03C /* TrendMedia_assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendMedia_assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0478CACB27196F1100D8C03C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0478CACD27196F1100D8C03C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			files = (
 				04FECCF827279D4700FEF9F7 /* Alamofire in Frameworks */,
 				04FECCF527279D3900FEF9F7 /* SwiftyJSON in Frameworks */,
+				046AF104273124F7002A03C7 /* Realm in Frameworks */,
+				046AF106273124F7002A03C7 /* RealmSwift in Frameworks */,
 				0478CB20271D550A00D8C03C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +143,7 @@
 				0478CAD627196F1400D8C03C /* LaunchScreen.storyboard */,
 				0478CAD127196F1100D8C03C /* Main.storyboard */,
 				0478CAD927196F1400D8C03C /* Info.plist */,
+				046AF100273123BB002A03C7 /* RealmModel.swift */,
 			);
 			path = TrendMedia_assignment;
 			sourceTree = "<group>";
@@ -221,6 +228,8 @@
 				0478CB1F271D550A00D8C03C /* Kingfisher */,
 				04FECCF427279D3900FEF9F7 /* SwiftyJSON */,
 				04FECCF727279D4700FEF9F7 /* Alamofire */,
+				046AF103273124F7002A03C7 /* Realm */,
+				046AF105273124F7002A03C7 /* RealmSwift */,
 			);
 			productName = TrendMedia_assignment;
 			productReference = 0478CAC827196F1100D8C03C /* TrendMedia_assignment.app */;
@@ -254,6 +263,7 @@
 				0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				04FECCF327279D3900FEF9F7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				04FECCF627279D4700FEF9F7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				046AF102273124F7002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 0478CAC927196F1100D8C03C /* Products */;
 			projectDirPath = "";
@@ -291,6 +301,7 @@
 				04FECD032728381500FEF9F7 /* BoxOfficeModel.swift in Sources */,
 				04A9971F272D6DF6007A8A11 /* Extention+VC.swift in Sources */,
 				0478CB22271D5B0F00D8C03C /* WebViewController.swift in Sources */,
+				046AF101273123BB002A03C7 /* RealmModel.swift in Sources */,
 				0478CAE6271A9B0D00D8C03C /* SearchViewController.swift in Sources */,
 				04FECD152729483600FEF9F7 /* TrendMediaRankAPIManager.swift in Sources */,
 				04FECD24272A8B2A00FEF9F7 /* TrendMediaCreditsAPIManager.swift in Sources */,
@@ -538,6 +549,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		046AF102273124F7002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.18.0;
+			};
+		};
 		0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -565,6 +584,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		046AF103273124F7002A03C7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 046AF102273124F7002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		046AF105273124F7002A03C7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 046AF102273124F7002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		0478CB1F271D550A00D8C03C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0478CB1E271D550A00D8C03C /* XCRemoteSwiftPackageReference "Kingfisher" */;
