@@ -23,25 +23,36 @@
                                     <constraint firstAttribute="width" secondItem="Gko-2B-oIl" secondAttribute="height" multiplier="1:1" id="YGm-8e-sRu"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ld0-Wg-ssT">
-                                <rect key="frame" x="20" y="478" width="374" height="34"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-Xz-A7x">
-                                <rect key="frame" x="20" y="532" width="374" height="31"/>
+                                <rect key="frame" x="20" y="559" width="374" height="31"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="2021년 11월 1일"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="일기 내용" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-JO-IBS">
-                                <rect key="frame" x="20" y="583" width="374" height="259"/>
+                                <rect key="frame" x="20" y="610" width="374" height="232"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T56-gV-d57">
+                                <rect key="frame" x="157" y="466" width="100.5" height="31"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="사진 선택하기"/>
+                                <connections>
+                                    <action selector="selectPhotoButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TZv-XZ-eeD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ld0-Wg-ssT">
+                                <rect key="frame" x="20" y="505" width="374" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -49,8 +60,11 @@
                             <constraint firstItem="Ld0-Wg-ssT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="21c-M7-eoB"/>
                             <constraint firstItem="ETa-Xz-A7x" firstAttribute="top" secondItem="Ld0-Wg-ssT" secondAttribute="bottom" constant="20" id="EfO-Hn-ThI"/>
                             <constraint firstItem="xm1-JO-IBS" firstAttribute="top" secondItem="ETa-Xz-A7x" secondAttribute="bottom" constant="20" id="Fqp-Uv-rYx"/>
+                            <constraint firstItem="T56-gV-d57" firstAttribute="top" secondItem="Gko-2B-oIl" secondAttribute="bottom" constant="8" symbolic="YES" id="GYA-AL-1zv"/>
+                            <constraint firstItem="Ld0-Wg-ssT" firstAttribute="top" secondItem="T56-gV-d57" secondAttribute="bottom" constant="8" symbolic="YES" id="GeY-th-dOM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xm1-JO-IBS" secondAttribute="trailing" constant="20" id="SZi-QA-2OV"/>
                             <constraint firstItem="xm1-JO-IBS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="VJs-bD-UcV"/>
+                            <constraint firstItem="T56-gV-d57" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="XS4-up-sxJ"/>
                             <constraint firstItem="ETa-Xz-A7x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="eDV-lD-P3Z"/>
                             <constraint firstItem="Gko-2B-oIl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fad-PC-pcI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Gko-2B-oIl" secondAttribute="trailing" id="n4M-V0-hvT"/>
@@ -58,7 +72,6 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="xm1-JO-IBS" secondAttribute="bottom" constant="20" id="oMp-lH-x7K"/>
                             <constraint firstItem="Gko-2B-oIl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="pGb-dE-XSo"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ld0-Wg-ssT" secondAttribute="trailing" constant="20" id="tY6-SR-uIW"/>
-                            <constraint firstItem="Ld0-Wg-ssT" firstAttribute="top" secondItem="Gko-2B-oIl" secondAttribute="bottom" constant="20" id="yIb-et-38p"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="REp-LO-5P7">

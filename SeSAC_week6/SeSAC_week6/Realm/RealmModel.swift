@@ -16,7 +16,7 @@ class UserDiary: Object {
     @Persisted var diaryContent: String? // 내용(옵션)
     @Persisted var diaryDate =  Date() // 작성날짜(필수)
     @Persisted var diaryRegisterDate =  Date() // 등록날짜(필수)
-    @Persisted var bookmark: Bool // 즐겨찾기(필수)
+
 
     
     // PK(필수): Int, String, UUID, objectID 등 -> AutoIncrement
@@ -30,7 +30,6 @@ class UserDiary: Object {
         self.diaryContent = diaryContent
         self.diaryDate = diaryDate
         self.diaryRegisterDate = diaryRegisterDate
-        self.bookmark = false
         
     }
 }
