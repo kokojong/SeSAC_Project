@@ -24,13 +24,13 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="무엇을 구매하실 건가요?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KLl-Zf-KZI">
-                                            <rect key="frame" x="20" y="15" width="317.5" height="34"/>
+                                            <rect key="frame" x="20" y="15" width="288.5" height="34"/>
                                             <color key="backgroundColor" systemColor="systemGray6Color"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3y-nN-BWz">
-                                            <rect key="frame" x="345.5" y="16.5" width="48.5" height="31"/>
+                                            <rect key="frame" x="308.5" y="16.5" width="48.5" height="31"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="추가"/>
@@ -38,12 +38,23 @@
                                                 <action selector="onAddButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4qw-91-r8V"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBv-Dz-0ld">
+                                            <rect key="frame" x="357" y="16.5" width="49" height="31"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="정렬"/>
+                                            <connections>
+                                                <action selector="onSortButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="70Y-ea-aPL"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="V3y-nN-BWz" firstAttribute="leading" secondItem="KLl-Zf-KZI" secondAttribute="trailing" constant="8" id="0mN-IR-qoV"/>
+                                        <constraint firstItem="V3y-nN-BWz" firstAttribute="leading" secondItem="KLl-Zf-KZI" secondAttribute="trailing" id="0mN-IR-qoV"/>
+                                        <constraint firstAttribute="trailing" secondItem="cBv-Dz-0ld" secondAttribute="trailing" constant="8" id="35J-hb-tL9"/>
+                                        <constraint firstItem="cBv-Dz-0ld" firstAttribute="centerY" secondItem="G0C-ZN-55L" secondAttribute="centerY" id="DLU-1i-FPX"/>
                                         <constraint firstItem="KLl-Zf-KZI" firstAttribute="centerY" secondItem="G0C-ZN-55L" secondAttribute="centerY" id="WQH-8r-yDI"/>
-                                        <constraint firstAttribute="trailing" secondItem="V3y-nN-BWz" secondAttribute="trailing" constant="20" id="e5n-rV-qdO"/>
+                                        <constraint firstItem="cBv-Dz-0ld" firstAttribute="leading" secondItem="V3y-nN-BWz" secondAttribute="trailing" id="itV-qF-VSG"/>
                                         <constraint firstItem="KLl-Zf-KZI" firstAttribute="leading" secondItem="G0C-ZN-55L" secondAttribute="leading" constant="20" id="pFT-kw-NqI"/>
                                         <constraint firstItem="V3y-nN-BWz" firstAttribute="centerY" secondItem="G0C-ZN-55L" secondAttribute="centerY" id="snk-e4-2ZW"/>
                                     </constraints>
