@@ -18,6 +18,9 @@
 		046AF0F927310511002A03C7 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF0F827310511002A03C7 /* ShoppingListViewController.swift */; };
 		046AF0FB273105EE002A03C7 /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF0FA273105EE002A03C7 /* ShoppingListTableViewCell.swift */; };
 		046AF0FF27310EAD002A03C7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF0FE27310EAD002A03C7 /* RealmModel.swift */; };
+		0472630F2733B934003AF1F4 /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472630E2733B934003AF1F4 /* BackupViewController.swift */; };
+		047263122733B9B0003AF1F4 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 047263112733B9B0003AF1F4 /* Zip */; };
+		047263162733D1A7003AF1F4 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 047263152733D1A7003AF1F4 /* MBProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,7 @@
 		046AF0F827310511002A03C7 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		046AF0FA273105EE002A03C7 /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 		046AF0FE27310EAD002A03C7 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		0472630E2733B934003AF1F4 /* BackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +43,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047263122733B9B0003AF1F4 /* Zip in Frameworks */,
 				046AF0F7273104E8002A03C7 /* RealmSwift in Frameworks */,
+				047263162733D1A7003AF1F4 /* MBProgressHUD in Frameworks */,
 				046AF0F5273104E8002A03C7 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,7 +75,7 @@
 				046AF0DF27310486002A03C7 /* AppDelegate.swift */,
 				046AF0E127310486002A03C7 /* SceneDelegate.swift */,
 				046AF0E327310486002A03C7 /* ViewController.swift */,
-				046AF0F827310511002A03C7 /* ShoppingListViewController.swift */,
+				047263132733B9DE003AF1F4 /* VC */,
 				046AF0FA273105EE002A03C7 /* ShoppingListTableViewCell.swift */,
 				046AF0E527310486002A03C7 /* Main.storyboard */,
 				046AF0FE27310EAD002A03C7 /* RealmModel.swift */,
@@ -78,6 +84,15 @@
 				046AF0ED27310489002A03C7 /* Info.plist */,
 			);
 			path = SeSAC_week6_ShoppingList;
+			sourceTree = "<group>";
+		};
+		047263132733B9DE003AF1F4 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				046AF0F827310511002A03C7 /* ShoppingListViewController.swift */,
+				0472630E2733B934003AF1F4 /* BackupViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +114,8 @@
 			packageProductDependencies = (
 				046AF0F4273104E8002A03C7 /* Realm */,
 				046AF0F6273104E8002A03C7 /* RealmSwift */,
+				047263112733B9B0003AF1F4 /* Zip */,
+				047263152733D1A7003AF1F4 /* MBProgressHUD */,
 			);
 			productName = SeSAC_week6_ShoppingList;
 			productReference = 046AF0DC27310486002A03C7 /* SeSAC_week6_ShoppingList.app */;
@@ -130,6 +147,8 @@
 			mainGroup = 046AF0D327310486002A03C7;
 			packageReferences = (
 				046AF0F3273104E8002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				047263102733B9B0003AF1F4 /* XCRemoteSwiftPackageReference "Zip" */,
+				047263142733D1A7003AF1F4 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
 			);
 			productRefGroup = 046AF0DD27310486002A03C7 /* Products */;
 			projectDirPath = "";
@@ -159,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046AF0FB273105EE002A03C7 /* ShoppingListTableViewCell.swift in Sources */,
+				0472630F2733B934003AF1F4 /* BackupViewController.swift in Sources */,
 				046AF0F927310511002A03C7 /* ShoppingListViewController.swift in Sources */,
 				046AF0FF27310EAD002A03C7 /* RealmModel.swift in Sources */,
 				046AF0E427310486002A03C7 /* ViewController.swift in Sources */,
@@ -393,6 +413,22 @@
 				version = 10.18.0;
 			};
 		};
+		047263102733B9B0003AF1F4 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		047263142733D1A7003AF1F4 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -405,6 +441,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 046AF0F3273104E8002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		047263112733B9B0003AF1F4 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047263102733B9B0003AF1F4 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+		047263152733D1A7003AF1F4 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047263142733D1A7003AF1F4 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
