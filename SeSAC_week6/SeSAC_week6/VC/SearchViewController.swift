@@ -121,9 +121,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         self.navigationController?.pushViewController(vc, animated: true)
         
-        
-        
-        
         // realm에 대한 값 수정
 //        let taskToUpdate = tasks[indexPath.row]
         

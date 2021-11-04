@@ -46,6 +46,7 @@
 		046AF0CD2730C713002A03C7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 046AF0CC2730C713002A03C7 /* RealmSwift */; };
 		046AF0D02730C975002A03C7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF0CF2730C975002A03C7 /* RealmModel.swift */; };
 		04726307273281EC003AF1F4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04726306273281EC003AF1F4 /* DetailViewController.swift */; };
+		0472630A27336DB7003AF1F4 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 0472630927336DB7003AF1F4 /* Zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0472630A27336DB7003AF1F4 /* Zip in Frameworks */,
 				046AF0CD2730C713002A03C7 /* RealmSwift in Frameworks */,
 				046AF0CB2730C713002A03C7 /* Realm in Frameworks */,
 			);
@@ -294,6 +296,7 @@
 			packageProductDependencies = (
 				046AF0CA2730C713002A03C7 /* Realm */,
 				046AF0CC2730C713002A03C7 /* RealmSwift */,
+				0472630927336DB7003AF1F4 /* Zip */,
 			);
 			productName = SeSAC_week6;
 			productReference = 046AF04D272F6F7A002A03C7 /* SeSAC_week6.app */;
@@ -347,6 +350,7 @@
 			mainGroup = 046AF044272F6F7A002A03C7;
 			packageReferences = (
 				046AF0C92730C713002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				0472630827336DB7003AF1F4 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 046AF04E272F6F7A002A03C7 /* Products */;
 			projectDirPath = "";
@@ -773,6 +777,14 @@
 				minimumVersion = 10.18.0;
 			};
 		};
+		0472630827336DB7003AF1F4 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -785,6 +797,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 046AF0C92730C713002A03C7 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		0472630927336DB7003AF1F4 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0472630827336DB7003AF1F4 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
