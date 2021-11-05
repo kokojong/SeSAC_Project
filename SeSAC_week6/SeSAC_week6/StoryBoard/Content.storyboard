@@ -29,6 +29,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="2021년 11월 1일"/>
+                                <connections>
+                                    <action selector="onDateButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9fo-HN-D85"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="일기 내용" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-JO-IBS">
                                 <rect key="frame" x="20" y="610" width="374" height="232"/>
@@ -87,6 +90,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="90.401785714285708"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="IUm-o8-eVf">
+            <objects>
+                <viewController storyboardIdentifier="DatePickerViewController" id="Hv0-uM-QWY" customClass="DatePickerViewController" customModule="SeSAC_week6" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ilk-2M-gxB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xxV-CK-aHY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </datePicker>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w8H-45-H0A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xxV-CK-aHY" firstAttribute="leading" secondItem="w8H-45-H0A" secondAttribute="leading" id="VOA-H9-xxz"/>
+                            <constraint firstItem="w8H-45-H0A" firstAttribute="bottom" secondItem="xxV-CK-aHY" secondAttribute="bottom" id="f3o-TR-Ssv"/>
+                            <constraint firstItem="w8H-45-H0A" firstAttribute="trailing" secondItem="xxV-CK-aHY" secondAttribute="trailing" id="kQA-cm-cJs"/>
+                            <constraint firstItem="xxV-CK-aHY" firstAttribute="top" secondItem="w8H-45-H0A" secondAttribute="top" id="kVG-XP-Wxc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainDatePicker" destination="xxV-CK-aHY" id="LGS-fX-73v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kzA-TL-giG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733.3333333333335" y="87.723214285714278"/>
         </scene>
     </scenes>
     <resources>

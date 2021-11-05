@@ -46,7 +46,18 @@ class ContentViewController: UIViewController {
         
         print("saved")
         
-        let task = UserDiary(diaryTitle: titleTextField.text! , diaryContent: contentTextView.text!, diaryDate: Date(), diaryRegisterDate: Date())
+        let format = DateFormatter()
+        format.dateFormat = "yyyy년 MM월 dd일"
+        
+//        DateFormatter.customFormat
+        
+//        let date = dateButton.currentTitle!
+//        let value = format.date(from: date)!
+        
+        guard let date = dateButton.currentTitle, let value = format.date(from: date) else { return }
+        
+        
+        let task = UserDiary(diaryTitle: titleTextField.text! , diaryContent: contentTextView.text!, diaryDate: value, diaryRegisterDate: Date())
         
         if let image = mainImageView.image {
             try! localRealm.write {
@@ -127,6 +138,43 @@ class ContentViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onDateButtonClicked(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "날짜 선택", message: "날짜를 선택해주세요", preferredStyle: .alert)
+        
+        // alert customizing가 제대로 안된다
+        // 1. alert안에 들어와서 그런가? -> 아님
+        // 2. 스토리보드가 인식이 안되는건가? -> ㅇㅇ
+        // 3. 스토리보드 씬과 클래스를 같이 동작하게 하기 -> 화면 전환 코드
+
+//        let contentView = DatePickerViewController()
+        guard let contentView = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerViewController") as? DatePickerViewController else {
+            print("DatePickerViewController error")
+            return
+        }
+        
+        
+        contentView.view.backgroundColor = .green
+//        contentView.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        contentView.preferredContentSize.height = 200
+        
+        alert.setValue(contentView, forKey: "contentViewController")
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let ok = UIAlertAction(title: "확인", style: .default) { UIAlertAction in
+            
+            let format = DateFormatter()
+            format.dateFormat = "yyyy년 MM월 dd일"
+            let value = format.string(from: contentView.mainDatePicker.date)
+            
+            self.dateButton.setTitle(value, for: .normal)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 }
 
 extension ContentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

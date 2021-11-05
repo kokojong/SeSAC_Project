@@ -16,8 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5w-jd-qoN">
-                                <rect key="frame" x="186" y="394" width="66" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHw-eD-of2" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="88" width="414" height="414"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FHw-eD-of2" secondAttribute="height" multiplier="1:1" id="cpo-tL-eyt"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EB7-qi-ywk">
+                                <rect key="frame" x="62" y="521" width="301" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -26,11 +33,20 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FHw-eD-of2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="BAK-7H-Bv4"/>
+                            <constraint firstItem="FHw-eD-of2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="e5A-KV-UzW"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FHw-eD-of2" secondAttribute="trailing" id="tI0-XQ-8Ti"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NcZ-L9-Vu7">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="nCs-T0-U0g"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="allCountLabel" destination="EB7-qi-ywk" id="bMb-ld-5HG"/>
+                        <outlet property="calendarView" destination="FHw-eD-of2" id="jsc-1j-6cQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

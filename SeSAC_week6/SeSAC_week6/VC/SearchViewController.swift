@@ -169,7 +169,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.titleLabel.text = row.diaryTitle
         cell.titleLabel.font = UIFont().mainBlack
-        cell.dateLabel.text = "\(row.diaryDate)"
+      
+        let format = DateFormatter()
+        format.dateFormat = "yyyy년 MM월 dd일"
+        cell.dateLabel.text = format.string(from: row.diaryDate)
+        
+        
 //        cell.mainImageView.image = UIImage(systemName: "person")
         cell.mainImageView.image = loadImageFromDocumentDirectory(imageName: "\(row._id).jpg")
         cell.contentLabel.text = row.diaryContent
