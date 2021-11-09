@@ -165,19 +165,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.configureCell(row: tasks[indexPath.row])
+        
         let row = tasks[indexPath.row]
         
-        cell.titleLabel.text = row.diaryTitle
-        cell.titleLabel.font = UIFont().mainBlack
-      
-        let format = DateFormatter()
-        format.dateFormat = "yyyy년 MM월 dd일"
-        cell.dateLabel.text = format.string(from: row.diaryDate)
+        // configureCell을 이용해서 cell파일에서 처리하도록 한다
+//        cell.titleLabel.text = row.diaryTitle
+//        cell.titleLabel.font = UIFont().mainBlack
+//
+//        cell.contentLabel.text = row.diaryContent
+//
+//        let format = DateFormatter()
+//        format.dateFormat = "yyyy년 MM월 dd일"
+//        cell.dateLabel.text = format.string(from: row.diaryDate)
         
         
 //        cell.mainImageView.image = UIImage(systemName: "person")
         cell.mainImageView.image = loadImageFromDocumentDirectory(imageName: "\(row._id).jpg")
-        cell.contentLabel.text = row.diaryContent
+        
         
         return cell
         

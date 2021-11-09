@@ -68,7 +68,9 @@ class BoxOfficeViewController: UIViewController {
                 
                 boxOfficeList.append(data)
             }
+            
             boxOfficeTableView.reloadData()
+        
         }
         
     }
@@ -99,6 +101,7 @@ class BoxOfficeViewController: UIViewController {
             print("before",boxOfficeList)
             
             for i in 0...9 {
+                // 이부분에서 taskList.first로 했더니 taskList가 초기화 되면서 오류가 있었다.
                 let title = filteredList.first?.titleList[i]
                 let releaseDate = filteredList.first?.releaseDateList[i]
                 let data = BoxOfficeModel(title: title!, releaseDate: releaseDate!)
@@ -108,7 +111,6 @@ class BoxOfficeViewController: UIViewController {
             }
             print("after",boxOfficeList)
             boxOfficeTableView.reloadData()
-            
             
         }
         

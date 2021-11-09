@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SeSAC_week6
+//  SeSAC_week7_Memo_assignment
 //
-//  Created by kokojong on 2021/11/01.
+//  Created by kokojong on 2021/11/08.
 //
 
 import UIKit
@@ -15,16 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UILabel.appearance().textColor = .darkGray
-        UILabel.appearance().font = .boldSystemFont(ofSize: 20)
-        UILabel.appearance().textAlignment = .center
-        
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
-        
-        UICollectionView.appearance().backgroundColor = .clear
-        
-        
+        UILabel.appearance().textColor = .white
+        UIButton.appearance().tintColor = .systemOrange
         return true
     }
 

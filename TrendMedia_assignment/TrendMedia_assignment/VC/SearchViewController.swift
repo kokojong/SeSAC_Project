@@ -12,8 +12,6 @@ import Kingfisher
 
 class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching{
     
-    
-    
     @IBOutlet weak var searchTableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!

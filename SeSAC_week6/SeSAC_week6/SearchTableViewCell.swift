@@ -25,5 +25,18 @@ class SearchTableViewCell: UITableViewCell {
         
         
     }
+    
+    func configureCell(row: UserDiary) {
+        
+        titleLabel.text = row.diaryTitle
+        titleLabel.font = UIFont().mainBlack
+        
+        contentLabel.text = row.diaryContent
+      
+        let format = DateFormatter()
+        format.dateFormat = "yyyy년 MM월 dd일"
+        dateLabel.text = format.string(from: row.diaryDate)
+        
+    }
 
 }

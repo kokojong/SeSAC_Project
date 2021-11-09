@@ -51,6 +51,9 @@
 		0472631B2734B532003AF1F4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472631A2734B532003AF1F4 /* DatePickerViewController.swift */; };
 		0472631D2734CE7E003AF1F4 /* RealmQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472631C2734CE7E003AF1F4 /* RealmQuery.swift */; };
 		0472631F2734D032003AF1F4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472631E2734D032003AF1F4 /* Date+Extension.swift */; };
+		047263262738AAA4003AF1F4 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047263252738AAA4003AF1F4 /* HomeTableViewCell.swift */; };
+		047263282738AD42003AF1F4 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047263272738AD42003AF1F4 /* HomeCollectionViewCell.swift */; };
+		0472632A2738ADAB003AF1F4 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047263292738ADAB003AF1F4 /* HomeCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +135,9 @@
 		0472631A2734B532003AF1F4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		0472631C2734CE7E003AF1F4 /* RealmQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuery.swift; sourceTree = "<group>"; };
 		0472631E2734D032003AF1F4 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		047263252738AAA4003AF1F4 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		047263272738AD42003AF1F4 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		047263292738ADAB003AF1F4 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +199,8 @@
 				046AF05B272F6F7B002A03C7 /* LaunchScreen.storyboard */,
 				046AF05E272F6F7C002A03C7 /* Info.plist */,
 				046AF0BC272FD3BA002A03C7 /* SearchTableViewCell.swift */,
+				047263252738AAA4003AF1F4 /* HomeTableViewCell.swift */,
+				047263272738AD42003AF1F4 /* HomeCollectionViewCell.swift */,
 			);
 			path = SeSAC_week6;
 			sourceTree = "<group>";
@@ -273,6 +281,7 @@
 				046AF0C72730227F002A03C7 /* CalendarViewController.swift */,
 				04726306273281EC003AF1F4 /* DetailViewController.swift */,
 				0472631A2734B532003AF1F4 /* DatePickerViewController.swift */,
+				047263292738ADAB003AF1F4 /* HomeCollectionViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -416,9 +425,11 @@
 				046AF0C82730227F002A03C7 /* CalendarViewController.swift in Sources */,
 				046AF0B7272FB3C9002A03C7 /* ContentViewController.swift in Sources */,
 				046AF084272F7E1C002A03C7 /* Test.intentdefinition in Sources */,
+				0472632A2738ADAB003AF1F4 /* HomeCollectionViewController.swift in Sources */,
 				046AF055272F6F7A002A03C7 /* ViewController.swift in Sources */,
 				046AF0A5272F89FF002A03C7 /* LocalizableStrings.swift in Sources */,
 				046AF0B5272FB3BD002A03C7 /* SearchViewController.swift in Sources */,
+				047263262738AAA4003AF1F4 /* HomeTableViewCell.swift in Sources */,
 				0472631D2734CE7E003AF1F4 /* RealmQuery.swift in Sources */,
 				046AF051272F6F7A002A03C7 /* AppDelegate.swift in Sources */,
 				04726307273281EC003AF1F4 /* DetailViewController.swift in Sources */,
@@ -426,6 +437,7 @@
 				046AF0B9272FB758002A03C7 /* HomeViewController.swift in Sources */,
 				046AF0BD272FD3BA002A03C7 /* SearchTableViewCell.swift in Sources */,
 				046AF0A3272F88E3002A03C7 /* String+Extension.swift in Sources */,
+				047263282738AD42003AF1F4 /* HomeCollectionViewCell.swift in Sources */,
 				0472631B2734B532003AF1F4 /* DatePickerViewController.swift in Sources */,
 				046AF053272F6F7A002A03C7 /* SceneDelegate.swift in Sources */,
 				046AF0B3272FB3B1002A03C7 /* MainViewController.swift in Sources */,
