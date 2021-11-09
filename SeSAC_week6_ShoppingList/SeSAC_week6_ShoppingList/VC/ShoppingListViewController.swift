@@ -96,6 +96,7 @@ extension ShoppingListViewController: UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
         
+        
         let row = tasks[indexPath.row]
         
         cell.shoppingLabel.text = row.itemName
