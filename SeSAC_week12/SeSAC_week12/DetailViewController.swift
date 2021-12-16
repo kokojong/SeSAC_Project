@@ -17,6 +17,10 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        tabBarItem.title = "third"
+//        tabBarItem.image = UIImage(systemName: "person")
+//        tabBarItem.selectedImage = UIImage(systemName: "person.fill")
+        
         view.backgroundColor = .white
         
 //        bannerView.frame = CGRect(x: 30, y: 100, width: UIScreen.main.bounds.width - 60, height: 120)

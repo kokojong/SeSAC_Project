@@ -60,6 +60,7 @@ class BaeminViewController: UIViewController {
             blockView2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 20),
 //            blockView2.leadingAnchor.constraint(equalTo: blockView1.trailingAnchor,constant: 20), // 위에서 잡아준거라서 없어도 된다
             blockView2.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            blockView2.bottomAnchor.constraint(equalTo: blockView1.bottomAnchor),
             blockView2.heightAnchor.constraint(equalTo: blockView2.widthAnchor),
             blockView2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5, constant: -30)
         ])
