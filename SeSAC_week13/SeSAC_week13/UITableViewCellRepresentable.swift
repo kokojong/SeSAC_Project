@@ -7,11 +7,9 @@
 
 import UIKit
 
-protocol UITableViewCellRepresenable {
+protocol UITableViewCellRepresentable {
     var numberOfSection: Int { get }
     var numberOfRowsInSection: Int { get }
     var heightOfRowAt: CGFloat { get }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 }
