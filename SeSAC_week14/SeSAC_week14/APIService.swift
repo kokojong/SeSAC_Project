@@ -118,7 +118,7 @@ class APIService {
         
         var request = URLRequest(url: url)
 //        request.httpMethod = "GET"
-        request.setValue("authorization", forHTTPHeaderField: "bearer \(token)")
+        request.setValue("bearer \(token)", forHTTPHeaderField: "authorization")
         
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -126,34 +126,38 @@ class APIService {
 //            print(response)
 //            print(error)
             
-            guard error == nil else {
-                completion(nil, .failed)
-                return
-            }
-            
-            guard let data = data else {
-                completion(nil, .noData)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse else {
-                completion(nil, .invalidResponse)
-                return
-            }
-            
-            guard response.statusCode == 200 else {
-                completion(nil, .failed)
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let userData = try decoder.decode(Board.self, from: data)
-                completion(userData,nil)
-            } catch {
-                completion(nil, .invalidData)
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    completion(nil, .failed)
+                    return
+                }
                 
+                guard let data = data else {
+                    completion(nil, .noData)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse else {
+                    completion(nil, .invalidResponse)
+                    return
+                }
+                
+                guard response.statusCode == 200 else {
+                    completion(nil, .failed)
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let userData = try decoder.decode(Board.self, from: data)
+                    completion(userData,nil)
+                } catch {
+                    completion(nil, .invalidData)
+                    
+                }
             }
+            
+            
                 
         }.resume()
         

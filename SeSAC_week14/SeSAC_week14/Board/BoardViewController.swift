@@ -12,7 +12,7 @@ class BoardViewController: UIViewController {
     
     let mainView = BoardView()
     
-    let viewModel = BoardViewModel()
+    var viewModel = BoardViewModel()
     
     override func loadView() {
         self.view = mainView

@@ -20,6 +20,16 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 로그인 했던 기록이 있다면 바로 Board로 가도록처리
+        
+        if let logined = UserDefaults.standard.string(forKey: "token") {
+          DispatchQueue.main.async {
+              guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+              windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
+              windowScene.windows.first?.makeKeyAndVisible()
+          }
+        }
+        
         view.backgroundColor = .white
         
         print("value : ",viewModel.username.value)
