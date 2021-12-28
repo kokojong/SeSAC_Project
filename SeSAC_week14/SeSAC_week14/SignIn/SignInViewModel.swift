@@ -15,6 +15,8 @@ class SignInViewModel {
     
     func postUserLogin(completion: @escaping () -> Void) {
         APIService.login(identifier: username.value, password: password.value) { userData, error in
+            print("userData",userData)
+            print("error",error)
             
             guard let userData = userData else {
                 return
@@ -37,5 +39,7 @@ class SignInViewModel {
             
         }
     }
+    
+    
     
 }

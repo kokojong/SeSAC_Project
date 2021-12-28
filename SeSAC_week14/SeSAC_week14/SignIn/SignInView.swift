@@ -19,6 +19,7 @@ class SignInView: UIView, ViewRepresentable {
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
     let signInButton = UIButton()
+    let goToSignUpButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +39,12 @@ class SignInView: UIView, ViewRepresentable {
         passwordTextField.backgroundColor = .orange
         
         addSubview(signInButton)
+        signInButton.setTitle("로그인", for: .normal)
         signInButton.backgroundColor = .blue
+        
+        addSubview(goToSignUpButton)
+        goToSignUpButton.setTitle("회원가입", for: .normal)
+        goToSignUpButton.backgroundColor = .magenta
         
     }
     
@@ -58,6 +64,13 @@ class SignInView: UIView, ViewRepresentable {
         
         signInButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(self.snp.width).multipliedBy(0.9)
+            make.height.equalTo(50)
+        }
+        
+        goToSignUpButton.snp.makeConstraints { make in
+            make.top.equalTo(signInButton.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
             make.width.equalTo(self.snp.width).multipliedBy(0.9)
             make.height.equalTo(50)

@@ -20,6 +20,10 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
+        print("value : ",viewModel.username.value)
+//        viewModel.username.value = "asd"
         viewModel.username.bind { text in
             print("bind username text : ",text)
             self.mainView.usernameTextField.text = text
@@ -34,7 +38,7 @@ class SignInViewController: UIViewController {
         
         
         mainView.signInButton.addTarget(self, action: #selector(signInButtonClicked), for: .touchUpInside)
-        
+        mainView.goToSignUpButton.addTarget(self, action: #selector(goToSignUpButtonClicked), for: .touchUpInside)
         
         
     }
@@ -52,7 +56,7 @@ class SignInViewController: UIViewController {
         viewModel.postUserLogin {
             DispatchQueue.main.async {
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: MainViewController())
+                windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
                 windowScene.windows.first?.makeKeyAndVisible()
             }
 
@@ -80,5 +84,10 @@ class SignInViewController: UIViewController {
 //            
 //        }
     
+    }
+    
+    @objc func goToSignUpButtonClicked() {
+        self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+        
     }
 }
