@@ -16,50 +16,51 @@ enum APIError : Error {
 class APIService {
     
     static func login(identifier: String, password: String, completion: @escaping (User?, APIError?) -> Void) {
-        let url = URL(string: "http://test.monocoding.com/auth/local")!
-        
+//        let url = URL(string: "http://test.monocoding.com/auth/local")!
+        let url = Endpoint.signIn.url
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.httpMethod = Method.POST.rawValue
         // string -> data, 딕셔너리 -> JSON시리어블 / 코더블
         request.httpBody = "identifier=\(identifier)&password=\(password)".data(using: .utf8, allowLossyConversion: false)
         
+        URLSession.request(endpoint: request, completion: completion)
         
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-//            print(data)
-//            print(response)
-//            print(error)
-            
-            guard error == nil else {
-                completion(nil, .failed)
-                return
-            }
-            
-            guard let data = data else {
-                completion(nil, .noData)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse else {
-                completion(nil, .invalidResponse)
-                return
-            }
-            
-            guard response.statusCode == 200 else {
-                completion(nil, .failed)
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let userData = try decoder.decode(User.self, from: data)
-                completion(userData,nil)
-            } catch {
-                completion(nil, .invalidData)
-                
-            }
-                
-        }.resume()
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+////            print(data)
+////            print(response)
+////            print(error)
+//
+//            guard error == nil else {
+//                completion(nil, .failed)
+//                return
+//            }
+//
+//            guard let data = data else {
+//                completion(nil, .noData)
+//                return
+//            }
+//
+//            guard let response = response as? HTTPURLResponse else {
+//                completion(nil, .invalidResponse)
+//                return
+//            }
+//
+//            guard response.statusCode == 200 else {
+//                completion(nil, .failed)
+//                return
+//            }
+//
+//            do {
+//                let decoder = JSONDecoder()
+//                let userData = try decoder.decode(User.self, from: data)
+//                completion(userData,nil)
+//            } catch {
+//                completion(nil, .invalidData)
+//
+//            }
+//
+//        }.resume()
         
     }
     

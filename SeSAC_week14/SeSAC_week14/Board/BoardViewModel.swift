@@ -23,7 +23,6 @@ class BoardViewModel {
             print("error",error)
             
             guard let board = board else {
-                print("board 내부", board)
                 return
             }
             

@@ -28,7 +28,9 @@ class LottoViewModel {
             guard let lotto = lotto else {
                 return
             }
-
+            
+            // 여기에 main쓰레드로 작업해줘도 된다
+            // API 서비스에 하는 이유 -> 뷰모델에서 api콜을 여러가지 동시에 사용할 경우 너무 많은 main쓰레드 호출이 된다.(확장성을 위해서 이렇게 한다)
             self.lotto1.value = lotto.drwtNo1
             self.lotto2.value = lotto.drwtNo2
             self.lotto3.value = lotto.drwtNo3

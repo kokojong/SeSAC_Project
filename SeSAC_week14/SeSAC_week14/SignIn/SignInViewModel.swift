@@ -40,6 +40,10 @@ class SignInViewModel {
         }
     }
     
+    func getUsername() {
+        username.value = UserDefaults.standard.string(forKey: "username") ?? ""
+    }
+    
     
     
 }

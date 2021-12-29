@@ -50,6 +50,9 @@ class SignInViewController: UIViewController {
         mainView.signInButton.addTarget(self, action: #selector(signInButtonClicked), for: .touchUpInside)
         mainView.goToSignUpButton.addTarget(self, action: #selector(goToSignUpButtonClicked), for: .touchUpInside)
         
+        // 여기에 넣는다면 이건 View의 역할을 벗어난거임
+//        mainView.usernameTextField.text = UserDefaults.standard.string(forKey: "nickname")
+        viewModel.getUsername() // VM에서 동작하도록 설계
         
     }
     
