@@ -17,6 +17,7 @@ class ViewController: UIViewController {
 
         layout.scrollDirection = .vertical // 가로로 먼저 쌓이게 함
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
@@ -24,10 +25,6 @@ class ViewController: UIViewController {
     }()
     
     let searchTextField = UISearchTextField()
-    
-    let testLabel = UILabel()
-    
-    var spacing: CGFloat = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +36,7 @@ class ViewController: UIViewController {
         view.addSubview(collectionView)
         setCollectionView()
         
-       
-        
-        view.addSubview(testLabel)
-        testLabel.snp.makeConstraints { make in
-            testLabel.text = "test"
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-        
+   
     
         
         
@@ -54,6 +44,7 @@ class ViewController: UIViewController {
     
     func setCollectionView() {
         collectionView.snp.makeConstraints { make in
+            make.top.equalTo(searchTextField.snp.bottom).offset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -64,7 +55,7 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
-        collectionView.reloadData()
+//        collectionView.reloadData()
         
     }
 
@@ -73,7 +64,6 @@ class ViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.bottom.equalTo(collectionView.snp.top)
         }
     }
 }
@@ -87,34 +77,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-//        cell.titleLabel?.text = "test"
         cell.backgroundColor = .yellow
         return cell
     }
     
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let spacing: CGFloat = 10
         let totalWidth = collectionView.frame.width
         let totalHeight = collectionView.frame.height
         
-        let cellWidth = (totalWidth - spacing*5)/3
+        let cellWidth = floor((totalWidth - spacing*4)/3)
         let cellHeight = (totalHeight - spacing*5)/4
         
-//        print(totalWidth, cellWidth)
-//        print(UIScreen.main.bounds.width)
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//
-//        return UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//           return spacing
-//    }
+
     
     
     

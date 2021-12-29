@@ -11,41 +11,42 @@ import Foundation
 struct TVShow: Codable {
     let page: Int
     let results: [Result]
-    let totalResults, totalPages: Int
+    let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
         case page, results
-        case totalResults = "total_results"
         case totalPages = "total_pages"
+        case totalResults = "total_results"
     }
 }
 
 // MARK: - Result
 struct Result: Codable {
-    let posterPath: String
-    let popularity: Double
-    let id: Int
-    let backdropPath: String
-    let voteAverage: Double
-    let overview, firstAirDate: String
-    let originCountry: [String]
+    let backdropPath: String?
+    let firstAirDate: String
     let genreIDS: [Int]
-    let originalLanguage: String
+    let id: Int
+    let name: String
+    let originCountry: [String]
+    let originalLanguage, originalName, overview: String
+    let popularity: Double
+    let posterPath: String
+    let voteAverage: Double
     let voteCount: Int
-    let name, originalName: String
 
     enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
-        case popularity, id
         case backdropPath = "backdrop_path"
-        case voteAverage = "vote_average"
-        case overview
         case firstAirDate = "first_air_date"
-        case originCountry = "origin_country"
         case genreIDS = "genre_ids"
+        case id, name
+        case originCountry = "origin_country"
         case originalLanguage = "original_language"
-        case voteCount = "vote_count"
-        case name
         case originalName = "original_name"
+        case overview, popularity
+        case posterPath = "poster_path"
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
     }
 }
+
+

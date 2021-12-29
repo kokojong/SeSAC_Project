@@ -13,7 +13,14 @@
 		0425FB5427721882000B736B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0425FB5327721882000B736B /* Assets.xcassets */; };
 		0425FB5727721882000B736B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0425FB5527721882000B736B /* LaunchScreen.storyboard */; };
 		0425FB602772238E000B736B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0425FB5F2772238E000B736B /* SnapKit */; };
-		0425FB6227723A8F000B736B /* DramaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425FB6127723A8F000B736B /* DramaCollectionViewCell.swift */; };
+		0425FB6227723A8F000B736B /* TVShowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425FB6127723A8F000B736B /* TVShowCollectionViewCell.swift */; };
+		04405635277C294300972199 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405634277C294300972199 /* APIService.swift */; };
+		04405638277C2B3C00972199 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405637277C2B3C00972199 /* Endpoint.swift */; };
+		0440563A277C31B400972199 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405639277C31B400972199 /* TVShow.swift */; };
+		0440563D277C35E100972199 /* TVShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440563C277C35E100972199 /* TVShowView.swift */; };
+		0440563F277C35EE00972199 /* TVShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440563E277C35EE00972199 /* TVShowViewModel.swift */; };
+		04405641277C3D7D00972199 /* TVShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405640277C3D7D00972199 /* TVShowViewController.swift */; };
+		04405643277C3DD100972199 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405642277C3DD100972199 /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +31,14 @@
 		0425FB5327721882000B736B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0425FB5627721882000B736B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0425FB5827721882000B736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0425FB6127723A8F000B736B /* DramaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaCollectionViewCell.swift; sourceTree = "<group>"; };
+		0425FB6127723A8F000B736B /* TVShowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCollectionViewCell.swift; sourceTree = "<group>"; };
+		04405634277C294300972199 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		04405637277C2B3C00972199 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		04405639277C31B400972199 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
+		0440563C277C35E100972199 /* TVShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowView.swift; sourceTree = "<group>"; };
+		0440563E277C35EE00972199 /* TVShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowViewModel.swift; sourceTree = "<group>"; };
+		04405640277C3D7D00972199 /* TVShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowViewController.swift; sourceTree = "<group>"; };
+		04405642277C3DD100972199 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +75,27 @@
 				0425FB4A2772187E000B736B /* AppDelegate.swift */,
 				0425FB4C2772187E000B736B /* SceneDelegate.swift */,
 				0425FB4E2772187E000B736B /* ViewController.swift */,
-				0425FB6127723A8F000B736B /* DramaCollectionViewCell.swift */,
+				04405634277C294300972199 /* APIService.swift */,
+				04405637277C2B3C00972199 /* Endpoint.swift */,
+				04405642277C3DD100972199 /* Observable.swift */,
+				0440563B277C35CF00972199 /* TVShow */,
 				0425FB5327721882000B736B /* Assets.xcassets */,
 				0425FB5527721882000B736B /* LaunchScreen.storyboard */,
 				0425FB5827721882000B736B /* Info.plist */,
 			);
 			path = SeSAC_week13_Drama;
+			sourceTree = "<group>";
+		};
+		0440563B277C35CF00972199 /* TVShow */ = {
+			isa = PBXGroup;
+			children = (
+				04405639277C31B400972199 /* TVShow.swift */,
+				0440563C277C35E100972199 /* TVShowView.swift */,
+				04405640277C3D7D00972199 /* TVShowViewController.swift */,
+				0440563E277C35EE00972199 /* TVShowViewModel.swift */,
+				0425FB6127723A8F000B736B /* TVShowCollectionViewCell.swift */,
+			);
+			path = TVShow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +174,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0425FB6227723A8F000B736B /* DramaCollectionViewCell.swift in Sources */,
+				04405643277C3DD100972199 /* Observable.swift in Sources */,
+				0425FB6227723A8F000B736B /* TVShowCollectionViewCell.swift in Sources */,
+				0440563D277C35E100972199 /* TVShowView.swift in Sources */,
+				04405635277C294300972199 /* APIService.swift in Sources */,
+				0440563F277C35EE00972199 /* TVShowViewModel.swift in Sources */,
 				0425FB4F2772187E000B736B /* ViewController.swift in Sources */,
+				0440563A277C31B400972199 /* TVShow.swift in Sources */,
 				0425FB4B2772187E000B736B /* AppDelegate.swift in Sources */,
+				04405641277C3D7D00972199 /* TVShowViewController.swift in Sources */,
+				04405638277C2B3C00972199 /* Endpoint.swift in Sources */,
 				0425FB4D2772187E000B736B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
