@@ -20,7 +20,6 @@ class APIService {
     
     static func searchTVShow(searchText: String, completion: @escaping (TVShow?, APIError?) -> Void) {
         
-//        let url = Endpoint.searchTVShow(key: APIKEY, query: searchText).url
         let url = Endpoint.searchTVShow(key: APIKEY, query: searchText).url
         print("url: ",url)
         var request = URLRequest(url: url)

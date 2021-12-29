@@ -16,12 +16,13 @@ class TVShowViewModel {
     func searchTVShow(searhText: String) {
         APIService.searchTVShow(searchText: searhText) { tvshow, error in
             
-//            print("tvshow : ",tvshow)
+            print("tvshow : ",tvshow)
 //            print("error : ",error)
             
-            guard let tvshow = tvshow else {
-                return
-            }
+//            guard let tvshow = tvshow else {
+//                return
+//            }
+            let tvshow = tvshow ?? TVShow(page: 0, results: [], totalPages: 0, totalResults: 0) // nil 처리
             self.searchedTVShow.value = tvshow
             
         }

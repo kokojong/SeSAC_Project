@@ -23,7 +23,6 @@ extension Endpoint {
     var url: URL {
         switch self {
         case .searchTVShow(key: let key, query: let query):
-//        case .searchTVShow(key: let key):
             return .makeEndPoint("search/tv?api_key=\(key)&language=en-US&query=\(query)&page=1&include_adult=false")
         }
     }
@@ -53,9 +52,9 @@ extension URLSession {
     static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIError?) -> Void) {
         // shared 나 default 등을 쓰려고
         session.dataTask2(endpoint) { data, response, error in
-            print("data:",data)
-            print("response:",response)
-            print("error:",error)
+//            print("data:",data)
+//            print("response:",response)
+//            print("error:",error)
             
             DispatchQueue.main.async {
                 guard error == nil else {
