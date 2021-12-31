@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let nav = UINavigationController(rootViewController: BeerViewController())
-        window?.rootViewController = nav
+//        let nav = UINavigationController(rootViewController: BeerViewController())
+        window?.rootViewController = BeerViewController()
         window?.makeKeyAndVisible()
     }
 

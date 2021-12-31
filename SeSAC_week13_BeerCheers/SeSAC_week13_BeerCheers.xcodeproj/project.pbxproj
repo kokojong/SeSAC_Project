@@ -95,16 +95,40 @@
 		04405679277D8E9800972199 /* Beer */ = {
 			isa = PBXGroup;
 			children = (
+				04405680277F452D00972199 /* M */,
+				04405681277F453B00972199 /* V */,
+				04405682277F454300972199 /* VM */,
+			);
+			path = Beer;
+			sourceTree = "<group>";
+		};
+		04405680277F452D00972199 /* M */ = {
+			isa = PBXGroup;
+			children = (
 				04405668277D78B100972199 /* Beer.swift */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		04405681277F453B00972199 /* V */ = {
+			isa = PBXGroup;
+			children = (
 				0440566A277D7AEF00972199 /* BeerView.swift */,
 				0440567A277D8EC400972199 /* BeerTableHeaderView.swift */,
 				0440567E277DA04300972199 /* BeerDescriptionView.swift */,
 				04405675277D88C500972199 /* BottomView.swift */,
 				0440566C277D7B3A00972199 /* BeerViewController.swift */,
-				0440566E277D81DD00972199 /* BeerViewModel.swift */,
 				04405673277D88AF00972199 /* BeerTableViewCell.swift */,
 			);
-			path = Beer;
+			path = V;
+			sourceTree = "<group>";
+		};
+		04405682277F454300972199 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				0440566E277D81DD00972199 /* BeerViewModel.swift */,
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

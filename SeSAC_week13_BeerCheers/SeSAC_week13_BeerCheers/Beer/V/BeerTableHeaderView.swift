@@ -15,9 +15,8 @@ protocol BeerTableHeaderViewRepresentable {
 class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
     
     let beerImageView = UIImageView()
-    let descriptionUIView = UIView()
+    let descriptionUIView = BeerDescriptionView()
     let backgroundView = UIView()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +42,7 @@ class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
     }
     
     func setupConstraints() {
+        
         beerImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
@@ -59,7 +59,7 @@ class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
         
         descriptionUIView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.height.equalToSuperview().multipliedBy(0.6)
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
             
