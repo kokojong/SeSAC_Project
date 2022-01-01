@@ -56,7 +56,7 @@ class BeerDescriptionView: UIView, BeerDescriptionViewRepresentable {
     
     @objc func onMoreButtonClicked() {
         print("more")
-        viewModel.descriptionViewHeight.value = 100
+        viewModel.descriptionViewHeight.value = 500
 //        viewModel.updateHeight(100)
         print(viewModel.descriptionViewHeight.value)
     }

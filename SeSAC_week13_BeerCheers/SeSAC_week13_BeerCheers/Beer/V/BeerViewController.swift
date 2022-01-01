@@ -12,7 +12,7 @@ class BeerViewController: UIViewController {
     
     var mainview = BeerView()
     
-    var viewModel = BeerViewModel()
+    var viewModel: BeerViewModel!
     
 //    var headerView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 400))
     
@@ -28,11 +28,14 @@ class BeerViewController: UIViewController {
 //        mainview.tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
 //        mainview.tableView.style = .insetGrouped
 //        mainview.tableView.separatorStyle = .d
+//        viewModel = mainview.tableView.tableHeaderView
         
         mainview.tableView.register(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.identifier)
-        print("before change",viewModel.descriptionViewHeight.value)
-        mainview.tableView.tableHeaderView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: Int(self.view.bounds.width), height: viewModel.descriptionViewHeight.value*3))
+//        print("before change",viewModel.descriptionViewHeight.value)
         
+        let headerView = BeerTableHeaderView(frame: .zero)
+        mainview.tableView.tableHeaderView = headerView
+        viewModel = headerView.descriptionUIView.viewModel
         
         mainview.tableView.layoutIfNeeded()
 //        mainview.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: 0, height: 300)
@@ -40,8 +43,7 @@ class BeerViewController: UIViewController {
 //        mainview.tableView.tableHeaderView?.frame.size.height = 500
         viewModel.descriptionViewHeight.bind { int in
             print("bind int",int)
-//            self.mainview.tableView.tableHeaderView?.frame.size.height = CGFloat(int)
-//            self.mainview.tableView.tableHeaderView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: Int(self.view.bounds.width), height: self.viewModel.descriptionViewHeight.value*3))
+            self.mainview.tableView.tableHeaderView?.frame.size.height = CGFloat(int)
         }
         
         
@@ -66,17 +68,17 @@ class BeerViewController: UIViewController {
 //        }
 //    }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print("will")
-        updateHeaderViewHeight(for: mainview.tableView.tableHeaderView)
-    }
-
-    func updateHeaderViewHeight(for header: UIView?) {
-        print("header:",header)
-        guard let header = header else { return }
-        header.frame.size.height = CGFloat(viewModel.descriptionViewHeight.value)
-    }
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        print("will")
+//        updateHeaderViewHeight(for: mainview.tableView.tableHeaderView)
+//    }
+//
+//    func updateHeaderViewHeight(for header: UIView?) {
+//        print("header:",header)
+//        guard let header = header else { return }
+//        header.frame.size.height = CGFloat(viewModel.descriptionViewHeight.value)
+//    }
 }
 
 extension BeerViewController: UITableViewDelegate, UITableViewDataSource {

@@ -14,6 +14,8 @@ protocol BeerTableHeaderViewRepresentable {
 
 class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
     
+    
+    
     let beerImageView = UIImageView()
     let descriptionUIView = BeerDescriptionView()
     let backgroundView = UIView()
@@ -22,7 +24,7 @@ class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
         super.init(frame: frame)
         setupView()
         setupConstraints()
-        
+//        descriptionUIView.viewModel
     }
     
     required init?(coder: NSCoder) {

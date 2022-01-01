@@ -10,10 +10,8 @@ import Foundation
 class BeerViewModel {
     
     var beer: Observable<Beer> = Observable(Beer())
-    
-    
     var descriptionViewHeight: Observable<Int> = Observable(354)
-    var headerViewHeight: Observable<Int> = Observable(100)
+//    var headerViewHeight: Observable<Int> = Observable(100)
 
     func fetchRandomBeer() {
         APIService.fetchRandomBeer { beer, error in
@@ -25,9 +23,9 @@ class BeerViewModel {
         }
     }
     
-    func updateHeight(_ height: Int) {
-        descriptionViewHeight.value = height
-    }
+//    func updateHeight(_ height: Int) {
+//        descriptionViewHeight.value = height
+//    }
     
 
 
