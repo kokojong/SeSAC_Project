@@ -34,14 +34,20 @@ class BeerViewController: UIViewController {
         mainview.tableView.tableHeaderView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: Int(self.view.bounds.width), height: viewModel.descriptionViewHeight.value*3))
         
         
-//        mainview.tableView.layoutIfNeeded()
+        mainview.tableView.layoutIfNeeded()
+//        mainview.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: 0, height: 300)
+        
+//        mainview.tableView.tableHeaderView?.frame.size.height = 500
         viewModel.descriptionViewHeight.bind { int in
             print("bind int",int)
+//            self.mainview.tableView.tableHeaderView?.frame.size.height = CGFloat(int)
 //            self.mainview.tableView.tableHeaderView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: Int(self.view.bounds.width), height: self.viewModel.descriptionViewHeight.value*3))
         }
         
         
     }
+    
+ 
     
 //    override func viewDidLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
@@ -59,6 +65,18 @@ class BeerViewController: UIViewController {
 //            }
 //        }
 //    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print("will")
+        updateHeaderViewHeight(for: mainview.tableView.tableHeaderView)
+    }
+
+    func updateHeaderViewHeight(for header: UIView?) {
+        print("header:",header)
+        guard let header = header else { return }
+        header.frame.size.height = CGFloat(viewModel.descriptionViewHeight.value)
+    }
 }
 
 extension BeerViewController: UITableViewDelegate, UITableViewDataSource {
@@ -66,7 +84,7 @@ extension BeerViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,9 +96,7 @@ extension BeerViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 600
-    }
+   
 
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        return BeerTableHeaderView()

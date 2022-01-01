@@ -13,7 +13,6 @@ class Observable<T> {
     var value: T {
         didSet {
             listener?(value)
-            print("didset:",value)
         }
     }
     

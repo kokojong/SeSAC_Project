@@ -22,6 +22,7 @@ class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
         super.init(frame: frame)
         setupView()
         setupConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -47,19 +48,20 @@ class BeerTableHeaderView: UIView, BeerTableHeaderViewRepresentable {
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.6)
+            make.height.equalTo(descriptionUIView).multipliedBy(1)
         }
         
         backgroundView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.top.equalTo(beerImageView.snp.bottom)
-            make.height.equalToSuperview().multipliedBy(0.4)
+//            make.height.equalToSuperview().multipliedBy(0.4)
+            make.height.equalTo(descriptionUIView).multipliedBy(0.6)
         }
         
         descriptionUIView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.6)
+//            make.height.equalToSuperview().multipliedBy(0.6)
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
             

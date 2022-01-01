@@ -42,9 +42,9 @@ class BeerDescriptionView: UIView, BeerDescriptionViewRepresentable {
         taglineLabel.text = "Cloudberry Double IPA"
         
         addSubview(descriptionLabel)
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 3
         descriptionLabel.font = .systemFont(ofSize: 13)
-        descriptionLabel.text = "We asked the public to tell us the one beer we should brew again, from our entire back catalogue. They chose well. Cloudberries team up with pan-global hops for an all out fruit riot against a caramel malt base."
+        descriptionLabel.text = "We asked the public to tell us the one beer we should brew again, from our entire back catalogue. They chose well. Cloudberries team up with pan-global hops for an all out fruit riot against a caramel malt base. We asked the public to tell us the one beer we should brew again, from our entire back catalogue. They chose well. Cloudberries team up with pan-global hops for an all out fruit riot against a caramel malt base."
         
         addSubview(moreButton)
         moreButton.setTitle("more", for: .normal)

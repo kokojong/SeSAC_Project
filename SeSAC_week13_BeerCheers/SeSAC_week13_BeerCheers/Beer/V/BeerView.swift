@@ -15,9 +15,13 @@ protocol BeerViewRepresentable {
 
 class BeerView: UIView, BeerViewRepresentable {
     
+    var viewModel = BeerViewModel()
+    
     var tableView = UITableView()
     
     var bottomView = BottomView()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,6 +36,12 @@ class BeerView: UIView, BeerViewRepresentable {
     
     
     func setupView() {
+//        tableView.tableHeaderView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: Int(UIScreen.main.bounds.width), height: viewModel.descriptionViewHeight.value * 3))
+        
+        viewModel.descriptionViewHeight.bind { int in
+            print("bind2:",int)
+//            self.tableView.tableHeaderView = BeerTableHeaderView(frame: CGRect(x: 0, y: 0, width: Int(UIScreen.main.bounds.width), height: .zero))
+        }
         addSubview(tableView)
         tableView.backgroundColor = .yellow
         

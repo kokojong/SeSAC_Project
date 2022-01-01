@@ -12,7 +12,7 @@ class BeerViewModel {
     var beer: Observable<Beer> = Observable(Beer())
     
     
-    var descriptionViewHeight: Observable<Int> = Observable(200)
+    var descriptionViewHeight: Observable<Int> = Observable(354)
     var headerViewHeight: Observable<Int> = Observable(100)
 
     func fetchRandomBeer() {
