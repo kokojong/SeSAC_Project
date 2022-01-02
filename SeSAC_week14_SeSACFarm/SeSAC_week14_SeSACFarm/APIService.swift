@@ -17,7 +17,7 @@ enum APIError : Error {
 
 class APIService {
     
-    static func fetchRandomBeer(completion: @escaping (SignUp?,APIError?) -> Void) {
+    static func fetchRandomBeer(completion: @escaping (User?,APIError?) -> Void) {
         let url = URL(string: "https://api.punkapi.com/v2/beers/random")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -45,7 +45,7 @@ class APIService {
                 
                 do {
                     let decoder = JSONDecoder()
-                    let userData = try decoder.decode(SignUp.self, from: data) // 여기서 decodable 한거를 해야한다고 해서 위에 <T: Decodable>
+                    let userData = try decoder.decode(User.self, from: data) // 여기서 decodable 한거를 해야한다고 해서 위에 <T: Decodable>
                     completion(userData,nil)
                 } catch {
                     completion(nil, .invalidData)
@@ -69,7 +69,7 @@ class APIService {
         URLSession.request(endpoint: request, completion: completion)
     }
     
-    static func signUp(username: String, email: String, password: String, completion: @escaping (SignUp?, APIError?) -> Void) {
+    static func signUp(username: String, email: String, password: String, completion: @escaping (User?, APIError?) -> Void) {
         let url = Endpoint.signUp.url
         var request = URLRequest(url: url)
         request.httpMethod = Method.POST.rawValue
@@ -77,5 +77,15 @@ class APIService {
         
         URLSession.request(endpoint: request, completion: completion)
     }
+    
+    static func signIn(identifier: String, password: String, completion: @escaping (User?, APIError?) -> Void) {
+        let url = Endpoint.signIn.url
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.POST.rawValue
+        request.httpBody = "identifier=\(identifier)&password=\(password)".data(using: .utf8, allowLossyConversion: false)
+        
+        URLSession.request(endpoint: request, completion: completion)
+    }
+    
     
 }

@@ -6,13 +6,13 @@
 //
 
 // MARK: - SignUp
-struct SignUp: Codable {
+struct User: Codable {
     let jwt: String
-    let user: User
+    let user: UserInfo
 }
 
 // MARK: - User
-struct User: Codable {
+struct UserInfo: Codable {
     let id: Int
     let username, email, provider: String
     let confirmed: Bool

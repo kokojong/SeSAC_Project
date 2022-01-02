@@ -38,8 +38,6 @@ class SignUpViewController: UIViewController {
         signUpView.passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange(_:)), for: .editingChanged)
         signUpView.signUpButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
         
-        
-        
     }
     
     @objc func nicknameTextFieldDidChange(_ textField: UITextField) {
@@ -54,8 +52,6 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func onSignUpButtonClicked() {
-        print("signUpView.passwordTextField.text", signUpView.passwordTextField.text)
-        print("signUpView.passwordCheckTextField.text", signUpView.passwordCheckTextField.text)
         if signUpView.passwordTextField.text == signUpView.passwordCheckTextField.text {
             viewModel.postSignUp {
                 self.view.makeToast("회원가입이 완료 되었습니다")
@@ -63,11 +59,5 @@ class SignUpViewController: UIViewController {
         } else {
             signUpView.makeToast("비밀번호가 다릅니다")
         }
-        
-       
     }
-    
-
-  
-
 }

@@ -38,9 +38,5 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
         
     }
-
     
-
-  
-
 }

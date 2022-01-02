@@ -14,7 +14,7 @@
 		044056A4278096E100972199 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056A3278096E100972199 /* MainViewController.swift */; };
 		044056A72780B99100972199 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056A62780B99100972199 /* MainView.swift */; };
 		044056AA2780B9B300972199 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 044056A92780B9B300972199 /* SnapKit */; };
-		044056AC2781781500972199 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AB2781781500972199 /* SignUp.swift */; };
+		044056AC2781781500972199 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AB2781781500972199 /* UserInfo.swift */; };
 		044056AE2781830500972199 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AD2781830500972199 /* Observable.swift */; };
 		044056B02781832000972199 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AF2781832000972199 /* APIService.swift */; };
 		044056B22781832900972199 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056B12781832900972199 /* Endpoint.swift */; };
@@ -36,7 +36,7 @@
 		0440569D278093A200972199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044056A3278096E100972199 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		044056A62780B99100972199 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		044056AB2781781500972199 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		044056AB2781781500972199 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		044056AD2781830500972199 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		044056AF2781832000972199 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		044056B12781832900972199 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		044056B3278183A700972199 /* M */ = {
 			isa = PBXGroup;
 			children = (
-				044056AB2781781500972199 /* SignUp.swift */,
+				044056AB2781781500972199 /* UserInfo.swift */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 				044056B7278194F900972199 /* SignUpViewController.swift in Sources */,
 				044056AE2781830500972199 /* Observable.swift in Sources */,
 				044056B92781950D00972199 /* SignInViewController.swift in Sources */,
-				044056AC2781781500972199 /* SignUp.swift in Sources */,
+				044056AC2781781500972199 /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

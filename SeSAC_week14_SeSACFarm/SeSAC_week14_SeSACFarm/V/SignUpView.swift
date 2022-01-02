@@ -107,8 +107,6 @@ class SignUpView: UIView {
         
     }
     
-    
-    
 }
 
 extension UITextField {
