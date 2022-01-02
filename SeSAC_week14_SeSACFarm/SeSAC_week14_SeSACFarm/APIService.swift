@@ -69,4 +69,13 @@ class APIService {
         URLSession.request(endpoint: request, completion: completion)
     }
     
+    static func signUp(username: String, email: String, password: String, completion: @escaping (SignUp?, APIError?) -> Void) {
+        let url = Endpoint.signUp.url
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.POST.rawValue
+        request.httpBody = "username=\(username)&email=\(email)&password=\(password)".data(using: .utf8, allowLossyConversion: false)
+        
+        URLSession.request(endpoint: request, completion: completion)
+    }
+    
 }

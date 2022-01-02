@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         mainView.signUpButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewMapTapped))
+        mainView.signInLabel.isUserInteractionEnabled = true
         mainView.signInLabel.addGestureRecognizer(tapGestureRecognizer)
 
     }
@@ -33,6 +34,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func viewMapTapped(sender: UITapGestureRecognizer) {
+        print("viewMapTapped")
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
         
     }
