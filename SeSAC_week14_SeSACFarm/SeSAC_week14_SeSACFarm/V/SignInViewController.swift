@@ -1,13 +1,19 @@
 //
-//  MainViewController.swift
+//  SignInViewController.swift
 //  SeSAC_week14_SeSACFarm
 //
-//  Created by kokojong on 2022/01/01.
+//  Created by kokojong on 2022/01/02.
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
+class SignInViewController: UIViewController {
+    
+    let signInView = SignInView()
+    
+    override func loadView() {
+        self.view = signInView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
