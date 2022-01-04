@@ -16,7 +16,7 @@ struct UserInfo: Codable {
     let id: Int
     let username, email, provider: String
     let confirmed: Bool
-//    let blocked: JSONNull?
+//    let blocked: Bool?
     let role: Role
     let createdAt, updatedAt: String
 //    let posts, comments: [String] //

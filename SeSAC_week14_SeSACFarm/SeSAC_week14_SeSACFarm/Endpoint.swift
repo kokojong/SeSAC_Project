@@ -20,6 +20,8 @@ enum Endpoint {
     case signIn
 //    case boardDetail(id: Int)
     case changePW
+    case getPosts
+    case postPosts
 }
 
 extension Endpoint {
@@ -30,6 +32,8 @@ extension Endpoint {
 //        case .boardDetail(id: let id):
 //            return .makeEndPoint("boards/\(id)")
         case .changePW: return .makeEndPoint("custom/change-password")
+        case .getPosts, .postPosts: return .makeEndPoint("posts")
+            
         }
     }
 }
@@ -59,7 +63,9 @@ extension URLSession {
     static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIError?) -> Void) {
         // shared 나 default 등을 쓰려고
         session.dataTask2(endpoint) { data, response, error in
-            
+            print("data",data)
+            print("response",response)
+            print("error",error)
             DispatchQueue.main.async {
                 guard error == nil else {
                     completion(nil, .failed)
@@ -77,7 +83,12 @@ extension URLSession {
                 }
                 
                 guard response.statusCode == 200 else {
-                    completion(nil, .failed)
+                    if response.statusCode == 401 {
+                        completion(nil, .unauthorized)
+                    } else {
+                        completion(nil, .failed)
+                    }
+                    
                     return
                 }
                 

@@ -12,6 +12,7 @@ class SignUpViewModel {
     var username: Observable<String> = Observable("")
     var email: Observable<String> = Observable("")
     var password: Observable<String> = Observable("")
+    
     var signUp: Observable<User> = Observable(User(jwt: "", user: UserInfo(id: 0, username: "", email: "", provider: "", confirmed: true, role: Role(id: 0, name: "", roleDescription: "", type: ""), createdAt: "", updatedAt: "")))
     
     func postSignUp(completion: @escaping () -> Void) {

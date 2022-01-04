@@ -14,7 +14,7 @@
 		044056A4278096E100972199 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056A3278096E100972199 /* MainViewController.swift */; };
 		044056A72780B99100972199 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056A62780B99100972199 /* MainView.swift */; };
 		044056AA2780B9B300972199 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 044056A92780B9B300972199 /* SnapKit */; };
-		044056AC2781781500972199 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AB2781781500972199 /* UserInfo.swift */; };
+		044056AC2781781500972199 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AB2781781500972199 /* User.swift */; };
 		044056AE2781830500972199 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AD2781830500972199 /* Observable.swift */; };
 		044056B02781832000972199 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056AF2781832000972199 /* APIService.swift */; };
 		044056B22781832900972199 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056B12781832900972199 /* Endpoint.swift */; };
@@ -25,6 +25,15 @@
 		044056BF2781B5B500972199 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056BE2781B5B500972199 /* SignInViewModel.swift */; };
 		044056C12781B5BF00972199 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056C02781B5BF00972199 /* SignUpViewModel.swift */; };
 		044056C42781F2C600972199 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 044056C32781F2C600972199 /* Toast */; };
+		044056F52782DB9400972199 /* PostMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056F42782DB9400972199 /* PostMainViewController.swift */; };
+		044056F72782DBA900972199 /* PostMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056F62782DBA900972199 /* PostMainView.swift */; };
+		044056F92782DF9A00972199 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056F82782DF9A00972199 /* Post.swift */; };
+		044056FB2782EFA000972199 /* PostMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056FA2782EFA000972199 /* PostMainTableViewCell.swift */; };
+		044056FD27830C9400972199 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056FC27830C9400972199 /* PaddingLabel.swift */; };
+		044056FF278338D600972199 /* PostMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044056FE278338D600972199 /* PostMainViewModel.swift */; };
+		044057082784481400972199 /* PostWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057072784481400972199 /* PostWriteViewModel.swift */; };
+		0440570A278466DE00972199 /* PostWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405709278466DE00972199 /* PostWriteViewController.swift */; };
+		0440570C278466FC00972199 /* PostWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440570B278466FC00972199 /* PostWriteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +45,7 @@
 		0440569D278093A200972199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044056A3278096E100972199 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		044056A62780B99100972199 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		044056AB2781781500972199 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		044056AB2781781500972199 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		044056AD2781830500972199 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		044056AF2781832000972199 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		044056B12781832900972199 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -46,6 +55,15 @@
 		044056BC2781952800972199 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		044056BE2781B5B500972199 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		044056C02781B5BF00972199 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		044056F42782DB9400972199 /* PostMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMainViewController.swift; sourceTree = "<group>"; };
+		044056F62782DBA900972199 /* PostMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMainView.swift; sourceTree = "<group>"; };
+		044056F82782DF9A00972199 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		044056FA2782EFA000972199 /* PostMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMainTableViewCell.swift; sourceTree = "<group>"; };
+		044056FC27830C9400972199 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		044056FE278338D600972199 /* PostMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMainViewModel.swift; sourceTree = "<group>"; };
+		044057072784481400972199 /* PostWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewModel.swift; sourceTree = "<group>"; };
+		04405709278466DE00972199 /* PostWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewController.swift; sourceTree = "<group>"; };
+		0440570B278466FC00972199 /* PostWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +103,7 @@
 				044056AD2781830500972199 /* Observable.swift */,
 				044056AF2781832000972199 /* APIService.swift */,
 				044056B12781832900972199 /* Endpoint.swift */,
+				044056FC27830C9400972199 /* PaddingLabel.swift */,
 				044056B3278183A700972199 /* M */,
 				044056B4278183AD00972199 /* V */,
 				044056B5278183B900972199 /* VM */,
@@ -98,7 +117,8 @@
 		044056B3278183A700972199 /* M */ = {
 			isa = PBXGroup;
 			children = (
-				044056AB2781781500972199 /* UserInfo.swift */,
+				044056AB2781781500972199 /* User.swift */,
+				044056F82782DF9A00972199 /* Post.swift */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -112,6 +132,11 @@
 				044056BA2781951C00972199 /* SignUpView.swift */,
 				044056B82781950D00972199 /* SignInViewController.swift */,
 				044056BC2781952800972199 /* SignInView.swift */,
+				044056F42782DB9400972199 /* PostMainViewController.swift */,
+				044056F62782DBA900972199 /* PostMainView.swift */,
+				044056FA2782EFA000972199 /* PostMainTableViewCell.swift */,
+				04405709278466DE00972199 /* PostWriteViewController.swift */,
+				0440570B278466FC00972199 /* PostWriteView.swift */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -121,6 +146,8 @@
 			children = (
 				044056C02781B5BF00972199 /* SignUpViewModel.swift */,
 				044056BE2781B5B500972199 /* SignInViewModel.swift */,
+				044056FE278338D600972199 /* PostMainViewModel.swift */,
+				044057072784481400972199 /* PostWriteViewModel.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -203,20 +230,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044056FB2782EFA000972199 /* PostMainTableViewCell.swift in Sources */,
+				044056FF278338D600972199 /* PostMainViewModel.swift in Sources */,
 				044056902780939D00972199 /* AppDelegate.swift in Sources */,
 				044056B02781832000972199 /* APIService.swift in Sources */,
+				0440570A278466DE00972199 /* PostWriteViewController.swift in Sources */,
 				044056B22781832900972199 /* Endpoint.swift in Sources */,
+				044056F72782DBA900972199 /* PostMainView.swift in Sources */,
+				044056F92782DF9A00972199 /* Post.swift in Sources */,
 				044056922780939D00972199 /* SceneDelegate.swift in Sources */,
+				044056FD27830C9400972199 /* PaddingLabel.swift in Sources */,
 				044056BF2781B5B500972199 /* SignInViewModel.swift in Sources */,
+				0440570C278466FC00972199 /* PostWriteView.swift in Sources */,
 				044056A72780B99100972199 /* MainView.swift in Sources */,
 				044056C12781B5BF00972199 /* SignUpViewModel.swift in Sources */,
+				044056F52782DB9400972199 /* PostMainViewController.swift in Sources */,
 				044056BB2781951C00972199 /* SignUpView.swift in Sources */,
 				044056BD2781952800972199 /* SignInView.swift in Sources */,
 				044056A4278096E100972199 /* MainViewController.swift in Sources */,
 				044056B7278194F900972199 /* SignUpViewController.swift in Sources */,
 				044056AE2781830500972199 /* Observable.swift in Sources */,
 				044056B92781950D00972199 /* SignInViewController.swift in Sources */,
-				044056AC2781781500972199 /* UserInfo.swift in Sources */,
+				044057082784481400972199 /* PostWriteViewModel.swift in Sources */,
+				044056AC2781781500972199 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
