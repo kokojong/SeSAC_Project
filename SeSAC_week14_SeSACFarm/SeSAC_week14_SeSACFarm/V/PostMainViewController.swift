@@ -28,6 +28,16 @@ class PostMainViewController: UIViewController {
         self.view = postMainView
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        viewModel.getAllPosts {
+            
+        }
+        postMainView.tableView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -88,6 +98,16 @@ extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let row = self.viewModel.allPosts.value[indexPath.row]
+        
+        let vc = PostDetailViewController()
+        vc.viewModel.detailPost.value = row
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

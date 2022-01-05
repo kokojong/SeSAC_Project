@@ -14,8 +14,8 @@ class PostMainViewModel {
     func getAllPosts(completion: @escaping () -> Void){
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.allPosts(token: token) { post, error in
-            print("post : ",post)
-            print("error: ",error)
+//            print("post : ",post)
+//            print("error: ",error)
             guard let post = post else {
                 return
             }

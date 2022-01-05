@@ -34,6 +34,10 @@
 		044057082784481400972199 /* PostWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057072784481400972199 /* PostWriteViewModel.swift */; };
 		0440570A278466DE00972199 /* PostWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405709278466DE00972199 /* PostWriteViewController.swift */; };
 		0440570C278466FC00972199 /* PostWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440570B278466FC00972199 /* PostWriteView.swift */; };
+		0440571027848ED400972199 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440570F27848ED400972199 /* PostDetailViewController.swift */; };
+		0440571227848F1B00972199 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440571127848F1B00972199 /* PostDetailView.swift */; };
+		044057142784B2C700972199 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057132784B2C700972199 /* PostDetailViewModel.swift */; };
+		044057162784BE3200972199 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057152784BE3200972199 /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		044057072784481400972199 /* PostWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewModel.swift; sourceTree = "<group>"; };
 		04405709278466DE00972199 /* PostWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewController.swift; sourceTree = "<group>"; };
 		0440570B278466FC00972199 /* PostWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteView.swift; sourceTree = "<group>"; };
+		0440570F27848ED400972199 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		0440571127848F1B00972199 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		044057132784B2C700972199 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		044057152784BE3200972199 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,9 @@
 				044056FA2782EFA000972199 /* PostMainTableViewCell.swift */,
 				04405709278466DE00972199 /* PostWriteViewController.swift */,
 				0440570B278466FC00972199 /* PostWriteView.swift */,
+				0440570F27848ED400972199 /* PostDetailViewController.swift */,
+				0440571127848F1B00972199 /* PostDetailView.swift */,
+				044057152784BE3200972199 /* CommentTableViewCell.swift */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 				044056C02781B5BF00972199 /* SignUpViewModel.swift */,
 				044056BE2781B5B500972199 /* SignInViewModel.swift */,
 				044056FE278338D600972199 /* PostMainViewModel.swift */,
+				044057132784B2C700972199 /* PostDetailViewModel.swift */,
 				044057072784481400972199 /* PostWriteViewModel.swift */,
 			);
 			path = VM;
@@ -231,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				044056FB2782EFA000972199 /* PostMainTableViewCell.swift in Sources */,
+				0440571027848ED400972199 /* PostDetailViewController.swift in Sources */,
 				044056FF278338D600972199 /* PostMainViewModel.swift in Sources */,
 				044056902780939D00972199 /* AppDelegate.swift in Sources */,
 				044056B02781832000972199 /* APIService.swift in Sources */,
@@ -246,10 +259,13 @@
 				044056C12781B5BF00972199 /* SignUpViewModel.swift in Sources */,
 				044056F52782DB9400972199 /* PostMainViewController.swift in Sources */,
 				044056BB2781951C00972199 /* SignUpView.swift in Sources */,
+				044057142784B2C700972199 /* PostDetailViewModel.swift in Sources */,
 				044056BD2781952800972199 /* SignInView.swift in Sources */,
 				044056A4278096E100972199 /* MainViewController.swift in Sources */,
 				044056B7278194F900972199 /* SignUpViewController.swift in Sources */,
 				044056AE2781830500972199 /* Observable.swift in Sources */,
+				044057162784BE3200972199 /* CommentTableViewCell.swift in Sources */,
+				0440571227848F1B00972199 /* PostDetailView.swift in Sources */,
 				044056B92781950D00972199 /* SignInViewController.swift in Sources */,
 				044057082784481400972199 /* PostWriteViewModel.swift in Sources */,
 				044056AC2781781500972199 /* User.swift in Sources */,

@@ -29,7 +29,7 @@ class PostWriteViewController: UIViewController {
     @objc func onDoneButtonClicked() {
         print("done")
         viewModel.writeNewPost(text: postWriteView.textView.text) {
-            print("작성 완료")
+            self.navigationController?.popViewController(animated: true)
         }
     }
     @objc func onCancelButtonClicked() {
