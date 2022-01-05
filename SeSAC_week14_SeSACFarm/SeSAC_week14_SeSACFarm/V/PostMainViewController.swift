@@ -58,7 +58,7 @@ class PostMainViewController: UIViewController {
             
         }
         
-        print("numberOfItemsInSection",viewModel.numberOfItemsInSection)
+        print("numberOfItemsInSection",viewModel.numberOfRowsInSection)
         viewModel.allPosts.bind { post in
             self.postMainView.tableView.reloadData()
         }
@@ -75,7 +75,7 @@ class PostMainViewController: UIViewController {
 
 extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection
+        return viewModel.numberOfRowsInSection
 //        return 5
     }
     
@@ -86,9 +86,9 @@ extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
 //        cell.contentLabel.text = "content"
 //        cell.createdDateLabel.text = "1.3"
 //        cell.goToCommentLabel.text = "댓글"
-        let row = viewModel.cellForItemAt(indexPath: indexPath)
+        let row = viewModel.cellForRowAt(indexPath: indexPath)
 //        print("row: ",row)
-        cell.nickNameLabel.text = row.user.username
+        cell.nicknameLabel.text = row.user.username
         cell.contentLabel.text = row.text
         cell.createdDateLabel.text = row.createdAt
         if row.comments.count == 0 {

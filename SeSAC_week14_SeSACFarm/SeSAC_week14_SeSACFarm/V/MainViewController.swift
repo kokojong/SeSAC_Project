@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func viewMapTapped(sender: UITapGestureRecognizer) {
-        print("viewMapTapped")
+        
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
         
     }

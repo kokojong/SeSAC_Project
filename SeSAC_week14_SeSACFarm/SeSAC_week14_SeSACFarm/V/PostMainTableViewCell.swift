@@ -11,7 +11,7 @@ class PostMainTableViewCell: UITableViewCell {
     
     static let identifier = "PostMainTableViewCell"
     
-    let nickNameLabel: PaddingLabel = {
+    let nicknameLabel: PaddingLabel = {
         let label = PaddingLabel()
         label.backgroundColor = .lightGray
         label.clipsToBounds = true
@@ -72,6 +72,8 @@ class PostMainTableViewCell: UITableViewCell {
         return view
     }()
     
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -85,7 +87,7 @@ class PostMainTableViewCell: UITableViewCell {
     }
     
     func setViews() {
-        addSubview(nickNameLabel)
+        addSubview(nicknameLabel)
         addSubview(contentLabel)
         addSubview(createdDateLabel)
         addSubview(lineView)
@@ -93,16 +95,17 @@ class PostMainTableViewCell: UITableViewCell {
         addSubview(spacingView)
         bottomStackView.addArrangedSubview(chatImageView)
         bottomStackView.addArrangedSubview(goToCommentLabel)
+      
     }
     
     func setConstraints() {
         
-        nickNameLabel.snp.makeConstraints { make in
+        nicknameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.leading.equalToSuperview().offset(8)
         }
         contentLabel.snp.makeConstraints { make in
-            make.top.equalTo(nickNameLabel.snp.bottom).offset(16)
+            make.top.equalTo(nicknameLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(8)
         }
         createdDateLabel.snp.makeConstraints { make in
@@ -126,6 +129,8 @@ class PostMainTableViewCell: UITableViewCell {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(16)
         }
+        
+        
         
     }
 

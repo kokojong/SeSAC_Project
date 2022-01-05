@@ -30,11 +30,11 @@ class PostMainViewModel {
 
 
 extension PostMainViewModel {
-    var numberOfItemsInSection: Int {
+    var numberOfRowsInSection: Int {
         return allPosts.value.count
     }
     
-    func cellForItemAt(indexPath: IndexPath) -> PostElement {
+    func cellForRowAt(indexPath: IndexPath) -> PostElement {
         return allPosts.value[indexPath.row]
     }
     

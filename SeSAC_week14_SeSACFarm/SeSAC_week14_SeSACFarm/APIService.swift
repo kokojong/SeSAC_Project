@@ -53,6 +53,44 @@ class APIService {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         
         URLSession.request(endpoint: request, completion: completion)
+        
     }
+    
+    
+    static func updatePost(token: String, postId: Int, text: String, completion: @escaping (PostElement?, APIError?) -> Void){
+        
+        let url = Endpoint.updatePost(postId: postId).url
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.PUT.rawValue
+        request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.request(endpoint: request, completion: completion)
+        
+    }
+    
+    static func getComment(token: String, postId: Int, completion: @escaping (Comments?, APIError?) -> Void) {
+        let url = Endpoint.getComment(id: postId).url
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.GET.rawValue
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        
+        URLSession.request(endpoint: request, completion: completion)
+        
+    }
+    
+    static func writeComment(token: String, comment: String, PostId: Int, completion: @escaping (CommentElement?, APIError?) -> Void) {
+        let url = Endpoint.getComment(id: PostId).url
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.POST.rawValue
+        request.httpBody = "comment=\(comment)&post=\(PostId)".data(using: .utf8, allowLossyConversion: false)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        
+        URLSession.request(endpoint: request, completion: completion)
+        
+    }
+    
+    
     
 }

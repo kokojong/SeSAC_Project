@@ -17,7 +17,7 @@ class PostDetailView: UIView {
         return imageview
     }()
     
-    let nickNameLabel: UILabel = {
+    let nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
         label.textColor = .black
@@ -77,11 +77,20 @@ class PostDetailView: UIView {
     
     let commentsTableView = UITableView()
     
-    let commentTextField : UITextField = {
-        let textfield = UITextField()
-        textfield.backgroundColor = .lightGray
-        textfield.placeholder = "댓글을 입력해주세요"
-        return textfield
+    let writeCommentButton : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .lightGray
+        button.setTitle("댓글쓰러가기", for: .normal)
+        button.layer.cornerRadius = 8
+        button.clipsToBounds = true
+        return button
+    }()
+    
+    let optionButton: UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(named: "ellipsis.vertical"), for: .normal)
+        button.tintColor = .black
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -98,7 +107,7 @@ class PostDetailView: UIView {
     
     func setViews() {
         addSubview(profileImageView)
-        addSubview(nickNameLabel)
+        addSubview(nicknameLabel)
         addSubview(contentLabel)
         addSubview(createdDateLabel)
         addSubview(lineView)
@@ -107,7 +116,10 @@ class PostDetailView: UIView {
         bottomStackView.addArrangedSubview(chatImageView)
         bottomStackView.addArrangedSubview(goToCommentLabel)
         addSubview(commentsTableView)
-        addSubview(commentTextField)
+        addSubview(writeCommentButton)
+        addSubview(optionButton)
+        optionButton.isHidden = false
+        
     }
     
     func setConstraints() {
@@ -118,13 +130,13 @@ class PostDetailView: UIView {
             make.width.equalTo(profileImageView.snp.height)
             make.bottom.equalTo(createdDateLabel.snp.bottom)
         }
-        nickNameLabel.snp.makeConstraints { make in
+        nicknameLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.top)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.trailing.equalToSuperview().offset(-8)
         }
         createdDateLabel.snp.makeConstraints { make in
-            make.top.equalTo(nickNameLabel.snp.bottom).offset(8)
+            make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.trailing.equalToSuperview().offset(-8)
         }
@@ -155,11 +167,17 @@ class PostDetailView: UIView {
             make.leading.trailing.equalToSuperview()
         }
         
-        commentTextField.snp.makeConstraints { make in
+        writeCommentButton.snp.makeConstraints { make in
             make.top.equalTo(commentsTableView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(8)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-8)
             make.height.equalTo(44)
+        }
+        
+        optionButton.snp.makeConstraints { make in
+            make.top.equalTo(nicknameLabel.snp.top)
+            make.trailing.equalToSuperview().offset(-8)
+            make.size.equalTo(30)
         }
     }
 

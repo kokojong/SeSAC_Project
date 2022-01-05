@@ -15,14 +15,15 @@ class SignInViewModel {
     
     func postSignIn(completion: @escaping (APIError?) -> Void) {
         APIService.signIn(identifier: email.value, password: password.value) { signin, error in
-            print("signin",signin)
-            print("error",error)
+//            print("signin",signin)
+//            print("error",error)
 
             // 401 에러(토큰 유효기간 만료)
             if let error = error {
                 if error == .unauthorized {
                     print("unauthorized")
                     UserDefaults.standard.set("", forKey: "token")
+                    UserDefaults.standard.set(0, forKey: "userId")
                 } else {
                     print("error is \(error)")
                 }
@@ -42,8 +43,7 @@ class SignInViewModel {
             self.signIn.value = signin
             
             UserDefaults.standard.set(signin.jwt, forKey: "token")
-//            print(UserDefaults.standard.string(forKey: "token"))
-            
+            UserDefaults.standard.set(signin.user.id, forKey: "userId")
             
             completion(nil) // error 없는거
         }

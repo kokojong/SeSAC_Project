@@ -12,6 +12,9 @@ class PostWriteView: UIView {
     var textView: UITextView = {
         let textview = UITextView()
         textview.font = .systemFont(ofSize: 15)
+        textview.layer.cornerRadius = 8
+        textview.layer.borderColor = UIColor.lightGray.cgColor
+        textview.layer.borderWidth = 1
         return textview
     }()
     
@@ -33,7 +36,7 @@ class PostWriteView: UIView {
     
     func setupConstraints() {
         textView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide).inset(16)
+            make.edges.equalTo(self.safeAreaLayoutGuide).inset(20)
         }
     }
 }
