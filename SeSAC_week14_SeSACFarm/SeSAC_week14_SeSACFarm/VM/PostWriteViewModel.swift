@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PostWriteViewModel {
     
@@ -16,6 +17,9 @@ class PostWriteViewModel {
         APIService.writePost(token: token, text: text) { postElement, error in
 //            print("postElement : ",postElement)
 //            print("error: ",error)
+            
+            checkToken(error: error)
+            
             guard let postElement = postElement else {
                 return
             }
@@ -28,6 +32,8 @@ class PostWriteViewModel {
     func updatePost(postId: Int, text: String, completion: @escaping () -> Void) {
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.updatePost(token: token, postId: postId, text: text) { postElement, error in
+            
+            checkToken(error: error)
             
             guard let postElement = postElement else {
                 return

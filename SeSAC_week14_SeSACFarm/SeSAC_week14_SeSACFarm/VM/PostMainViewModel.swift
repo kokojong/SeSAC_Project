@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PostMainViewModel {
     
@@ -16,6 +17,25 @@ class PostMainViewModel {
         APIService.allPosts(token: token) { post, error in
 //            print("post : ",post)
 //            print("error: ",error)
+            
+            if let error = error {
+                if error == .unauthorized {
+                    print("unauthorized")
+                    UserDefaults.standard.set("", forKey: "token")
+                    UserDefaults.standard.set(0, forKey: "userId")
+                    
+                    DispatchQueue.main.async {
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: SignInViewController())
+                        windowScene.windows.first?.makeKeyAndVisible()
+                    }
+
+                    
+                } else {
+                    print("error is \(error)")
+                }
+            }
+            
             guard let post = post else {
                 return
             }

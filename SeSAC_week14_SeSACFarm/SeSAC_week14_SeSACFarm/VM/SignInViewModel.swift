@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SignInViewModel {
     
@@ -24,6 +25,14 @@ class SignInViewModel {
                     print("unauthorized")
                     UserDefaults.standard.set("", forKey: "token")
                     UserDefaults.standard.set(0, forKey: "userId")
+                    
+                    DispatchQueue.main.async {
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: SignInViewController())
+                        windowScene.windows.first?.makeKeyAndVisible()
+                    }
+
+                    
                 } else {
                     print("error is \(error)")
                 }

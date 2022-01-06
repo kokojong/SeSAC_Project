@@ -12,6 +12,8 @@ class CommentWriteViewController: UIViewController {
     var viewModel = CommentWriteViewModel()
     var postId = 0
 
+    var isUpdate = false
+    
     let commentTextView : UITextView = {
        let textView = UITextView()
         textView.layer.cornerRadius = 8
@@ -24,11 +26,21 @@ class CommentWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if isUpdate {
+            title = "댓글수정"
+        } else {
+            title = "댓글작성"
+        }
+        
         view.backgroundColor = .white
         
         view.addSubview(commentTextView)
         commentTextView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        viewModel.comment.bind { comment in
+            self.commentTextView.text = comment.comment
         }
         
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonClicked))]
@@ -37,14 +49,25 @@ class CommentWriteViewController: UIViewController {
     }
     
     @objc func onDoneButtonClicked() {
-        print("done")
-        viewModel.writeNewComment(comment: commentTextView.text, postId: postId) {
-            self.navigationController?.popViewController(animated: true)
+        print("댓글 수정 버튼")
+        if isUpdate {
+            print("postId",viewModel.comment.value.post.id)
+            print("viewModel.comment.value.id",viewModel.comment.value.id)
+            viewModel.updateComment(comment: commentTextView.text, postId: viewModel.comment.value.post.id, commentId: viewModel.comment.value.id) {
+                print("댓글 수정 완료")
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            viewModel.writeNewComment(comment: commentTextView.text, postId: postId) {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
+        
+        
         
     }
     @objc func onCancelButtonClicked() {
-        print("cancel")
+        
         self.navigationController?.popViewController(animated: true)
     }
     

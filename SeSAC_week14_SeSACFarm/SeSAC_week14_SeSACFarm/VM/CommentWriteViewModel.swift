@@ -15,6 +15,8 @@ class CommentWriteViewModel {
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.writeComment(token: token, comment: comment, PostId: postId) { comment, error in
             
+            checkToken(error: error)
+            
             guard let comment = comment else {
                 return
             }
@@ -22,6 +24,23 @@ class CommentWriteViewModel {
             
             completion()
         }
+        
+    }
+    
+    func updateComment(comment: String, postId: Int, commentId: Int, completion: @escaping () -> Void) {
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        APIService.updateComment(token: token, commentId: commentId, postId: postId, comment: comment) { coment, error in
+            
+            checkToken(error: error)
+            
+            guard let coment = coment else {
+                return
+            }
+
+            self.comment.value = coment
+            completion()
+        }
+        
         
     }
     

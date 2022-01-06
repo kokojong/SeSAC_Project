@@ -58,7 +58,7 @@ class PostMainViewController: UIViewController {
             
         }
         
-        print("numberOfItemsInSection",viewModel.numberOfRowsInSection)
+//        print("numberOfItemsInSection",viewModel.numberOfRowsInSection)
         viewModel.allPosts.bind { post in
             self.postMainView.tableView.reloadData()
         }
@@ -106,6 +106,10 @@ extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
         
         let vc = PostDetailViewController()
         vc.viewModel.detailPost.value = row
+        vc.viewModel.postId.value = row.id
+//        vc.viewModel.detailPost.value =
+//        let resutl = vc.viewModel.fetchOnePost(id: row.id, completion: () -> Void)
+
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

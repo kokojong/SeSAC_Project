@@ -15,6 +15,8 @@ class PostUpdateViewModel {
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.updatePost(token: token, postId: postId, text: text) { postElement, error in
             
+            checkToken(error: error)
+            
             guard let postElement = postElement else {
                 return
             }

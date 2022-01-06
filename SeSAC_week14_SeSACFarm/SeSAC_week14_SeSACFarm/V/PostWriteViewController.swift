@@ -21,7 +21,6 @@ class PostWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         view.backgroundColor = .white
         
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonClicked))]
@@ -34,14 +33,16 @@ class PostWriteViewController: UIViewController {
     }
     
     @objc func onDoneButtonClicked() {
-        print("done")
+        
         if isUpdate {
+            title = "게시글 수정"
             viewModel.updatePost(postId: viewModel.writtenPost.value.id, text: postWriteView.textView.text) {
                 print("update")
                 self.navigationController?.popViewController(animated: true)
                 
             }
         } else {
+            title = "게시글 작성"
             viewModel.writeNewPost(text: postWriteView.textView.text) {
                 self.navigationController?.popViewController(animated: true)
             }
@@ -49,8 +50,11 @@ class PostWriteViewController: UIViewController {
         
     }
     @objc func onCancelButtonClicked() {
-        print("cancel")
+        
         self.navigationController?.popViewController(animated: true)
+       
     }
     
 }
+
+
