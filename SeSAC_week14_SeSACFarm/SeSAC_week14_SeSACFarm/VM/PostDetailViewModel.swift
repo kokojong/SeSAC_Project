@@ -100,6 +100,7 @@ class PostDetailViewModel {
 }
 
 func checkToken(error: APIError?) {
+    print("checkToken")
     if let error = error {
         if error == .unauthorized {
             print("unauthorized")
@@ -108,7 +109,7 @@ func checkToken(error: APIError?) {
             
             DispatchQueue.main.async {
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: SignInViewController())
+                windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: MainViewController())
                 windowScene.windows.first?.makeKeyAndVisible()
             }
 

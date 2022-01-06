@@ -53,8 +53,29 @@ class SignUpViewController: UIViewController {
     
     @objc func onSignUpButtonClicked() {
         if signUpView.passwordTextField.text == signUpView.passwordCheckTextField.text {
-            viewModel.postSignUp {
-                self.view.makeToast("회원가입이 완료 되었습니다")
+            viewModel.postSignUp { error in
+                
+                if let error = error {
+                    var erroMessage = ""
+                    
+                    switch error {
+                    case .invalidResponse:
+                        erroMessage = "유효하지 않은 접근입니다"
+                    case .noData:
+                        erroMessage = "데이터가 없습니다"
+                    case .failed:
+                        erroMessage = "이미 존재하는 회원이거나 이메일 형식이 옳지 않습니다"
+                    case .invalidData:
+                        erroMessage = "유효하지 않은 데이터입니다"
+                    case .unauthorized:
+                        erroMessage = "로그인 토큰이 만료되었습니다"
+                    }
+                    
+                    self.view.makeToast("\(erroMessage)")
+
+                }
+                
+//                self.view.makeToast("회원가입이 완료 되었습니다")
             }
         } else {
             signUpView.makeToast("비밀번호가 다릅니다")

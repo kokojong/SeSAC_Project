@@ -53,8 +53,13 @@ class SignInViewController: UIViewController {
 //                self.view.makeToast("로그인 완료")
                 print("token : ", self.viewModel.signIn.value.jwt)
                 // 일단은 push로 하고 추후에 rootview를 바꿔주는거로 바꾸기
-                self.navigationController?.pushViewController(PostMainViewController(), animated: true)
+//                self.navigationController?.pushViewController(PostMainViewController(), animated: true)
                 
+                DispatchQueue.main.async {
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                    windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: PostMainViewController())
+                    windowScene.windows.first?.makeKeyAndVisible()
+                }
                 
             }
             

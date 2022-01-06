@@ -15,17 +15,22 @@ class SignUpViewModel {
     
     var signUp: Observable<User> = Observable(User(jwt: "", user: UserInfo(id: 0, username: "", email: "", provider: "", confirmed: true, role: Role(id: 0, name: "", roleDescription: "", type: ""), createdAt: "", updatedAt: "")))
     
-    func postSignUp(completion: @escaping () -> Void) {
+    func postSignUp(completion: @escaping (APIError?) -> Void) {
         APIService.signUp(username: username.value, email: email.value, password: password.value) { signup, error in
 //            print("signup",signup)
 //            print("error",error)
+            
+            if let error = error {
+                completion(error)
+                return
+            }
             
             guard let signup = signup else {
                 return
             }
             self.signUp.value = signup
             
-            completion()
+            completion(nil)
         }
         
     }

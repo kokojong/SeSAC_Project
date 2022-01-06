@@ -98,6 +98,7 @@ extension URLSession {
                 }
                 
                 guard response.statusCode == 200 else {
+                    
                     if response.statusCode == 401 {
                         completion(nil, .unauthorized)
                     } else {
