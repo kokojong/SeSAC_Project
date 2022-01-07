@@ -6,24 +6,49 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
 
 class PickerViewController: UIViewController {
+    
+    let pickerView = UIPickerView()
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        
+        setUp()
+        
+        let items = Observable.just([
+                "First Item",
+                "Second Item",
+                "Third Item"
+            ])
+     
+        items
+            .bind(to: pickerView.rx.itemTitles) { (row, element) in
+                return element
+            }
+            .disposed(by: disposeBag)
+        
+        pickerView.rx.modelSelected(String.self)
+            .subscribe { value in
+                print("PICKER SELECT \(value)")
+                
+            }
+            .disposed(by: disposeBag)
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUp() {
+        view.addSubview(pickerView)
+        pickerView.backgroundColor = .yellow
+        pickerView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(200)
+        }
     }
-    */
-
 }
