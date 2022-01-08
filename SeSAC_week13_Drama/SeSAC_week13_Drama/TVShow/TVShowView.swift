@@ -21,7 +21,6 @@ class TVShowView: UIView, TVshowViewRepresentable {
 
         layout.scrollDirection = .vertical // 가로로 먼저 쌓이게 함
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
@@ -29,8 +28,6 @@ class TVShowView: UIView, TVshowViewRepresentable {
     }()
     
     let searchTextField = UISearchTextField()
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

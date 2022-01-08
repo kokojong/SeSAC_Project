@@ -28,6 +28,6 @@ class APIService {
         URLSession.request(endpoint: request, completion: completion)
         
         
-        }
+    }
         
 }
