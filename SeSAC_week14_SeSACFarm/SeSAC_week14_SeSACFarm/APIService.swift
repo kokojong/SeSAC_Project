@@ -36,8 +36,8 @@ class APIService {
         URLSession.request(endpoint: request, completion: completion)
     }
     
-    static func allPosts(token: String, completion: @escaping (Post?, APIError?) -> Void) {
-        let url = Endpoint.getPosts.url
+    static func allPosts(token: String, desc: String, completion: @escaping (Post?, APIError?) -> Void) {
+        let url = Endpoint.getPosts(desc: desc).url
         var request = URLRequest(url: url)
         request.httpMethod = Method.GET.rawValue
         request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
@@ -56,7 +56,7 @@ class APIService {
     
     
     static func writePost(token: String, text: String, completion: @escaping (PostElement?, APIError?) -> Void){
-        let url = Endpoint.postPosts.url
+        let url = Endpoint.postPost.url
         var request = URLRequest(url: url)
         request.httpMethod = Method.POST.rawValue
         request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)

@@ -23,11 +23,18 @@ class PostWriteViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonClicked))]
-        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelButtonClicked))]
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onDoneButtonClicked))]
+        
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "취소", style: .done , target: self, action: #selector(onCancelButtonClicked))]
         
         viewModel.writtenPost.bind { postElement in
             self.postWriteView.textView.text = postElement.text
+        }
+        
+        if isUpdate {
+            title = "게시글 수정"
+        } else {
+            title = "게시글 작성"
         }
      
     }
@@ -35,14 +42,10 @@ class PostWriteViewController: UIViewController {
     @objc func onDoneButtonClicked() {
         
         if isUpdate {
-            title = "게시글 수정"
             viewModel.updatePost(postId: viewModel.writtenPost.value.id, text: postWriteView.textView.text) {
-                print("update")
                 self.navigationController?.popViewController(animated: true)
-                
             }
         } else {
-            title = "게시글 작성"
             viewModel.writeNewPost(text: postWriteView.textView.text) {
                 self.navigationController?.popViewController(animated: true)
             }

@@ -12,9 +12,11 @@ class PostMainViewModel {
     
     var allPosts: Observable<Post> = Observable(Post())
     
+    var desc: Observable<String> = Observable("desc") // 디폴트를 최신순으로 설정
+    
     func getAllPosts(completion: @escaping () -> Void){
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
-        APIService.allPosts(token: token) { post, error in
+        APIService.allPosts(token: token, desc: desc.value) { post, error in
 //            print("post : ",post)
 //            print("error: ",error)
             

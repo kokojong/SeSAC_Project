@@ -120,17 +120,14 @@ class PostMainTableViewCell: UITableViewCell {
         bottomStackView.snp.makeConstraints { make in
             make.top.equalTo(lineView.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
-//            make.bottom.equalToSuperview().offset(-8)
             make.height.equalTo(20)
         }
         spacingView.snp.makeConstraints { make in
             make.top.equalTo(bottomStackView.snp.bottom).offset(8)
             make.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(16)
+            make.height.equalTo(5)
         }
-        
-        
         
     }
 

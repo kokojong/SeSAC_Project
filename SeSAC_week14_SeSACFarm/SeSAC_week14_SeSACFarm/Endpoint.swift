@@ -20,9 +20,9 @@ enum Endpoint {
     case signIn
 //    case boardDetail(id: Int)
     case changePW
-    case getPosts
+    case getPosts(desc: String) // desc : 최신순, asc : 오래된 순
     case getOnePost(postId: Int)
-    case postPosts
+    case postPost
     case updatePost(postId: Int)
     case deletePost(postId: Int)
     case getComment(id: Int)
@@ -41,7 +41,8 @@ extension Endpoint {
 //        case .boardDetail(id: let id):
 //            return .makeEndPoint("boards/\(id)")
         case .changePW: return .makeEndPoint("custom/change-password")
-        case .getPosts, .postPosts: return .makeEndPoint("posts?_sort=created_at:desc")
+        case .getPosts(desc: let desc): return .makeEndPoint("posts?_sort=created_at:\(desc)")
+        case .postPost : return .makeEndPoint("posts?_sort=created_at:desc")
         case .getOnePost(postId: let id): return .makeEndPoint("posts/\(id)")
         case .getComment(id: let id): return .makeEndPoint("comments?post=\(id)")
         case .postComment : return .makeEndPoint("comments")

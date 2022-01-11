@@ -22,17 +22,6 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        viewModel.username.bind { text in
-            print("bind:",text)
-            self.signUpView.nicknameTextField.text = text
-        }
-        viewModel.email.bind { text in
-            self.signUpView.emailTextField.text = text
-        }
-        viewModel.password.bind { text in
-            self.signUpView.passwordTextField.text = text
-        }
-        
         signUpView.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(_:)), for: .editingChanged)
         signUpView.emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange(_:)), for: .editingChanged)
         signUpView.passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange(_:)), for: .editingChanged)
@@ -43,6 +32,7 @@ class SignUpViewController: UIViewController {
     @objc func nicknameTextFieldDidChange(_ textField: UITextField) {
         viewModel.username.value = textField.text ?? ""
     }
+    
     @objc func emailTextFieldDidChange(_ textField: UITextField) {
         viewModel.email.value = textField.text ?? ""
     }
@@ -64,7 +54,7 @@ class SignUpViewController: UIViewController {
                     case .noData:
                         erroMessage = "데이터가 없습니다"
                     case .failed:
-                        erroMessage = "이미 존재하는 회원이거나 이메일 형식이 옳지 않습니다"
+                        erroMessage = "이미 존재하는 이메일 또는 닉네임입니다" // 이메일 형식은 Rx로 해보기
                     case .invalidData:
                         erroMessage = "유효하지 않은 데이터입니다"
                     case .unauthorized:
@@ -75,10 +65,17 @@ class SignUpViewController: UIViewController {
 
                 }
                 
-//                self.view.makeToast("회원가입이 완료 되었습니다")
+                self.view.makeToast("회원가입이 완료되었습니다")
+                sleep(UInt32(0.5))
+                self.navigationController?.pushViewController(SignInViewController(), animated: true)
+                
             }
         } else {
             signUpView.makeToast("비밀번호가 다릅니다")
         }
+    }
+    // MARK: 유효성 검사
+    func checkValidation() -> Bool {
+        return false
     }
 }

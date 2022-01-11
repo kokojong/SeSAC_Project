@@ -21,14 +21,11 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        viewModel.email.bind { text in
-            self.signInView.emailTextField.text = text
+        let newUserEmail = UserDefaults.standard.string(forKey: "newUserEmail")
+        if newUserEmail != "" {
+            signInView.emailTextField.text = newUserEmail
+            viewModel.email.value = newUserEmail ?? ""
         }
-        
-        viewModel.password.bind { text in
-            self.signInView.passwordTextField.text = text
-        }
-
         
         signInView.emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange(_:)), for: .editingChanged)
         signInView.passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange(_:)), for: .editingChanged)
@@ -50,10 +47,10 @@ class SignInViewController: UIViewController {
                 print("로그인 에러 : \(loginError)")
                 self.view.makeToast("로그인 실패")
             } else {
-//                self.view.makeToast("로그인 완료")
+                self.view.makeToast("로그인 완료")
+                sleep(UInt32(0.5))
                 print("token : ", self.viewModel.signIn.value.jwt)
-                // 일단은 push로 하고 추후에 rootview를 바꿔주는거로 바꾸기
-//                self.navigationController?.pushViewController(PostMainViewController(), animated: true)
+
                 
                 DispatchQueue.main.async {
                     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }

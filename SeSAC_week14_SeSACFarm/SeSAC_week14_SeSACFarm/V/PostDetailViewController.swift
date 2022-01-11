@@ -97,9 +97,8 @@ class PostDetailViewController: UIViewController {
     }
     
     @objc func onOptionButtonClicked() {
-        // 1. UIAlertController 생성 : 밑바탕 + 타이틀 + 본문
         let alert = UIAlertController(title: "수정/삭제", message: "게시글을 수정/삭제 하시겠습니까?", preferredStyle: .alert)
-        // 2. UIAlertAction 생성 : 버튼들을 만들어준다
+        
         let update = UIAlertAction(title: "수정", style: .default) { action in
             // 값을 넘겨줌
             let vc = PostWriteViewController()

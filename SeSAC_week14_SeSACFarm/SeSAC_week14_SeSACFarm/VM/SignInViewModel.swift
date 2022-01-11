@@ -16,8 +16,6 @@ class SignInViewModel {
     
     func postSignIn(completion: @escaping (APIError?) -> Void) {
         APIService.signIn(identifier: email.value, password: password.value) { signin, error in
-//            print("signin",signin)
-//            print("error",error)
 
             // 401 에러(토큰 유효기간 만료)
             if let error = error {

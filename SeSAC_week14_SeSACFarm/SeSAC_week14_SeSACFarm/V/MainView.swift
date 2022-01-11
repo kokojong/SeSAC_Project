@@ -12,7 +12,7 @@ class MainView: UIView {
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(named: "logo_ssac_white")
         return imageView
     }()
     

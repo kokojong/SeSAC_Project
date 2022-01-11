@@ -13,24 +13,25 @@ class SignUpViewModel {
     var email: Observable<String> = Observable("")
     var password: Observable<String> = Observable("")
     
-    var signUp: Observable<User> = Observable(User(jwt: "", user: UserInfo(id: 0, username: "", email: "", provider: "", confirmed: true, role: Role(id: 0, name: "", roleDescription: "", type: ""), createdAt: "", updatedAt: "")))
+    var newUser: Observable<User> = Observable(User(jwt: "", user: UserInfo(id: 0, username: "", email: "", provider: "", confirmed: true, role: Role(id: 0, name: "", roleDescription: "", type: ""), createdAt: "", updatedAt: "")))
     
     func postSignUp(completion: @escaping (APIError?) -> Void) {
-        APIService.signUp(username: username.value, email: email.value, password: password.value) { signup, error in
-//            print("signup",signup)
-//            print("error",error)
-            
+        APIService.signUp(username: username.value, email: email.value, password: password.value) { newUser, error in
+
             if let error = error {
                 completion(error)
                 return
             }
             
-            guard let signup = signup else {
+            guard let newUser = newUser else {
                 return
             }
-            self.signUp.value = signup
+            self.newUser.value = newUser
+            UserDefaults.standard.set(newUser.user.email, forKey: "newUserEmail")
+            print("newUserEmail : ",UserDefaults.standard.string(forKey: "newUserEmail"))
             
             completion(nil)
+            
         }
         
     }
