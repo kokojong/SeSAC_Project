@@ -23,6 +23,10 @@ class CommentWriteViewController: UIViewController {
         return textView
     }()
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +40,8 @@ class CommentWriteViewController: UIViewController {
         
         view.addSubview(commentTextView)
         commentTextView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(commentTextView.snp.width).multipliedBy(0.66)
         }
         
         viewModel.comment.bind { comment in

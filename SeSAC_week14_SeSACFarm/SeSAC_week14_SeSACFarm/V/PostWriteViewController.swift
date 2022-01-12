@@ -14,6 +14,10 @@ class PostWriteViewController: UIViewController {
     
     var isUpdate = false
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    
     override func loadView() {
         self.view = postWriteView
     }

@@ -14,6 +14,10 @@ class SignUpViewController: UIViewController {
     
     var viewModel = SignUpViewModel()
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    
     override func loadView() {
         self.view = signUpView
     }
@@ -22,10 +26,16 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        signUpView.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(_:)), for: .editingChanged)
         signUpView.emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange(_:)), for: .editingChanged)
+        signUpView.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(_:)), for: .editingChanged)
         signUpView.passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange(_:)), for: .editingChanged)
         signUpView.signUpButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
+        
+        signUpView.emailTextField.delegate = self
+        signUpView.nicknameTextField.delegate = self
+        signUpView.passwordTextField.delegate = self
+        signUpView.passwordCheckTextField.delegate = self
+        
         
     }
     
@@ -77,5 +87,21 @@ class SignUpViewController: UIViewController {
     // MARK: 유효성 검사
     func checkValidation() -> Bool {
         return false
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.signUpView.emailTextField {
+            self.signUpView.nicknameTextField.becomeFirstResponder()
+        } else if textField == self.signUpView.nicknameTextField {
+            self.signUpView.passwordTextField.becomeFirstResponder()
+        } else if textField == self.signUpView.passwordTextField {
+            self.signUpView.passwordCheckTextField.becomeFirstResponder()
+        } else {
+            self.signUpView.passwordCheckTextField.resignFirstResponder()
+        }
+        
+        return true
     }
 }

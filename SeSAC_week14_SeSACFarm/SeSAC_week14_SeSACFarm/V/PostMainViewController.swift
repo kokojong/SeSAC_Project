@@ -65,12 +65,15 @@ class PostMainViewController: UIViewController {
         let sortButton = UIBarButtonItem(title: nil, image: UIImage(named: "ellipsis.vertical") , primaryAction: nil, menu: menu)
         sortButton.tintColor = .black
         self.navigationItem.rightBarButtonItems = [sortButton]
-        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "로그아웃", style: .done, target: self, action: #selector(onLogoutButtonClicked))]
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "power"), style: .done, target: self, action: #selector(onLogoutButtonClicked))]
         
         postMainView.tableView.delegate = self
         postMainView.tableView.dataSource = self
         postMainView.tableView.register(PostMainTableViewCell.self, forCellReuseIdentifier: PostMainTableViewCell.identifier)
         postMainView.tableView.rowHeight = UITableView.automaticDimension
+        
+        postMainView.tableView.refreshControl = UIRefreshControl()
+        postMainView.tableView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         viewModel.getAllPosts {
             self.postMainView.tableView.reloadData()
         }
@@ -80,7 +83,7 @@ class PostMainViewController: UIViewController {
     @objc func onWriteButtonClicked() {
         self.navigationController?.pushViewController(PostWriteViewController(), animated: true)
     }
-
+    
     @objc func onSortAscButtonClicked() {
         self.viewModel.desc.value = "asc"
         viewModel.getAllPosts {
@@ -110,6 +113,14 @@ class PostMainViewController: UIViewController {
         alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func onRefresh(){
+        viewModel.getAllPosts {
+            self.postMainView.tableView.reloadData()
+            self.view.makeToast("피드 새로고침 완료")
+            self.postMainView.tableView.refreshControl?.endRefreshing()
+        }
     }
     
 
@@ -145,10 +156,12 @@ extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewModel.getAllPosts {
-            self.postMainView.tableView.reloadData()
-            self.view.makeToast("피드 새로고침 완료")
-        }
-    }
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        viewModel.getAllPosts {
+//            self.postMainView.tableView.reloadData()
+//            self.view.makeToast("피드 새로고침 완료")
+//        }
+//    }
+    
+    
 }

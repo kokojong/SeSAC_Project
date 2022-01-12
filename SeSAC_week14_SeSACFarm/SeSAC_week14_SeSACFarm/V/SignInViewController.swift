@@ -13,6 +13,10 @@ class SignInViewController: UIViewController {
     
     var viewModel = SignInViewModel()
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    
     override func loadView() {
         self.view = signInView
     }
@@ -30,6 +34,9 @@ class SignInViewController: UIViewController {
         signInView.emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange(_:)), for: .editingChanged)
         signInView.passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange(_:)), for: .editingChanged)
         signInView.signInButton.addTarget(self, action: #selector(onSignInButtonClicked), for: .touchUpInside)
+        
+        signInView.emailTextField.delegate = self
+        signInView.passwordTextField.delegate = self
     }
     
     @objc func emailTextFieldDidChange(_ textField: UITextField) {
@@ -62,5 +69,18 @@ class SignInViewController: UIViewController {
             
         }
       
+    }
+}
+
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == signInView.emailTextField {
+            signInView.passwordTextField.isFirstResponder
+        } else {
+            signInView.passwordTextField.resignFirstResponder()
+        }
+        
+        return true
     }
 }

@@ -50,6 +50,8 @@ class PostDetailViewModel {
         
     }
     
+    
+    
     func deletePost(id: Int,completion: @escaping () -> Void){
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
 
@@ -61,6 +63,24 @@ class PostDetailViewModel {
             self.detailPost.value = post
             completion()
         }
+    }
+    
+    func writeNewComment(comment: String, postId: Int, completion: @escaping () -> Void) {
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        APIService.writeComment(token: token, comment: comment, PostId: postId) { comment, error in
+            
+            checkToken(error: error)
+            
+            print("comment:",comment)
+            
+            guard let comment = comment else {
+                return
+            }
+            self.comment.value = comment
+            
+            completion()
+        }
+        
     }
     
     func updateComment(comment: String, postId: Int, commentId: Int, completion: @escaping () -> Void) {

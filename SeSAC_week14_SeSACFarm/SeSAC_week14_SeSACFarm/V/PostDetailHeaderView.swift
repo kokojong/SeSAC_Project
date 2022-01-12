@@ -1,13 +1,13 @@
 //
-//  PostDetailView.swift
+//  PostDetailHeaderView.swift
 //  SeSAC_week14_SeSACFarm
 //
-//  Created by kokojong on 2022/01/04.
+//  Created by kokojong on 2022/01/12.
 //
 
 import UIKit
 
-class PostDetailView: UIView {
+class PostDetailHeaderView: UIView {
 
     let profileImageView: UIImageView = {
        let imageview = UIImageView()
@@ -75,17 +75,6 @@ class PostDetailView: UIView {
         return label
     }()
     
-    let commentsTableView = UITableView()
-    
-    let writeCommentButton : UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .lightGray
-        button.setTitle("댓글쓰러가기", for: .normal)
-        button.layer.cornerRadius = 8
-        button.clipsToBounds = true
-        return button
-    }()
-    
     let optionButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(named: "ellipsis.vertical"), for: .normal)
@@ -104,6 +93,7 @@ class PostDetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     func setViews() {
         addSubview(profileImageView)
@@ -115,17 +105,14 @@ class PostDetailView: UIView {
         addSubview(bottomStackView)
         bottomStackView.addArrangedSubview(chatImageView)
         bottomStackView.addArrangedSubview(goToCommentLabel)
-        addSubview(commentsTableView)
-        addSubview(writeCommentButton)
         addSubview(optionButton)
         optionButton.isHidden = false
-        
     }
     
     func setConstraints() {
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(self.safeAreaLayoutGuide)
             make.leading.equalToSuperview().offset(8)
             make.width.equalTo(profileImageView.snp.height)
             make.bottom.equalTo(createdDateLabel.snp.bottom)
@@ -160,18 +147,7 @@ class PostDetailView: UIView {
             make.top.equalTo(bottomStackView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(8)
             make.height.equalTo(1)
-        }
-       
-        commentsTableView.snp.makeConstraints { make in
-            make.top.equalTo(lineView2.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-        }
-        
-        writeCommentButton.snp.makeConstraints { make in
-            make.top.equalTo(commentsTableView.snp.bottom).offset(8)
-            make.leading.trailing.equalToSuperview().inset(8)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-8)
-            make.height.equalTo(44)
+            make.bottom.equalToSuperview()
         }
         
         optionButton.snp.makeConstraints { make in
@@ -180,5 +156,7 @@ class PostDetailView: UIView {
             make.size.equalTo(30)
         }
     }
-
+    
+    
+    
 }

@@ -35,13 +35,14 @@
 		0440570A278466DE00972199 /* PostWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04405709278466DE00972199 /* PostWriteViewController.swift */; };
 		0440570C278466FC00972199 /* PostWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440570B278466FC00972199 /* PostWriteView.swift */; };
 		0440571027848ED400972199 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440570F27848ED400972199 /* PostDetailViewController.swift */; };
-		0440571227848F1B00972199 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440571127848F1B00972199 /* PostDetailView.swift */; };
+		0440571227848F1B00972199 /* PostDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440571127848F1B00972199 /* PostDetailTableView.swift */; };
 		044057142784B2C700972199 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057132784B2C700972199 /* PostDetailViewModel.swift */; };
 		044057162784BE3200972199 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057152784BE3200972199 /* CommentTableViewCell.swift */; };
 		0440571C278574FB00972199 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440571B278574FB00972199 /* Comments.swift */; };
 		0440571E27858E9F00972199 /* CommentWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440571D27858E9F00972199 /* CommentWriteViewController.swift */; };
 		044057222785BE6500972199 /* CommentWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057212785BE6500972199 /* CommentWriteViewModel.swift */; };
 		044057242785D92100972199 /* PostUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057232785D92100972199 /* PostUpdateViewModel.swift */; };
+		0491A4E3278EA42D00912235 /* PostDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,13 +74,14 @@
 		04405709278466DE00972199 /* PostWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewController.swift; sourceTree = "<group>"; };
 		0440570B278466FC00972199 /* PostWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteView.swift; sourceTree = "<group>"; };
 		0440570F27848ED400972199 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
-		0440571127848F1B00972199 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		0440571127848F1B00972199 /* PostDetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableView.swift; sourceTree = "<group>"; };
 		044057132784B2C700972199 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		044057152784BE3200972199 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		0440571B278574FB00972199 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		0440571D27858E9F00972199 /* CommentWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWriteViewController.swift; sourceTree = "<group>"; };
 		044057212785BE6500972199 /* CommentWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWriteViewModel.swift; sourceTree = "<group>"; };
 		044057232785D92100972199 /* PostUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateViewModel.swift; sourceTree = "<group>"; };
+		0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +157,8 @@
 				04405709278466DE00972199 /* PostWriteViewController.swift */,
 				0440570B278466FC00972199 /* PostWriteView.swift */,
 				0440570F27848ED400972199 /* PostDetailViewController.swift */,
-				0440571127848F1B00972199 /* PostDetailView.swift */,
+				0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */,
+				0440571127848F1B00972199 /* PostDetailTableView.swift */,
 				044057152784BE3200972199 /* CommentTableViewCell.swift */,
 				0440571D27858E9F00972199 /* CommentWriteViewController.swift */,
 			);
@@ -272,13 +275,14 @@
 				044056C12781B5BF00972199 /* SignUpViewModel.swift in Sources */,
 				044056F52782DB9400972199 /* PostMainViewController.swift in Sources */,
 				044056BB2781951C00972199 /* SignUpView.swift in Sources */,
+				0491A4E3278EA42D00912235 /* PostDetailHeaderView.swift in Sources */,
 				044057142784B2C700972199 /* PostDetailViewModel.swift in Sources */,
 				044056BD2781952800972199 /* SignInView.swift in Sources */,
 				044056A4278096E100972199 /* MainViewController.swift in Sources */,
 				044056B7278194F900972199 /* SignUpViewController.swift in Sources */,
 				044056AE2781830500972199 /* Observable.swift in Sources */,
 				044057162784BE3200972199 /* CommentTableViewCell.swift in Sources */,
-				0440571227848F1B00972199 /* PostDetailView.swift in Sources */,
+				0440571227848F1B00972199 /* PostDetailTableView.swift in Sources */,
 				044056B92781950D00972199 /* SignInViewController.swift in Sources */,
 				044057222785BE6500972199 /* CommentWriteViewModel.swift in Sources */,
 				044057082784481400972199 /* PostWriteViewModel.swift in Sources */,
