@@ -52,41 +52,57 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func onSignUpButtonClicked() {
-        if signUpView.passwordTextField.text == signUpView.passwordCheckTextField.text {
-            viewModel.postSignUp { error in
-                
-                if let error = error {
-                    var erroMessage = ""
+        
+        let emailValidation = checkEmailValidation()
+        
+        if emailValidation {
+            if signUpView.passwordTextField.text == signUpView.passwordCheckTextField.text {
+                viewModel.postSignUp { error in
                     
-                    switch error {
-                    case .invalidResponse:
-                        erroMessage = "유효하지 않은 접근입니다"
-                    case .noData:
-                        erroMessage = "데이터가 없습니다"
-                    case .failed:
-                        erroMessage = "이미 존재하는 이메일 또는 닉네임입니다" // 이메일 형식은 Rx로 해보기
-                    case .invalidData:
-                        erroMessage = "유효하지 않은 데이터입니다"
-                    case .unauthorized:
-                        erroMessage = "로그인 토큰이 만료되었습니다"
+                    if let error = error {
+                        var erroMessage = ""
+                        
+                        switch error {
+                        case .invalidResponse:
+                            erroMessage = "유효하지 않은 접근입니다"
+                        case .noData:
+                            erroMessage = "데이터가 없습니다"
+                        case .failed:
+                            erroMessage = "이미 존재하는 이메일 또는 닉네임입니다" // 이메일 형식은 Rx로 해보기
+                        case .invalidData:
+                            erroMessage = "유효하지 않은 데이터입니다"
+                        case .unauthorized:
+                            erroMessage = "로그인 토큰이 만료되었습니다"
+                        }
+                        
+                        self.view.makeToast("\(erroMessage)")
+
                     }
                     
-                    self.view.makeToast("\(erroMessage)")
-
+                    self.view.makeToast("회원가입이 완료되었습니다")
+                    sleep(UInt32(0.5))
+                    self.navigationController?.pushViewController(SignInViewController(), animated: true)
+                    
                 }
-                
-                self.view.makeToast("회원가입이 완료되었습니다")
-                sleep(UInt32(0.5))
-                self.navigationController?.pushViewController(SignInViewController(), animated: true)
-                
+            } else {
+                signUpView.makeToast("비밀번호가 다릅니다")
             }
+            
         } else {
-            signUpView.makeToast("비밀번호가 다릅니다")
+            signUpView.makeToast("이메일 형식을 지켜주세요")
         }
+        
+        
+      
     }
     // MARK: 유효성 검사
-    func checkValidation() -> Bool {
-        return false
+    func checkEmailValidation() -> Bool {
+        if (signUpView.emailTextField.text!.contains("@")) && signUpView.emailTextField.text!.contains(".") {
+            return true
+        } else {
+            return false
+        }
+        
     }
 }
 

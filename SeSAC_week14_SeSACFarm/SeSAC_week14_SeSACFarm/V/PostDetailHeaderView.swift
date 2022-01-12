@@ -88,6 +88,7 @@ class PostDetailHeaderView: UIView {
         setViews()
         setConstraints()
         
+        
     }
     
     required init?(coder: NSCoder) {
@@ -112,7 +113,7 @@ class PostDetailHeaderView: UIView {
     func setConstraints() {
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(16)
             make.leading.equalToSuperview().offset(8)
             make.width.equalTo(profileImageView.snp.height)
             make.bottom.equalTo(createdDateLabel.snp.bottom)

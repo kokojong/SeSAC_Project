@@ -19,19 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-//        if UserDefaults.standard.string(forKey: "token") == "" {
-//            let nav = UINavigationController(rootViewController: MainViewController())
-//            window?.rootViewController = nav
-//            window?.makeKeyAndVisible()
-//        } else {
-//            let nav = UINavigationController(rootViewController: PostMainViewController())
-//            window?.rootViewController = nav
-//            window?.makeKeyAndVisible()
-//        }
+        if UserDefaults.standard.string(forKey: "token") == "" {
+            let nav = UINavigationController(rootViewController: MainViewController())
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible()
+        } else {
+            let nav = UINavigationController(rootViewController: PostMainViewController())
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible()
+        }
         
-        let nav = UINavigationController(rootViewController: MainViewController())
-        window?.rootViewController = nav
-        window?.makeKeyAndVisible()
+//        let nav = UINavigationController(rootViewController: MainViewController())
+//        window?.rootViewController = nav
+//        window?.makeKeyAndVisible()
         
     }
 

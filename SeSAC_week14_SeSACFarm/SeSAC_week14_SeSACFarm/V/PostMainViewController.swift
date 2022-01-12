@@ -137,7 +137,7 @@ extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
         let row = viewModel.cellForRowAt(indexPath: indexPath)
         cell.nicknameLabel.text = row.user.username
         cell.contentLabel.text = row.text
-        cell.createdDateLabel.text = row.createdAt
+        cell.createdDateLabel.text = row.createdAt.toDate
         if row.comments.count == 0 {
             cell.goToCommentLabel.text = "댓글 쓰기"
         } else {

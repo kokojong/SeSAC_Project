@@ -43,6 +43,8 @@
 		044057222785BE6500972199 /* CommentWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057212785BE6500972199 /* CommentWriteViewModel.swift */; };
 		044057242785D92100972199 /* PostUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057232785D92100972199 /* PostUpdateViewModel.swift */; };
 		0491A4E3278EA42D00912235 /* PostDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */; };
+		0491A4E5278F233300912235 /* CommentWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E4278F233300912235 /* CommentWriteView.swift */; };
+		0491A4E7278F2E7100912235 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E6278F2E7100912235 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		044057212785BE6500972199 /* CommentWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWriteViewModel.swift; sourceTree = "<group>"; };
 		044057232785D92100972199 /* PostUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateViewModel.swift; sourceTree = "<group>"; };
 		0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailHeaderView.swift; sourceTree = "<group>"; };
+		0491A4E4278F233300912235 /* CommentWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWriteView.swift; sourceTree = "<group>"; };
+		0491A4E6278F2E7100912235 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 				044056AF2781832000972199 /* APIService.swift */,
 				044056B12781832900972199 /* Endpoint.swift */,
 				044056FC27830C9400972199 /* PaddingLabel.swift */,
+				0491A4E6278F2E7100912235 /* Date+Extension.swift */,
 				044056B3278183A700972199 /* M */,
 				044056B4278183AD00972199 /* V */,
 				044056B5278183B900972199 /* VM */,
@@ -159,6 +164,7 @@
 				0440570F27848ED400972199 /* PostDetailViewController.swift */,
 				0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */,
 				0440571127848F1B00972199 /* PostDetailTableView.swift */,
+				0491A4E4278F233300912235 /* CommentWriteView.swift */,
 				044057152784BE3200972199 /* CommentTableViewCell.swift */,
 				0440571D27858E9F00972199 /* CommentWriteViewController.swift */,
 			);
@@ -266,6 +272,7 @@
 				0440570A278466DE00972199 /* PostWriteViewController.swift in Sources */,
 				044056B22781832900972199 /* Endpoint.swift in Sources */,
 				044056F72782DBA900972199 /* PostMainView.swift in Sources */,
+				0491A4E7278F2E7100912235 /* Date+Extension.swift in Sources */,
 				044056F92782DF9A00972199 /* Post.swift in Sources */,
 				044056922780939D00972199 /* SceneDelegate.swift in Sources */,
 				044056FD27830C9400972199 /* PaddingLabel.swift in Sources */,
@@ -282,6 +289,7 @@
 				044056B7278194F900972199 /* SignUpViewController.swift in Sources */,
 				044056AE2781830500972199 /* Observable.swift in Sources */,
 				044057162784BE3200972199 /* CommentTableViewCell.swift in Sources */,
+				0491A4E5278F233300912235 /* CommentWriteView.swift in Sources */,
 				0440571227848F1B00972199 /* PostDetailTableView.swift in Sources */,
 				044056B92781950D00972199 /* SignInViewController.swift in Sources */,
 				044057222785BE6500972199 /* CommentWriteViewModel.swift in Sources */,
