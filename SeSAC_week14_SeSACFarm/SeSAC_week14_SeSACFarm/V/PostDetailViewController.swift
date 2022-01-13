@@ -17,9 +17,9 @@ class PostDetailViewController: UIViewController {
     var activeTextField : UITextField? = nil
     
     // tableView라서 스크롤을 해야해서 이게 동작을 안한다 ㅋㅋㅋ ㅜㅜ
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.view.endEditing(true)
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+//        self.view.endEditing(true)
+//    }
     
     override func loadView() {
         self.view = postDetailTableView
@@ -104,7 +104,7 @@ class PostDetailViewController: UIViewController {
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
 
-        self.view.addGestureRecognizer(singleTapGestureRecognizer)
+        self.postDetailTableView.commentsTableView.addGestureRecognizer(singleTapGestureRecognizer)
 
 
 
@@ -119,10 +119,12 @@ class PostDetailViewController: UIViewController {
     
     @objc func onWriteCommentButtonClicked() {
 
+        view.endEditing(true)
+        
         guard let comment = self.postDetailTableView.commentWriteView.commentTextField.text else { return }
         
         if comment == "" {
-            self.view.makeToast("댓글 내용을 작성해주세요")
+            self.view.makeToast("내용을 입력해주세요")
             return
         }
         

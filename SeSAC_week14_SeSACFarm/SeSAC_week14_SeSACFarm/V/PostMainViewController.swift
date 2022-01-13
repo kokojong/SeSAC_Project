@@ -57,10 +57,10 @@ class PostMainViewController: UIViewController {
                 UIAction(title: "오래된 순 정렬", image: nil, identifier: nil, discoverabilityTitle: nil, handler: { action in
                     self.onSortAscButtonClicked()
                 })
-//                ,
-//                UIAction(title: "비밀번호 변경", image: nil, identifier: nil, discoverabilityTitle: nil, handler: { action in
-//                    self.onChangePW()
-//                })
+                ,
+                UIAction(title: "비밀번호 변경", image: nil, identifier: nil, discoverabilityTitle: nil, handler: { action in
+                    self.onChangePW()
+                })
                 
             ]
         }

@@ -4,7 +4,7 @@
 //
 //  Created by kokojong on 2022/01/02.
 //
-
+import Foundation
 // MARK: - SignUp
 struct User: Codable {
     let jwt: String

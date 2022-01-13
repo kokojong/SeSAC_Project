@@ -138,6 +138,7 @@ class APIService {
     }
     
     static func changePassword(token: String, currentPassword: String, newPassword: String, confirmNewPassword: String, completion: @escaping (PwChangedUser?, APIError?) -> Void) {
+        
         let url = Endpoint.changePW.url
         var request = URLRequest(url: url)
         request.httpMethod = Method.POST.rawValue

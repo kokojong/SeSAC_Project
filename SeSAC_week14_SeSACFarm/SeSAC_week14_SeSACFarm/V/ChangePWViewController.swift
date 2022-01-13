@@ -108,13 +108,20 @@ class ChangePWViewController: UIViewController {
         
        
         viewModel.changePW(currentPW: currentPasswordTextField.text!, newPW:  newPasswordTextField.text!, newPWCheck: newPasswordCheckTextField.text!) { error in
-            print(error)
+            print("changePW error",error)
             
-            if let error = error {
-                self.view.makeToast("비밀번호 변경 중에 오류가 발생했습니다")
+            guard let error = error else {
+                self.view.makeToast("비밀번호가 변경되었습니다")
+//                sleep(UInt32(0.5))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                return
             }
+            self.view.makeToast("비밀번호 변경 중에 오류가 발생했습니다 \n비밀번호를 확인해주세요")
+
             
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
             
             
         }

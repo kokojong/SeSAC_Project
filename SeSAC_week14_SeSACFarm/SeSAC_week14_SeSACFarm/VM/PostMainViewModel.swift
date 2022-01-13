@@ -17,9 +17,7 @@ class PostMainViewModel {
     func getAllPosts(completion: @escaping () -> Void){
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.allPosts(token: token, desc: desc.value) { post, error in
-//            print("post : ",post)
-//            print("error: ",error)
-            
+
             if let error = error {
                 if error == .unauthorized {
                     print("unauthorized")
@@ -50,16 +48,23 @@ class PostMainViewModel {
     
     func changePW(currentPW: String, newPW: String, newPWCheck: String, completion: @escaping (APIError?) -> Void) {
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
-        APIService.changePassword(token: token, currentPassword: currentPW, newPassword: newPW, confirmNewPassword: newPWCheck) { pwChangedUser, error in
+        print("changePW token",token)
+        
+        APIService.changePassword(token: token, currentPassword: currentPW, newPassword: newPW, confirmNewPassword: newPWCheck) {
+            pwChangedUser, error in
             
             checkToken(error: error)
             
-            guard let pwChangedUser = pwChangedUser else {
+            guard let error = error else {
+                completion(nil)
                 return
             }
-            print(pwChangedUser)
             
-            completion(error)
+            guard let pwChangedUser = pwChangedUser else {
+                completion(error)
+                return
+            }
+            
             
         }
     }
