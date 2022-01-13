@@ -47,6 +47,24 @@ class PostMainViewModel {
             
         }
     }
+    
+    func changePW(currentPW: String, newPW: String, newPWCheck: String, completion: @escaping (APIError?) -> Void) {
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        APIService.changePassword(token: token, currentPassword: currentPW, newPassword: newPW, confirmNewPassword: newPWCheck) { pwChangedUser, error in
+            
+            checkToken(error: error)
+            
+            guard let pwChangedUser = pwChangedUser else {
+                return
+            }
+            print(pwChangedUser)
+            
+            completion(error)
+            
+        }
+    }
+    
+    
 }
 
 

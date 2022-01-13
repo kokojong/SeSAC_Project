@@ -137,6 +137,15 @@ class APIService {
         
     }
     
+    static func changePassword(token: String, currentPassword: String, newPassword: String, confirmNewPassword: String, completion: @escaping (PwChangedUser?, APIError?) -> Void) {
+        let url = Endpoint.changePW.url
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.POST.rawValue
+        request.httpBody = "currentPassword=\(currentPassword)&newPassword=\(newPassword)&confirmNewPassword=\(confirmNewPassword)".data(using: .utf8, allowLossyConversion: false)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        
+        URLSession.request(endpoint: request, completion: completion)
+    }
     
     
     

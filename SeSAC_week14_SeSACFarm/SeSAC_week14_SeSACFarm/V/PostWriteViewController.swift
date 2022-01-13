@@ -45,6 +45,13 @@ class PostWriteViewController: UIViewController {
     
     @objc func onDoneButtonClicked() {
         
+        self.view.endEditing(true)
+       
+        if postWriteView.textView.text == "" {
+            self.view.makeToast("내용을 입력해주세요")
+            return
+        }
+        
         if isUpdate {
             viewModel.updatePost(postId: viewModel.writtenPost.value.id, text: postWriteView.textView.text) {
                 self.navigationController?.popViewController(animated: true)
@@ -53,6 +60,7 @@ class PostWriteViewController: UIViewController {
             viewModel.writeNewPost(text: postWriteView.textView.text) {
                 self.navigationController?.popViewController(animated: true)
             }
+             
         }
         
     }

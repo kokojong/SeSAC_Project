@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class CommentWriteViewController: UIViewController {
     
@@ -54,7 +55,12 @@ class CommentWriteViewController: UIViewController {
     }
     
     @objc func onDoneButtonClicked() {
-        print("댓글 수정 버튼")
+        self.view.endEditing(true)
+        if commentTextView.text == "" {
+            self.view.makeToast("내용을 입력해주세요")
+            return
+        }
+        
         if isUpdate {
             print("postId",viewModel.comment.value.post.id)
             print("viewModel.comment.value.id",viewModel.comment.value.id)

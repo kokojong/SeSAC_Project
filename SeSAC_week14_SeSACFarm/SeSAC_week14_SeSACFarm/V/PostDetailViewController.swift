@@ -14,6 +14,8 @@ class PostDetailViewController: UIViewController {
     
     var viewModel = PostDetailViewModel()
     
+    var activeTextField : UITextField? = nil
+    
     // tableView라서 스크롤을 해야해서 이게 동작을 안한다 ㅋㅋㅋ ㅜㅜ
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
@@ -87,15 +89,22 @@ class PostDetailViewController: UIViewController {
         postDetailTableView.commentWriteView.writeCommentButton.addTarget(self, action: #selector(onWriteCommentButtonClicked), for: .touchUpInside)
         postDetailTableView.commentWriteView.commentTextField.delegate = self
         textFieldShouldReturn(postDetailTableView.commentWriteView.commentTextField)
-        // 키보드 높이만큼 변경
+        
+//        키보드 높이만큼 변경
 //        addKeyboardNotification()
+        
+        postDetailTableView.commentWriteView.commentTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
 
-        postDetailHeaderView.addGestureRecognizer(singleTapGestureRecognizer)
+        self.view.addGestureRecognizer(singleTapGestureRecognizer)
 
 
 
@@ -261,23 +270,86 @@ class PostDetailViewController: UIViewController {
     
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keybaordRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keybaordRectangle.height
-            print("keyboardHeight",keyboardHeight)
-            print("frame",postDetailTableView.commentWriteView.frame.origin.y)
-            self.postDetailTableView.commentWriteView.frame.origin.y -= keyboardHeight
-        }
+        print(#function)
+        self.view.frame.origin.y = -301
+        
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            let keybaordRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keybaordRectangle.height
+//            print("keyboardHeight",keyboardHeight)
+//            print("frame",postDetailTableView.commentWriteView.frame.origin.y)
+//            self.postDetailTableView.commentWriteView.frame.origin.y -= keyboardHeight
+//            self.postDetailTableView.frame.origin.y = -keyboardHeight
+//            self.postDetailTableView.frame.origin.y = -301
+            
+//            self.navigationController?.isNavigationBarHidden = true
+            
+//        }
+        
+//        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+//           return
+//        }
+//
+//        var shouldMoveViewUp = false
+//
+//        let keyboardSize = keyboardFrame.cgRectValue
+//
+//        // if active text field is not nil
+//          if let activeTextField = activeTextField {
+//
+//            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
+//
+//            let topOfKeyboard = self.view.frame.height - keyboardSize.height
+//
+//            // if the bottom of Textfield is below the top of keyboard, move up
+//            if bottomOfTextField > topOfKeyboard {
+//              shouldMoveViewUp = true
+//            }
+//          }
+//
+//          if(shouldMoveViewUp) {
+//            self.view.frame.origin.y = 0 - keyboardSize.height
+//          }
+//
+//        self.view.frame.origin.y = -301 // Move view 150 points upward
+
+     
+        
+//
+        
+//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+//            // if keyboard size is not available for some reason, dont do anything
+//            return
+//        }
+//
+//        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+//        self.postDetailTableView.commentsTableView.contentInset = contentInsets
+//        self.postDetailTableView.commentsTableView.scrollIndicatorInsets = contentInsets
+       
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keybaordRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keybaordRectangle.height
-            print("keyboardHeight",keyboardHeight)
-            print("frame",postDetailTableView.commentWriteView.frame.origin.y)
-            self.postDetailTableView.commentWriteView.frame.origin.y += keyboardHeight
-        }
+        print(#function)
+        self.view.frame.origin.y = 0
+        
+        
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            let keybaordRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keybaordRectangle.height
+//            print("keyboardHeight",keyboardHeight)
+//            print("frame",postDetailTableView.commentWriteView.frame.origin.y)
+//
+//            self.navigationController?.isNavigationBarHidden = false
+//        }
+        
+        
+        
+//        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+//
+//
+//            // reset back the content inset to zero after keyboard is gone
+//        self.postDetailTableView.commentsTableView.contentInset = contentInsets
+//        self.postDetailTableView.commentsTableView.scrollIndicatorInsets = contentInsets
     }
 
 }
@@ -318,4 +390,13 @@ extension PostDetailViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+    
 }

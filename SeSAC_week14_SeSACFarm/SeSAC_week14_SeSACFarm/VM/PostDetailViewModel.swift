@@ -66,6 +66,7 @@ class PostDetailViewModel {
     }
     
     func writeNewComment(comment: String, postId: Int, completion: @escaping () -> Void) {
+        
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.writeComment(token: token, comment: comment, PostId: postId) { comment, error in
             

@@ -45,6 +45,8 @@
 		0491A4E3278EA42D00912235 /* PostDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */; };
 		0491A4E5278F233300912235 /* CommentWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E4278F233300912235 /* CommentWriteView.swift */; };
 		0491A4E7278F2E7100912235 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4E6278F2E7100912235 /* Date+Extension.swift */; };
+		0491A4EF2790117800912235 /* PwChangedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4EE2790117800912235 /* PwChangedUser.swift */; };
+		0491A4F1279015A200912235 /* ChangePWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A4F0279015A200912235 /* ChangePWViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		0491A4E2278EA42D00912235 /* PostDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailHeaderView.swift; sourceTree = "<group>"; };
 		0491A4E4278F233300912235 /* CommentWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWriteView.swift; sourceTree = "<group>"; };
 		0491A4E6278F2E7100912235 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		0491A4EE2790117800912235 /* PwChangedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwChangedUser.swift; sourceTree = "<group>"; };
+		0491A4F0279015A200912235 /* ChangePWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePWViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 				044056AB2781781500972199 /* User.swift */,
 				044056F82782DF9A00972199 /* Post.swift */,
 				0440571B278574FB00972199 /* Comments.swift */,
+				0491A4EE2790117800912235 /* PwChangedUser.swift */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				0491A4E4278F233300912235 /* CommentWriteView.swift */,
 				044057152784BE3200972199 /* CommentTableViewCell.swift */,
 				0440571D27858E9F00972199 /* CommentWriteViewController.swift */,
+				0491A4F0279015A200912235 /* ChangePWViewController.swift */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -267,12 +273,14 @@
 				0440571027848ED400972199 /* PostDetailViewController.swift in Sources */,
 				044056FF278338D600972199 /* PostMainViewModel.swift in Sources */,
 				0440571C278574FB00972199 /* Comments.swift in Sources */,
+				0491A4EF2790117800912235 /* PwChangedUser.swift in Sources */,
 				044056902780939D00972199 /* AppDelegate.swift in Sources */,
 				044056B02781832000972199 /* APIService.swift in Sources */,
 				0440570A278466DE00972199 /* PostWriteViewController.swift in Sources */,
 				044056B22781832900972199 /* Endpoint.swift in Sources */,
 				044056F72782DBA900972199 /* PostMainView.swift in Sources */,
 				0491A4E7278F2E7100912235 /* Date+Extension.swift in Sources */,
+				0491A4F1279015A200912235 /* ChangePWViewController.swift in Sources */,
 				044056F92782DF9A00972199 /* Post.swift in Sources */,
 				044056922780939D00972199 /* SceneDelegate.swift in Sources */,
 				044056FD27830C9400972199 /* PaddingLabel.swift in Sources */,
