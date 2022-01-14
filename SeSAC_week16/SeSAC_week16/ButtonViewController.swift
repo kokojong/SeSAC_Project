@@ -116,12 +116,14 @@ class ButtonViewController: UIViewController, UIColorPickerViewControllerDelegat
         
         
         // 다음 뷰컨에 선언해도 된다(취향따라)
-        if let presentationVC = vc.presentationController as? UISheetPresentationController {
-            presentationVC.detents = [.medium(), .large()]
-            presentationVC.prefersGrabberVisible = true
-        }
+//        if let presentationVC = vc.presentationController as? UISheetPresentationController {
+//            presentationVC.detents = [.medium(), .large()]
+//            presentationVC.prefersGrabberVisible = true
+//        }
+//
+//        present(vc, animated: true, completion: nil)
         
-        present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func buttonClicked2() {
