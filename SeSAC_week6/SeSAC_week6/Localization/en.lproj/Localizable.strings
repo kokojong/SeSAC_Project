@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  SeSAC_week6
+
+  Created by kokojong on 2021/11/01.
+  
+*/
+"tab_home" = "HOME";
+"tab_setting" = "Setting";
+
+"welcome_text" = "Hello nice to meet you";

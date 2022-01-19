@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-SeSAC_week7_cocoapods/Pods-SeSAC_week7_cocoapods-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
+${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework

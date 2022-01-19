@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+target 'SeSAC_week7_cocoapods' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SeSAC_week7_cocoapods
+pod 'Alamofire', '~> 5.4'
+pod 'Toast-Swift', '~> 5.0.1'
+pod 'IQKeyboardManagerSwift'
+
+
+end

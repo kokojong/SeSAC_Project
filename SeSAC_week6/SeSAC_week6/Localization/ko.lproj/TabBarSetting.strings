@@ -1,0 +1,12 @@
+/* 
+  TabBarSetting.strings
+  SeSAC_week6
+
+  Created by kokojong on 2021/11/01.
+  
+*/
+
+"homeTitle" = "홈";
+"searchTitle" = "검색";
+"calendarTitle" = "캘린더";
+"settingTitle" = "설정";

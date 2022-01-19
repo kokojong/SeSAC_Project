@@ -1,0 +1,12 @@
+/* 
+  TabBarSetting.strings
+  SeSAC_week6
+
+  Created by kokojong on 2021/11/01.
+  
+*/
+
+"homeTitle" = "Home";
+"searchTitle" = "Search";
+"calendarTitle" = "Calendar";
+"settingTitle" = "Setting";

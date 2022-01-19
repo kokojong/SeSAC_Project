@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Title-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ContentViewController" id="Y6W-OH-hqX" customClass="ContentViewController" customModule="SeSAC_week6" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gko-2B-oIl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="414"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Gko-2B-oIl" secondAttribute="height" multiplier="1:1" id="YGm-8e-sRu"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-Xz-A7x">
+                                <rect key="frame" x="20" y="559" width="374" height="31"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="2021년 11월 1일"/>
+                                <connections>
+                                    <action selector="onDateButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9fo-HN-D85"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="일기 내용" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-JO-IBS">
+                                <rect key="frame" x="20" y="610" width="374" height="232"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T56-gV-d57">
+                                <rect key="frame" x="157" y="466" width="100.5" height="31"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="사진 선택하기"/>
+                                <connections>
+                                    <action selector="selectPhotoButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TZv-XZ-eeD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ld0-Wg-ssT">
+                                <rect key="frame" x="20" y="505" width="374" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ld0-Wg-ssT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="21c-M7-eoB"/>
+                            <constraint firstItem="ETa-Xz-A7x" firstAttribute="top" secondItem="Ld0-Wg-ssT" secondAttribute="bottom" constant="20" id="EfO-Hn-ThI"/>
+                            <constraint firstItem="xm1-JO-IBS" firstAttribute="top" secondItem="ETa-Xz-A7x" secondAttribute="bottom" constant="20" id="Fqp-Uv-rYx"/>
+                            <constraint firstItem="T56-gV-d57" firstAttribute="top" secondItem="Gko-2B-oIl" secondAttribute="bottom" constant="8" symbolic="YES" id="GYA-AL-1zv"/>
+                            <constraint firstItem="Ld0-Wg-ssT" firstAttribute="top" secondItem="T56-gV-d57" secondAttribute="bottom" constant="8" symbolic="YES" id="GeY-th-dOM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xm1-JO-IBS" secondAttribute="trailing" constant="20" id="SZi-QA-2OV"/>
+                            <constraint firstItem="xm1-JO-IBS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="VJs-bD-UcV"/>
+                            <constraint firstItem="T56-gV-d57" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="XS4-up-sxJ"/>
+                            <constraint firstItem="ETa-Xz-A7x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="eDV-lD-P3Z"/>
+                            <constraint firstItem="Gko-2B-oIl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fad-PC-pcI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Gko-2B-oIl" secondAttribute="trailing" id="n4M-V0-hvT"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ETa-Xz-A7x" secondAttribute="trailing" constant="20" id="o18-ok-tAN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="xm1-JO-IBS" secondAttribute="bottom" constant="20" id="oMp-lH-x7K"/>
+                            <constraint firstItem="Gko-2B-oIl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="pGb-dE-XSo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ld0-Wg-ssT" secondAttribute="trailing" constant="20" id="tY6-SR-uIW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="REp-LO-5P7">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="KXR-1x-y2s"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentTextView" destination="xm1-JO-IBS" id="ed0-yy-vxU"/>
+                        <outlet property="dateButton" destination="ETa-Xz-A7x" id="I0w-C9-5nj"/>
+                        <outlet property="mainImageView" destination="Gko-2B-oIl" id="c3j-kV-sQi"/>
+                        <outlet property="titleTextField" destination="Ld0-Wg-ssT" id="jF2-tF-AV4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="90.401785714285708"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="IUm-o8-eVf">
+            <objects>
+                <viewController storyboardIdentifier="DatePickerViewController" id="Hv0-uM-QWY" customClass="DatePickerViewController" customModule="SeSAC_week6" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ilk-2M-gxB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xxV-CK-aHY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </datePicker>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w8H-45-H0A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xxV-CK-aHY" firstAttribute="leading" secondItem="w8H-45-H0A" secondAttribute="leading" id="VOA-H9-xxz"/>
+                            <constraint firstItem="w8H-45-H0A" firstAttribute="bottom" secondItem="xxV-CK-aHY" secondAttribute="bottom" id="f3o-TR-Ssv"/>
+                            <constraint firstItem="w8H-45-H0A" firstAttribute="trailing" secondItem="xxV-CK-aHY" secondAttribute="trailing" id="kQA-cm-cJs"/>
+                            <constraint firstItem="xxV-CK-aHY" firstAttribute="top" secondItem="w8H-45-H0A" secondAttribute="top" id="kVG-XP-Wxc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainDatePicker" destination="xxV-CK-aHY" id="LGS-fX-73v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kzA-TL-giG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733.3333333333335" y="87.723214285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
