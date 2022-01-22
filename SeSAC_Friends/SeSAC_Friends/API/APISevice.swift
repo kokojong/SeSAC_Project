@@ -15,8 +15,7 @@ class APISevice {
         let headers = ["idtoken": idToken] as HTTPHeaders
 
         AF.request(EndPoint.getMyUserInfo.url.absoluteString, method: .get, headers: headers).responseDecodable(of: MyUserInfo.self) {  response in
-         
-            
+ 
             let statusCode = response.response?.statusCode
             //
             switch response.result {
@@ -40,40 +39,31 @@ class APISevice {
         let headers = ["idtoken": idToken,
                        "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
        
-        
         let parameters : Parameters = [
             "phoneNumber" : form.phoneNumber,
             "FCMtoken" : form.FCMtoken,
             "nick" : form.nick,
             "birth" : form.birth,
             "email" : form.email,
-            "genger" : form.gender
+            "gender" : form.gender
             
         ]
         
         AF.request(EndPoint.postMyUserInfo.url.absoluteString, method: .post, parameters: parameters, headers: headers)
-        //            .responseDecodable(of: MyUserInfo.self) { response in
-        //
-        //            let statusCode = response.response?.statusCode
-        //            //
-        //            switch response.result {
-        //            case.success(let value):
-        //                print("response.result success", value)
-        //                completion(statusCode, nil)
-        //
-        //            case .failure(let error):
-        //                print("response.result error",error)
-        //                completion(statusCode, error)
-        //
-        //            }
-        //        }
             .responseString { response in
-                print("responseString", response)
+                print("responseString", response.response)
                 completion(response.response?.statusCode, nil)
-                
             }
-        
-        
+    }
+    
+    static func withdrawSignUp(idToken: String, completion: @escaping (Int?, Error?) -> Void){
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+    
+        AF.request(EndPoint.withdrawSignUp.url.absoluteString, method: .post, headers: headers).responseString { response in
+            
+            completion(response.response?.statusCode, nil)
+        }
     }
     
     

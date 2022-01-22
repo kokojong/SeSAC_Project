@@ -109,6 +109,7 @@ class AuthViewModel {
                     if let idToken = idToken {
                         print("idToken",idToken)
                         self.idToken = idToken
+                        UserDefaults.standard.set(idToken, forKey: "idToken")
                     }
                     completion(authResult, nil)
                     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignUpForm {
+struct SignUpForm: Encodable {
     let phoneNumber, FCMtoken, nick, email: String
     let birth : Date
     let gender: Int

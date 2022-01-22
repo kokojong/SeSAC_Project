@@ -17,7 +17,7 @@ enum Method: String {
 enum EndPoint {
     case getMyUserInfo
     case postMyUserInfo
-    
+    case withdrawSignUp
 }
 
 extension EndPoint {
@@ -27,6 +27,8 @@ extension EndPoint {
             return .makeEndPoint("user")
         case .postMyUserInfo:
             return .makeEndPoint("user")
+        case .withdrawSignUp:
+            return .makeEndPoint("user/withdraw")
         }
     }
 }

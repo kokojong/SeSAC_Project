@@ -72,7 +72,25 @@ class AuthGenderViewController: UIViewController {
     
     @objc func onSignUpButtonClicked() {
         self.viewModel.signUpUserInfo { statuscode, error in
-            self.view.makeToast("회원 가입 결과 : \(statuscode)")
+            switch statuscode {
+            case 200 :
+                self.view.makeToast("회원가입에 성공했습니다")
+                sleep(1)
+                
+                let vc = HomeViewController()
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            case 201:
+                self.view.makeToast("이미 가입한 유저입니다.")
+            case 202:
+                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.backTwoWhenNavigationControllerUsed()
+                }
+            default :
+                self.view.makeToast("회원가입에 실패했습니다")
+            }
         }
     }
     
@@ -116,4 +134,13 @@ class AuthGenderViewController: UIViewController {
     }
 
 
+    func backTwoWhenNavigationControllerUsed(){
+        let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        
+        self.navigationController?.popToViewController(viewControllers[viewControllers.count - 4 ], animated: true)
+        
+    }
+        
+        
 }
+
