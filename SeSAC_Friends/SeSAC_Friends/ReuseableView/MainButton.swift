@@ -11,8 +11,8 @@ import SwiftUI
 public enum CSButtonType {
     case inactiveButton
     case fill
-//    case outline
-//    case cancel
+    case outline
+    case cancel
     case disable
 }
 
@@ -56,6 +56,16 @@ class MainButton: UIButton {
             self.backgroundColor = .gray6
             self.tintColor = .gray3
             
+        case .outline:
+            self.clipsToBounds = true
+            self.layer.borderColor = UIColor.green?.cgColor
+            self.layer.borderWidth = 1
+            self.backgroundColor = .white
+            self.tintColor = .green
+            
+        case .cancel:
+            self.backgroundColor = .gray2
+            self.tintColor = .black
         }
         
       
@@ -74,6 +84,17 @@ class MainButton: UIButton {
                 
             case .inactiveButton:
                 self.backgroundColor = .white
+                self.tintColor = .black
+                
+            case .outline:
+                self.clipsToBounds = true
+                self.layer.borderColor = UIColor.green?.cgColor
+                self.layer.borderWidth = 1
+                self.backgroundColor = .white
+                self.tintColor = .green
+                
+            case .cancel:
+                self.backgroundColor = .gray2
                 self.tintColor = .black
             }
         }

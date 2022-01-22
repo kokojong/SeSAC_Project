@@ -7,12 +7,16 @@
 
 import UIKit
 import SnapKit
+import Toast
 
 class AuthBirthViewController: UIViewController {
 
     let mainView = AuthCommonView()
     
+    var viewModel: AuthViewModel!
+    
     let birthPicker = UIDatePicker()
+    
     
     override func loadView() {
         self.view = mainView
@@ -32,7 +36,8 @@ class AuthBirthViewController: UIViewController {
     
 
     func configViews() {
-        mainView.mainLabel.text = "닉네임을 입력해주세요"
+        mainView.mainLabel.text = "생년월일을 입력해주세요"
+//        mainView.mainTextField.placeholder = "SeSAC@email.com"
         mainView.mainTextField.isHidden = true
         mainView.seperator.isHidden = true
         mainView.mainButton.setTitle("다음", for: .normal)
@@ -48,15 +53,19 @@ class AuthBirthViewController: UIViewController {
     
     func addConstraints() {
         birthPicker.snp.makeConstraints { make in
-            make.top.equalTo(self.mainView.mainTextField.snp.top)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview().inset(16)
 //            make.bottom.equalTo(self.mainView.mainTextField.snp.bottom)
         }
     
     }
     
     @objc func onRequestButtonClicked() {
-        self.navigationController?.pushViewController(AuthCheckViewController(), animated: true)
+        
+        let vc = AuthEmailViewController()
+        vc.viewModel = self.viewModel
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

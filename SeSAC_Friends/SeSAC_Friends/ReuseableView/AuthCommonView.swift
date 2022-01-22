@@ -9,7 +9,11 @@ import UIKit
 
 class AuthCommonView: UIView {
     
-    let mainLabel = Display1Label()
+    let mainLabel : MainLabel = {
+       let label = MainLabel()
+        label.font = .Display1_R20
+        return label
+    }()
     
     let mainTextField = MainTextField()
     
@@ -47,19 +51,19 @@ class AuthCommonView: UIView {
         
         mainButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.safeAreaLayoutGuide)
-            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(44)
         }
         
         mainTextField.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
-            make.bottom.equalTo(mainButton.snp.top).inset(-72)
+            make.leading.trailing.equalTo(self).inset(16)
+            make.bottom.equalTo(mainButton.snp.top).inset(-60)
             make.height.equalTo(48)
         }
         
         mainLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(mainTextField.snp.top).inset(-64)
-            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
+            make.bottom.equalTo(mainTextField.snp.top).inset(-80)
+            make.leading.trailing.equalToSuperview().inset(16)
             
         }
         

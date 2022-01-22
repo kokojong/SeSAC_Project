@@ -8,25 +8,30 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import Toast
 
 class AuthCheckViewController: UIViewController {
 
+    var viewModel: AuthViewModel!
+    
     let mainView = AuthCommonView()
     
-    let timerLabel: Title3Label = {
-        let label = Title3Label()
+    let timerLabel: MainLabel = {
+        let label = MainLabel()
+        label.font = .Title3_M14
         label.textColor = .green
         label.text = "05:00"
         
         return label
     }()
     
-    let requestAgainButton = MainButton()
+    let subLabel = MainLabel()
     
-    var limitTime = 300
+    let requestAgainButton = MainButton(type: .fill)
+    
+    var limitTime = 60
     
     var phoneNumber = ""
-    var verificationCode = ""
     
     
     override func loadView() {
@@ -51,35 +56,49 @@ class AuthCheckViewController: UIViewController {
     
     @objc func onCheckButtonClicked() {
         
-        let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")!
-        
-        let credential = PhoneAuthProvider.provider().credential(
-          withVerificationID: verificationID,
-          verificationCode: verificationCode
-
-        )
-       
-        
-        Auth.auth().signIn(with: credential) { (success, error) in
-            if error == nil {
-                print("success : ",success)
-                print("로그인 성공!")
+        self.viewModel.checkCode { authresult, error  in
+            
+            guard let authresult = authresult else {
+                self.view.makeToast("전화 번호 인증 실패")
                 
-                self.navigationController?.pushViewController(AuthNicknameViewController(), animated: true)
-                
-            } else {
-                print("error : ",error.debugDescription)
-                
+                return
             }
+
+            if let error = error {
+                // 에러처리
+                self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+                return
+            }
+            
+            print("쳌쳌 성공")
+            
+            self.viewModel.getUserInfo { statuscode ,error in
+                print("로그인 error",error)
+                
+                if statuscode == 201 {
+                    let vc = AuthNicknameViewController()
+                    vc.viewModel = self.viewModel
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    self.view.makeToast("홈화면으로 넘어갈랭")
+                }
+            }
+            
+           
             
         }
         
+        
+        let vc = AuthNicknameViewController()
+        vc.viewModel = self.viewModel
+        self.navigationController?.pushViewController(vc, animated: true)
+       
        
         
     }
     
     @objc func onRequestAgainButtonClicked() {
-        limitTime = 300
+        limitTime = 60
         
         let onlyPhoneNumber = phoneNumber.components(separatedBy: ["-"]).joined()
         print("onlyPhoneNumber",onlyPhoneNumber)
@@ -101,6 +120,7 @@ class AuthCheckViewController: UIViewController {
     }
     
     func addViews() {
+        self.view.addSubview(subLabel)
         self.view.addSubview(timerLabel)
         self.view.addSubview(requestAgainButton)
     }
@@ -111,29 +131,41 @@ class AuthCheckViewController: UIViewController {
             make.top.equalTo(mainView.mainTextField.snp.top)
             make.bottom.equalTo(mainView.seperator.snp.bottom)
             make.height.equalTo(40)
-            make.width.equalTo(72)
+            make.width.equalTo(75)
         }
         
         timerLabel.snp.makeConstraints { make in
             make.centerY.equalTo(mainView.mainTextField)
             make.trailing.equalTo(requestAgainButton.snp.leading).offset(-20)
+            make.leading.equalTo(mainView.mainTextField.snp.trailing).offset(10)
             make.height.equalTo(22)
+        }
+        
+        subLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(mainView.mainLabel)
+            make.top.equalTo(mainView.mainLabel.snp.bottom).offset(8)
         }
     }
     
     func configViews() {
         mainView.mainLabel.text = "인증번호가 문자로 전송되었어요"
         mainView.mainTextField.placeholder = "인증번호 입력"
+        mainView.mainTextField.keyboardType = .numberPad
         mainView.mainButton.setTitle("인증하고 시작하기", for: .normal)
         
+        subLabel.font = .Title2_R16
+        subLabel.text = "(최대 20초 소요)"
+        subLabel.textColor = .gray7
+        
         requestAgainButton.setTitle("재전송", for: .normal)
+        
         
         
     }
     
     func updateConstraints() {
         mainView.mainTextField.snp.updateConstraints { make in
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(120)
+            make.trailing.equalToSuperview().inset(150)
         }
         
     }
@@ -146,6 +178,8 @@ class AuthCheckViewController: UIViewController {
         
         if limitTime != 0 {
             perform(#selector(countDownTimer), with: nil, afterDelay: 1.0)
+        } else { // 남은 시간 0초
+            view.makeToast("휴대폰 번호 인증 실패")
         }
         
     }
@@ -156,7 +190,23 @@ class AuthCheckViewController: UIViewController {
     }
     
     @objc func onCodeTextFieldChanged() {
-        verificationCode = mainView.mainTextField.text ?? ""
+        
+        self.viewModel.verificationCode = mainView.mainTextField.text ?? ""
+        if isValidCode(code: self.viewModel.verificationCode) {
+            mainView.mainButton.style = .fill
+        } else {
+            mainView.mainButton.style = .disable
+        }
+      
     }
 
+    func isValidCode(code: String?) -> Bool {
+        guard code != nil else { return false }
+        
+        let codeRegEx = "([0-9]{6})"
+        let pred = NSPredicate(format:"SELF MATCHES %@", codeRegEx)
+        return pred.evaluate(with: code)
+    }
+    
 }
+
