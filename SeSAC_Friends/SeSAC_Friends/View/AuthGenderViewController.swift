@@ -37,12 +37,15 @@ class AuthGenderViewController: UIViewController {
             case 0:
                 self.genderManView.style = .active
                 self.genderWomanView.style = .inactive
+                self.mainView.mainButton.style = .fill
             case 1:
                 self.genderManView.style = .inactive
                 self.genderWomanView.style = .active
+                self.mainView.mainButton.style = .fill
             default:
                 self.genderManView.style = .inactive
                 self.genderWomanView.style = .inactive
+                self.mainView.mainButton.style = .disable
                 
             }
         }
@@ -62,7 +65,15 @@ class AuthGenderViewController: UIViewController {
                 self.viewModel.gender.value = 2
             }
         }
+        
+        mainView.mainButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
  
+    }
+    
+    @objc func onSignUpButtonClicked() {
+        self.viewModel.signUpUserInfo { statuscode, error in
+            self.view.makeToast("회원 가입 결과 : \(statuscode)")
+        }
     }
     
     func addViews() {

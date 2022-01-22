@@ -63,34 +63,34 @@ class AuthRequestViewController: UIViewController {
         
         if viewModel.isValidPhoneNumber.value {
             // 임시로 넘어가기
-            let vc = AuthCheckViewController()
-            vc.viewModel = self.viewModel
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = AuthCheckViewController()
+//            vc.viewModel = self.viewModel
+//            self.navigationController?.pushViewController(vc, animated: true)
             
-            // 인증 번호 보내기(임시로 주석)
-//            view.makeToast("휴대폰 번호 인증 시작")
-//            viewModel.requestCode { verificationID, error in
-//                guard let verificationID = verificationID else {
-//                    // error가 존재
-//                    print("error",error!.localizedDescription)
-//                    print("error",error.debugDescription)
-//
-//                    switch error!.localizedDescription {
-//                    case AuthResponse.blocked.rawValue: self.view.makeToast("과도한 인증 시도가 있었습니다.\n나중에 다시 시도해주세요")
-//
-//                    default:
-//                        self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요")
-//                    }
-//
-//                    return
-//                }
-//
-//                self.viewModel.verificationID = verificationID
-//                let vc = AuthCheckViewController()
-//                vc.viewModel = self.viewModel
-//                self.navigationController?.pushViewController(vc, animated: true)
-//
-//            }
+            // 인증 번호 보내기
+            view.makeToast("휴대폰 번호 인증 시작")
+            viewModel.requestCode { verificationID, error in
+                guard let verificationID = verificationID else {
+                    // error가 존재
+                    print("error",error!.localizedDescription)
+                    print("error",error.debugDescription)
+
+                    switch error!.localizedDescription {
+                    case AuthResponse.blocked.rawValue: self.view.makeToast("과도한 인증 시도가 있었습니다.\n나중에 다시 시도해주세요")
+
+                    default:
+                        self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요")
+                    }
+
+                    return
+                }
+
+                self.viewModel.verificationID = verificationID
+                let vc = AuthCheckViewController()
+                vc.viewModel = self.viewModel
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }
              
             
         } else {

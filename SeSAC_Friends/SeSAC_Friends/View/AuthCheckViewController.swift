@@ -31,8 +31,6 @@ class AuthCheckViewController: UIViewController {
     
     var limitTime = 60
     
-    var phoneNumber = ""
-    
     
     override func loadView() {
         self.view = mainView
@@ -56,15 +54,20 @@ class AuthCheckViewController: UIViewController {
     
     @objc func onCheckButtonClicked() {
         
+        if isValidCode(code: self.viewModel.verificationCode) == false {
+            view.makeToast("6자리의 인증번호를 입력해주세요")
+            return
+        }
+        
         self.viewModel.checkCode { authresult, error  in
             
-            guard let authresult = authresult else {
+            guard authresult != nil else {
                 self.view.makeToast("전화 번호 인증 실패")
                 
                 return
             }
 
-            if let error = error {
+            if error != nil {
                 // 에러처리
                 self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요")
                 return
@@ -72,16 +75,19 @@ class AuthCheckViewController: UIViewController {
             
             print("쳌쳌 성공")
             
-            self.viewModel.getUserInfo { statuscode ,error in
-                print("로그인 error",error)
-                
-                if statuscode == 201 {
+            self.viewModel.getUserInfo { myUserInfo ,statuscode ,error in
+                switch statuscode {
+                case 200:
+                    self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                case 201 :
                     let vc = AuthNicknameViewController()
                     vc.viewModel = self.viewModel
                     self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    self.view.makeToast("홈화면으로 넘어갈랭")
+                default : // FCM 토큰 만료 등
+                    self.view.makeToast("\(statuscode)")
+                    
                 }
+                
             }
             
            
@@ -89,18 +95,19 @@ class AuthCheckViewController: UIViewController {
         }
         
         
-        let vc = AuthNicknameViewController()
-        vc.viewModel = self.viewModel
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = AuthNicknameViewController()
+//        vc.viewModel = self.viewModel
+//        self.navigationController?.pushViewController(vc, animated: true)
        
        
         
     }
     
     @objc func onRequestAgainButtonClicked() {
-        limitTime = 60
+
+        view.makeToast("인증번호가 재전송 되었습니다")
         
-        let onlyPhoneNumber = phoneNumber.components(separatedBy: ["-"]).joined()
+        let onlyPhoneNumber = viewModel.onlyNumber.value
         print("onlyPhoneNumber",onlyPhoneNumber)
         
         PhoneAuthProvider.provider()
@@ -112,7 +119,8 @@ class AuthCheckViewController: UIViewController {
                 
                 print("new verificationID ",verificationID)
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                
+                self.viewModel.verificationID = verificationID!
+                self.limitTime = 60
                 
             }
         

@@ -24,7 +24,8 @@ class AuthViewModel {
     var verificationCode = ""
     
     var nickname = Observable("")
-    var birthday = Observable("2021-01-30T08:30:20.000Z")
+    var birthday = Observable(Date.now)
+//    var birthday = Observable("2002-01-16T09:23:44.054Z")
     var email = Observable("")
     var gender = Observable(2)
     
@@ -34,7 +35,7 @@ class AuthViewModel {
     
     var idToken = ""
     
-    var fcmToken = UserDefaults.standard.string(forKey: "FCMToken")
+    var fcmToken = UserDefaults.standard.string(forKey: "FCMToken")!
     
     func addHyphen() {
         phoneNumber.value = phoneNumber.value.pretty()
@@ -43,7 +44,7 @@ class AuthViewModel {
     func checkValidPhoneNumber(phone: String?) -> Void {
         guard phone != nil else { return }
         
-        let phoneRegEx = "^010-?([0-9]{4})-?([0-9]{4})"
+        let phoneRegEx = "^01[0-1]-?([0-9]{3,4})-?([0-9]{4})"
         let pred = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
         isValidPhoneNumber.value = pred.evaluate(with: phone)
     }
@@ -66,12 +67,9 @@ class AuthViewModel {
     }
     
     func checkValidEmail(email: String) -> Void {
-        if email.contains("@") && email.contains(".") {
-            isValidEmail.value = true
-        } else {
-            isValidEmail.value = false
-        }
-        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let pred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        isValidEmail.value = pred.evaluate(with: email)
     }
     
     
@@ -126,15 +124,31 @@ class AuthViewModel {
         
     }
     
-    func getUserInfo (completion: @escaping (Int? ,Error?) -> Void) {
-        APISevice.getMyUserInfo(idToken: idToken) { userInfo,  statuscode, error  in
-            print("getUserInfo")
+    func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
+        APISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
+            print(#function)
             print(error)
             print(userInfo)
-            completion(statuscode,error)
+            completion(userInfo,statuscode,error)
         }
         
     }
     
+    
+    func signUpUserInfo(completion: @escaping (Int?, Error?) -> Void) {
+        
+        let form = SignUpForm(phoneNumber: "+82" + onlyNumber.value, FCMtoken: fcmToken, nick: nickname.value, email: email.value, birth: birthday.value, gender: gender.value)
+        
+        print("form",form)
+        print(Date.now)
+        
+        APISevice.signUpUserInfo(idToken: idToken, form: form) { statuscode, error in
+            print(#function)
+            print(statuscode)
+            print(error)
+            completion(statuscode, error)
+            
+        }
+    }
     
 }

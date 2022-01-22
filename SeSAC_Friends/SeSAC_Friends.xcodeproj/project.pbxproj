@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
-		04A81FB8279681DD00B658CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB7279681DD00B658CD /* ViewController.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
 		04A81FC0279681E000B658CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBE279681E000B658CD /* LaunchScreen.storyboard */; };
 		04A81FC82796828700B658CD /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FC72796828700B658CD /* Color+Extension.swift */; };
@@ -44,13 +43,14 @@
 		04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C1D2799C2A900A9136D /* AuthGenderViewController.swift */; };
 		04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C1F279A7D6D00A9136D /* GenderView.swift */; };
 		04EE3C22279A986000A9136D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C21279A986000A9136D /* UIView+Extension.swift */; };
+		04EE3C24279C06A200A9136D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C23279C06A200A9136D /* HomeViewController.swift */; };
+		04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C26279C2E6C00A9136D /* SignUpForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		04A81FB7279681DD00B658CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04A81FBC279681E000B658CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04A81FBF279681E000B658CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04A81FC1279681E000B658CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +79,8 @@
 		04EE3C1D2799C2A900A9136D /* AuthGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGenderViewController.swift; sourceTree = "<group>"; };
 		04EE3C1F279A7D6D00A9136D /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		04EE3C21279A986000A9136D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		04EE3C23279C06A200A9136D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		04EE3C26279C2E6C00A9136D /* SignUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,12 +124,9 @@
 				04B624152797EF8D00C3FE9B /* SeSAC_Friends.entitlements */,
 				04A81FB3279681DD00B658CD /* AppDelegate.swift */,
 				04A81FB5279681DD00B658CD /* SceneDelegate.swift */,
-				04A81FB7279681DD00B658CD /* ViewController.swift */,
 				04EE3BF827986DD800A9136D /* Observable.swift */,
-				04EE3BFD279930BD00A9136D /* APISevice.swift */,
-				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
-				04EE3C02279932DA00A9136D /* EndPoint.swift */,
-				04EE3C192799933400A9136D /* MyUserInfo.swift */,
+				04EE3C28279C3A2300A9136D /* API */,
+				04EE3C25279C2E4C00A9136D /* Model */,
 				04EE3BFA2798E5F900A9136D /* Viewmodel */,
 				04A81FD02796901900B658CD /* View */,
 				04A81FCF2796900C00B658CD /* ReuseableView */,
@@ -163,6 +162,7 @@
 				04A81FE62797DA9E00B658CD /* AuthBirthViewController.swift */,
 				04EE3C1B2799B7F900A9136D /* AuthEmailViewController.swift */,
 				04EE3C1D2799C2A900A9136D /* AuthGenderViewController.swift */,
+				04EE3C23279C06A200A9136D /* HomeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +184,25 @@
 				04EE3BF627986D7100A9136D /* AuthViewModel.swift */,
 			);
 			name = Viewmodel;
+			sourceTree = "<group>";
+		};
+		04EE3C25279C2E4C00A9136D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3C192799933400A9136D /* MyUserInfo.swift */,
+				04EE3C26279C2E6C00A9136D /* SignUpForm.swift */,
+				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04EE3C28279C3A2300A9136D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3BFD279930BD00A9136D /* APISevice.swift */,
+				04EE3C02279932DA00A9136D /* EndPoint.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,10 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE3C24279C06A200A9136D /* HomeViewController.swift in Sources */,
 				04EE3BF927986DD800A9136D /* Observable.swift in Sources */,
 				04EE3C1C2799B7F900A9136D /* AuthEmailViewController.swift in Sources */,
-				04A81FB8279681DD00B658CD /* ViewController.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
+				04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */,
 				04A81FC82796828700B658CD /* Color+Extension.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
