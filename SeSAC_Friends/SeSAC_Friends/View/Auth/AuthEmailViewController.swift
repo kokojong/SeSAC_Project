@@ -77,10 +77,15 @@ class AuthEmailViewController: UIViewController {
     }
     
     @objc func onRequestButtonClicked() {
-        let vc = AuthGenderViewController()
-        vc.viewModel = self.viewModel
+        if viewModel.isValidEmail.value {
+            let vc = AuthGenderViewController()
+            vc.viewModel = self.viewModel
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            view.makeToast("이메일 형식이 올바르지 않습니다")
+        }
         
-        self.navigationController?.pushViewController(vc, animated: true)
     }
    
     @objc func onEmailTextFieldChanged() {

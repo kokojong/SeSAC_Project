@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,9 +21,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let nav = UINavigationController(rootViewController: AuthRequestViewController())
-        window?.rootViewController = nav
-        window?.makeKeyAndVisible()
+        Auth.auth().currentUser?.getIDToken { idToken, error in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            if let idToken = idToken {
+                print("getIDToken",idToken)
+                UserDefaults.standard.set(idToken, forKey: "idToken")
+            }
+    
+        }
+        
+        
+        getUserInfo(idToken: UserDefaults.standard.string(forKey: "idToken")!) { myUserInfo, statuscode, error in
+            print("SceneDelegate",statuscode)
+            if let statuscode = statuscode {
+                if statuscode == 200 {
+                    let nav = UINavigationController(rootViewController: HomeViewController())
+                    self.window?.rootViewController = nav
+                    self.window?.makeKeyAndVisible()
+                } else {
+                    let nav = UINavigationController(rootViewController: AuthRequestViewController())
+                    self.window?.rootViewController = nav
+                    self.window?.makeKeyAndVisible()
+                }
+            }
+        }
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,6 +81,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    
+    func getUserInfo(idToken: String, completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
+        APISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
+            print(#function)
+            print(error)
+            print(userInfo)
+            completion(userInfo,statuscode,error)
+        }
+        
+    }
 
 }
 

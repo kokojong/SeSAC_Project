@@ -85,11 +85,22 @@ class AuthCheckViewController: UIViewController {
             self.viewModel.getUserInfo { myUserInfo ,statuscode ,error in
                 switch statuscode {
                 case 200:
-                    self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                    self.view.makeToast("이미 가입된 회원입니다.\n홈 화면으로 이동합니다.")
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+                        windowScene.windows.first?.makeKeyAndVisible()
+
+                    }
+                    
                 case 201 :
                     let vc = AuthNicknameViewController()
                     vc.viewModel = self.viewModel
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                    windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
+                    windowScene.windows.first?.makeKeyAndVisible()
+                    
+                    
                 case 401: // 토큰 만료 -> 갱신
                     Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                         
