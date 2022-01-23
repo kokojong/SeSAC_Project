@@ -21,9 +21,15 @@ class HomeViewController: UIViewController {
         
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        monitorNetwork()
+        
         view.backgroundColor = .yellow
         
         view.addSubview(withdrawButton)

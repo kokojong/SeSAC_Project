@@ -19,12 +19,7 @@ class AuthCommonView: UIView {
     
     var mainButton = MainButton(type: .disable)
     
-    let seperator: UIView = {
-       let view = UIView()
-        view.backgroundColor = .gray3
-        
-        return view
-    }()
+    let seperator =  MainSeperator()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +52,7 @@ class AuthCommonView: UIView {
         
         mainTextField.snp.makeConstraints { make in
             make.leading.trailing.equalTo(self).inset(16)
-            make.bottom.equalTo(mainButton.snp.top).inset(-60)
+            make.bottom.equalTo(mainButton.snp.top).inset(-30)
             make.height.equalTo(48)
         }
         
@@ -68,7 +63,7 @@ class AuthCommonView: UIView {
         }
         
         seperator.snp.makeConstraints { make in
-            make.top.equalTo(mainTextField.snp.bottom).inset(12)
+            make.top.equalTo(mainTextField.snp.bottom)
             make.leading.trailing.equalTo(mainTextField)
             make.height.equalTo(1)
             

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import SnapKit
+import Toast
 
 class AuthGenderViewController: UIViewController {
 
@@ -23,8 +26,14 @@ class AuthGenderViewController: UIViewController {
         self.view = mainView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        monitorNetwork()
         
         view.backgroundColor = .white
 
@@ -87,6 +96,20 @@ class AuthGenderViewController: UIViewController {
                 self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.backTwoWhenNavigationControllerUsed()
+                }
+            case 401:
+                Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                    
+                    if let error = error {
+                        self.view.makeToast("토큰 갱신에 실패했습니다\n\(error.localizedDescription)")
+                        return
+                    }
+    
+                    if let idToken = idToken {
+                        print("idToken 갱신",idToken)
+                        UserDefaults.standard.set(idToken, forKey: "idToken")
+                    }
+            
                 }
             default :
                 self.view.makeToast("회원가입에 실패했습니다")

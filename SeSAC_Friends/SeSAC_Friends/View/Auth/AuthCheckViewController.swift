@@ -36,8 +36,15 @@ class AuthCheckViewController: UIViewController {
         self.view = mainView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        monitorNetwork()
+        
         mainView.backgroundColor = .white
 
         addViews()
@@ -83,22 +90,28 @@ class AuthCheckViewController: UIViewController {
                     let vc = AuthNicknameViewController()
                     vc.viewModel = self.viewModel
                     self.navigationController?.pushViewController(vc, animated: true)
-                default : // FCM 토큰 만료 등
-                    self.view.makeToast("\(statuscode)")
+                case 401: // 토큰 만료 -> 갱신
+                    Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                        
+                        if let error = error {
+                            self.view.makeToast("토큰 갱신에 실패했습니다\n\(error.localizedDescription)")
+                            return
+                        }
+        
+                        if let idToken = idToken {
+                            print("idToken 갱신",idToken)
+                            UserDefaults.standard.set(idToken, forKey: "idToken")
+                        }
+                
+                    }
+                default : // 기타 에러
+                    self.view.makeToast("에러코드 : \(statuscode)")
                     
                 }
                 
             }
             
-           
-            
         }
-        
-        
-//        let vc = AuthNicknameViewController()
-//        vc.viewModel = self.viewModel
-//        self.navigationController?.pushViewController(vc, animated: true)
-       
        
         
     }
@@ -117,7 +130,6 @@ class AuthCheckViewController: UIViewController {
                     return
                 }
                 
-                print("new verificationID ",verificationID)
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                 self.viewModel.verificationID = verificationID!
                 self.limitTime = 60
@@ -166,8 +178,6 @@ class AuthCheckViewController: UIViewController {
         subLabel.textColor = .gray7
         
         requestAgainButton.setTitle("재전송", for: .normal)
-        
-        
         
     }
     

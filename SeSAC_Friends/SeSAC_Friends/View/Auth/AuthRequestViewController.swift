@@ -21,12 +21,18 @@ class AuthRequestViewController: UIViewController {
     var onlyPhoneNumber = ""
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
+    }
+    
     override func loadView() {
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        monitorNetwork()
         
         view.backgroundColor = .white
         

@@ -8,13 +8,6 @@
 import Foundation
 import FirebaseAuth
 
-//"phonNumber": "+821012345678",
-//  "FCMtoken": "evjaeofaweflkalrgiamerglarmfkalwemrawlekrmalkwermklawerew",
-//  "nick": "고래밥",
-//  "birth": "2022-01-16T09:23:44.054Z",
-//  "email": "user@example.com",
-//  "gender": 1
-
 class AuthViewModel {
     
     var phoneNumber = Observable("")
@@ -25,7 +18,6 @@ class AuthViewModel {
     
     var nickname = Observable("")
     var birthday = Observable(Date.now)
-//    var birthday = Observable("2002-01-16T09:23:44.054Z")
     var email = Observable("")
     var gender = Observable(2)
     
@@ -65,6 +57,20 @@ class AuthViewModel {
         }
         
     }
+    
+    func getBirthdayElements() -> [String] {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd hh:mm"
+
+        let selectedDate: String = dateFormatter.string(from: birthday.value)
+        
+        let year = selectedDate.substring(from: 0, to: 3)
+        let month = selectedDate.substring(from: 5, to: 6)
+        let day = selectedDate.substring(from: 8, to: 9)
+        
+        return [year,month,day]
+    }
+    
     
     func checkValidEmail(email: String) -> Void {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -153,3 +159,5 @@ class AuthViewModel {
     }
     
 }
+
+
