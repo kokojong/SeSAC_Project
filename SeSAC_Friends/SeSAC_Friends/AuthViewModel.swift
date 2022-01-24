@@ -133,9 +133,7 @@ class AuthViewModel {
     
     func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
         APISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
-            print(#function)
-            print(error)
-            print(userInfo)
+         
             completion(userInfo,statuscode,error)
         }
         
@@ -150,9 +148,7 @@ class AuthViewModel {
         print(Date.now)
         
         APISevice.signUpUserInfo(idToken: idToken, form: form) { statuscode, error in
-            print(#function)
-            print(statuscode)
-            print(error)
+       
             completion(statuscode, error)
             
         }

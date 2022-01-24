@@ -43,11 +43,11 @@ class AuthGenderViewController: UIViewController {
         
         viewModel.gender.bind { gender in
             switch gender {
-            case 0:
+            case 1:
                 self.genderManView.style = .active
                 self.genderWomanView.style = .inactive
                 self.mainView.mainButton.style = .fill
-            case 1:
+            case 0:
                 self.genderManView.style = .inactive
                 self.genderWomanView.style = .active
                 self.mainView.mainButton.style = .fill
@@ -60,18 +60,18 @@ class AuthGenderViewController: UIViewController {
         }
         
         genderManView.setOnClickListener {
-            if self.viewModel.gender.value != 0 {
-                self.viewModel.gender.value = 0
+            if self.viewModel.gender.value != 1 {
+                self.viewModel.gender.value = 1
             } else {
-                self.viewModel.gender.value = 2
+                self.viewModel.gender.value = -1
             }
         }
         
         genderWomanView.setOnClickListener {
-            if self.viewModel.gender.value != 1 {
-                self.viewModel.gender.value = 1
+            if self.viewModel.gender.value != 0 {
+                self.viewModel.gender.value = 0
             } else {
-                self.viewModel.gender.value = 2
+                self.viewModel.gender.value = -1
             }
         }
         
