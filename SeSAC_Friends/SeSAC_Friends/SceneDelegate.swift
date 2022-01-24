@@ -39,13 +39,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("SceneDelegate",statuscode)
             if let statuscode = statuscode {
                 if statuscode == 200 {
-                    let nav = UINavigationController(rootViewController: HomeViewController())
+                    let nav = UINavigationController(rootViewController: TabBarViewController())
                     self.window?.rootViewController = nav
                     self.window?.makeKeyAndVisible()
+                    UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                 } else {
-                    let nav = UINavigationController(rootViewController: AuthRequestViewController())
-                    self.window?.rootViewController = nav
+//                    let nav = UINavigationController(rootViewController: AuthRequestViewController())
+//                    self.window?.rootViewController = nav
+//                    self.window?.makeKeyAndVisible()
+                    
+                    self.window?.rootViewController = OnboardingViewController()
                     self.window?.makeKeyAndVisible()
+                    UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                 }
             }
         }

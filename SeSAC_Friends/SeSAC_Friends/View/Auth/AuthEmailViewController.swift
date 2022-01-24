@@ -67,7 +67,9 @@ class AuthEmailViewController: UIViewController {
     func configViews() {
         mainView.mainLabel.text = "이메일을 입력해주세요"
         mainView.mainTextField.placeholder = "SeSAC@email.com"
+        mainView.mainTextField.becomeFirstResponder()
         mainView.mainButton.setTitle("다음", for: .normal)
+        
         
         subLabel.font = .Title2_R16
         subLabel.text = "휴대폰 번호 변경 시 인증을 위해 사용해요"

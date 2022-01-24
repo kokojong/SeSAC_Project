@@ -19,7 +19,6 @@
 		04A81FD62796965D00B658CD /* MainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FD52796965D00B658CD /* MainLabel.swift */; };
 		04A81FD827969B8B00B658CD /* MainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FD727969B8B00B658CD /* MainTextField.swift */; };
 		04A81FDA27969E8B00B658CD /* AuthCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FD927969E8B00B658CD /* AuthCommonView.swift */; };
-		04A81FDD2797BEE600B658CD /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 04A81FDC2797BEE600B658CD /* TextFieldEffects */; };
 		04A81FE02797BF9800B658CD /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FDE2797BF9700B658CD /* NotoSansKR-Medium.otf */; };
 		04A81FE12797BF9800B658CD /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FDF2797BF9800B658CD /* NotoSansKR-Regular.otf */; };
 		04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FE22797C06900B658CD /* Font+Extension.swift */; };
@@ -48,6 +47,12 @@
 		04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C2C279D2CBE00A9136D /* BirthView.swift */; };
 		04EE3C2F279D3CBB00A9136D /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EE3C2E279D3CBB00A9136D /* Test.storyboard */; };
 		04EE3C31279D82F600A9136D /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C30279D82F600A9136D /* ViewController+Extension.swift */; };
+		04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C32279E699500A9136D /* OnboardingViewController.swift */; };
+		04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C35279E763600A9136D /* OnboardingView.swift */; };
+		04EE3C38279E8B9A00A9136D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C37279E8B9A00A9136D /* TabBarViewController.swift */; };
+		04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */; };
+		04EE3C3D279E961C00A9136D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C3C279E961B00A9136D /* ShopViewController.swift */; };
+		04EE3C3F279E962400A9136D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C3E279E962400A9136D /* FriendsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +93,12 @@
 		04EE3C2C279D2CBE00A9136D /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		04EE3C2E279D3CBB00A9136D /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		04EE3C30279D82F600A9136D /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		04EE3C32279E699500A9136D /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		04EE3C35279E763600A9136D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		04EE3C37279E8B9A00A9136D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		04EE3C3C279E961B00A9136D /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		04EE3C3E279E962400A9136D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +109,6 @@
 				04EE3C1827994FB400A9136D /* FirebaseMessaging in Frameworks */,
 				04A81FD42796918D00B658CD /* SnapKit in Frameworks */,
 				04EE3C1427994FB400A9136D /* FirebaseAnalytics in Frameworks */,
-				04A81FDD2797BEE600B658CD /* TextFieldEffects in Frameworks */,
 				04EE3C012799323500A9136D /* Alamofire in Frameworks */,
 				04EE3C1627994FB400A9136D /* FirebaseAuth in Frameworks */,
 				04EE3BF02798430400A9136D /* Toast in Frameworks */,
@@ -165,8 +175,13 @@
 		04A81FD02796901900B658CD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04EE3C37279E8B9A00A9136D /* TabBarViewController.swift */,
+				04EE3C34279E75D500A9136D /* OnBoarding */,
 				04EE3C29279D28DB00A9136D /* Auth */,
-				04EE3C23279C06A200A9136D /* HomeViewController.swift */,
+				04EE3C39279E8D1900A9136D /* Home */,
+				04EE3C42279E965800A9136D /* Shop */,
+				04EE3C41279E963100A9136D /* Friends */,
+				04EE3C40279E962A00A9136D /* Profile */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +238,47 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		04EE3C34279E75D500A9136D /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3C32279E699500A9136D /* OnboardingViewController.swift */,
+				04EE3C35279E763600A9136D /* OnboardingView.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		04EE3C39279E8D1900A9136D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3C23279C06A200A9136D /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04EE3C40279E962A00A9136D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		04EE3C41279E963100A9136D /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3C3E279E962400A9136D /* FriendsViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		04EE3C42279E965800A9136D /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				04EE3C3C279E961B00A9136D /* ShopViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,7 +297,6 @@
 			name = SeSAC_Friends;
 			packageProductDependencies = (
 				04A81FD32796918D00B658CD /* SnapKit */,
-				04A81FDC2797BEE600B658CD /* TextFieldEffects */,
 				04EE3BEF2798430400A9136D /* Toast */,
 				04EE3C002799323500A9136D /* Alamofire */,
 				04EE3C1327994FB400A9136D /* FirebaseAnalytics */,
@@ -278,10 +333,8 @@
 			mainGroup = 04A81FA7279681DD00B658CD;
 			packageReferences = (
 				04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */,
-				04A81FDB2797BEE600B658CD /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire" */,
-				04EE3C0427993E7400A9136D /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 04A81FB1279681DD00B658CD /* Products */;
@@ -316,9 +369,13 @@
 			files = (
 				04EE3C24279C06A200A9136D /* HomeViewController.swift in Sources */,
 				04EE3BF927986DD800A9136D /* Observable.swift in Sources */,
+				04EE3C3D279E961C00A9136D /* ShopViewController.swift in Sources */,
 				04EE3C1C2799B7F900A9136D /* AuthEmailViewController.swift in Sources */,
+				04EE3C3F279E962400A9136D /* FriendsViewController.swift in Sources */,
+				04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
 				04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */,
+				04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */,
 				04A81FC82796828700B658CD /* Color+Extension.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
@@ -327,6 +384,7 @@
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
 				04A81FCA27968FBD00B658CD /* AuthRequestViewController.swift in Sources */,
 				04A81FCC27968FCE00B658CD /* AuthCheckViewController.swift in Sources */,
+				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,
 				04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */,
 				04EE3C03279932DA00A9136D /* EndPoint.swift in Sources */,
@@ -342,6 +400,7 @@
 				04A81FD62796965D00B658CD /* MainLabel.swift in Sources */,
 				04EE3C08279946FC00A9136D /* AuthResponse.swift in Sources */,
 				04A81FDA27969E8B00B658CD /* AuthCommonView.swift in Sources */,
+				04EE3C38279E8B9A00A9136D /* TabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,14 +622,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		04A81FDB2797BEE600B658CD /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/raulriera/TextFieldEffects.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
@@ -585,14 +636,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		04EE3C0427993E7400A9136D /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = exactVersion;
-				version = 5.0.0;
 			};
 		};
 		04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -610,11 +653,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		04A81FDC2797BEE600B658CD /* TextFieldEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 04A81FDB2797BEE600B658CD /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
 		};
 		04EE3BEF2798430400A9136D /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;

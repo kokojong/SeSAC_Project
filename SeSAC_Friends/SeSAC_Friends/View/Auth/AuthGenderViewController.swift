@@ -41,6 +41,8 @@ class AuthGenderViewController: UIViewController {
         addConstraints()
         configViews()
         
+        mainView.mainButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
+        
         viewModel.gender.bind { gender in
             switch gender {
             case 1:
@@ -75,7 +77,6 @@ class AuthGenderViewController: UIViewController {
             }
         }
         
-        mainView.mainButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
  
     }
     
@@ -86,7 +87,8 @@ class AuthGenderViewController: UIViewController {
                 self.view.makeToast("회원가입에 성공했습니다\n홈 화면으로 이동합니다.")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-                    let vc = HomeViewController()
+//                    let vc = HomeViewController()
+                    let vc = TabBarViewController()
                     
                     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
                     windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
@@ -112,6 +114,34 @@ class AuthGenderViewController: UIViewController {
                     if let idToken = idToken {
                         print("idToken 갱신",idToken)
                         UserDefaults.standard.set(idToken, forKey: "idToken")
+                        
+                        // 회원가입 재요청
+                        self.viewModel.signUpUserInfo { statuscode, error in
+                            switch statuscode {
+                            case 200 :
+                                self.view.makeToast("회원가입에 성공했습니다\n홈 화면으로 이동합니다.")
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                                    let vc = HomeViewController()
+                                    
+                                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                                    windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
+                                    windowScene.windows.first?.makeKeyAndVisible()
+                                }
+                                
+                            case 201:
+                                self.view.makeToast("이미 가입한 유저입니다.")
+                                
+                            case 202:
+                                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    self.backTwoWhenNavigationControllerUsed()
+                                }
+                            default:
+                                self.view.makeToast("회원가입에 실패했습니다")
+                            }
+                        }
+                        
                     }
             
                 }

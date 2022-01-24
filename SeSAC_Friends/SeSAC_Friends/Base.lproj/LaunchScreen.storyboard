@@ -16,18 +16,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스플래시ㅣ이이ㅣ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZw-Ir-oMq">
-                                <rect key="frame" x="148" y="437.5" width="118" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_image" translatesAutoresizingMaskIntoConstraints="NO" id="XdJ-jB-OlE">
+                                <rect key="frame" x="70" y="311" width="274" height="274"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XdJ-jB-OlE" secondAttribute="height" id="e1H-NP-nxI"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_text" translatesAutoresizingMaskIntoConstraints="NO" id="a68-mk-v8Q">
+                                <rect key="frame" x="40" y="593" width="334" height="33"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lZw-Ir-oMq" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ecG-il-COr"/>
-                            <constraint firstItem="lZw-Ir-oMq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zWJ-V8-eq6"/>
+                            <constraint firstItem="a68-mk-v8Q" firstAttribute="top" secondItem="XdJ-jB-OlE" secondAttribute="bottom" constant="8" id="46m-Iv-8W5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XdJ-jB-OlE" secondAttribute="trailing" constant="70" id="FUc-ZU-jTV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a68-mk-v8Q" secondAttribute="trailing" constant="40" id="Kea-DD-oKb"/>
+                            <constraint firstItem="a68-mk-v8Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="bcV-8z-MMb"/>
+                            <constraint firstItem="XdJ-jB-OlE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="dY0-JE-vqU"/>
+                            <constraint firstItem="XdJ-jB-OlE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gZK-mh-Jq9"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,6 +44,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="splash_image" width="219" height="264"/>
+        <image name="splash_text" width="290" height="33"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

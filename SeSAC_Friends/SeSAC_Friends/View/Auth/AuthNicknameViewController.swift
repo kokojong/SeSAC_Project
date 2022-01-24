@@ -32,7 +32,7 @@ class AuthNicknameViewController: UIViewController {
         
         mainView.mainButton.addTarget(self, action: #selector(onRequestButtonClicked), for: .touchUpInside)
         mainView.mainTextField.addTarget(self, action: #selector(onNicknameTextFieldChanged), for: .editingChanged)
-        mainView.mainTextField.becomeFirstResponder()
+        
         
         configViews()
         
@@ -53,6 +53,7 @@ class AuthNicknameViewController: UIViewController {
     func configViews() {
         mainView.mainLabel.text = "닉네임을 입력해주세요"
         mainView.mainTextField.placeholder = "10자 이내"
+        mainView.mainTextField.becomeFirstResponder()
         mainView.mainButton.setTitle("다음", for: .normal)
     }
     

@@ -46,21 +46,24 @@ class AuthBirthViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        mainView.mainButton.addTarget(self, action: #selector(onRequestButtonClicked), for: .touchUpInside)
-    
         configViews()
         addViews()
         addConstraints()
         
-        birthPicker.becomeFirstResponder()
+        mainView.mainButton.addTarget(self, action: #selector(onRequestButtonClicked), for: .touchUpInside)
         birthPicker.addTarget(self, action: #selector(onBirthPickerValueChanged(sender:)), for: .valueChanged)
-        birthPicker.date = .now
+        
         
         viewModel.birthday.bind { date in
-            let birthday = self.viewModel.getBirthdayElements()
+            let birthday = self.viewModel.getBirthdayElements(bitrhday: self.viewModel.birthday.value)
             self.yearView.textField.text = birthday[0]
             self.monthView.textField.text = birthday[1]
             self.dayView.textField.text = birthday[2]
+            if date != Date.now {
+                self.mainView.mainButton.style = .fill
+            } else {
+                self.birthPicker.date = .now
+            }
         }
     }
     
@@ -73,6 +76,8 @@ class AuthBirthViewController: UIViewController {
         birthPicker.locale = Locale(identifier: "ko-KR")
         birthPicker.datePickerMode = .date
         birthPicker.timeZone = NSTimeZone.local
+        birthPicker.becomeFirstResponder()
+        
 
         
         yearView.textField.text = "1994"
@@ -122,14 +127,12 @@ class AuthBirthViewController: UIViewController {
             self.view.makeToast("새싹 프렌즈는 만 17세 이상만 이용이 가능합니다.")
         }
         
-        
-        
     }
 
     @objc func onBirthPickerValueChanged(sender: UIDatePicker) {
 
         self.viewModel.birthday.value = sender.date
-        let birthday = self.viewModel.getBirthdayElements()
+        let birthday = self.viewModel.getBirthdayElements(bitrhday: self.viewModel.birthday.value)
         
         yearView.textField.text = birthday[0]
         monthView.textField.text = birthday[1]
@@ -142,7 +145,7 @@ class AuthBirthViewController: UIViewController {
     func calculateAge() -> Int {
         let distanceHour = Calendar.current.dateComponents([.year], from: self.viewModel.birthday.value, to: Date.now).year ?? 0
         
-        return distanceHour-1
+        return distanceHour
     }
 }
 

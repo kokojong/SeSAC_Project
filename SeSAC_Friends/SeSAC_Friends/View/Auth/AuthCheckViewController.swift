@@ -41,6 +41,12 @@ class AuthCheckViewController: UIViewController {
         monitorNetwork()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        limitTime = 60
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         monitorNetwork()
@@ -88,24 +94,33 @@ class AuthCheckViewController: UIViewController {
                     self.view.makeToast("이미 가입된 회원입니다.\n홈 화면으로 이동합니다.")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+//                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+                        windowScene.windows.first?.rootViewController = TabBarViewController()
                         windowScene.windows.first?.makeKeyAndVisible()
 
                     }
                     
                 case 201 :
-                    let vc = AuthNicknameViewController()
-                    vc.viewModel = self.viewModel
-                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                    windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
-                    windowScene.windows.first?.makeKeyAndVisible()
+                    self.view.makeToast("휴대폰 번호 인증에 성공했습니다.\n닉네임 설정 화면으로 이동합니다.")
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                        let vc = AuthNicknameViewController()
+                        vc.viewModel = self.viewModel
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
+                        windowScene.windows.first?.makeKeyAndVisible()
+                        
+                        UIView.transition(with: windowScene.windows.first!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                        
+                    }
+                    
+                   
                     
                     
                 case 401: // 토큰 만료 -> 갱신
                     Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                         
                         if let error = error {
-                            self.view.makeToast("토큰 갱신에 실패했습니다\n\(error.localizedDescription)")
+                            self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
                             return
                         }
         

@@ -61,6 +61,7 @@ class AuthRequestViewController: UIViewController {
         mainView.mainLabel.text = "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요"
         mainView.mainTextField.placeholder = "휴대폰 번호 (-없이 숫자만 입력)"
         mainView.mainTextField.keyboardType = .numberPad
+        mainView.mainTextField.becomeFirstResponder()
         mainView.mainButton.setTitle("인증 문자 받기", for: .normal)
     }
     
@@ -68,10 +69,6 @@ class AuthRequestViewController: UIViewController {
     @objc func onRequestButtonClicked() {
         
         if viewModel.isValidPhoneNumber.value {
-            // 임시로 넘어가기
-//            let vc = AuthCheckViewController()
-//            vc.viewModel = self.viewModel
-//            self.navigationController?.pushViewController(vc, animated: true)
             
             // 인증 번호 보내기
             view.makeToast("휴대폰 번호 인증 시작")

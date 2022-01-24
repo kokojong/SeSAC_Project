@@ -58,11 +58,11 @@ class AuthViewModel {
         
     }
     
-    func getBirthdayElements() -> [String] {
+    func getBirthdayElements(bitrhday: Date) -> [String] {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd hh:mm"
 
-        let selectedDate: String = dateFormatter.string(from: birthday.value)
+        let selectedDate: String = dateFormatter.string(from: bitrhday)
         
         let year = selectedDate.substring(from: 0, to: 3)
         let month = selectedDate.substring(from: 5, to: 6)
