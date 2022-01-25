@@ -27,7 +27,7 @@ class AuthViewModel {
     
     var idToken = ""
     
-    var fcmToken = UserDefaults.standard.string(forKey: "FCMToken")!
+    var fcmToken = UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue)!
     
     func addHyphen() {
         phoneNumber.value = phoneNumber.value.pretty()
@@ -115,7 +115,7 @@ class AuthViewModel {
                     if let idToken = idToken {
                         print("idToken",idToken)
                         self.idToken = idToken
-                        UserDefaults.standard.set(idToken, forKey: "idToken")
+                        UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
                     }
                     completion(authResult, nil)
                     

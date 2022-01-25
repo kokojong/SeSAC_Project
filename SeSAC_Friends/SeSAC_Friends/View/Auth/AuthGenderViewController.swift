@@ -39,6 +39,7 @@ class AuthGenderViewController: UIViewController {
 
         addViews()
         addConstraints()
+        updateConstraints()
         configViews()
         
         mainView.mainButton.addTarget(self, action: #selector(onSignUpButtonClicked), for: .touchUpInside)
@@ -113,7 +114,7 @@ class AuthGenderViewController: UIViewController {
     
                     if let idToken = idToken {
                         print("idToken 갱신",idToken)
-                        UserDefaults.standard.set(idToken, forKey: "idToken")
+                        UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
                         
                         // 회원가입 재요청
                         self.viewModel.signUpUserInfo { statuscode, error in
@@ -177,6 +178,12 @@ class AuthGenderViewController: UIViewController {
             make.width.equalTo(genderManView.snp.width)
         }
     }
+    func updateConstraints() {
+        mainView.mainLabel.snp.updateConstraints { make in
+            make.bottom.equalTo(mainView.mainTextField.snp.top).inset(-120)
+        }
+        
+    }
     
     func configViews() {
         mainView.mainLabel.text = "성별을 선택해주세요"
@@ -186,7 +193,9 @@ class AuthGenderViewController: UIViewController {
         mainView.mainButton.setTitle("회원가입", for: .normal)
        
         genderManView.genderImageview.image = UIImage(named: "man")
+        genderManView.genderLabel.text = "남자"
         genderWomanView.genderImageview.image = UIImage(named: "woman")
+        genderWomanView.genderLabel.text = "여자"
         
     }
 

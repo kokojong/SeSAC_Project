@@ -53,6 +53,10 @@
 		04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */; };
 		04EE3C3D279E961C00A9136D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C3C279E961B00A9136D /* ShopViewController.swift */; };
 		04EE3C3F279E962400A9136D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C3E279E962400A9136D /* FriendsViewController.swift */; };
+		04EE3C44279EF6A300A9136D /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */; };
+		04EE3C46279EFB0F00A9136D /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */; };
+		04EE3C48279EFC4400A9136D /* MyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */; };
+		04EE3C4A279FC6F100A9136D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +103,10 @@
 		04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		04EE3C3C279E961B00A9136D /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		04EE3C3E279E962400A9136D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewCell.swift; sourceTree = "<group>"; };
+		04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				04EE3BF627986D7100A9136D /* AuthViewModel.swift */,
+				04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */,
 			);
 			name = Viewmodel;
 			sourceTree = "<group>";
@@ -212,6 +221,7 @@
 				04EE3C192799933400A9136D /* MyUserInfo.swift */,
 				04EE3C26279C2E6C00A9136D /* SignUpForm.swift */,
 				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
+				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */,
+				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
+				04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -372,6 +384,7 @@
 				04EE3C3D279E961C00A9136D /* ShopViewController.swift in Sources */,
 				04EE3C1C2799B7F900A9136D /* AuthEmailViewController.swift in Sources */,
 				04EE3C3F279E962400A9136D /* FriendsViewController.swift in Sources */,
+				04EE3C44279EF6A300A9136D /* UserDefaultKeys.swift in Sources */,
 				04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
 				04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */,
@@ -386,9 +399,12 @@
 				04A81FCC27968FCE00B658CD /* AuthCheckViewController.swift in Sources */,
 				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,
+				04EE3C4A279FC6F100A9136D /* ProfileViewModel.swift in Sources */,
 				04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */,
+				04EE3C46279EFB0F00A9136D /* ProfileTableViewCell.swift in Sources */,
 				04EE3C03279932DA00A9136D /* EndPoint.swift in Sources */,
 				04A81FD827969B8B00B658CD /* MainTextField.swift in Sources */,
+				04EE3C48279EFC4400A9136D /* MyProfileTableViewCell.swift in Sources */,
 				04EE3BF2279843B400A9136D /* String+Extension.swift in Sources */,
 				04EE3C2B279D29A000A9136D /* MainSeperator.swift in Sources */,
 				04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */,

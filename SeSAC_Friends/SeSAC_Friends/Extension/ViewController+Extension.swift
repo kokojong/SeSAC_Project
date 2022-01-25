@@ -20,6 +20,7 @@ extension UIViewController {
             path in
             if path.status == .satisfied {
                 DispatchQueue.main.async {
+//                    self.view.makeToast(path.usesInterfaceType(<#T##type: NWInterface.InterfaceType##NWInterface.InterfaceType#>))
                     return
                 }
             } else {

@@ -51,7 +51,9 @@ class OnboardingView: UIView {
         imageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(8)
             make.centerY.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(imageView.snp.width).priority(.high)
+//            make.top.equalTo(self.safeAreaLayoutGuide)
+//            make.bottom.equalToSuperview()
+            make.height.equalTo(imageView.snp.width)
             
         }
         

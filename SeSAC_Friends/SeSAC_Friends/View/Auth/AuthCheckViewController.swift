@@ -126,7 +126,7 @@ class AuthCheckViewController: UIViewController {
         
                         if let idToken = idToken {
                             print("idToken 갱신",idToken)
-                            UserDefaults.standard.set(idToken, forKey: "idToken")
+                            UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
                         }
                 
                     }
@@ -156,7 +156,6 @@ class AuthCheckViewController: UIViewController {
                     return
                 }
                 
-                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                 self.viewModel.verificationID = verificationID!
                 self.limitTime = 60
                 

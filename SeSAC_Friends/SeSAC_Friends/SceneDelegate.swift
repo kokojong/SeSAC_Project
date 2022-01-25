@@ -29,18 +29,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             if let idToken = idToken {
                 print("getIDToken",idToken)
-                UserDefaults.standard.set(idToken, forKey: "idToken")
+                UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
             }
     
         }
         
         
-        getUserInfo(idToken: UserDefaults.standard.string(forKey: "idToken")!) { myUserInfo, statuscode, error in
+        getUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { myUserInfo, statuscode, error in
             print("SceneDelegate",statuscode)
             if let statuscode = statuscode {
                 if statuscode == 200 {
-                    let nav = UINavigationController(rootViewController: TabBarViewController())
-                    self.window?.rootViewController = nav
+//                    let nav = UINavigationController(rootViewController: )
+                    self.window?.rootViewController = TabBarViewController()
                     self.window?.makeKeyAndVisible()
                     UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                 } else {

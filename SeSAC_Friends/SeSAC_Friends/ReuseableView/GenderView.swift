@@ -16,6 +16,8 @@ public enum CSGenderViewType {
 class GenderView : UIView {
     
     let genderImageview = UIImageView()
+    
+    let genderLabel = UILabel()
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +26,7 @@ class GenderView : UIView {
         layer.borderWidth = 1
         layer.borderColor = UIColor.gray3?.cgColor
         addGenderImageview()
+        addGenderLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -33,12 +36,14 @@ class GenderView : UIView {
     init() {
         super.init(frame: .zero)
         addGenderImageview()
+        addGenderLabel()
     }
     
     convenience init(type: CSGenderViewType) {
         self.init()
         
         addGenderImageview()
+        addGenderLabel()
         
         self.layer.cornerRadius = 8
         
@@ -54,11 +59,25 @@ class GenderView : UIView {
         }
     }
     
+    func addGenderLabel() {
+        self.addSubview(genderLabel)
+        genderLabel.textAlignment = .center
+        genderLabel.font = .Title2_R16
+        genderLabel.textColor = .black
+        genderLabel.snp.makeConstraints { make in
+            make.top.equalTo(genderImageview.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(14)
+        }
+        
+    }
+    
     func addGenderImageview() {
         self.addSubview(genderImageview)
         genderImageview.contentMode = .scaleAspectFit
         genderImageview.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.top.equalToSuperview().inset(14)
+            make.centerX.equalToSuperview()
 //            make.top.leading.equalToSuperview().inset(12)
             make.size.equalTo(64)
         }
