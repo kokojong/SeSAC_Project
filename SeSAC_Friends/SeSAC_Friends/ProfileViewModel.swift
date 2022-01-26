@@ -19,7 +19,7 @@ class ProfileViewModel {
     
 }
 
-/Users/mac/Desktop/SeSAC_Project/SeSAC_Friends/SeSAC_Friends/View/Profile
+
 
 extension ProfileViewModel {
     var numberOfRowsInSection: Int {

@@ -57,6 +57,12 @@
 		04EE3C46279EFB0F00A9136D /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */; };
 		04EE3C48279EFC4400A9136D /* MyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */; };
 		04EE3C4A279FC6F100A9136D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */; };
+		04EE3C4C27A10A0100A9136D /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C4B27A10A0100A9136D /* ProfileDetailViewController.swift */; };
+		04EE3C4E27A10EA300A9136D /* ProfileBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C4D27A10EA300A9136D /* ProfileBackgroundView.swift */; };
+		04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */; };
+		04EE3C5427A12E9500A9136D /* OpenedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */; };
+		04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */; };
+		04EE3C5927A18BF100A9136D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3C5827A18BF100A9136D /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +113,11 @@
 		04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		04EE3C4B27A10A0100A9136D /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		04EE3C4D27A10EA300A9136D /* ProfileBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBackgroundView.swift; sourceTree = "<group>"; };
+		04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedTableViewCell.swift; sourceTree = "<group>"; };
+		04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedTableViewCell.swift; sourceTree = "<group>"; };
+		04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +128,7 @@
 				04EE3C1827994FB400A9136D /* FirebaseMessaging in Frameworks */,
 				04A81FD42796918D00B658CD /* SnapKit in Frameworks */,
 				04EE3C1427994FB400A9136D /* FirebaseAnalytics in Frameworks */,
+				04EE3C5927A18BF100A9136D /* Then in Frameworks */,
 				04EE3C012799323500A9136D /* Alamofire in Frameworks */,
 				04EE3C1627994FB400A9136D /* FirebaseAuth in Frameworks */,
 				04EE3BF02798430400A9136D /* Toast in Frameworks */,
@@ -269,8 +281,13 @@
 			isa = PBXGroup;
 			children = (
 				04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */,
+				04EE3C4B27A10A0100A9136D /* ProfileDetailViewController.swift */,
 				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
 				04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */,
+				04EE3C4D27A10EA300A9136D /* ProfileBackgroundView.swift */,
+				04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */,
+				04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */,
+				04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -314,6 +331,7 @@
 				04EE3C1327994FB400A9136D /* FirebaseAnalytics */,
 				04EE3C1527994FB400A9136D /* FirebaseAuth */,
 				04EE3C1727994FB400A9136D /* FirebaseMessaging */,
+				04EE3C5827A18BF100A9136D /* Then */,
 			);
 			productName = SeSAC_Friends;
 			productReference = 04A81FB0279681DD00B658CD /* SeSAC_Friends.app */;
@@ -348,6 +366,7 @@
 				04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 04A81FB1279681DD00B658CD /* Products */;
 			projectDirPath = "";
@@ -390,8 +409,11 @@
 				04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */,
 				04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */,
 				04A81FC82796828700B658CD /* Color+Extension.swift in Sources */,
+				04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */,
+				04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
+				04EE3C5427A12E9500A9136D /* OpenedTableViewCell.swift in Sources */,
 				04EE3BF727986D7100A9136D /* AuthViewModel.swift in Sources */,
 				04EE3BFE279930BD00A9136D /* APISevice.swift in Sources */,
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
@@ -400,6 +422,7 @@
 				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,
 				04EE3C4A279FC6F100A9136D /* ProfileViewModel.swift in Sources */,
+				04EE3C4C27A10A0100A9136D /* ProfileDetailViewController.swift in Sources */,
 				04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */,
 				04EE3C46279EFB0F00A9136D /* ProfileTableViewCell.swift in Sources */,
 				04EE3C03279932DA00A9136D /* EndPoint.swift in Sources */,
@@ -412,6 +435,7 @@
 				04A81FE52797D7C200B658CD /* AuthNicknameViewController.swift in Sources */,
 				04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */,
 				04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */,
+				04EE3C4E27A10EA300A9136D /* ProfileBackgroundView.swift in Sources */,
 				04EE3C31279D82F600A9136D /* ViewController+Extension.swift in Sources */,
 				04A81FD62796965D00B658CD /* MainLabel.swift in Sources */,
 				04EE3C08279946FC00A9136D /* AuthResponse.swift in Sources */,
@@ -662,6 +686,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -694,6 +726,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		04EE3C5827A18BF100A9136D /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

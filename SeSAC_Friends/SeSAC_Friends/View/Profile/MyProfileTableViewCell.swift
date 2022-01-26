@@ -29,7 +29,7 @@ class MyProfileTableViewCell: UITableViewCell {
         usernameLabel.textColor = .black
         usernameLabel.font = .Title1_M16
         
-        moreButton.setImage(UIImage(named: "more_arrow"), for: .normal)
+        moreButton.setImage(UIImage(named: "more_arrow_right"), for: .normal)
         
         setViews()
         setConstraints()
