@@ -30,30 +30,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let idToken = idToken {
                 print("getIDToken",idToken)
                 UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
+                
+                DispatchQueue.main.async {
+                    self.getUserInfo(idToken: idToken) { myUserInfo, statuscode, error in
+                        print("SceneDelegate",statuscode)
+                        if let statuscode = statuscode {
+                            if statuscode == 200 {
+                                self.window?.rootViewController = TabBarViewController()
+                                self.window?.makeKeyAndVisible()
+                                UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                            } else {
+                                self.window?.rootViewController = OnboardingViewController()
+                                self.window?.makeKeyAndVisible()
+                                UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                            }
+                        }
+                    }
+                }
+                
             }
     
         }
         
         
-        getUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { myUserInfo, statuscode, error in
-            print("SceneDelegate",statuscode)
-            if let statuscode = statuscode {
-                if statuscode == 200 {
-//                    let nav = UINavigationController(rootViewController: )
-                    self.window?.rootViewController = TabBarViewController()
-                    self.window?.makeKeyAndVisible()
-                    UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                } else {
-//                    let nav = UINavigationController(rootViewController: AuthRequestViewController())
-//                    self.window?.rootViewController = nav
-//                    self.window?.makeKeyAndVisible()
-                    
-                    self.window?.rootViewController = OnboardingViewController()
-                    self.window?.makeKeyAndVisible()
-                    UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                }
-            }
-        }
+        
         
         
     }

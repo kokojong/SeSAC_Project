@@ -15,18 +15,22 @@ class OpenedTableViewCell: UITableViewCell {
     
     static let identifier = "OpenedTableViewCell"
     
+    let stackview = UIStackView()
+    
     let nicknameLabel = UILabel()
     
     let moreButton = UIButton()
     
     let sesacTitleLabel = UILabel()
     
-    let spacing: CGFloat = 8
-    let inset: CGFloat = 16
-//    let totalWidth = UIScreen.main.bounds.width - 4*inset - spacing
+    let reviewLabel = UILabel()
+    
+    let myReviewLabel = UILabel()
     
     //UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 5*16, height: 300)
-    let sesacTitleCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 5*16, height: 300), collectionViewLayout: UICollectionViewFlowLayout()).then {
+//    let sesacTitleCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 5*16, height: 200), collectionViewLayout: UICollectionViewFlowLayout()).then{
+    
+    let sesacTitleCollectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
         
         $0.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
         
@@ -65,8 +69,13 @@ class OpenedTableViewCell: UITableViewCell {
     func setViews() {
         addSubview(nicknameLabel)
         addSubview(moreButton)
-        addSubview(sesacTitleLabel)
-        addSubview(sesacTitleCollectionView)
+//        addSubview(sesacTitleLabel)
+//        addSubview(sesacTitleCollectionView)
+        addSubview(reviewLabel)
+        addSubview(myReviewLabel)
+        addSubview(stackview)
+        stackview.addArrangedSubview(sesacTitleLabel)
+        stackview.addArrangedSubview(sesacTitleCollectionView)
     }
     
     func setConstraints() {
@@ -82,15 +91,36 @@ class OpenedTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16)
         }
         
-        sesacTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(nicknameLabel.snp.bottom).inset(-24)
+        stackview.snp.makeConstraints { make in
+            make.top.equalTo(nicknameLabel.snp.bottom).inset(-16)
             make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(150)
         }
         
-        sesacTitleCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(sesacTitleLabel.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+        
+//        sesacTitleLabel.snp.makeConstraints { make in
+//            make.top.equalTo(nicknameLabel.snp.bottom).inset(-24)
+//            make.leading.trailing.equalToSuperview().inset(16)
+//        }
+//
+//        sesacTitleCollectionView.snp.makeConstraints { make in
+//            make.top.equalTo(sesacTitleLabel.snp.bottom)
+//            make.leading.trailing.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//        }
+        
+        reviewLabel.snp.makeConstraints { make in
+//            make.top.equalTo(sesacTitleCollectionView.snp.bottom).offset(8)
+            make.top.equalTo(stackview.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(16)
+            
+        }
+        
+        myReviewLabel.snp.makeConstraints { make in
+            make.top.equalTo(reviewLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(16)
+            
         }
     }
     
@@ -109,6 +139,18 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleLabel.backgroundColor = .green
         
         sesacTitleCollectionView.backgroundColor = .blue
+        sesacTitleCollectionView.isScrollEnabled = false
+        
+        reviewLabel.text = "새싹 리뷰"
+        reviewLabel.font = .Title6_R12
+        
+        myReviewLabel.text = "첫 리뷰를 기다리는 중이에요"
+        myReviewLabel.font = .Body3_R14
+        
+        stackview.axis = .vertical
+        stackview.distribution = .fillProportionally
+        stackview.backgroundColor = .brown
+        
         
 //        sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
         
@@ -144,9 +186,25 @@ extension OpenedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-       
-        return CGSize(width: 200, height: 32)
+
+        let spacing: CGFloat = 8
+        let inset: CGFloat = 16
+        let totalWidth = UIScreen.main.bounds.width - 4*inset - spacing
+
+        print(#function)
+        return CGSize(width: totalWidth/2, height: 32)
     }
     
+}
+
+class DynamicHeightCollectionView: UICollectionView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if bounds.size != intrinsicContentSize {
+            self.invalidateIntrinsicContentSize()
+        }
+    }
+    override var intrinsicContentSize: CGSize {
+        return collectionViewLayout.collectionViewContentSize
+    }
 }

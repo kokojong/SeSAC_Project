@@ -20,6 +20,13 @@ class ProfileDetailViewController: UIViewController {
     
     var isOpen = false
     
+    let bottomView = ProfileDetailBottomView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        toggleTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "정보 관리"
@@ -38,6 +45,8 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.estimatedRowHeight = 310
         toggleTableView.isUserInteractionEnabled = true
         
+        toggleTableView.reloadData()
+        
         
         
         
@@ -47,6 +56,7 @@ class ProfileDetailViewController: UIViewController {
     func addViews() {
         view.addSubview(backgroundView)
         view.addSubview(toggleTableView)
+        view.addSubview(bottomView)
     }
     
     func addConstraints() {
@@ -59,7 +69,13 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.snp.makeConstraints { make in
             make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview()
+//            make.height.equalTo(200)
+            make.bottom.equalTo(bottomView.snp.top)
+        }
+        
+        bottomView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
     }
@@ -67,6 +83,9 @@ class ProfileDetailViewController: UIViewController {
     func configViews() {
         backgroundView.backgroundColor = .yellow
         toggleTableView.backgroundColor = .red
+        toggleTableView.isScrollEnabled = false
+        
+        bottomView.backgroundColor = .yellow
         
     }
     
@@ -95,6 +114,7 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
 //            cell.sesacTitleCollectionView.delegate = self
 //            cell.sesacTitleCollectionView.dataSource = self
 //            cell.sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
+            
             return cell
             
             
@@ -113,14 +133,15 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if isOpen {
-//            return UITableView.automaticDimension
-            return 150
+            return UITableView.automaticDimension
+//            return 310
         } else {
             return 60
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        toggleTableView.reloadData()
         isOpen.toggle()
         toggleTableView.reloadData()
     }

@@ -43,6 +43,9 @@ class MainButton: UIButton {
 
         switch type {
         case .inactiveButton:
+            self.clipsToBounds = true
+            self.layer.borderColor = UIColor.gray4?.cgColor
+            self.layer.borderWidth = 1
             self.backgroundColor = .white
             self.tintColor = .black
             

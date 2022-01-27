@@ -63,6 +63,7 @@
 		04EE3C5427A12E9500A9136D /* OpenedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */; };
 		04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */; };
 		04EE3C5927A18BF100A9136D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3C5827A18BF100A9136D /* Then */; };
+		04EE3C5B27A2844800A9136D /* ProfileDetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C5A27A2844800A9136D /* ProfileDetailBottomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedTableViewCell.swift; sourceTree = "<group>"; };
 		04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedTableViewCell.swift; sourceTree = "<group>"; };
 		04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		04EE3C5A27A2844800A9136D /* ProfileDetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailBottomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,7 @@
 				04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */,
 				04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */,
 				04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */,
+				04EE3C5A27A2844800A9136D /* ProfileDetailBottomView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				04EE3BFE279930BD00A9136D /* APISevice.swift in Sources */,
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
 				04A81FCA27968FBD00B658CD /* AuthRequestViewController.swift in Sources */,
+				04EE3C5B27A2844800A9136D /* ProfileDetailBottomView.swift in Sources */,
 				04A81FCC27968FCE00B658CD /* AuthCheckViewController.swift in Sources */,
 				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,
