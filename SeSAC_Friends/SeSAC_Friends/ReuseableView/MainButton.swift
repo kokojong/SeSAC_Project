@@ -37,7 +37,6 @@ class MainButton: UIButton {
     convenience init(type: CSButtonType) {
         self.init()
         
-        
         self.layer.cornerRadius = 8
         self.titleLabel?.font = .Body3_R14
 
@@ -47,28 +46,27 @@ class MainButton: UIButton {
             self.layer.borderColor = UIColor.gray4?.cgColor
             self.layer.borderWidth = 1
             self.backgroundColor = .white
-            self.tintColor = .black
-            
+            self.setTitleColor(.black, for: .normal)
             
         case .fill:
             self.backgroundColor = .green
-            self.tintColor = .white
+            self.setTitleColor(.white, for: .normal)
         
         
         case .disable:
             self.backgroundColor = .gray6
-            self.tintColor = .gray3
+            self.setTitleColor(.gray3, for: .normal)
             
         case .outline:
             self.clipsToBounds = true
             self.layer.borderColor = UIColor.green?.cgColor
             self.layer.borderWidth = 1
             self.backgroundColor = .white
-            self.tintColor = .green
+            self.setTitleColor(.green, for: .normal)
             
         case .cancel:
             self.backgroundColor = .gray2
-            self.tintColor = .black
+            self.setTitleColor(.black, for: .normal)
         }
         
       

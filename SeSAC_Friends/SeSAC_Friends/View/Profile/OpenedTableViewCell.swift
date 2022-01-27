@@ -36,12 +36,12 @@ class OpenedTableViewCell: UITableViewCell {
         
         let flowLayout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 8
-        let inset: CGFloat = 16
+        let inset: CGFloat = 0
         flowLayout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         let totalWidth = UIScreen.main.bounds.width - 4*inset - spacing
         flowLayout.itemSize = CGSize(width:totalWidth/2, height: 32)
-        flowLayout.minimumLineSpacing = spacing
-        flowLayout.minimumInteritemSpacing = spacing
+        flowLayout.minimumLineSpacing = 8
+        flowLayout.minimumInteritemSpacing = 8
         flowLayout.scrollDirection = .vertical
         
         $0.collectionViewLayout = flowLayout
@@ -94,7 +94,7 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).inset(-16)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(150)
+            make.height.equalTo(160)
         }
         
         
@@ -150,6 +150,7 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.axis = .vertical
         stackview.distribution = .fillProportionally
         stackview.backgroundColor = .brown
+        stackview.spacing = 16
         
         
 //        sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
@@ -191,7 +192,8 @@ extension OpenedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         let inset: CGFloat = 16
         let totalWidth = UIScreen.main.bounds.width - 4*inset - spacing
 
-        print(#function)
+        print(UIScreen.main.bounds.width)
+        print(totalWidth)
         return CGSize(width: totalWidth/2, height: 32)
     }
     

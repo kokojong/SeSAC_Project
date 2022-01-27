@@ -11,6 +11,8 @@ import SnapKit
 class ProfileDetailViewController: UIViewController {
     
     let scrollView = UIScrollView()
+    
+    let contentView = UIView()
 
     let backgroundView = ProfileBackgroundView()
     
@@ -42,7 +44,7 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.register(ClosedTableViewCell.self, forCellReuseIdentifier: ClosedTableViewCell.identifier)
         toggleTableView.register(OpenedTableViewCell.self, forCellReuseIdentifier: OpenedTableViewCell.identifier)
         toggleTableView.rowHeight = UITableView.automaticDimension
-        toggleTableView.estimatedRowHeight = 310
+//        toggleTableView.estimatedRowHeight = 310
         toggleTableView.isUserInteractionEnabled = true
         
         toggleTableView.reloadData()
@@ -54,14 +56,31 @@ class ProfileDetailViewController: UIViewController {
     }
     
     func addViews() {
-        view.addSubview(backgroundView)
-        view.addSubview(toggleTableView)
-        view.addSubview(bottomView)
+//        view.addSubview(backgroundView)
+//        view.addSubview(toggleTableView)
+//        view.addSubview(bottomView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(backgroundView)
+        contentView.addSubview(toggleTableView)
+        contentView.addSubview(bottomView)
     }
     
     func addConstraints() {
+        let safeArea = view.safeAreaLayoutGuide
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(safeArea)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(0)
+            make.width.equalTo(UIScreen.main.bounds.width)
+            make.height.equalTo(UIScreen.main.bounds.height)
+        }
+        
         backgroundView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.top.equalToSuperview().inset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             
         }
@@ -69,14 +88,16 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.snp.makeConstraints { make in
             make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(16)
-//            make.height.equalTo(200)
+//            make.height.equalTo(300)
             make.bottom.equalTo(bottomView.snp.top)
         }
         
         bottomView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
         }
+        
+        
         
     }
     
@@ -86,6 +107,10 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.isScrollEnabled = false
         
         bottomView.backgroundColor = .yellow
+        
+        scrollView.backgroundColor = .blue
+        contentView.backgroundColor = .brown
+
         
     }
     

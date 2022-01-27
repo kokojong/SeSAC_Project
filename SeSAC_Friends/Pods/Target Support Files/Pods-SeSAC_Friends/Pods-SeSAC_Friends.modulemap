@@ -1,0 +1,6 @@
+framework module Pods_SeSAC_Friends {
+  umbrella header "Pods-SeSAC_Friends-umbrella.h"
+
+  export *
+  module * { export * }
+}

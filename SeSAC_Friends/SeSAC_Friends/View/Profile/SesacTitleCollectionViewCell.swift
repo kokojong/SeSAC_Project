@@ -10,7 +10,7 @@ import SnapKit
 
 class SesacTitleCollectionViewCell: UICollectionViewCell {
     
-    let button = MainButton(type: .disable)
+    let button = MainButton(type: .inactiveButton)
     
     static let identifier = "SesacTitleCollectionViewCell"
     

@@ -43,7 +43,7 @@ class ProfileTableViewCell: UITableViewCell {
         iconImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(24)
-            make.size.equalTo(20)
+            make.size.equalTo(24)
         }
         
         titleLabel.snp.makeConstraints { make in
