@@ -44,10 +44,20 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.register(ClosedTableViewCell.self, forCellReuseIdentifier: ClosedTableViewCell.identifier)
         toggleTableView.register(OpenedTableViewCell.self, forCellReuseIdentifier: OpenedTableViewCell.identifier)
         toggleTableView.rowHeight = UITableView.automaticDimension
-//        toggleTableView.estimatedRowHeight = 310
+        toggleTableView.estimatedRowHeight = 310
         toggleTableView.isUserInteractionEnabled = true
+        toggleTableView.isScrollEnabled = false
+
         
         toggleTableView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.toggleTableView.snp.updateConstraints { make in
+//                make.height.equalTo(self.toggleTableView.contentSize.height)
+            }
+            
+            
+        }
         
         
         
@@ -74,9 +84,9 @@ class ProfileDetailViewController: UIViewController {
         }
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
-            make.height.equalTo(UIScreen.main.bounds.height)
+            make.height.greaterThanOrEqualTo(1000)
         }
         
         backgroundView.snp.makeConstraints { make in
@@ -89,6 +99,7 @@ class ProfileDetailViewController: UIViewController {
             make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(16)
 //            make.height.equalTo(300)
+//            make.height.equalTo(58)
             make.bottom.equalTo(bottomView.snp.top)
         }
         
@@ -135,10 +146,8 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             cell.nicknameLabel.text = "으아아ㅏ"
             cell.moreButton.setImage(UIImage(named: "more_arrow_up"), for: .normal)
             cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
-        
-//            cell.sesacTitleCollectionView.delegate = self
-//            cell.sesacTitleCollectionView.dataSource = self
-//            cell.sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
+            
+            cell.layoutIfNeeded()
             
             return cell
             
@@ -146,12 +155,23 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:ClosedTableViewCell.identifier, for: indexPath) as? ClosedTableViewCell else { return UITableViewCell() }
-            
+
             cell.nicknameLabel.text = "코로로로종"
             cell.moreButton.setImage(UIImage(named: "more_arrow_down"), for: .normal)
             cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
+
+            cell.layoutIfNeeded()
         
             return cell
+            
+            
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier:OpenedTableViewCell.identifier, for: indexPath) as? OpenedTableViewCell else { return UITableViewCell() }
+//
+//            cell.nicknameLabel.text = "으아아ㅏ"
+//            cell.moreButton.setImage(UIImage(named: "more_arrow_up"), for: .normal)
+//            cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
+//
+//            return cell
         }
         
     }
@@ -166,39 +186,23 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        toggleTableView.reloadData()
         isOpen.toggle()
+//        if isOpen {
+//            toggleTableView.snp.updateConstraints { make in
+//                make.height.equalTo(300)
+//            }
+//
+//        } else {
+//            toggleTableView.snp.updateConstraints { make in
+//                make.height.equalTo(58)
+//            }
+//
+//        }
+        
         toggleTableView.reloadData()
     }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 310
-//    }
-    
-    
     
     
 }
 
-//extension ProfileDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 6
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SesacTitleCollectionViewCell.identifier, for: indexPath) as? SesacTitleCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//        
-//        cell.button.setTitle("테스또", for: .normal)
-//        
-//        return cell
-//        
-//    }
-//    
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 200, height: 32)
-//    }
-//
-//}
+

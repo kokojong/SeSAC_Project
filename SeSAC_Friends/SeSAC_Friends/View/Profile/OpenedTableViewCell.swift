@@ -10,21 +10,18 @@ import SnapKit
 import Then
 
 
-
 class OpenedTableViewCell: UITableViewCell {
     
     static let identifier = "OpenedTableViewCell"
     
-    let stackview = UIStackView()
-    
     let nicknameLabel = UILabel()
-    
     let moreButton = UIButton()
     
+    let stackview = UIStackView()
+    let titleContainerView = UIView()
     let sesacTitleLabel = UILabel()
     
     let reviewLabel = UILabel()
-    
     let myReviewLabel = UILabel()
     
     //UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 5*16, height: 300)
@@ -58,7 +55,7 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
         print(sesacTitleCollectionView.frame.height)
         
-        
+        titleContainerView.isUserInteractionEnabled = false
         
     }
     
@@ -69,13 +66,13 @@ class OpenedTableViewCell: UITableViewCell {
     func setViews() {
         addSubview(nicknameLabel)
         addSubview(moreButton)
-//        addSubview(sesacTitleLabel)
-//        addSubview(sesacTitleCollectionView)
         addSubview(reviewLabel)
         addSubview(myReviewLabel)
         addSubview(stackview)
-        stackview.addArrangedSubview(sesacTitleLabel)
-        stackview.addArrangedSubview(sesacTitleCollectionView)
+        stackview.addArrangedSubview(titleContainerView)
+        titleContainerView.addSubview(sesacTitleLabel)
+        titleContainerView.addSubview(sesacTitleCollectionView)
+        
     }
     
     func setConstraints() {
@@ -94,23 +91,22 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).inset(-16)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(160)
+//            make.height.equalTo(160)
         }
         
         
-//        sesacTitleLabel.snp.makeConstraints { make in
-//            make.top.equalTo(nicknameLabel.snp.bottom).inset(-24)
-//            make.leading.trailing.equalToSuperview().inset(16)
-//        }
-//
-//        sesacTitleCollectionView.snp.makeConstraints { make in
-//            make.top.equalTo(sesacTitleLabel.snp.bottom)
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalToSuperview()
-//        }
+        sesacTitleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+        }
+
+        sesacTitleCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(sesacTitleLabel.snp.bottom).inset(-16)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
         
         reviewLabel.snp.makeConstraints { make in
-//            make.top.equalTo(sesacTitleCollectionView.snp.bottom).offset(8)
             make.top.equalTo(stackview.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             
@@ -138,7 +134,7 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleLabel.text = "새싹 타이틀"
         sesacTitleLabel.backgroundColor = .green
         
-        sesacTitleCollectionView.backgroundColor = .blue
+//        sesacTitleCollectionView.backgroundColor = .blue
         sesacTitleCollectionView.isScrollEnabled = false
         
         reviewLabel.text = "새싹 리뷰"
@@ -150,7 +146,9 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.axis = .vertical
         stackview.distribution = .fillProportionally
         stackview.backgroundColor = .brown
-        stackview.spacing = 16
+//        stackview.spacing = 16
+        
+        titleContainerView.backgroundColor = .magenta
         
         
 //        sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
@@ -166,6 +164,7 @@ class OpenedTableViewCell: UITableViewCell {
 //        flowLayout.scrollDirection = .vertical
 //
 //        sesacTitleCollectionView.collectionViewLayout = flowLayout
+        
         
         
     }
