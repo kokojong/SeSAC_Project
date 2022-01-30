@@ -133,7 +133,7 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleLabel.font = .Title6_R12
         sesacTitleLabel.textColor = .black
         sesacTitleLabel.text = "새싹 타이틀"
-        sesacTitleLabel.backgroundColor = .green
+//        sesacTitleLabel.backgroundColor = .green
         
 //        sesacTitleCollectionView.backgroundColor = .blue
         sesacTitleCollectionView.isScrollEnabled = false
@@ -145,11 +145,10 @@ class OpenedTableViewCell: UITableViewCell {
         myReviewLabel.font = .Body3_R14
         
         stackview.axis = .vertical
-        stackview.distribution = .fillProportionally
-        stackview.backgroundColor = .brown
-//        stackview.spacing = 16
+        stackview.distribution = .fill
+ 
         
-        titleContainerView.backgroundColor = .magenta
+
         
         
 //        sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
@@ -207,7 +206,7 @@ class DynamicHeightCollectionView: UICollectionView {
         if bounds.size != intrinsicContentSize {
             self.invalidateIntrinsicContentSize()
         }
-        super.layoutSubviews()
+        
         
     }
     override var intrinsicContentSize: CGSize {

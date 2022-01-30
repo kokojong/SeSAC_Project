@@ -51,13 +51,13 @@ class ProfileDetailViewController: UIViewController {
         
         toggleTableView.reloadData()
         
-        DispatchQueue.main.async {
-            self.toggleTableView.snp.updateConstraints { make in
+//        DispatchQueue.main.async {
+//            self.toggleTableView.snp.updateConstraints { make in
 //                make.height.equalTo(self.toggleTableView.contentSize.height)
-            }
-            
-            
-        }
+//            }
+//
+//
+//        }
       
     }
     
@@ -86,7 +86,7 @@ class ProfileDetailViewController: UIViewController {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
-            make.height.greaterThanOrEqualTo(1000)
+//            make.height.greaterThanOrEqualTo(1000)
 //            make.height.lessThanOrEqualTo(UIScreen.main.bounds.height)
         }
         
@@ -100,8 +100,8 @@ class ProfileDetailViewController: UIViewController {
             make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(16)
 //            make.height.equalTo(300)
-//            make.height.equalTo(58)
-            make.height.greaterThanOrEqualTo(58)
+            make.height.equalTo(58)
+//            make.height.greaterThanOrEqualTo(58)
             make.bottom.equalTo(bottomView.snp.top)
         }
         
@@ -151,6 +151,14 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             
             cell.layoutIfNeeded()
             
+            DispatchQueue.main.async {
+                self.toggleTableView.snp.updateConstraints { make in
+                    make.height.equalTo(self.toggleTableView.contentSize.height)
+                }
+                
+                
+            }
+            
             return cell
             
             
@@ -164,6 +172,15 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
             cell.layoutIfNeeded()
         
+            
+            DispatchQueue.main.async {
+                self.toggleTableView.snp.updateConstraints { make in
+                    make.height.equalTo(self.toggleTableView.contentSize.height)
+                }
+                
+                
+            }
+            
             return cell
             
             
@@ -203,6 +220,7 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
         
         toggleTableView.reloadData()
     }
+    
     
     
 }
