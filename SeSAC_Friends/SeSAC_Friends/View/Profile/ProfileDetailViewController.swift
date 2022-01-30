@@ -58,17 +58,17 @@ class ProfileDetailViewController: UIViewController {
             
             
         }
-        
-        
-        
-        
       
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+      
+        
+    }
+    
     func addViews() {
-//        view.addSubview(backgroundView)
-//        view.addSubview(toggleTableView)
-//        view.addSubview(bottomView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(backgroundView)
@@ -87,6 +87,7 @@ class ProfileDetailViewController: UIViewController {
             make.edges.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
             make.height.greaterThanOrEqualTo(1000)
+//            make.height.lessThanOrEqualTo(UIScreen.main.bounds.height)
         }
         
         backgroundView.snp.makeConstraints { make in
@@ -100,6 +101,7 @@ class ProfileDetailViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
 //            make.height.equalTo(300)
 //            make.height.equalTo(58)
+            make.height.greaterThanOrEqualTo(58)
             make.bottom.equalTo(bottomView.snp.top)
         }
         

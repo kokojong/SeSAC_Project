@@ -55,6 +55,7 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
         print(sesacTitleCollectionView.frame.height)
         
+        
         titleContainerView.isUserInteractionEnabled = false
         
     }
@@ -91,7 +92,7 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).inset(-16)
             make.leading.trailing.equalToSuperview().inset(16)
-//            make.height.equalTo(160)
+            make.height.equalTo(160)
         }
         
         
@@ -196,6 +197,8 @@ extension OpenedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         return CGSize(width: totalWidth/2, height: 32)
     }
     
+    
+    
 }
 
 class DynamicHeightCollectionView: UICollectionView {
@@ -204,6 +207,8 @@ class DynamicHeightCollectionView: UICollectionView {
         if bounds.size != intrinsicContentSize {
             self.invalidateIntrinsicContentSize()
         }
+        super.layoutSubviews()
+        
     }
     override var intrinsicContentSize: CGSize {
         return collectionViewLayout.collectionViewContentSize

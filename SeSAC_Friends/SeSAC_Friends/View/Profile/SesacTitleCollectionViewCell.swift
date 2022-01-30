@@ -21,8 +21,26 @@ class SesacTitleCollectionViewCell: UICollectionViewCell {
             make.edges.equalToSuperview()
         }
         
+        
     }
     
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        super.preferredLayoutAttributesFitting(layoutAttributes)
+        
+        layoutIfNeeded()
+        let size = systemLayoutSizeFitting(layoutAttributes.size)
+        var frame = layoutAttributes.frame
+        frame.size.width = ceil(size.width)
+        frame.size.height = ceil(size.height)
+        layoutAttributes.frame = frame
+        
+        //isSizeCalculated = true
+        return layoutAttributes
+
+        
+    }
+    
+   
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
