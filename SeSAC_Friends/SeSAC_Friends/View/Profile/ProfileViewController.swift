@@ -6,12 +6,23 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileViewController: UIViewController {
 
     var mainTableView = UITableView()
     
     var viewModel = ProfileViewModel()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.viewModel.getUserInfo { userInfo, status, error in
+                
+            }
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +33,21 @@ class ProfileViewController: UIViewController {
         mainTableView.register(MyProfileTableViewCell.self, forCellReuseIdentifier: MyProfileTableViewCell.identifier)
         mainTableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         mainTableView.rowHeight = UITableView.automaticDimension
-        mainTableView.backgroundColor = .green
-        
-        // Do any additional setup after loading the view.
+        mainTableView.backgroundColor = .magenta
+       
         view.backgroundColor = .white
         view.addSubview(mainTableView)
-        mainTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        
+        viewModel.userInfo.bind {
+            self.title = $0.nick
+            self.mainTableView.reloadData()
         }
+        
+        mainTableView.snp.makeConstraints { make in
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
+        
     }
     
 
@@ -39,14 +57,19 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection
+//        return viewModel.numberOfRowsInSection
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyProfileTableViewCell.identifier, for: indexPath) as? MyProfileTableViewCell else { return UITableViewCell() }
             
-            cell.usernameLabel.text = viewModel.userInfo.value.nick
+            viewModel.userInfo.bind { userInfo in
+                cell.usernameLabel.text = userInfo.nick
+            }
+            cell.backgroundColor = .white
+//            tableView.reloadData()
         
             return cell
             
@@ -63,7 +86,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            self.navigationController?.pushViewController(ProfileDetailViewController(), animated: true)
+            let vc = ProfileDetailViewController()
+            vc.viewModel = self.viewModel
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

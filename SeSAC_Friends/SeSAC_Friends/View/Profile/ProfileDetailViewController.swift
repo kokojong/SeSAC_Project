@@ -7,22 +7,20 @@
 
 import UIKit
 import SnapKit
+import RangeSeekSlider
 
 class ProfileDetailViewController: UIViewController {
     
     let scrollView = UIScrollView()
-    
     let contentView = UIView()
-
     let backgroundView = ProfileBackgroundView()
-    
     let toggleTableView = UITableView()
-    
     let settingView = UIView()
-    
+    let bottomView = ProfileDetailBottomView()
+
     var isOpen = false
     
-    let bottomView = ProfileDetailBottomView()
+    var viewModel: ProfileViewModel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,14 +49,25 @@ class ProfileDetailViewController: UIViewController {
         
         toggleTableView.reloadData()
         
-//        DispatchQueue.main.async {
-//            self.toggleTableView.snp.updateConstraints { make in
-//                make.height.equalTo(self.toggleTableView.contentSize.height)
-//            }
-//
-//
-//        }
-      
+        bottomView.ageSlider.delegate = self
+        
+        viewModel.userInfo.bind { userInfo in
+            
+            switch userInfo.gender {
+            case 0 :
+                self.bottomView.manButton.style = .fill
+            case 1:
+                self.bottomView.womanButton.style = .fill
+            default:
+                self.bottomView.manButton.style = .inactiveButton
+                self.bottomView.womanButton.style = .inactiveButton
+                
+            }
+            self.bottomView.habitTextField.text = userInfo.hobby
+            self.bottomView.habitTextField.placeholder = "취미를 입력해 주세요"
+            self.bottomView.allowSearchSwitch.isOn = userInfo.searchable == 0 ? false : true
+            self.bottomView.ageRangeLabel.text = "\(userInfo.ageMin) - \(userInfo.ageMax)"
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -86,8 +95,6 @@ class ProfileDetailViewController: UIViewController {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
-//            make.height.greaterThanOrEqualTo(1000)
-//            make.height.lessThanOrEqualTo(UIScreen.main.bounds.height)
         }
         
         backgroundView.snp.makeConstraints { make in
@@ -99,9 +106,7 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.snp.makeConstraints { make in
             make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(16)
-//            make.height.equalTo(300)
             make.height.equalTo(58)
-//            make.height.greaterThanOrEqualTo(58)
             make.bottom.equalTo(bottomView.snp.top)
         }
         
@@ -144,10 +149,13 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isOpen {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:OpenedTableViewCell.identifier, for: indexPath) as? OpenedTableViewCell else { return UITableViewCell() }
-            
-            cell.nicknameLabel.text = "으아아ㅏ"
+        
             cell.moreButton.setImage(UIImage(named: "more_arrow_up"), for: .normal)
             cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
+            
+            viewModel.userInfo.bind { userInfo in
+                cell.nicknameLabel.text = userInfo.nick
+            }
             
             cell.layoutIfNeeded()
             
@@ -166,7 +174,10 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:ClosedTableViewCell.identifier, for: indexPath) as? ClosedTableViewCell else { return UITableViewCell() }
 
-            cell.nicknameLabel.text = "코로로로종"
+            viewModel.userInfo.bind { userInfo in
+                cell.nicknameLabel.text = userInfo.nick
+            }
+            
             cell.moreButton.setImage(UIImage(named: "more_arrow_down"), for: .normal)
             cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
 
@@ -178,19 +189,10 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
                     make.height.equalTo(self.toggleTableView.contentSize.height)
                 }
                 
-                
             }
             
             return cell
             
-            
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier:OpenedTableViewCell.identifier, for: indexPath) as? OpenedTableViewCell else { return UITableViewCell() }
-//
-//            cell.nicknameLabel.text = "으아아ㅏ"
-//            cell.moreButton.setImage(UIImage(named: "more_arrow_up"), for: .normal)
-//            cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
-//
-//            return cell
         }
         
     }
@@ -226,3 +228,8 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 
+extension ProfileDetailViewController: RangeSeekSliderDelegate {
+    func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
+        viewModel.updateAgeRange(minValue: Int(minValue), maxValue: Int(maxValue))
+    }
+}

@@ -133,9 +133,7 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleLabel.font = .Title6_R12
         sesacTitleLabel.textColor = .black
         sesacTitleLabel.text = "새싹 타이틀"
-//        sesacTitleLabel.backgroundColor = .green
-        
-//        sesacTitleCollectionView.backgroundColor = .blue
+
         sesacTitleCollectionView.isScrollEnabled = false
         
         reviewLabel.text = "새싹 리뷰"
@@ -147,25 +145,6 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.axis = .vertical
         stackview.distribution = .fill
  
-        
-
-        
-        
-//        sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
-        
-//        let flowLayout = UICollectionViewFlowLayout()
-//        let spacing: CGFloat = 8
-//        let inset: CGFloat = 16
-//        flowLayout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-//        let totalWidth = UIScreen.main.bounds.width - 4*inset - spacing
-//        flowLayout.itemSize = CGSize(width:totalWidth/2, height: 32)
-//        flowLayout.minimumLineSpacing = spacing
-//        flowLayout.minimumInteritemSpacing = spacing
-//        flowLayout.scrollDirection = .vertical
-//
-//        sesacTitleCollectionView.collectionViewLayout = flowLayout
-        
-        
         
     }
 }

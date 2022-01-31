@@ -10,7 +10,7 @@ import Foundation
 struct MyUserInfo: Codable {
     let id: String
     let v: Int
-    let uid, phoneNumber, email, socketid: String
+    let uid, phoneNumber, email: String
     let fcMtoken, nick, birth: String
     let gender: Int
     let hobby: String
@@ -24,23 +24,23 @@ struct MyUserInfo: Codable {
     let reportedNum: Int
     let reportedUser: [String]
     let dodgepenalty: Int
-    let dodgepenaltyGetAt: String
+//    let dodgepenaltyGetAt: String
     let dodgeNum: Int
-    let dodgeNumGetAt: String
-    let ageMin, ageMax, searchable: Int
+//    let dodgeNumGetAt: String
+    var ageMin, ageMax, searchable: Int
     let createdAt: String
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case v = "__v"
-        case uid, phoneNumber, email, socketid
+        case uid, phoneNumber, email
         case fcMtoken = "FCMtoken"
         case nick, birth, gender, hobby, comment, reputation, sesac, sesacCollection, background, backgroundCollection, purchaseToken
         case transactionID = "transactionId"
         case reviewedBefore, reportedNum, reportedUser, dodgepenalty
-        case dodgepenaltyGetAt = "dodgepenalty_getAt"
+//        case dodgepenaltyGetAt = "dodgepenalty_getAt"
         case dodgeNum
-        case dodgeNumGetAt = "dodgeNum_getAt"
+//        case dodgeNumGetAt = "dodgeNum_getAt"
         case ageMin, ageMax, searchable, createdAt
     }
 }

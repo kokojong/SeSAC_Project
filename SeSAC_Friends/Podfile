@@ -6,6 +6,6 @@ target 'SeSAC_Friends' do
   use_frameworks!
 
   # Pods for SeSAC_Friends
-pod 'MaterialComponents/Slider'
+pod 'RangeSeekSlider'
 
 end

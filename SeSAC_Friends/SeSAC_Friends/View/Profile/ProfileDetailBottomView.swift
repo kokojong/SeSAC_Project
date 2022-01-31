@@ -7,7 +7,7 @@
 
 import UIKit
 import Then
-import MaterialComponents.MaterialSlider
+import RangeSeekSlider
 
 class ProfileDetailBottomView: UIView {
     
@@ -21,7 +21,7 @@ class ProfileDetailBottomView: UIView {
         $0.setTitle("남자", for: .normal)
     }
     
-    let womanButton = MainButton(type: .fill).then {
+    let womanButton = MainButton(type: .inactiveButton).then {
         $0.setTitle("여자", for: .normal)
     }
     
@@ -60,7 +60,16 @@ class ProfileDetailBottomView: UIView {
         $0.textColor = .green
     }
     
-    let ageSlider = MDCSlider(frame: CGRect(x: 50, y: 50, width: 100, height: 27))
+    let ageSlider = RangeSeekSlider().then {
+        $0.minValue = 18
+        $0.maxValue = 65
+        $0.enableStep = true
+        $0.step = 1
+        $0.handleColor = .green
+        $0.colorBetweenHandles = .green
+        $0.tintColor = .red
+        $0.hideLabels = true
+    }
       
     let withDrawLabel = UILabel().then {
         $0.text = "회원 탈퇴"
@@ -181,11 +190,8 @@ class ProfileDetailBottomView: UIView {
     }
     
     func configViews() {
-        ageSlider.addTarget(self, action: #selector(didChangeSliderValue(senderSlider:)), for: .valueChanged)
+        
         
     }
-    
-    @objc func didChangeSliderValue(senderSlider:MDCSlider) {
-      print("Did change slider value to: %@", senderSlider.value)
-    }
+   
 }
