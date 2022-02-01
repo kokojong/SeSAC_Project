@@ -86,7 +86,6 @@ class AuthCheckViewController: UIViewController {
                 return
             }
             
-            print("쳌쳌 성공")
             
             self.viewModel.getUserInfo { myUserInfo ,statuscode ,error in
                 switch statuscode {
@@ -112,8 +111,6 @@ class AuthCheckViewController: UIViewController {
                         UIView.transition(with: windowScene.windows.first!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                         
                     }
-                    
-                   
                     
                     
                 case 401: // 토큰 만료 -> 갱신

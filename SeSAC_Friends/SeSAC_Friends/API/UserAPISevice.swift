@@ -9,12 +9,12 @@ import Foundation
 import Alamofire
 
 
-class APISevice {
+class UserAPISevice {
     
     static func getMyUserInfo(idToken: String, completion: @escaping (MyUserInfo? , Int?, Error?) -> Void) {
         let headers = ["idtoken": idToken] as HTTPHeaders
 
-        AF.request(EndPoint.getMyUserInfo.url.absoluteString, method: .get, headers: headers).responseDecodable(of: MyUserInfo.self) {  response in
+        AF.request(UserEndPoint.getMyUserInfo.url.absoluteString, method: .get, headers: headers).responseDecodable(of: MyUserInfo.self) {  response in
  
             let statusCode = response.response?.statusCode
             //
@@ -46,10 +46,9 @@ class APISevice {
             "birth" : form.birth,
             "email" : form.email,
             "gender" : form.gender
-            
         ]
         
-        AF.request(EndPoint.postMyUserInfo.url.absoluteString, method: .post, parameters: parameters, headers: headers)
+        AF.request(UserEndPoint.postMyUserInfo.url.absoluteString, method: .post, parameters: parameters, headers: headers)
             .responseString { response in
                 print("responseString", response.response)
                 completion(response.response?.statusCode, nil)
@@ -60,10 +59,28 @@ class APISevice {
         let headers = ["idtoken": idToken,
                        "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
     
-        AF.request(EndPoint.withdrawSignUp.url.absoluteString, method: .post, headers: headers).responseString { response in
+        AF.request(UserEndPoint.withdrawSignUp.url.absoluteString, method: .post, headers: headers).responseString { response in
             
             completion(response.response?.statusCode, nil)
         }
+    }
+    
+    static func updateMypage(idToken: String, form: UpdateMypageForm, completion: @escaping (Int?) -> Void) {
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters : Parameters = [
+            "searchable" : form.searchable,
+            "ageMin" : form.ageMin,
+            "ageMax" : form.ageMax,
+            "gender" : form.gender,
+            "hobby" : form.hobby
+        ]
+        
+        AF.request(UserEndPoint.updateMypage.url.absoluteString, method: .post, parameters: parameters, headers: headers).responseString { response in
+            completion(response.response?.statusCode)
+        }
+        
     }
     
     

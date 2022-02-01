@@ -25,13 +25,16 @@
 		04A81FE52797D7C200B658CD /* AuthNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FE42797D7C200B658CD /* AuthNicknameViewController.swift */; };
 		04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FE62797DA9E00B658CD /* AuthBirthViewController.swift */; };
 		04B6240F2797EB2000C3FE9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B6240E2797EB2000C3FE9B /* GoogleService-Info.plist */; };
+		04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA95F27A9427C00AB6FDD /* CommonMethod.swift */; };
+		04EAA96227A9461E00AB6FDD /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96127A9461E00AB6FDD /* Enums.swift */; };
+		04EAA96627A951FB00AB6FDD /* UpdateMypageForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96527A951FB00AB6FDD /* UpdateMypageForm.swift */; };
 		04EE3BF02798430400A9136D /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3BEF2798430400A9136D /* Toast */; };
 		04EE3BF2279843B400A9136D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BF1279843B400A9136D /* String+Extension.swift */; };
 		04EE3BF727986D7100A9136D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BF627986D7100A9136D /* AuthViewModel.swift */; };
 		04EE3BF927986DD800A9136D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BF827986DD800A9136D /* Observable.swift */; };
-		04EE3BFE279930BD00A9136D /* APISevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BFD279930BD00A9136D /* APISevice.swift */; };
+		04EE3BFE279930BD00A9136D /* UserAPISevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BFD279930BD00A9136D /* UserAPISevice.swift */; };
 		04EE3C012799323500A9136D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3C002799323500A9136D /* Alamofire */; };
-		04EE3C03279932DA00A9136D /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C02279932DA00A9136D /* EndPoint.swift */; };
+		04EE3C03279932DA00A9136D /* UserEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C02279932DA00A9136D /* UserEndPoint.swift */; };
 		04EE3C08279946FC00A9136D /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C07279946FC00A9136D /* AuthResponse.swift */; };
 		04EE3C1427994FB400A9136D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3C1327994FB400A9136D /* FirebaseAnalytics */; };
 		04EE3C1627994FB400A9136D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3C1527994FB400A9136D /* FirebaseAuth */; };
@@ -88,11 +91,14 @@
 		04A81FE62797DA9E00B658CD /* AuthBirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthViewController.swift; sourceTree = "<group>"; };
 		04B6240E2797EB2000C3FE9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04B624152797EF8D00C3FE9B /* SeSAC_Friends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_Friends.entitlements; sourceTree = "<group>"; };
+		04EAA95F27A9427C00AB6FDD /* CommonMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMethod.swift; sourceTree = "<group>"; };
+		04EAA96127A9461E00AB6FDD /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		04EAA96527A951FB00AB6FDD /* UpdateMypageForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMypageForm.swift; sourceTree = "<group>"; };
 		04EE3BF1279843B400A9136D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		04EE3BF627986D7100A9136D /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		04EE3BF827986DD800A9136D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		04EE3BFD279930BD00A9136D /* APISevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISevice.swift; sourceTree = "<group>"; };
-		04EE3C02279932DA00A9136D /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		04EE3BFD279930BD00A9136D /* UserAPISevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPISevice.swift; sourceTree = "<group>"; };
+		04EE3C02279932DA00A9136D /* UserEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndPoint.swift; sourceTree = "<group>"; };
 		04EE3C07279946FC00A9136D /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		04EE3C192799933400A9136D /* MyUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserInfo.swift; sourceTree = "<group>"; };
 		04EE3C1B2799B7F900A9136D /* AuthEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEmailViewController.swift; sourceTree = "<group>"; };
@@ -170,7 +176,9 @@
 				04A81FB3279681DD00B658CD /* AppDelegate.swift */,
 				04A81FB5279681DD00B658CD /* SceneDelegate.swift */,
 				04EE3C2E279D3CBB00A9136D /* Test.storyboard */,
+				04EAA96127A9461E00AB6FDD /* Enums.swift */,
 				04EE3BF827986DD800A9136D /* Observable.swift */,
+				04EAA95F27A9427C00AB6FDD /* CommonMethod.swift */,
 				04EE3C28279C3A2300A9136D /* API */,
 				04EE3C25279C2E4C00A9136D /* Model */,
 				04EE3BFA2798E5F900A9136D /* Viewmodel */,
@@ -241,6 +249,7 @@
 			children = (
 				04EE3C192799933400A9136D /* MyUserInfo.swift */,
 				04EE3C26279C2E6C00A9136D /* SignUpForm.swift */,
+				04EAA96527A951FB00AB6FDD /* UpdateMypageForm.swift */,
 				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
 				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 			);
@@ -250,8 +259,8 @@
 		04EE3C28279C3A2300A9136D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				04EE3BFD279930BD00A9136D /* APISevice.swift */,
-				04EE3C02279932DA00A9136D /* EndPoint.swift */,
+				04EE3BFD279930BD00A9136D /* UserAPISevice.swift */,
+				04EE3C02279932DA00A9136D /* UserEndPoint.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -324,7 +333,6 @@
 				89B276C1DE2975D3A3D4B035 /* Pods-SeSAC_Friends.debug.xcconfig */,
 				53DA10561DCD39FD1639D09B /* Pods-SeSAC_Friends.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -392,11 +400,11 @@
 			);
 			mainGroup = 04A81FA7279681DD00B658CD;
 			packageReferences = (
-				04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit.git" */,
-				04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
-				04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */,
+				04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then.git" */,
+				04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 04A81FB1279681DD00B658CD /* Products */;
 			projectDirPath = "";
@@ -482,12 +490,14 @@
 				04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */,
 				04A81FC82796828700B658CD /* Color+Extension.swift in Sources */,
 				04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */,
+				04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */,
 				04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */,
+				04EAA96627A951FB00AB6FDD /* UpdateMypageForm.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
 				04EE3C5427A12E9500A9136D /* OpenedTableViewCell.swift in Sources */,
 				04EE3BF727986D7100A9136D /* AuthViewModel.swift in Sources */,
-				04EE3BFE279930BD00A9136D /* APISevice.swift in Sources */,
+				04EE3BFE279930BD00A9136D /* UserAPISevice.swift in Sources */,
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
 				04A81FCA27968FBD00B658CD /* AuthRequestViewController.swift in Sources */,
 				04EE3C5B27A2844800A9136D /* ProfileDetailBottomView.swift in Sources */,
@@ -498,9 +508,10 @@
 				04EE3C4C27A10A0100A9136D /* ProfileDetailViewController.swift in Sources */,
 				04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */,
 				04EE3C46279EFB0F00A9136D /* ProfileTableViewCell.swift in Sources */,
-				04EE3C03279932DA00A9136D /* EndPoint.swift in Sources */,
+				04EE3C03279932DA00A9136D /* UserEndPoint.swift in Sources */,
 				04A81FD827969B8B00B658CD /* MainTextField.swift in Sources */,
 				04EE3C48279EFC4400A9136D /* MyProfileTableViewCell.swift in Sources */,
+				04EAA96227A9461E00AB6FDD /* Enums.swift in Sources */,
 				04EE3BF2279843B400A9136D /* String+Extension.swift in Sources */,
 				04EE3C2B279D29A000A9136D /* MainSeperator.swift in Sources */,
 				04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */,
@@ -729,7 +740,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -737,7 +748,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
+		04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -745,7 +756,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -761,7 +772,7 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then.git" */ = {
+		04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then.git";
 			requirement = {
@@ -774,17 +785,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		04A81FD32796918D00B658CD /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = 04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 		04EE3BEF2798430400A9136D /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
+			package = 04EE3BEE2798430400A9136D /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
 		04EE3C002799323500A9136D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		04EE3C1327994FB400A9136D /* FirebaseAnalytics */ = {
@@ -804,7 +815,7 @@
 		};
 		04EE3C5827A18BF100A9136D /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then.git" */;
+			package = 04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */

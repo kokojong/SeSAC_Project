@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
     
     @objc func onWithdrawButtonClicked() {
         
-        APISevice.withdrawSignUp(idToken: idToken) { statuscode, error in
+        UserAPISevice.withdrawSignUp(idToken: idToken) { statuscode, error in
             self.view.makeToast("탈퇴 결과 코드 : \(statuscode)\n첫 화면으로 이동합니다")
             
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {

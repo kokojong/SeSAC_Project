@@ -53,7 +53,7 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleCollectionView.delegate = self
         sesacTitleCollectionView.dataSource = self
         sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
-        print(sesacTitleCollectionView.frame.height)
+        print("sesacTitleCollectionView.frame.height",sesacTitleCollectionView.frame.height)
         
         
         titleContainerView.isUserInteractionEnabled = false
@@ -78,7 +78,6 @@ class OpenedTableViewCell: UITableViewCell {
     
     func setConstraints() {
         nicknameLabel.snp.makeConstraints { make in
-//            make.top.leading.bottom.equalToSuperview().inset(16)
             make.top.leading.equalToSuperview().inset(16)
             make.trailing.equalTo(moreButton.snp.leading).inset(16)
             
@@ -92,6 +91,8 @@ class OpenedTableViewCell: UITableViewCell {
         stackview.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).inset(-16)
             make.leading.trailing.equalToSuperview().inset(16)
+            
+            // MARK: 임시로 160
             make.height.equalTo(160)
         }
         
@@ -105,6 +106,7 @@ class OpenedTableViewCell: UITableViewCell {
             make.top.equalTo(sesacTitleLabel.snp.bottom).inset(-16)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
+//            make.height.equalTo(self.sesacTitleCollectionView.contentSize.height)
         }
         
         reviewLabel.snp.makeConstraints { make in
@@ -128,7 +130,6 @@ class OpenedTableViewCell: UITableViewCell {
         
         nicknameLabel.textColor = .black
         nicknameLabel.font = .Title1_M16
-        nicknameLabel.backgroundColor = .yellow
         
         sesacTitleLabel.font = .Title6_R12
         sesacTitleLabel.textColor = .black
@@ -141,6 +142,7 @@ class OpenedTableViewCell: UITableViewCell {
         
         myReviewLabel.text = "첫 리뷰를 기다리는 중이에요"
         myReviewLabel.font = .Body3_R14
+        myReviewLabel.textColor = .gray6
         
         stackview.axis = .vertical
         stackview.distribution = .fill
@@ -170,10 +172,10 @@ extension OpenedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         let inset: CGFloat = 16
         let totalWidth = UIScreen.main.bounds.width - 4*inset - spacing
 
-        print(UIScreen.main.bounds.width)
-        print(totalWidth)
         return CGSize(width: totalWidth/2, height: 32)
     }
+    
+    
     
     
     

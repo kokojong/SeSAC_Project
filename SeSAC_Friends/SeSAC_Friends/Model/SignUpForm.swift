@@ -8,7 +8,10 @@
 import Foundation
 
 struct SignUpForm: Encodable {
-    let phoneNumber, FCMtoken, nick, email: String
-    let birth : Date
-    let gender: Int
+    let phoneNumber: String
+    var FCMtoken: String
+    let nick: String
+    let email: String
+    let birth: Date
+    var gender: Int
 }

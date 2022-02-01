@@ -77,26 +77,26 @@ class MainButton: UIButton {
             switch style {
             case .fill :
                 self.backgroundColor = .green
-                self.tintColor = .white
+                self.setTitleColor(.white, for: .normal)
                 
             case .disable :
                 self.backgroundColor = .gray6
-                self.tintColor = .gray3
+                self.setTitleColor(.gray3, for: .normal)
                 
             case .inactiveButton:
                 self.backgroundColor = .white
-                self.tintColor = .black
+                self.setTitleColor(.black, for: .normal)
                 
             case .outline:
                 self.clipsToBounds = true
                 self.layer.borderColor = UIColor.green?.cgColor
                 self.layer.borderWidth = 1
                 self.backgroundColor = .white
-                self.tintColor = .green
+                self.setTitleColor(.green, for: .normal)
                 
             case .cancel:
                 self.backgroundColor = .gray2
-                self.tintColor = .black
+                self.setTitleColor(.black, for: .normal)
             }
         }
     }

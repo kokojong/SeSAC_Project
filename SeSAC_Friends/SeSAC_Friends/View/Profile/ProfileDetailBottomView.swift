@@ -25,13 +25,15 @@ class ProfileDetailBottomView: UIView {
         $0.setTitle("여자", for: .normal)
     }
     
-    let habitLabel = UILabel().then {
+    let hobbyLabel = UILabel().then {
         $0.text = "자주 하는 취미"
         $0.font = .Title4_R14
     }
     
-    let habitTextField = UITextField().then {
+    let hobbyTextField = UITextField().then {
         $0.textColor = .black
+        $0.font = .Title4_R14
+        $0.placeholder = "취미를 입력해 주세요"
         
     }
     
@@ -56,7 +58,7 @@ class ProfileDetailBottomView: UIView {
     
     let ageRangeLabel = UILabel().then {
         $0.font = .Title3_M14
-        $0.text = "18 - 35"
+        $0.text = "18 - 65"
         $0.textColor = .green
     }
     
@@ -67,7 +69,7 @@ class ProfileDetailBottomView: UIView {
         $0.step = 1
         $0.handleColor = .green
         $0.colorBetweenHandles = .green
-        $0.tintColor = .red
+        $0.tintColor = .gray2
         $0.hideLabels = true
     }
       
@@ -94,8 +96,8 @@ class ProfileDetailBottomView: UIView {
         addSubview(nameLabel)
         addSubview(manButton)
         addSubview(womanButton)
-        addSubview(habitLabel)
-        addSubview(habitTextField)
+        addSubview(hobbyLabel)
+        addSubview(hobbyTextField)
         addSubview(underline)
         addSubview(allowSearchLabel)
         addSubview(allowSearchSwitch)
@@ -127,27 +129,27 @@ class ProfileDetailBottomView: UIView {
             make.height.equalTo(48)
         }
         
-        habitLabel.snp.makeConstraints { make in
+        hobbyLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview()
-            make.trailing.equalTo(habitTextField.snp.leading).offset(8)
+            make.trailing.equalTo(hobbyTextField.snp.leading).offset(8)
             make.height.equalTo(48)
         }
         
-        habitTextField.snp.makeConstraints { make in
-            make.top.equalTo(habitLabel)
+        hobbyTextField.snp.makeConstraints { make in
+            make.top.equalTo(hobbyLabel)
             make.trailing.equalToSuperview()
             make.width.equalTo(160)
             make.height.equalTo(48)
         }
         
         underline.snp.makeConstraints { make in
-            make.bottom.leading.trailing.equalTo(habitTextField)
+            make.bottom.leading.trailing.equalTo(hobbyTextField)
             make.height.equalTo(1)
         }
         
         allowSearchLabel.snp.makeConstraints { make in
-            make.top.equalTo(habitLabel.snp.bottom).offset(8)
+            make.top.equalTo(hobbyLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview()
             make.trailing.equalTo(allowSearchSwitch.snp.leading).offset(8)
             make.height.equalTo(48)

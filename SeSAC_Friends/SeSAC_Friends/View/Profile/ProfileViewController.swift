@@ -69,14 +69,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.usernameLabel.text = userInfo.nick
             }
             cell.backgroundColor = .white
-//            tableView.reloadData()
         
             return cell
             
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else { return UITableViewCell() }
          
-            cell.iconImageView.image = viewModel.cellForRowAt(indexPath: indexPath).0
+            cell.iconImageView.image = UIImage(named: viewModel.cellForRowAt(indexPath: indexPath).0)
             cell.titleLabel.text = viewModel.cellForRowAt(indexPath: indexPath).1
             
             
@@ -87,8 +86,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let vc = ProfileDetailViewController()
-            vc.viewModel = self.viewModel
-            
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

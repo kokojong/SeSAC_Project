@@ -23,7 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         Auth.auth().currentUser?.getIDToken { idToken, error in
             if let error = error {
+                // MARK: 첫 실행시에 대한 분기처리 - idToken이 없으므로
+                changeRootView(vc: OnboardingViewController())
                 print(error)
+                
+                
                 return
             }
 
@@ -33,17 +37,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 DispatchQueue.main.async {
                     self.getUserInfo(idToken: idToken) { myUserInfo, statuscode, error in
-                        print("SceneDelegate",statuscode)
                         if let statuscode = statuscode {
+                            switch statuscode {
+                            case 200:
+                                changeRootView(vc: TabBarViewController())
+                            case 201:
+                                changeRootView(vc: AuthNicknameViewController())
+                            default:
+                                changeRootView(vc: OnboardingViewController())
+                            }
+                            
+                            // MARK: statuscode에 따른 분기처리 간소화
+                            /*
                             if statuscode == 200 {
                                 self.window?.rootViewController = TabBarViewController()
                                 self.window?.makeKeyAndVisible()
                                 UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                                changeRootView(vc: TabBarViewController())
                             } else {
                                 self.window?.rootViewController = OnboardingViewController()
                                 self.window?.makeKeyAndVisible()
                                 UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                                changeRootView(vc: OnboardingViewController())
                             }
+                            */
                         }
                     }
                 }
@@ -88,7 +105,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     
     func getUserInfo(idToken: String, completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
-        APISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
+        UserAPISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
             print(#function)
             print(error)
             print(userInfo)

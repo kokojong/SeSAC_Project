@@ -20,11 +20,44 @@ class ProfileDetailViewController: UIViewController {
 
     var isOpen = false
     
-    var viewModel: ProfileViewModel!
+    var viewModel = ProfileViewModel()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        toggleTableView.reloadData()
+        DispatchQueue.main.async {
+            self.viewModel.getUserInfo { userInfo, status, error in
+                self.toggleTableView.reloadData()
+                
+                guard let userInfo = userInfo else {
+                    return
+                }
+
+                self.viewModel.userInfo.value = userInfo
+                
+                self.viewModel.userInfo.bind { userInfo in
+                    
+                    switch userInfo.gender {
+                    case gender.man.rawValue:
+                        self.bottomView.manButton.style = .fill
+                    case gender.woman.rawValue:
+                        self.bottomView.womanButton.style = .fill
+                    default:
+                        self.bottomView.manButton.style = .inactiveButton
+                        self.bottomView.womanButton.style = .inactiveButton
+                    }
+                    self.bottomView.hobbyTextField.text = userInfo.hobby
+                    self.bottomView.allowSearchSwitch.isOn = userInfo.searchable == 0 ? false : true
+                    self.viewModel.searchable.value = userInfo.searchable
+                    self.bottomView.ageRangeLabel.text = "\(userInfo.ageMin) - \(userInfo.ageMax)"
+                    self.bottomView.ageSlider.selectedMaxValue = CGFloat(userInfo.ageMax)
+                    self.bottomView.ageSlider.selectedMinValue = CGFloat(userInfo.ageMin)
+                    
+                    
+                }
+                
+            }
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -45,36 +78,37 @@ class ProfileDetailViewController: UIViewController {
         toggleTableView.estimatedRowHeight = 310
         toggleTableView.isUserInteractionEnabled = true
         toggleTableView.isScrollEnabled = false
-
-        
         toggleTableView.reloadData()
         
         bottomView.ageSlider.delegate = self
         
-        viewModel.userInfo.bind { userInfo in
-            
-            switch userInfo.gender {
-            case 0 :
-                self.bottomView.manButton.style = .fill
-            case 1:
-                self.bottomView.womanButton.style = .fill
-            default:
-                self.bottomView.manButton.style = .inactiveButton
-                self.bottomView.womanButton.style = .inactiveButton
-                
-            }
-            self.bottomView.habitTextField.text = userInfo.hobby
-            self.bottomView.habitTextField.placeholder = "취미를 입력해 주세요"
-            self.bottomView.allowSearchSwitch.isOn = userInfo.searchable == 0 ? false : true
-            self.bottomView.ageRangeLabel.text = "\(userInfo.ageMin) - \(userInfo.ageMax)"
-        }
+        setLeftArrowButton()
+        let updateUserInfoBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(updateUserInfoBarButtonClicked))
+        updateUserInfoBarButton.tintColor = .black
+        self.navigationController?.navigationItem.rightBarButtonItem = updateUserInfoBarButton
+        
+        bottomView.allowSearchSwitch.addTarget(self, action: #selector(allowSearchSwitchValueChanged), for: .valueChanged)
+        bottomView.hobbyTextField.addTarget(self, action: #selector(habitTextFieldTextChanged), for: .editingChanged)
+        
+//        DispatchQueue.main.async {
+//            self.viewModel.getUserInfo { userInfo, status, error in
+//                
+//                self.viewModel.userInfo.bind { userInfo in
+//                    
+//                self.bottomView.ageSlider.selectedMaxValue = CGFloat(userInfo.ageMax)
+//                self.bottomView.ageSlider.selectedMinValue = CGFloat(userInfo.ageMin)
+//            }
+//            }
+//        }
+//
+//        self.bottomView.ageSlider.selectedMaxValue = CGFloat(viewModel.userInfo.value.ageMax)
+//        self.bottomView.ageSlider.selectedMinValue = CGFloat(viewModel.userInfo.value.ageMin)
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-      
-        
     }
     
     func addViews() {
@@ -120,14 +154,13 @@ class ProfileDetailViewController: UIViewController {
     }
     
     func configViews() {
-        backgroundView.backgroundColor = .yellow
         toggleTableView.backgroundColor = .red
         toggleTableView.isScrollEnabled = false
         
-        bottomView.backgroundColor = .yellow
+        bottomView.backgroundColor = .white
         
-        scrollView.backgroundColor = .blue
-        contentView.backgroundColor = .brown
+        scrollView.backgroundColor = .white
+        contentView.backgroundColor = .white
 
         
     }
@@ -136,6 +169,26 @@ class ProfileDetailViewController: UIViewController {
         isOpen.toggle()
         toggleTableView.reloadData()
         
+    }
+    
+    @objc func updateUserInfoBarButtonClicked() {
+        viewModel.searchable.value = bottomView.allowSearchSwitch.isOn == true ? 1 : 0
+        viewModel.hobby.value = bottomView.hobbyTextField.text ?? ""
+        
+        
+        let updateMypageForm = UpdateMypageForm(searchable: viewModel.searchable.value, ageMin: viewModel.ageMin.value, ageMax: viewModel.ageMax.value, gender: viewModel.gender.value, hobby: viewModel.hobby.value)
+        print("updateMypageForm",updateMypageForm)
+//        viewModel.updateMypage(form: updateMypageForm)
+        
+    }
+    
+    @objc func habitTextFieldTextChanged() {
+        viewModel.hobby.value = bottomView.hobbyTextField.text ?? ""
+    }
+    
+    @objc func allowSearchSwitchValueChanged(searchSwitch: UISwitch) {
+        viewModel.searchable.value = searchSwitch.isOn == true ? 1 : 0
+        print("searchSwitch", viewModel.searchable.value)
     }
     
 
@@ -163,7 +216,6 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
                 self.toggleTableView.snp.updateConstraints { make in
                     make.height.equalTo(self.toggleTableView.contentSize.height)
                 }
-                
                 
             }
             
@@ -208,17 +260,6 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         isOpen.toggle()
-//        if isOpen {
-//            toggleTableView.snp.updateConstraints { make in
-//                make.height.equalTo(300)
-//            }
-//
-//        } else {
-//            toggleTableView.snp.updateConstraints { make in
-//                make.height.equalTo(58)
-//            }
-//
-//        }
         
         toggleTableView.reloadData()
     }
@@ -230,6 +271,9 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension ProfileDetailViewController: RangeSeekSliderDelegate {
     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
-        viewModel.updateAgeRange(minValue: Int(minValue), maxValue: Int(maxValue))
+        viewModel.ageMin.value = Int(minValue)
+        viewModel.ageMax.value = Int(maxValue)
+        self.bottomView.ageRangeLabel.text = "\(Int(minValue)) - \(Int(maxValue))"
     }
+    
 }
