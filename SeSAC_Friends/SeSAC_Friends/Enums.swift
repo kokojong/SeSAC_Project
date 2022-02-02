@@ -8,8 +8,9 @@
 import Foundation
 
 enum gender: Int {
-    case man = 0
-    case woman = 1
+    case man = 1
+    case woman = 0
     case unselected = -1
 }
+
 

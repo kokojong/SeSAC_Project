@@ -19,6 +19,7 @@ enum UserEndPoint {
     case postMyUserInfo
     case withdrawSignUp
     case updateMypage
+    case updateFCMToken
 }
 
 extension UserEndPoint {
@@ -32,6 +33,8 @@ extension UserEndPoint {
             return .makeUserEndPoint("withdraw")
         case .updateMypage:
             return .makeUserEndPoint("update/mypage")
+        case .updateFCMToken:
+            return .makeUserEndPoint("update_fcm_token")
             
         }
     }

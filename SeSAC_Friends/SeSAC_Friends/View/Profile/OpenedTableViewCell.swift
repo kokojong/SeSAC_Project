@@ -24,6 +24,8 @@ class OpenedTableViewCell: UITableViewCell {
     let reviewLabel = UILabel()
     let myReviewLabel = UILabel()
     
+    let reputations = ["좋은 매너", "정확한 시간 약속", "빠른 응답", "친절한 성격", "능숙한 취미 실력", "유익한 시간"]
+    
     //UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 5*16, height: 300)
 //    let sesacTitleCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 5*16, height: 200), collectionViewLayout: UICollectionViewFlowLayout()).then{
     
@@ -140,9 +142,10 @@ class OpenedTableViewCell: UITableViewCell {
         reviewLabel.text = "새싹 리뷰"
         reviewLabel.font = .Title6_R12
         
-        myReviewLabel.text = "첫 리뷰를 기다리는 중이에요"
+        myReviewLabel.text = "첫 리뷰를 기다리는 중이에요 첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요첫 리뷰를 기다리는 중이에요"
         myReviewLabel.font = .Body3_R14
         myReviewLabel.textColor = .gray6
+        myReviewLabel.numberOfLines = 0
         
         stackview.axis = .vertical
         stackview.distribution = .fill
@@ -161,7 +164,8 @@ extension OpenedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
         
-        cell.button.setTitle("테스또", for: .normal)
+//        cell.button.setTitle("테스또", for: .normal)
+        cell.button.setTitle(reputations[indexPath.row], for: .normal)
         
         return cell
     }

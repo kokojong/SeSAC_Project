@@ -71,6 +71,7 @@ class ProfileDetailBottomView: UIView {
         $0.colorBetweenHandles = .green
         $0.tintColor = .gray2
         $0.hideLabels = true
+        
     }
       
     let withDrawLabel = UILabel().then {

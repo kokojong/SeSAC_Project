@@ -21,25 +21,28 @@ class ProfileDetailViewController: UIViewController {
     var isOpen = false
     
     var viewModel = ProfileViewModel()
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.viewModel.getUserInfo { userInfo, status, error in
-                self.toggleTableView.reloadData()
-                
                 guard let userInfo = userInfo else {
                     return
                 }
 
                 self.viewModel.userInfo.value = userInfo
+                self.viewModel.updateObservables()
+                self.toggleTableView.reloadData()
                 
                 self.viewModel.userInfo.bind { userInfo in
-                    
+                    print("userInfo bind",userInfo)
                     switch userInfo.gender {
                     case gender.man.rawValue:
                         self.bottomView.manButton.style = .fill
+                        self.bottomView.womanButton.style = .inactiveButton
                     case gender.woman.rawValue:
+                        self.bottomView.manButton.style = .inactiveButton
                         self.bottomView.womanButton.style = .fill
                     default:
                         self.bottomView.manButton.style = .inactiveButton
@@ -49,16 +52,22 @@ class ProfileDetailViewController: UIViewController {
                     self.bottomView.allowSearchSwitch.isOn = userInfo.searchable == 0 ? false : true
                     self.viewModel.searchable.value = userInfo.searchable
                     self.bottomView.ageRangeLabel.text = "\(userInfo.ageMin) - \(userInfo.ageMax)"
-                    self.bottomView.ageSlider.selectedMaxValue = CGFloat(userInfo.ageMax)
+                    
+                    self.bottomView.ageSlider.selectedMaxValue = CGFloat(self.viewModel.userInfo.value.ageMax)
                     self.bottomView.ageSlider.selectedMinValue = CGFloat(userInfo.ageMin)
                     
+                    // MARK: Refresh를 위해서 minvalue와 maxValue에 대한 적용을 bind에서 해준다
+                    self.bottomView.ageSlider.minValue = 18
+                    self.bottomView.ageSlider.maxValue = 65
                     
+                    self.bottomView.reloadInputViews()
                 }
                 
             }
         }
         
     }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,26 +92,16 @@ class ProfileDetailViewController: UIViewController {
         bottomView.ageSlider.delegate = self
         
         setLeftArrowButton()
-        let updateUserInfoBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(updateUserInfoBarButtonClicked))
+        let updateUserInfoBarButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(updateUserInfoBarButtonClicked))
         updateUserInfoBarButton.tintColor = .black
-        self.navigationController?.navigationItem.rightBarButtonItem = updateUserInfoBarButton
+        self.navigationItem.rightBarButtonItem = updateUserInfoBarButton
+
         
+        bottomView.manButton.addTarget(self, action: #selector(onManButtonClicked), for: .touchUpInside)
+        bottomView.womanButton.addTarget(self, action: #selector(onWomanButtonClicked), for: .touchUpInside)
         bottomView.allowSearchSwitch.addTarget(self, action: #selector(allowSearchSwitchValueChanged), for: .valueChanged)
         bottomView.hobbyTextField.addTarget(self, action: #selector(habitTextFieldTextChanged), for: .editingChanged)
         
-//        DispatchQueue.main.async {
-//            self.viewModel.getUserInfo { userInfo, status, error in
-//                
-//                self.viewModel.userInfo.bind { userInfo in
-//                    
-//                self.bottomView.ageSlider.selectedMaxValue = CGFloat(userInfo.ageMax)
-//                self.bottomView.ageSlider.selectedMinValue = CGFloat(userInfo.ageMin)
-//            }
-//            }
-//        }
-//
-//        self.bottomView.ageSlider.selectedMaxValue = CGFloat(viewModel.userInfo.value.ageMax)
-//        self.bottomView.ageSlider.selectedMinValue = CGFloat(viewModel.userInfo.value.ageMin)
         
         
     }
@@ -161,7 +160,20 @@ class ProfileDetailViewController: UIViewController {
         
         scrollView.backgroundColor = .white
         contentView.backgroundColor = .white
-
+    }
+    
+    @objc func onManButtonClicked() {
+        viewModel.gender.value = gender.man.rawValue
+        print(viewModel.gender.value)
+        self.bottomView.manButton.style = .fill
+        self.bottomView.womanButton.style = .inactiveButton
+    }
+    
+    @objc func onWomanButtonClicked() {
+        viewModel.gender.value = gender.woman.rawValue
+        print(viewModel.gender.value)
+        self.bottomView.manButton.style = .inactiveButton
+        self.bottomView.womanButton.style = .fill
         
     }
     
@@ -172,11 +184,19 @@ class ProfileDetailViewController: UIViewController {
     }
     
     @objc func updateUserInfoBarButtonClicked() {
-        viewModel.searchable.value = bottomView.allowSearchSwitch.isOn == true ? 1 : 0
-        viewModel.hobby.value = bottomView.hobbyTextField.text ?? ""
-        
         
         let updateMypageForm = UpdateMypageForm(searchable: viewModel.searchable.value, ageMin: viewModel.ageMin.value, ageMax: viewModel.ageMax.value, gender: viewModel.gender.value, hobby: viewModel.hobby.value)
+        viewModel.updateMypage(form: updateMypageForm) { statuscode in
+//            print(statuscode)
+            switch statuscode {
+            case 200 :
+                self.view.makeToast("수정이 완료되었습니다")
+            case 401:
+                self.view.makeToast("fcm 토큰 오류")
+            default :
+                self.view.makeToast("내 정보 수정에 실패했습니다. 잠시 후에 다시 시도해주세요")
+            }
+        }
         print("updateMypageForm",updateMypageForm)
 //        viewModel.updateMypage(form: updateMypageForm)
         

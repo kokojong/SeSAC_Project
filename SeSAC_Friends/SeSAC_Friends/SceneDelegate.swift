@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         Auth.auth().currentUser?.getIDToken { idToken, error in
             if let error = error {
                 // MARK: 첫 실행시에 대한 분기처리 - idToken이 없으므로
-                changeRootView(vc: OnboardingViewController())
+                changeNavRootView(vc: OnboardingViewController())
                 print(error)
                 
                 
@@ -42,9 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             case 200:
                                 changeRootView(vc: TabBarViewController())
                             case 201:
-                                changeRootView(vc: AuthNicknameViewController())
+                                changeNavRootView(vc: AuthNicknameViewController())
                             default:
-                                changeRootView(vc: OnboardingViewController())
+                                changeNavRootView(vc: OnboardingViewController())
                             }
                             
                             // MARK: statuscode에 따른 분기처리 간소화

@@ -24,9 +24,21 @@ class ProfileViewModel {
     var titleArray = ["공지사항", "자주 묻는 질문", "1:1 문의", "알림 설정", "이용 약관"]
     
     
-    func updateMypage(form: UpdateMypageForm) {
+    func updateObservables() {
+        ageMin.value = userInfo.value.ageMin
+        ageMax.value = userInfo.value.ageMax
+        searchable.value = userInfo.value.searchable
+        hobby.value = userInfo.value.hobby
+        gender.value = userInfo.value.gender
+    }
+    
+    func updateMypage(form: UpdateMypageForm, completion: @escaping (Int?) -> Void) {
         UserAPISevice.updateMypage(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
+            guard let statuscode = statuscode else {
+                return
+            }
             
+            completion(statuscode)
         }
     }
     
