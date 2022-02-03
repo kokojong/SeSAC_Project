@@ -64,6 +64,11 @@
             <point key="canvasLocation" x="-16" y="88"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="bwV-dg-86u">
+            <size key="intrinsicContentSize" width="-1" height="65"/>
+        </designable>
+    </designables>
     <resources>
         <image name="folder.fill" catalog="system" width="128" height="97"/>
         <systemColor name="systemBackgroundColor">

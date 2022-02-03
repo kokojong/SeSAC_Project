@@ -32,7 +32,7 @@ class ProfileBackgroundView: UIView {
         backgroundImageView.layer.cornerRadius = 8
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.image = UIImage(named: "sesac_bg_01")
-        faceImageView.image = UIImage(named: "sesac_face_2")
+        faceImageView.image = UIImage(named: "sesac_face")
         
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
