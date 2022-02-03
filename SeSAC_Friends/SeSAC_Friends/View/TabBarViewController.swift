@@ -24,16 +24,12 @@ class TabBarViewController: UITabBarController {
         shopVC.tabBarItem.image = UIImage(named: "shopGray")
         shopVC.tabBarItem.title = "새싹샵"
         
-        let friendsVC = UINavigationController(rootViewController: FriendsViewController())
-        friendsVC.tabBarItem.image = UIImage(named: "friendsGray")
-        friendsVC.tabBarItem.title = "새싹친구"
-        
         let profileVC = UINavigationController(rootViewController: ProfileViewController())
         profileVC.tabBarItem.image = UIImage(named: "profileGray")
         profileVC.tabBarItem.title = "내정보"
         
         
-        viewControllers = [homeVC, shopVC, friendsVC, profileVC]
+        viewControllers = [homeVC, shopVC, profileVC]
     }
     
 

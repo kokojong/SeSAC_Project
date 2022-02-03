@@ -66,6 +66,6 @@ extension ProfileViewModel {
     }
     
     func cellForRowAt(indexPath: IndexPath) -> (String, String) {
-        return (iconIamgeArray[indexPath.row-1],titleArray[indexPath.row-1])
+        return (iconIamgeArray[indexPath.row-1], titleArray[indexPath.row-1])
     }
 }

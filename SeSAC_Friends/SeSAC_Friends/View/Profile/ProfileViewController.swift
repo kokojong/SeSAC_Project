@@ -38,8 +38,12 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(mainTableView)
         
-        viewModel.userInfo.bind {
-            self.title = $0.nick
+//        viewModel.userInfo.bind {
+//            self.title = $0.nick
+//            self.mainTableView.reloadData()
+//        }
+        
+        viewModel.userInfo.bind { userinfo in
             self.mainTableView.reloadData()
         }
         

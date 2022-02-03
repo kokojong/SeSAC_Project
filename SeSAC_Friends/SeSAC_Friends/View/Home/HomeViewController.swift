@@ -8,18 +8,21 @@
 import UIKit
 import SnapKit
 import Toast
+import MapKit
 
-class HomeViewController: UIViewController {
+
+class HomeViewController: UIViewController, UiViewProtocol {
     
-    var idToken = UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!
+    let mapView = MKMapView()
     
-    let withdrawButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .red
-        button.setTitle("회원 탈.퇴.", for: .normal)
-        return button
-        
-    }()
+    let floatingButton = UIButton().then {
+        $0.setImage(UIImage(named: "floatingButton_default"), for: .normal)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = $0.frame.size.width/2
+    }
+    
+    let locationManager = CLLocationManager()
+    var myLocation: CLLocation!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,22 +32,46 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         monitorNetwork()
+        view.backgroundColor = .white
         
-        view.backgroundColor = .yellow
+        addViews()
+        addConstraints()
+        configViews()
         
-        view.addSubview(withdrawButton)
-        withdrawButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.equalTo(44)
-            make.width.equalTo(200)
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+        myLocation = locationManager.location
+        
+    
+//        withdrawButton.addTarget(self, action: #selector(onWithdrawButtonClicked), for: .touchUpInside)
+        
+    }
+    
+    func addViews() {
+        view.addSubview(mapView)
+        view.addSubview(floatingButton)
+    }
+    
+    func addConstraints() {
+        mapView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
-        withdrawButton.addTarget(self, action: #selector(onWithdrawButtonClicked), for: .touchUpInside)
+        floatingButton.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.size.equalTo(64)
+        }
+    }
+    
+    func configViews() {
         
     }
     
     @objc func onWithdrawButtonClicked() {
         
-        UserAPISevice.withdrawSignUp(idToken: idToken) { statuscode, error in
+        UserAPISevice.withdrawSignUp(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { statuscode, error in
             self.view.makeToast("탈퇴 결과 코드 : \(statuscode)\n첫 화면으로 이동합니다")
             
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -59,4 +86,11 @@ class HomeViewController: UIViewController {
     }
     
 
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+    
+    
+    
+    
 }

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Network
 import Toast
+import FirebaseAuth
 
 extension UIViewController {
     
@@ -41,6 +42,24 @@ extension UIViewController {
     }
     @objc func onBackArrowButtonClicked() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func refreshFirebaseIdToken(completion: @escaping (String?, Error?) -> Void) {
+        Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            
+            if let error = error {
+                self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
+                completion(nil, error)
+                return
+            }
+
+            if let idToken = idToken {
+                UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
+                completion(idToken,nil)
+                
+            }
+    
+        }
     }
     
     

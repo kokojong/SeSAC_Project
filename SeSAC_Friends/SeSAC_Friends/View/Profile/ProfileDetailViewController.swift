@@ -21,7 +21,6 @@ class ProfileDetailViewController: UIViewController {
     var isOpen = false
     
     var viewModel = ProfileViewModel()
-
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,10 +37,10 @@ class ProfileDetailViewController: UIViewController {
                 self.viewModel.userInfo.bind { userInfo in
                     print("userInfo bind",userInfo)
                     switch userInfo.gender {
-                    case gender.man.rawValue:
+                    case GenderCase.man.rawValue:
                         self.bottomView.manButton.style = .fill
                         self.bottomView.womanButton.style = .inactiveButton
-                    case gender.woman.rawValue:
+                    case GenderCase.woman.rawValue:
                         self.bottomView.manButton.style = .inactiveButton
                         self.bottomView.womanButton.style = .fill
                     default:
@@ -61,6 +60,7 @@ class ProfileDetailViewController: UIViewController {
                     self.bottomView.ageSlider.maxValue = 65
                     
                     self.bottomView.reloadInputViews()
+                    
                 }
                 
             }
@@ -102,6 +102,9 @@ class ProfileDetailViewController: UIViewController {
         bottomView.allowSearchSwitch.addTarget(self, action: #selector(allowSearchSwitchValueChanged), for: .valueChanged)
         bottomView.hobbyTextField.addTarget(self, action: #selector(habitTextFieldTextChanged), for: .editingChanged)
         
+        let tapRecognizer = ClickListener(target: self, action: #selector(onWithDrawLabelClicked))
+        bottomView.withDrawLabel.isUserInteractionEnabled = true
+        bottomView.withDrawLabel.addGestureRecognizer(tapRecognizer)
         
         
     }
@@ -162,15 +165,51 @@ class ProfileDetailViewController: UIViewController {
         contentView.backgroundColor = .white
     }
     
+    func withDrawSignUp() {
+        
+        UserAPISevice.withdrawSignUp(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { statuscode, error in
+            
+            switch statuscode {
+            case StatusCodeCase.success.rawValue, StatusCodeCase.unAuthorized.rawValue:
+                if statuscode == StatusCodeCase.success.rawValue {
+                    self.view.makeToast("회원탈퇴에 성공했습니다. 첫 화면으로 돌아갑니다")
+                } else {
+                    self.view.makeToast("이미 탈퇴 처리된 회원입니다. 첫 화면으로 돌아갑니다")
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                    windowScene.windows.first?.rootViewController = OnboardingViewController()
+                    windowScene.windows.first?.makeKeyAndVisible()
+                    UIView.transition(with: windowScene.windows.first!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+                }
+            case StatusCodeCase.firebaseTokenError.rawValue:
+                self.refreshFirebaseIdToken { idToken, error in
+                    if let idToken = idToken {
+                        self.withDrawSignUp()
+                    }
+                }
+                
+            case StatusCodeCase.serverError.rawValue:
+                self.view.makeToast("서버 오류로 회원 탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요")
+            default:
+                self.view.makeToast("회원 탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요")
+            }
+            
+            
+            
+        }
+    }
+    
     @objc func onManButtonClicked() {
-        viewModel.gender.value = gender.man.rawValue
+        viewModel.gender.value = GenderCase.man.rawValue
         print(viewModel.gender.value)
         self.bottomView.manButton.style = .fill
         self.bottomView.womanButton.style = .inactiveButton
     }
     
     @objc func onWomanButtonClicked() {
-        viewModel.gender.value = gender.woman.rawValue
+        viewModel.gender.value = GenderCase.woman.rawValue
         print(viewModel.gender.value)
         self.bottomView.manButton.style = .inactiveButton
         self.bottomView.womanButton.style = .fill
@@ -187,30 +226,51 @@ class ProfileDetailViewController: UIViewController {
         
         let updateMypageForm = UpdateMypageForm(searchable: viewModel.searchable.value, ageMin: viewModel.ageMin.value, ageMax: viewModel.ageMax.value, gender: viewModel.gender.value, hobby: viewModel.hobby.value)
         viewModel.updateMypage(form: updateMypageForm) { statuscode in
-//            print(statuscode)
+
             switch statuscode {
-            case 200 :
+            case StatusCodeCase.success.rawValue :
                 self.view.makeToast("수정이 완료되었습니다")
-            case 401:
-                self.view.makeToast("fcm 토큰 오류")
+            case StatusCodeCase.firebaseTokenError.rawValue :
+                self.refreshFirebaseIdToken { idToken, error in
+                    self.viewModel.updateMypage(form: updateMypageForm) { statuscode in
+                        switch statuscode {
+                        case StatusCodeCase.success.rawValue:
+                            self.view.makeToast("수정이 완료되었습니다")
+                        default:
+                            self.view.makeToast("내 정보 수정에 실패했습니다. 잠시 후에 다시 시도해주세요")
+                        }
+                    }
+                    
+                }
             default :
                 self.view.makeToast("내 정보 수정에 실패했습니다. 잠시 후에 다시 시도해주세요")
             }
         }
-        print("updateMypageForm",updateMypageForm)
-//        viewModel.updateMypage(form: updateMypageForm)
         
     }
     
     @objc func habitTextFieldTextChanged() {
         viewModel.hobby.value = bottomView.hobbyTextField.text ?? ""
+        
     }
     
     @objc func allowSearchSwitchValueChanged(searchSwitch: UISwitch) {
         viewModel.searchable.value = searchSwitch.isOn == true ? 1 : 0
-        print("searchSwitch", viewModel.searchable.value)
+        
     }
     
+    @objc func onWithDrawLabelClicked() {
+        let alert = UIAlertController(title: "회원탈퇴", message: "정말로 회원 탈퇴를 진행하시겠습니까?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .destructive) { alertaction in
+            self.withDrawSignUp()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+        
+    }
 
 }
 
