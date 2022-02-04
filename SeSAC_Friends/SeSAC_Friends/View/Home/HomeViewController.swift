@@ -25,8 +25,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
     var myLocation: CLLocation!
     let sesacCampusCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
     let sesacCampusCoordinate2 = CLLocationCoordinate2D(latitude: 37.516535, longitude: 126.886466)
-    
-//    37.516535, 126.886466
+    let sesacCampusCoordinate3 = CLLocationCoordinate2D(latitude: 37.516509, longitude: 126.885025)
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     func addConstraints() {
         mapView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         floatingButton.snp.makeConstraints { make in
             make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -80,9 +80,17 @@ class HomeViewController: UIViewController, UiViewProtocol {
 //        mapView.setRegion(MKCoordinateRegion(center: sesacCampusCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01        )), animated: true) // 현재 지도 상태를 set(위치, 축척)
         
         mapView.delegate = self
-        mapView.register(Type1Annotation.self, forAnnotationViewWithReuseIdentifier: Type1AnnotationView.identifier)
+        mapView.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
+        mapView.register(CustomAnnotation2.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
+        mapView.register(CustomAnnotation2.self, forAnnotationViewWithReuseIdentifier: "test")
         
 //        addCustomPin(coordinate: sesacCampusCoordinate)
+//
+//        addType1Pin(coordinate: sesacCampusCoordinate2)
+        
+//        addCustomPin2(title: "1", locationName: "1", sesac_image: 1, coordinate: sesacCampusCoordinate3)
+        
+        addCustomPin3(coordinate: sesacCampusCoordinate3)
         
         
     }
@@ -90,18 +98,26 @@ class HomeViewController: UIViewController, UiViewProtocol {
     func addCustomPin(coordinate: CLLocationCoordinate2D) {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
-        pin.title = "\(coordinate.latitude)"
+        pin.title = "addCustomPin"
         mapView.addAnnotation(pin)
     }
     
-    func addType1Pin(coordinate: CLLocationCoordinate2D){
+    func addType1Pin(coordinate: CLLocationCoordinate2D) {
         let pin = Type1Annotation(coordinate: coordinate)
 //        pin.coordinate = coordinate
 //        pin.title = "asdfasdf"
         mapView.addAnnotation(pin)
     }
     
-
+    func addCustomPin2(title: String?, locationName: String?, sesac_image: Int?, coordinate: CLLocationCoordinate2D) {
+        let pin = CustomAnnotation(title: title, locationName: locationName, sesac_image: sesac_image, coordinate: coordinate)
+        mapView.addAnnotation(pin)
+    }
+    
+    func addCustomPin3(coordinate: CLLocationCoordinate2D) {
+        let pin = CustomAnnotation2(coordinate: coordinate)
+        mapView.addAnnotation(pin)
+    }
     
     
     
@@ -196,8 +212,10 @@ extension HomeViewController: CLLocationManagerDelegate {
         
         myLocation = currentLocation
         
-        addCustomPin(coordinate: myLocation.coordinate)
-        addType1Pin(coordinate: sesacCampusCoordinate2)
+//        addCustomPin(coordinate: myLocation.coordinate)
+//        addType1Pin(coordinate: sesacCampusCoordinate2)
+//        addCustomPin2(title: "0", locationName: "0", sesac_image: 0, coordinate: sesacCampusCoordinate)
+//        addCustomPin2(title: "1", locationName: "1", sesac_image: 1, coordinate: sesacCampusCoordinate)
         
         mapView.showsUserLocation = true
         
@@ -216,12 +234,14 @@ extension HomeViewController: MKMapViewDelegate {
 //        guard !annotation.isKind(of: MKUserLocation.self) else {
 //            return nil
 //        }
-        print("annotation", annotation)
+        print("annotation is", annotation)
         
+        /*
+         
         if annotation.isKind(of: Type1Annotation.self) {
-            let annotationView = Type1AnnotationView(annotation: annotation, reuseIdentifier: Type1AnnotationView.identifier)
+            let annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
             annotationView.canShowCallout = false
-            annotationView.image = UIImage(systemName: "star")
+            annotationView.image = UIImage(named: "sesac_face_2")
             return annotationView
             
         } else {
@@ -229,10 +249,11 @@ extension HomeViewController: MKMapViewDelegate {
             
             // 어노테이션을 눌렀을 때 세부정보가 나오느냐(위에 장소에 대한 설명을 적는 등)
             annotationView.canShowCallout = false
-            annotationView.image = UIImage(named: "sesac_face")
+            annotationView.image = UIImage(named: "sesac_face_1")
             
             return annotationView
         }
+//        */
         
         /*
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "test")
@@ -256,14 +277,46 @@ extension HomeViewController: MKMapViewDelegate {
         */
         
         
+        guard let annotation = annotation as? CustomAnnotation2 else {
+            // CustomAnnotation -
+            return nil
+        }
         
-//        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "test")
-//
-//        // 어노테이션을 눌렀을 때 세부정보가 나오느냐(위에 장소에 대한 설명을 적는 등)
-//        annotationView.canShowCallout = true
-//        annotationView.image = UIImage(named: "sesac_face")
-//
-//        return annotationView
+        var view: MKAnnotationView
+//        var view2: MKMarkerAnnotationView
+        
+        let identifier = "test"
+        
+        // MARK: 여기서 오류가 발생한다
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        
+        
+        if annotationView == nil {
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            view.image = UIImage(named: "sesac_face_3")
+//            if annotation.sesac_image == 0 {
+//                view.image = UIImage(named: "sesac_face_1")
+//            } else {
+//                view.image = UIImage(named: "sesac_face_2")
+//            }
+            
+        } else {
+//            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier) {
+//                dequeuedView.annotation = annotation
+//                view = dequeuedView
+//            }
+            annotationView?.annotation = annotation
+            view = annotationView!
+           
+            
+        }
+        
+     
+        return view
         
     }
     
@@ -271,9 +324,9 @@ extension HomeViewController: MKMapViewDelegate {
     
 }
 
-class Type1AnnotationView: MKAnnotationView {
+class CustomAnnotationView: MKAnnotationView {
     
-    static let identifier = "Type1Annotation"
+    static let identifier = "CustomAnnotationView"
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?){
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -288,11 +341,6 @@ class Type1AnnotationView: MKAnnotationView {
     
     private func setupUI() {
         backgroundColor = .clear
-        
-//        let view = MapPinView()
-//        addSubview(view)
-//
-//        view.frame = bounds
     }
     
 }
@@ -322,5 +370,45 @@ class Type1Annotation: NSObject, MKAnnotation {
 //    }
 
     
-    
+}
+
+class CustomAnnotation: NSObject, MKAnnotation {
+  let title: String?
+  let locationName: String?
+  let sesac_image: Int?
+  let coordinate: CLLocationCoordinate2D
+
+  init(
+    title: String?,
+    locationName: String?,
+    sesac_image: Int?,
+    coordinate: CLLocationCoordinate2D
+  ) {
+    self.title = title
+    self.locationName = locationName
+    self.sesac_image = sesac_image
+    self.coordinate = coordinate
+
+    super.init()
+  }
+
+  var subtitle: String? {
+    return locationName
+  }
+}
+
+
+class CustomAnnotation2: NSObject, MKAnnotation {
+
+  let coordinate: CLLocationCoordinate2D
+
+  init(
+    coordinate: CLLocationCoordinate2D
+  ) {
+
+    self.coordinate = coordinate
+
+    super.init()
+  }
+
 }

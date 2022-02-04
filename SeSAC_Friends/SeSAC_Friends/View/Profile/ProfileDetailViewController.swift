@@ -170,8 +170,8 @@ class ProfileDetailViewController: UIViewController {
         UserAPISevice.withdrawSignUp(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { statuscode, error in
             
             switch statuscode {
-            case StatusCodeCase.success.rawValue, StatusCodeCase.unAuthorized.rawValue:
-                if statuscode == StatusCodeCase.success.rawValue {
+            case UserStatusCodeCase.success.rawValue, UserStatusCodeCase.unAuthorized.rawValue:
+                if statuscode == UserStatusCodeCase.success.rawValue {
                     self.view.makeToast("회원탈퇴에 성공했습니다. 첫 화면으로 돌아갑니다")
                 } else {
                     self.view.makeToast("이미 탈퇴 처리된 회원입니다. 첫 화면으로 돌아갑니다")
@@ -183,14 +183,14 @@ class ProfileDetailViewController: UIViewController {
                     windowScene.windows.first?.makeKeyAndVisible()
                     UIView.transition(with: windowScene.windows.first!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                 }
-            case StatusCodeCase.firebaseTokenError.rawValue:
+            case UserStatusCodeCase.firebaseTokenError.rawValue:
                 self.refreshFirebaseIdToken { idToken, error in
                     if let idToken = idToken {
                         self.withDrawSignUp()
                     }
                 }
                 
-            case StatusCodeCase.serverError.rawValue:
+            case UserStatusCodeCase.serverError.rawValue:
                 self.view.makeToast("서버 오류로 회원 탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요")
             default:
                 self.view.makeToast("회원 탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요")
@@ -228,13 +228,13 @@ class ProfileDetailViewController: UIViewController {
         viewModel.updateMypage(form: updateMypageForm) { statuscode in
 
             switch statuscode {
-            case StatusCodeCase.success.rawValue :
+            case UserStatusCodeCase.success.rawValue :
                 self.view.makeToast("수정이 완료되었습니다")
-            case StatusCodeCase.firebaseTokenError.rawValue :
+            case UserStatusCodeCase.firebaseTokenError.rawValue :
                 self.refreshFirebaseIdToken { idToken, error in
                     self.viewModel.updateMypage(form: updateMypageForm) { statuscode in
                         switch statuscode {
-                        case StatusCodeCase.success.rawValue:
+                        case UserStatusCodeCase.success.rawValue:
                             self.view.makeToast("수정이 완료되었습니다")
                         default:
                             self.view.makeToast("내 정보 수정에 실패했습니다. 잠시 후에 다시 시도해주세요")

@@ -13,9 +13,22 @@ enum GenderCase: Int {
     case unselected = -1
 }
 
-enum StatusCodeCase: Int {
+enum UserStatusCodeCase: Int {
     case success = 200
     case invalidNickname = 202
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+}
+
+enum QueueStataCodeCase: Int {
+    case success = 200
+    case blockedUser = 201
+    case cancelPanlty1 = 203
+    case cancelPanlty2 = 204
+    case cancelPanlty3 = 205
+    case invalidGender = 206
     case firebaseTokenError = 401
     case unAuthorized = 406
     case serverError = 500

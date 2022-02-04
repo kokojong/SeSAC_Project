@@ -84,7 +84,7 @@ class AuthGenderViewController: UIViewController {
     @objc func onSignUpButtonClicked() {
         self.viewModel.signUpUserInfo { statuscode, error in
             switch statuscode {
-            case StatusCodeCase.success.rawValue :
+            case UserStatusCodeCase.success.rawValue :
                 self.view.makeToast("회원가입에 성공했습니다\n홈 화면으로 이동합니다.")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -99,12 +99,12 @@ class AuthGenderViewController: UIViewController {
             case 201:
                 self.view.makeToast("이미 가입한 유저입니다.")
                 
-            case StatusCodeCase.invalidNickname.rawValue :
+            case UserStatusCodeCase.invalidNickname.rawValue :
                 self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.backTwoWhenNavigationControllerUsed()
                 }
-            case StatusCodeCase.firebaseTokenError.rawValue :
+            case UserStatusCodeCase.firebaseTokenError.rawValue :
                 Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                     
                     if let error = error {
@@ -119,7 +119,7 @@ class AuthGenderViewController: UIViewController {
                         // 회원가입 재요청
                         self.viewModel.signUpUserInfo { statuscode, error in
                             switch statuscode {
-                            case StatusCodeCase.success.rawValue :
+                            case UserStatusCodeCase.success.rawValue :
                                 self.view.makeToast("회원가입에 성공했습니다\n홈 화면으로 이동합니다.")
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -133,7 +133,7 @@ class AuthGenderViewController: UIViewController {
                             case 201:
                                 self.view.makeToast("이미 가입한 유저입니다.")
                                 
-                            case StatusCodeCase.invalidNickname.rawValue :
+                            case UserStatusCodeCase.invalidNickname.rawValue :
                                 self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                     self.backTwoWhenNavigationControllerUsed()

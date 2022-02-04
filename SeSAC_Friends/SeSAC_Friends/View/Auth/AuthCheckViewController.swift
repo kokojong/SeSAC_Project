@@ -89,7 +89,7 @@ class AuthCheckViewController: UIViewController {
             
             self.viewModel.getUserInfo { myUserInfo ,statuscode ,error in
                 switch statuscode {
-                case StatusCodeCase.success.rawValue:
+                case UserStatusCodeCase.success.rawValue:
                     self.view.makeToast("이미 가입된 회원입니다.\n홈 화면으로 이동합니다.")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
@@ -99,7 +99,7 @@ class AuthCheckViewController: UIViewController {
 
                     }
                     
-                case StatusCodeCase.unAuthorized.rawValue :
+                case UserStatusCodeCase.unAuthorized.rawValue :
                     self.view.makeToast("휴대폰 번호 인증에 성공했습니다.\n닉네임 설정 화면으로 이동합니다.")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                         let vc = AuthNicknameViewController()
@@ -113,7 +113,7 @@ class AuthCheckViewController: UIViewController {
                     }
                     
                     
-                case StatusCodeCase.firebaseTokenError.rawValue : // 토큰 만료 -> 갱신
+                case UserStatusCodeCase.firebaseTokenError.rawValue : // 토큰 만료 -> 갱신
                     Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                         
                         if let error = error {
