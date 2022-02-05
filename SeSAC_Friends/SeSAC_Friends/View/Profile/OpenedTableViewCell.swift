@@ -57,7 +57,6 @@ class OpenedTableViewCell: UITableViewCell {
         sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
         print("sesacTitleCollectionView.frame.height",sesacTitleCollectionView.frame.height)
         
-        
         titleContainerView.isUserInteractionEnabled = false
         
     }
@@ -149,10 +148,10 @@ class OpenedTableViewCell: UITableViewCell {
         
         stackview.axis = .vertical
         stackview.distribution = .fill
- 
         
     }
 }
+
 
 extension OpenedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -286,6 +286,7 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             cell.moreButton.setImage(UIImage(named: "more_arrow_up"), for: .normal)
             cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
             
+            
             viewModel.userInfo.bind { userInfo in
                 cell.nicknameLabel.text = userInfo.nick
             }
