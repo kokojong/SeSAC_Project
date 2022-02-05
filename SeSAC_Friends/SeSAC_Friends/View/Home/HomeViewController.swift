@@ -80,6 +80,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.setRegion(MKCoordinateRegion(center: sesacCampusCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true) // 현재 지도 상태를 set(위치, 축척)
         
         mapView.delegate = self
+        mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
         
         addPin()
         addCustomPin(sesac_image: 1, coordinate: sesacCampusCoordinate2)
@@ -227,40 +228,39 @@ extension HomeViewController: MKMapViewDelegate {
             return nil
         }
         
-        // MARK: register를 해제하며 오류해결
+        // MARK: register에서 오류가 발생했었음
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
             annotationView?.canShowCallout = false
-            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView?.contentMode = .scaleAspectFit
-            
-            let sesacImage: UIImage!
-            let size = CGSize(width: 85, height: 85)
-            UIGraphicsBeginImageContext(size)
-            
-            switch annotation.sesac_image {
-            case 0:
-                sesacImage = UIImage(named: "sesac_face_1")
-            case 1:
-                sesacImage = UIImage(named: "sesac_face_2")
-            case 2:
-                sesacImage = UIImage(named: "sesac_face_3")
-            case 3:
-                sesacImage = UIImage(named: "sesac_face_4")
-            default:
-                sesacImage = UIImage(named: "sesac_face_1")
-            }
-            
-            sesacImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-            annotationView?.image = resizedImage
-
             
         } else {
             annotationView?.annotation = annotation
         }
+        
+        let sesacImage: UIImage!
+        let size = CGSize(width: 85, height: 85)
+        UIGraphicsBeginImageContext(size)
+        
+        switch annotation.sesac_image {
+        case 0:
+            sesacImage = UIImage(named: "sesac_face_1")
+        case 1:
+            sesacImage = UIImage(named: "sesac_face_2")
+        case 2:
+            sesacImage = UIImage(named: "sesac_face_3")
+        case 3:
+            sesacImage = UIImage(named: "sesac_face_4")
+        default:
+            sesacImage = UIImage(named: "sesac_face_1")
+        }
+        
+        sesacImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
+        
         
         return annotationView
         
@@ -295,9 +295,6 @@ extension HomeViewController: MKMapViewDelegate {
          */
             
             
-       
-        
-        
     }
     
     
