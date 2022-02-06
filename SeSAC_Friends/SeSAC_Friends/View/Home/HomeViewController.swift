@@ -290,6 +290,13 @@ extension HomeViewController: CLLocationManagerDelegate {
             print(onqueueResult)
             print(statuscode)
             
+            guard let onqueueResult = onqueueResult else {
+                return
+            }
+            
+            for i in onqueueResult.fromQueueDB {
+                self.addCustomPin(sesac_image: i.sesac, coordinate: CLLocationCoordinate2D(latitude: i.lat, longitude: i.long))
+            }
         }
         
     }
