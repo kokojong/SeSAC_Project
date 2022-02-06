@@ -25,8 +25,6 @@ class AuthViewModel {
     var isValidNickname = Observable(false)
     var isValidEmail = Observable(false)
     
-    var idToken = ""
-    
     var fcmToken = UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue)!
     
     func addHyphen() {
@@ -113,8 +111,6 @@ class AuthViewModel {
                         return;
                     }
                     if let idToken = idToken {
-                        print("idToken",idToken)
-                        self.idToken = idToken
                         UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
                     }
                     completion(authResult, nil)
@@ -132,7 +128,7 @@ class AuthViewModel {
     }
     
     func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
-        UserAPISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
+        UserAPISevice.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
          
             completion(userInfo,statuscode,error)
         }
@@ -144,10 +140,7 @@ class AuthViewModel {
         
         let form = SignUpForm(phoneNumber: "+82" + onlyNumber.value, FCMtoken: fcmToken, nick: nickname.value, email: email.value, birth: birthday.value, gender: gender.value)
         
-        print("form",form)
-        print(Date.now)
-        
-        UserAPISevice.signUpUserInfo(idToken: idToken, form: form) { statuscode, error in
+        UserAPISevice.signUpUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode, error in
        
             completion(statuscode, error)
             

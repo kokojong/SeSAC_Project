@@ -114,18 +114,10 @@ class AuthCheckViewController: UIViewController {
                     
                     
                 case UserStatusCodeCase.firebaseTokenError.rawValue : // 토큰 만료 -> 갱신
-                    Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-                        
-                        if let error = error {
-                            self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
-                            return
-                        }
-        
+                    self.refreshFirebaseIdToken { idToken, error in
                         if let idToken = idToken {
-                            print("idToken 갱신",idToken)
-                            UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
+                            self.onCheckButtonClicked()
                         }
-                
                     }
                 default : // 기타 에러
                     self.view.makeToast("에러코드 : \(statuscode)")

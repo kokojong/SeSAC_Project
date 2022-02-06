@@ -10,7 +10,6 @@ import SnapKit
 import Toast
 import MapKit
 
-
 class HomeViewController: UIViewController, UiViewProtocol {
     
     let mapView = MKMapView()
@@ -290,13 +289,30 @@ extension HomeViewController: CLLocationManagerDelegate {
             print(onqueueResult)
             print(statuscode)
             
-            guard let onqueueResult = onqueueResult else {
-                return
+            switch statuscode {
+            case OnQueueStatusCodeCase.success.rawValue:
+                guard let onqueueResult = onqueueResult else {
+                    return
+                }
+                
+                for otherUserInfo in onqueueResult.fromQueueDB {
+                    self.addCustomPin(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long))
+                }
+            case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
+                // 토큰 만료 -> 갱신
+                self.refreshFirebaseIdToken { idToken, error in
+                    if let idToken = idToken {
+                        self.onFloatginButtonClicked()
+                    }
+                }
+                
+            default:
+                self.view.makeToast("주변 새싹 친구를 찾는데 실패했습니다. 잠시 후 다시 시도해주세요")
+                
+            
             }
             
-            for i in onqueueResult.fromQueueDB {
-                self.addCustomPin(sesac_image: i.sesac, coordinate: CLLocationCoordinate2D(latitude: i.lat, longitude: i.long))
-            }
+            
         }
         
     }
