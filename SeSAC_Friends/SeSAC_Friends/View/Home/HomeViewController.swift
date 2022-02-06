@@ -15,18 +15,51 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     let mapView = MKMapView()
     
+    let genderButtonStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fillEqually
+    }
+    
+    let searchManButton = MainButton(type: .inactiveButton).then {
+        $0.setTitle("남자", for: .normal)
+        $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
+    }
+    
+    let searchWomanButton = MainButton(type: .inactiveButton).then {
+        $0.setTitle("여자", for: .normal)
+        $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
+    }
+    
+    let searchAllButton = MainButton(type: .inactiveButton).then {
+        $0.setTitle("전체", for: .normal)
+        $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
+    }
+    
+    let centerLocationView = UIImageView().then {
+        $0.image = UIImage(named: "map_marker")
+    }
+    
+    
     let floatingButton = UIButton().then {
         $0.setImage(UIImage(named: "floatingButton_default"), for: .normal)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.frame.size.width/2
     }
     
+    let myLocationButton = UIButton().then {
+        $0.setImage(UIImage(named: "myLocation"), for: .normal)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 8
+    }
+    
     let locationManager = CLLocationManager()
     var myLocation: CLLocation!
-    let sesacCampusCoordinate = CLLocationCoordinate2D(latitude: 37.51818789942772, longitude: 126.88541765534976)
+    let sesacCampusCoordinate = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
     let sesacCampusCoordinate2 = CLLocationCoordinate2D(latitude: 37.516535, longitude: 126.886466)
     let sesacCampusCoordinate3 = CLLocationCoordinate2D(latitude: 37.516509, longitude: 126.885025)
-
+    
+    var viewModel = HomeViewModel.shared
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,7 +77,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         locationSettings()
         
-        floatingButton.addTarget(self, action: #selector(findMyLocation), for: .touchUpInside)
+        myLocationButton.addTarget(self, action: #selector(findMyLocation), for: .touchUpInside)
+        floatingButton.addTarget(self, action: #selector(onFloatginButtonClicked), for: .touchUpInside)
     
 //        withdrawButton.addTarget(self, action: #selector(onWithdrawButtonClicked), for: .touchUpInside)
         
@@ -53,6 +87,12 @@ class HomeViewController: UIViewController, UiViewProtocol {
     func addViews() {
         view.addSubview(mapView)
         view.addSubview(floatingButton)
+        view.addSubview(myLocationButton)
+        view.addSubview(genderButtonStackView)
+        genderButtonStackView.addArrangedSubview(searchManButton)
+        genderButtonStackView.addArrangedSubview(searchWomanButton)
+        genderButtonStackView.addArrangedSubview(searchAllButton)
+        view.addSubview(centerLocationView)
     }
     
     func addConstraints() {
@@ -63,6 +103,25 @@ class HomeViewController: UIViewController, UiViewProtocol {
             make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.size.equalTo(64)
         }
+        genderButtonStackView.snp.makeConstraints { make in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
+        searchManButton.snp.makeConstraints { make in
+            make.size.equalTo(48)
+        }
+        
+        myLocationButton.snp.makeConstraints { make in
+            make.top.equalTo(genderButtonStackView.snp.bottom).offset(16)
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.size.equalTo(48)
+        }
+        
+        centerLocationView.snp.makeConstraints { make in
+            make.centerX.equalTo(mapView)
+            make.centerY.equalTo(mapView).offset(-24)
+            make.size.equalTo(48)
+        }
+        
     }
     
     func configViews() {
@@ -98,6 +157,15 @@ class HomeViewController: UIViewController, UiViewProtocol {
     func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
        let pin = CustomAnnotation(sesac_image: sesac_image, coordinate: coordinate)
         mapView.addAnnotation(pin)
+    }
+    
+    @objc func onSearchGenderButtonClicked(sender: MainButton) {
+        searchManButton.style = .inactiveButton
+        searchWomanButton.style = .inactiveButton
+        searchAllButton.style = .inactiveButton
+        
+        sender.style = .fill
+        
     }
 
 }
@@ -202,7 +270,6 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     
     @objc func findMyLocation() {
-        
         guard let currentLocation = locationManager.location else {
             locationManager.requestWhenInUseAuthorization()
             return
@@ -215,14 +282,24 @@ extension HomeViewController: CLLocationManagerDelegate {
         
     }
     
+    @objc func onFloatginButtonClicked() {
+        let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
+        viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
+            
+            print(#function)
+            print(onqueueResult)
+            print(statuscode)
+            
+        }
+        
+    }
+    
     
 }
 
 // annotaion에 대한 뷰(커스텀)
 extension HomeViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        print("annotation is", annotation)
         
         guard let annotation = annotation as? CustomAnnotation else {
             return nil
@@ -261,7 +338,6 @@ extension HomeViewController: MKMapViewDelegate {
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         annotationView?.image = resizedImage
         
-        
         return annotationView
         
         /*
@@ -295,6 +371,33 @@ extension HomeViewController: MKMapViewDelegate {
          */
             
             
+    }
+    // MARK: 사용자가 움직일 때
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        let lat = location.coordinate.latitude
+        let long = location.coordinate.longitude
+        let center = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        print("region is",region)
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
+    // MARK: region이 바뀔 때(지도를 움직임)
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let lat = mapView.centerCoordinate.latitude
+        let long = mapView.centerCoordinate.longitude
+    
+        let center = CLLocation(latitude: lat, longitude: long)
+        print("center is",center)
+        
+        viewModel.centerLat.value = lat
+        viewModel.centerLong.value = long
+        viewModel.calculateRegion(lat: lat, long: long)
+        
     }
     
     

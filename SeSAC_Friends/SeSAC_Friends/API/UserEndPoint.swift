@@ -25,9 +25,7 @@ enum UserEndPoint {
 extension UserEndPoint {
     var url: URL {
         switch self {
-        case .getMyUserInfo:
-            return .makeUserEndPoint("")
-        case .postMyUserInfo:
+        case .getMyUserInfo, .postMyUserInfo:
             return .makeUserEndPoint("")
         case .withdrawSignUp:
             return .makeUserEndPoint("withdraw")
@@ -46,5 +44,9 @@ extension URL {
     
     static func makeUserEndPoint(_ endpoint: String) -> URL {
         URL(string: baseURL + "user/" + endpoint)!
+    }
+    
+    static func makeQueueEndPoint(_ endpoint: String) -> URL {
+        URL(string: baseURL + "queue/" + endpoint)!
     }
 }
