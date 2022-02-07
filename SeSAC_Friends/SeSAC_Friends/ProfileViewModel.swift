@@ -11,7 +11,7 @@ class ProfileViewModel {
     
 //    static var shared = ProfileViewModel()
     
-    var userInfo: Observable<MyUserInfo> = Observable(MyUserInfo(id: "", v: 0, uid: "", phoneNumber: "", email: "", fcMtoken: "",nick:"코코종", birth: "", gender: 0, hobby: "abc", comment: [], reputation: [], sesac: 0, sesacCollection: [], background: 0, backgroundCollection: [], purchaseToken: [],transactionID: [],reviewedBefore: [], reportedNum: 0, reportedUser: [], dodgepenalty: 0, dodgeNum: 0, ageMin: 0,ageMax: 0,searchable: 1, createdAt: ""))
+    var myUserInfo: Observable<MyUserInfo> = Observable(MyUserInfo(id: "", v: 0, uid: "", phoneNumber: "", email: "", fcMtoken: "",nick:"코코종", birth: "", gender: 0, hobby: "abc", comment: [], reputation: [], sesac: 0, sesacCollection: [], background: 0, backgroundCollection: [], purchaseToken: [],transactionID: [],reviewedBefore: [], reportedNum: 0, reportedUser: [], dodgepenalty: 0, dodgeNum: 0, ageMin: 0,ageMax: 0,searchable: 1, createdAt: ""))
     
     var ageMin = Observable(0)
     var ageMax = Observable(0)
@@ -25,11 +25,11 @@ class ProfileViewModel {
     
     
     func updateObservables() {
-        ageMin.value = userInfo.value.ageMin
-        ageMax.value = userInfo.value.ageMax
-        searchable.value = userInfo.value.searchable
-        hobby.value = userInfo.value.hobby
-        gender.value = userInfo.value.gender
+        ageMin.value = myUserInfo.value.ageMin
+        ageMax.value = myUserInfo.value.ageMax
+        searchable.value = myUserInfo.value.searchable
+        hobby.value = myUserInfo.value.hobby
+        gender.value = myUserInfo.value.gender
     }
     
     func updateMypage(form: UpdateMypageForm, completion: @escaping (Int?) -> Void) {
@@ -48,7 +48,7 @@ class ProfileViewModel {
             guard let userInfo = userInfo else {
                 return
             }
-            self.userInfo.value = userInfo
+            self.myUserInfo.value = userInfo
             
             completion(userInfo,statuscode,error)
         }

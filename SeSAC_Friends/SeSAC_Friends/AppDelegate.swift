@@ -49,15 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Message Delegate Setting
         Messaging.messaging().delegate = self
-        
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-                UserDefaults.standard.set(token, forKey: UserDefaultKeys.FCMToken.rawValue)
-                print("FCM registration token: \(token)")
-            }
-        }
+        //
+//        Messaging.messaging().token { token, error in
+//            if let error = error {
+//                print("Error fetching FCM registration token: \(error)")
+//            } else if let token = token {
+//                UserDefaults.standard.set(token, forKey: UserDefaultKeys.FCMToken.rawValue)
+//                print("FCM registration token: \(token)")
+//            }
+//        }
         
         
         
@@ -119,7 +119,7 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
       print("Firebase registration token: \(String(describing: fcmToken))")
-
+        UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.FCMToken.rawValue)
       let dataDict: [String: String] = ["token": fcmToken ?? ""]
       NotificationCenter.default.post(
         name: Notification.Name("FCMToken"),

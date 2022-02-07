@@ -93,7 +93,6 @@ class AuthCheckViewController: UIViewController {
                     self.view.makeToast("이미 가입된 회원입니다.\n홈 화면으로 이동합니다.")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-//                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: HomeViewController())
                         windowScene.windows.first?.rootViewController = TabBarViewController()
                         windowScene.windows.first?.makeKeyAndVisible()
 

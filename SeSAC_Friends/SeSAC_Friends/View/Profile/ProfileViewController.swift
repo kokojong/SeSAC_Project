@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
 //            self.mainTableView.reloadData()
 //        }
         
-        viewModel.userInfo.bind { userinfo in
+        viewModel.myUserInfo.bind { userinfo in
             self.mainTableView.reloadData()
         }
         
@@ -69,7 +69,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyProfileTableViewCell.identifier, for: indexPath) as? MyProfileTableViewCell else { return UITableViewCell() }
             
-            viewModel.userInfo.bind { userInfo in
+            viewModel.myUserInfo.bind { userInfo in
                 cell.usernameLabel.text = userInfo.nick
             }
             cell.backgroundColor = .white

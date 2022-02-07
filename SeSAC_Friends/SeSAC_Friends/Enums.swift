@@ -11,6 +11,7 @@ enum GenderCase: Int {
     case man = 1
     case woman = 0
     case unselected = -1
+    case all = 2
 }
 
 enum UserStatusCodeCase: Int {

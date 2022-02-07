@@ -30,11 +30,11 @@ class ProfileDetailViewController: UIViewController {
                     return
                 }
 
-                self.viewModel.userInfo.value = userInfo
+                self.viewModel.myUserInfo.value = userInfo
                 self.viewModel.updateObservables()
                 self.toggleTableView.reloadData()
                 
-                self.viewModel.userInfo.bind { userInfo in
+                self.viewModel.myUserInfo.bind { userInfo in
                     print("userInfo bind",userInfo)
                     switch userInfo.gender {
                     case GenderCase.man.rawValue:
@@ -52,7 +52,7 @@ class ProfileDetailViewController: UIViewController {
                     self.viewModel.searchable.value = userInfo.searchable
                     self.bottomView.ageRangeLabel.text = "\(userInfo.ageMin) - \(userInfo.ageMax)"
                     
-                    self.bottomView.ageSlider.selectedMaxValue = CGFloat(self.viewModel.userInfo.value.ageMax)
+                    self.bottomView.ageSlider.selectedMaxValue = CGFloat(self.viewModel.myUserInfo.value.ageMax)
                     self.bottomView.ageSlider.selectedMinValue = CGFloat(userInfo.ageMin)
                     
                     // MARK: Refresh를 위해서 minvalue와 maxValue에 대한 적용을 bind에서 해준다
@@ -287,7 +287,7 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             cell.moreButton.addTarget(self, action: #selector(onToggleButtonClicked), for: .touchUpInside)
             
             
-            viewModel.userInfo.bind { userInfo in
+            viewModel.myUserInfo.bind { userInfo in
                 cell.nicknameLabel.text = userInfo.nick
             }
             
@@ -307,7 +307,7 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:ClosedTableViewCell.identifier, for: indexPath) as? ClosedTableViewCell else { return UITableViewCell() }
 
-            viewModel.userInfo.bind { userInfo in
+            viewModel.myUserInfo.bind { userInfo in
                 cell.nicknameLabel.text = userInfo.nick
             }
             

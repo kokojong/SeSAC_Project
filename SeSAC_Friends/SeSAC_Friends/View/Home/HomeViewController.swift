@@ -22,16 +22,19 @@ class HomeViewController: UIViewController, UiViewProtocol {
     let searchManButton = MainButton(type: .inactiveButton).then {
         $0.setTitle("남자", for: .normal)
         $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
+        $0.tag = GenderCase.man.rawValue
     }
     
     let searchWomanButton = MainButton(type: .inactiveButton).then {
         $0.setTitle("여자", for: .normal)
         $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
+        $0.tag = GenderCase.woman.rawValue
     }
     
     let searchAllButton = MainButton(type: .inactiveButton).then {
         $0.setTitle("전체", for: .normal)
         $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
+        $0.tag = GenderCase.all.rawValue
     }
     
     let centerLocationView = UIImageView().then {
@@ -59,6 +62,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     var viewModel = HomeViewModel.shared
     
+    var manAnnotations: [CustomAnnotation] = []
+    var womanAnnotations: [CustomAnnotation] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -140,7 +145,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.delegate = self
         mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
         
-        addPin()
         addCustomPin(sesac_image: 1, coordinate: sesacCampusCoordinate2)
         addCustomPin(sesac_image: 2, coordinate: sesacCampusCoordinate3)
 
@@ -158,12 +162,36 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.addAnnotation(pin)
     }
     
+    
+    func addFilteredPin(gender: Int){
+        // MARK: 전체 삭제 -> 새로 찍기(안하면 겹침)
+        mapView.removeAnnotations(self.mapView.annotations)
+        
+        switch gender {
+        case GenderCase.man.rawValue:
+            mapView.addAnnotations(manAnnotations)
+        case GenderCase.woman.rawValue:
+            mapView.addAnnotations(womanAnnotations)
+        default:
+            mapView.addAnnotations(womanAnnotations)
+        
+            
+        }
+    }
+    
     @objc func onSearchGenderButtonClicked(sender: MainButton) {
         searchManButton.style = .inactiveButton
         searchWomanButton.style = .inactiveButton
         searchAllButton.style = .inactiveButton
         
         sender.style = .fill
+        viewModel.searchGender.value = sender.tag
+      
+    }
+    
+    @objc func onFloatginButtonClicked() {
+        
+        searchNearFriends()
         
     }
 
@@ -249,7 +277,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func goToSetting() {
         
-        let alert = UIAlertController(title: "위치권한 요청", message: "러닝 거리 기록을 위해 항상 위치 권한이 필요합니다.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "위치권한 요청", message: "주변 새싹 친구를 검색하기 위해 위치 권한이 필요합니다.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "설정", style: .default) { action in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             
@@ -267,6 +295,57 @@ extension HomeViewController: CLLocationManagerDelegate {
         present(alert, animated: true, completion: nil)
     }
     
+    func searchNearFriends() {
+        
+        let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
+        viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
+            
+            switch statuscode {
+            case OnQueueStatusCodeCase.success.rawValue:
+                guard let onqueueResult = onqueueResult else {
+                    return
+                }
+                
+                // 초기화
+                self.manAnnotations = []
+                self.womanAnnotations = []
+                
+                for otherUserInfo in onqueueResult.fromQueueDB {
+                
+                    if otherUserInfo.gender == GenderCase.man.rawValue {
+                        self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
+                    } else {
+                        self.womanAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
+                    }
+                }
+                
+                for otherUserInfo in onqueueResult.fromQueueDBRequested {
+                
+                    if otherUserInfo.gender == GenderCase.man.rawValue {
+                        self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
+                    } else {
+                        self.womanAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
+                    }
+                }
+                
+                self.addFilteredPin(gender: self.viewModel.searchGender.value)
+                
+                
+               
+                
+            case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
+                // 토큰 만료 -> 갱신
+                self.refreshFirebaseIdToken { idToken, error in
+                    if let idToken = idToken {
+                        self.searchNearFriends()
+                    }
+                }
+            default:
+                self.view.makeToast("주변 새싹 친구를 찾는데 실패했습니다. 잠시 후 다시 시도해주세요")
+            }
+        }
+    }
+    
     
     @objc func findMyLocation() {
         guard let currentLocation = locationManager.location else {
@@ -281,42 +360,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         
     }
     
-    @objc func onFloatginButtonClicked() {
-        let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
-        viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
-            
-            print(#function)
-            print(onqueueResult)
-            print(statuscode)
-            
-            switch statuscode {
-            case OnQueueStatusCodeCase.success.rawValue:
-                guard let onqueueResult = onqueueResult else {
-                    return
-                }
-                
-                for otherUserInfo in onqueueResult.fromQueueDB {
-                    self.addCustomPin(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long))
-                }
-            case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
-                // 토큰 만료 -> 갱신
-                self.refreshFirebaseIdToken { idToken, error in
-                    if let idToken = idToken {
-                        self.onFloatginButtonClicked()
-                    }
-                }
-                
-            default:
-                self.view.makeToast("주변 새싹 친구를 찾는데 실패했습니다. 잠시 후 다시 시도해주세요")
-                
-            
-            }
-            
-            
-        }
-        
-    }
-    
+   
     
 }
 
@@ -362,36 +406,6 @@ extension HomeViewController: MKMapViewDelegate {
         annotationView?.image = resizedImage
         
         return annotationView
-        
-        /*
-        view = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
-        view.canShowCallout = false
-        view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        view.contentMode = .scaleAspectFit
-        
-        let sesacImage: UIImage!
-        let size = CGSize(width: 85, height: 85)
-        UIGraphicsBeginImageContext(size)
-        
-        switch annotation.sesac_image {
-        case 0:
-            sesacImage = UIImage(named: "sesac_face_1")
-        case 1:
-            sesacImage = UIImage(named: "sesac_face_2")
-        case 2:
-            sesacImage = UIImage(named: "sesac_face_3")
-        case 3:
-            sesacImage = UIImage(named: "sesac_face_4")
-        default:
-            sesacImage = UIImage(named: "sesac_face_1")
-        }
-        
-        sesacImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        view.image = resizedImage
-        
-        return view
-         */
             
             
     }
