@@ -34,6 +34,7 @@
 		04EAA96F27AF7F0600AB6FDD /* QueueEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96E27AF7F0600AB6FDD /* QueueEndPoint.swift */; };
 		04EAA97127AF818B00AB6FDD /* OnQueueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97027AF818B00AB6FDD /* OnQueueForm.swift */; };
 		04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */; };
+		04EAA97527B1752900AB6FDD /* HomeHobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */; };
 		04EE3BF02798430400A9136D /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE3BEF2798430400A9136D /* Toast */; };
 		04EE3BF2279843B400A9136D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BF1279843B400A9136D /* String+Extension.swift */; };
 		04EE3BF727986D7100A9136D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3BF627986D7100A9136D /* AuthViewModel.swift */; };
@@ -105,6 +106,7 @@
 		04EAA96E27AF7F0600AB6FDD /* QueueEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueEndPoint.swift; sourceTree = "<group>"; };
 		04EAA97027AF818B00AB6FDD /* OnQueueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQueueForm.swift; sourceTree = "<group>"; };
 		04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQueueResult.swift; sourceTree = "<group>"; };
+		04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHobbyViewController.swift; sourceTree = "<group>"; };
 		04EE3BF1279843B400A9136D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		04EE3BF627986D7100A9136D /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		04EE3BF827986DD800A9136D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				04EE3C23279C06A200A9136D /* HomeViewController.swift */,
+				04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */,
 				04EE3C4E27A10EA300A9136D /* ProfileBackgroundView.swift in Sources */,
 				04EE3C31279D82F600A9136D /* ViewController+Extension.swift in Sources */,
+				04EAA97527B1752900AB6FDD /* HomeHobbyViewController.swift in Sources */,
 				04A81FD62796965D00B658CD /* MainLabel.swift in Sources */,
 				04EAA96D27AF7EFC00AB6FDD /* QueueAPIService.swift in Sources */,
 				04EE3C08279946FC00A9136D /* AuthResponse.swift in Sources */,

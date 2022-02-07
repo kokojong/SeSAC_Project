@@ -43,3 +43,9 @@ enum OnQueueStatusCodeCase: Int {
     case serverError = 500
     case clientError = 501
 }
+
+enum MyStatusCase: Int {
+    case normal = 0
+    case matching = 1
+    case matched = 2
+}

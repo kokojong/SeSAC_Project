@@ -70,8 +70,38 @@ class HomeViewController: UIViewController, UiViewProtocol {
         super.viewWillAppear(animated)
         monitorNetwork()
         
+        checkMyStatus()
+        
+        DispatchQueue.main.async {
+            self.viewModel.getUserInfo { userInfo, statuscode, error in
+                
+                guard let userInfo = userInfo else {
+                    return
+                }
+                
+                if userInfo.fcMtoken != UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue) {
+                    
+                    self.updateFCMToken(newFCMToken: userInfo.fcMtoken)
+                    
+                }
+            }
+        }
+        
         // MARK: 다른 화면에서 홈 화면으로 전환되었을 때
         searchNearFriends()
+        
+        viewModel.myStatus.bind {
+            switch $0 {
+            case MyStatusCase.matching.rawValue:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_matching"), for: .normal)
+            case MyStatusCase.matching.rawValue:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_matched"), for: .normal)
+            default:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_default"), for: .normal)
+
+            }
+        }
+        
         
     }
     
@@ -89,6 +119,17 @@ class HomeViewController: UIViewController, UiViewProtocol {
         myLocationButton.addTarget(self, action: #selector(myLocationButtonClicked), for: .touchUpInside)
         floatingButton.addTarget(self, action: #selector(onFloatginButtonClicked), for: .touchUpInside)
     
+        viewModel.myStatus.bind {
+            switch $0 {
+            case MyStatusCase.matching.rawValue:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_matching"), for: .normal)
+            case MyStatusCase.matching.rawValue:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_matched"), for: .normal)
+            default:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_default"), for: .normal)
+
+            }
+        }
         
     }
     
@@ -149,22 +190,17 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.delegate = self
         mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
         
-        addCustomPin(sesac_image: 1, coordinate: sesacCampusCoordinate2)
-        addCustomPin(sesac_image: 2, coordinate: sesacCampusCoordinate3)
+//        addCustomPin(sesac_image: 1, coordinate: sesacCampusCoordinate2)
+//        addCustomPin(sesac_image: 2, coordinate: sesacCampusCoordinate3)
 
         
     }
     
-    func addPin() {
-        let pin = MKPointAnnotation()
-        pin.coordinate = sesacCampusCoordinate
-        mapView.addAnnotation(pin)
-    }
-    
-    func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
-       let pin = CustomAnnotation(sesac_image: sesac_image, coordinate: coordinate)
-        mapView.addAnnotation(pin)
-    }
+
+//    func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
+//       let pin = CustomAnnotation(sesac_image: sesac_image, coordinate: coordinate)
+//        mapView.addAnnotation(pin)
+//    }
     
     
     func addFilteredPin(gender: Int){
@@ -177,8 +213,37 @@ class HomeViewController: UIViewController, UiViewProtocol {
         case GenderCase.woman.rawValue:
             mapView.addAnnotations(womanAnnotations)
         default:
+            mapView.addAnnotations(manAnnotations)
             mapView.addAnnotations(womanAnnotations)
         
+            
+        }
+    }
+    
+    func checkMyStatus() {
+        let myStatus = UserDefaults.standard.integer(forKey: UserDefaultKeys.myStatus.rawValue)
+        viewModel.myStatus.value = myStatus
+        
+        
+        
+    }
+    
+    func updateFCMToken(newFCMToken: String) {
+        UserAPISevice.updateFCMToken(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, fcmToken: newFCMToken) { statuscode in
+            
+            switch statuscode {
+            case UserStatusCodeCase.success.rawValue:
+                self.viewModel.getUserInfo { userInfo, statuscode, error in
+                    
+                }
+            case UserStatusCodeCase.firebaseTokenError.rawValue:
+                self.refreshFirebaseIdToken { idtoken, error in
+                    UserAPISevice.updateFCMToken(idToken: idtoken!, fcmToken: UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue)!) { statuscode in
+                    }
+                }
+            default:
+                print("updateFCMToken error ", statuscode)
+            }
             
         }
     }
@@ -199,7 +264,29 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     @objc func onFloatginButtonClicked() {
         
-        searchNearFriends()
+        checkUserLocationServiceAuthoriztaion()
+        
+        if viewModel.isLocationEnable.value == false {
+            return
+        }
+        
+        if viewModel.myUserInfo.value.gender == GenderCase.unselected.rawValue {
+            view.makeToast("새싹 찾기 기능을 이용하기 위해서는 성별 설정이 필요해요!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                
+            }
+        } else {
+            self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+        }
+        
+        switch viewModel.myStatus.value {
+        case MyStatusCase.matching.rawValue:
+            print("")
+        case MyStatusCase.matched.rawValue:
+            print("")
+        default:
+            print("")
+        }
         
     }
 
@@ -232,14 +319,17 @@ extension HomeViewController: CLLocationManagerDelegate {
     func checkCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
+            print("notDetermined")
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation() // 위치 접근 시작! -> didUpdateLocations 실행
         case .restricted, .denied:
+            print("LocationDisable")
+            viewModel.isLocationEnable.value = false
+            viewModel.calculateRegion(lat: 37.517819364682694, long: 126.88647317074734)
             goToSetting()
-        case .authorizedAlways:
-            print("always")
-        case .authorizedWhenInUse:
-            print("wheninuse")
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("LocationEnable")
+            viewModel.isLocationEnable.value = true
             locationManager.startUpdatingLocation() // 위치 접근 시작! -> didUpdateLocations 실행
         @unknown default:
             print("unknown")
@@ -286,7 +376,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func goToSetting() {
         
-        let alert = UIAlertController(title: "위치권한 요청", message: "주변 새싹 친구를 검색하기 위해 위치 권한이 필요합니다.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "위치 권한 요청", message: "위치 서비스 사용 불가.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "설정", style: .default) { action in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             
@@ -427,8 +517,6 @@ extension HomeViewController: MKMapViewDelegate {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         print("region is",region)
         
-        viewModel.centerLat.value = lat
-        viewModel.centerLong.value = long
         viewModel.calculateRegion(lat: lat, long: long)
         
         mapView.setRegion(region, animated: true)
@@ -443,8 +531,6 @@ extension HomeViewController: MKMapViewDelegate {
         let center = CLLocation(latitude: lat, longitude: long)
         print("center is",center)
         
-        viewModel.centerLat.value = lat
-        viewModel.centerLong.value = long
         viewModel.calculateRegion(lat: lat, long: long)
         
         // MARK: gps버튼, 사용자가 맵 이동, 위치 업데이트,

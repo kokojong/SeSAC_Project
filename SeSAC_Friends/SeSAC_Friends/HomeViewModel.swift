@@ -24,6 +24,10 @@ class HomeViewModel {
     var searchGender = Observable(2)
 //    var myLocation = O
     
+    var isLocationEnable = Observable(false)
+    
+    var myStatus: Observable<Int> = Observable(0)
+    
     func searchNearFriends(form: OnQueueForm, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
         QueueAPIService.onQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { onqueueResult, statuscode, error in
             
@@ -41,6 +45,9 @@ class HomeViewModel {
     
     func calculateRegion(lat: Double, long: Double) {
         
+        centerLat.value = lat
+        centerLong.value = long
+        
         var strLat = String(lat+90)
         var strLong = String(long+180)
         
@@ -50,6 +57,19 @@ class HomeViewModel {
         let strRegion = strLat.substring(from: 0, to: 4) + strLong.substring(from: 0, to: 4)
         
         centerRegion.value = Int(strRegion) ?? 0
+        
+    }
+    
+    func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
+        UserAPISevice.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
+         
+            guard let userInfo = userInfo else {
+                return
+            }
+            self.myUserInfo.value = userInfo
+            
+            completion(userInfo,statuscode,error)
+        }
         
     }
     

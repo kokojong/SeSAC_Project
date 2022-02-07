@@ -81,5 +81,21 @@ class UserAPISevice {
         
     }
     
+    static func updateFCMToken(idToken: String, fcmToken: String, completion: @escaping (Int?) -> Void) {
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters : Parameters = [
+            "FCMtoken" : fcmToken
+        ]
+        
+        AF.request(UserEndPoint.updateFCMToken.url.absoluteString, method: .put, parameters: parameters, headers: headers).responseString { response in
+            
+            completion(response.response?.statusCode)
+            
+        }
+        
+    }
+    
     
 }
