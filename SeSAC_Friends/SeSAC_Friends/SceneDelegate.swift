@@ -20,6 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
+        if Auth.auth().currentUser == nil {
+            changeNavRootView(vc: OnboardingViewController())
+        }
+        
+        
         Auth.auth().currentUser?.getIDToken { idToken, error in
             if let error = error {
                 // MARK: 첫 실행시에 대한 분기처리 - idToken이 없으므로

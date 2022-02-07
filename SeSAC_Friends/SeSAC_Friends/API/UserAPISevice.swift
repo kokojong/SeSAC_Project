@@ -20,11 +20,9 @@ class UserAPISevice {
             //
             switch response.result {
             case.success(let value):
-//                print("response.result success", value)
                 completion(response.value, statusCode, nil)
                          
             case .failure(let error):
-//                print("response.result error",error)
                 completion(nil, statusCode, error)
               
             }

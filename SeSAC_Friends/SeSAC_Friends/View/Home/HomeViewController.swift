@@ -31,7 +31,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
         $0.tag = GenderCase.woman.rawValue
     }
     
-    let searchAllButton = MainButton(type: .inactiveButton).then {
+    // default is all
+    let searchAllButton = MainButton(type: .fill).then {
         $0.setTitle("전체", for: .normal)
         $0.addTarget(self, action: #selector(onSearchGenderButtonClicked(sender:)), for: .touchUpInside)
         $0.tag = GenderCase.all.rawValue
@@ -68,6 +69,10 @@ class HomeViewController: UIViewController, UiViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
+        
+        // MARK: 다른 화면에서 홈 화면으로 전환되었을 때
+        searchNearFriends()
+        
     }
     
     override func viewDidLoad() {
@@ -81,10 +86,9 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         locationSettings()
         
-        myLocationButton.addTarget(self, action: #selector(findMyLocation), for: .touchUpInside)
+        myLocationButton.addTarget(self, action: #selector(myLocationButtonClicked), for: .touchUpInside)
         floatingButton.addTarget(self, action: #selector(onFloatginButtonClicked), for: .touchUpInside)
     
-//        withdrawButton.addTarget(self, action: #selector(onWithdrawButtonClicked), for: .touchUpInside)
         
     }
     
@@ -179,6 +183,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
         }
     }
     
+    // MARK: 성별 필터 버튼을 클릭할 때
     @objc func onSearchGenderButtonClicked(sender: MainButton) {
         searchManButton.style = .inactiveButton
         searchWomanButton.style = .inactiveButton
@@ -186,6 +191,9 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         sender.style = .fill
         viewModel.searchGender.value = sender.tag
+        
+        searchNearFriends()
+        
       
     }
     
@@ -271,6 +279,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         
         if CLLocationManager.locationServicesEnabled() {
             checkCurrentLocationAuthorization(authorizationStatus)
+            searchNearFriends()
         }
     }
     
@@ -347,13 +356,11 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     
-    @objc func findMyLocation() {
+    @objc func myLocationButtonClicked() {
         guard let currentLocation = locationManager.location else {
             locationManager.requestWhenInUseAuthorization()
             return
         }
-        
-        myLocation = currentLocation
         
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
@@ -419,6 +426,11 @@ extension HomeViewController: MKMapViewDelegate {
         
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         print("region is",region)
+        
+        viewModel.centerLat.value = lat
+        viewModel.centerLong.value = long
+        viewModel.calculateRegion(lat: lat, long: long)
+        
         mapView.setRegion(region, animated: true)
         
     }
@@ -434,6 +446,9 @@ extension HomeViewController: MKMapViewDelegate {
         viewModel.centerLat.value = lat
         viewModel.centerLong.value = long
         viewModel.calculateRegion(lat: lat, long: long)
+        
+        // MARK: gps버튼, 사용자가 맵 이동, 위치 업데이트,
+        searchNearFriends()
         
     }
     

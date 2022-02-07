@@ -19,17 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         sleep(1)
         FirebaseApp.configure()
-//
-//
-//            UIApplication.shared.registerForRemoteNotifications()
-//            application.registerForRemoteNotifications()
-//            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
-//                DispatchQueue.main.async {
-//                    application.registerForRemoteNotifications()
-//                }
-//
-//
-//            }
+
+        
         //알림에 대한 등록(권한)
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -50,16 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Message Delegate Setting
         Messaging.messaging().delegate = self
         //
-//        Messaging.messaging().token { token, error in
-//            if let error = error {
-//                print("Error fetching FCM registration token: \(error)")
-//            } else if let token = token {
-//                UserDefaults.standard.set(token, forKey: UserDefaultKeys.FCMToken.rawValue)
-//                print("FCM registration token: \(token)")
-//            }
-//        }
-        
-        
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+                UserDefaults.standard.set(token, forKey: UserDefaultKeys.FCMToken.rawValue)
+                print("FCM registration token: \(token)")
+            }
+        }
         
         
         return true

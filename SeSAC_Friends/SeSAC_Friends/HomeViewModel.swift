@@ -16,11 +16,13 @@ class HomeViewModel {
     
     var onQueueResult: Observable<OnQueueResult> = Observable(OnQueueResult(fromQueueDB: [], fromQueueDBRequested: [], fromRecommend: []))
     
-    var centerRegion = Observable(0)
+    // MARK: lat + long -> region
     var centerLat = Observable(0.0)
     var centerLong = Observable(0.0)
+    var centerRegion = Observable(0)
     
-    var searchGender = Observable(0)
+    var searchGender = Observable(2)
+//    var myLocation = O
     
     func searchNearFriends(form: OnQueueForm, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
         QueueAPIService.onQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { onqueueResult, statuscode, error in
@@ -48,7 +50,7 @@ class HomeViewModel {
         let strRegion = strLat.substring(from: 0, to: 4) + strLong.substring(from: 0, to: 4)
         
         centerRegion.value = Int(strRegion) ?? 0
-        print(#function,centerRegion.value)
+        
     }
     
     
