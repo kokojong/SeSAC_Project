@@ -8,6 +8,5 @@
 protocol UiViewProtocol {
     func addViews()
     func addConstraints()
-    func configViews()
     
 }

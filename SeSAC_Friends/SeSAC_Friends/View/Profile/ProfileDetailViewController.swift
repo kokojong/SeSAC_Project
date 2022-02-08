@@ -91,7 +91,7 @@ class ProfileDetailViewController: UIViewController {
         
         bottomView.ageSlider.delegate = self
         
-        setLeftArrowButton()
+        setNavBackArrowButton()
         let updateUserInfoBarButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(updateUserInfoBarButtonClicked))
         updateUserInfoBarButton.tintColor = .black
         self.navigationItem.rightBarButtonItem = updateUserInfoBarButton

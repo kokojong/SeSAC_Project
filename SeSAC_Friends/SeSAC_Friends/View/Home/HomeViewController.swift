@@ -12,7 +12,9 @@ import MapKit
 
 class HomeViewController: UIViewController, UiViewProtocol {
     
-    let mapView = MKMapView()
+    let mapView = MKMapView().then {
+        $0.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 500, maxCenterCoordinateDistance: 30000)
+    }
     
     let genderButtonStackView = UIStackView().then {
         $0.axis = .vertical
@@ -81,7 +83,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 
                 if userInfo.fcMtoken != UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue) {
                     
-                    self.updateFCMToken(newFCMToken: userInfo.fcMtoken)
+                    self.updateFCMToken(newFCMToken: UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue)!)
                     
                 }
             }
@@ -190,17 +192,11 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.delegate = self
         mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
         
-//        addCustomPin(sesac_image: 1, coordinate: sesacCampusCoordinate2)
-//        addCustomPin(sesac_image: 2, coordinate: sesacCampusCoordinate3)
-
+        
+  
         
     }
     
-
-//    func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
-//       let pin = CustomAnnotation(sesac_image: sesac_image, coordinate: coordinate)
-//        mapView.addAnnotation(pin)
-//    }
     
     
     func addFilteredPin(gender: Int){
@@ -223,8 +219,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
     func checkMyStatus() {
         let myStatus = UserDefaults.standard.integer(forKey: UserDefaultKeys.myStatus.rawValue)
         viewModel.myStatus.value = myStatus
-        
-        
         
     }
     
@@ -273,10 +267,13 @@ class HomeViewController: UIViewController, UiViewProtocol {
         if viewModel.myUserInfo.value.gender == GenderCase.unselected.rawValue {
             view.makeToast("새싹 찾기 기능을 이용하기 위해서는 성별 설정이 필요해요!")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                
+                self.present(ProfileDetailViewController(), animated: true, completion: nil)
             }
         } else {
-            self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+            let modalVC = HomeHobbyViewController()
+            modalVC.modalPresentationStyle = .fullScreen
+            self.present(modalVC, animated: true, completion: nil)
+//            self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
         }
         
         switch viewModel.myStatus.value {
@@ -287,6 +284,18 @@ class HomeViewController: UIViewController, UiViewProtocol {
         default:
             print("")
         }
+        
+    }
+    
+    @objc func myLocationButtonClicked() {
+        guard let currentLocation = locationManager.location else {
+            locationManager.requestWhenInUseAuthorization()
+            goToSetting()
+            return
+        }
+        
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(.follow, animated: true)
         
     }
 
@@ -413,6 +422,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                 
                     if otherUserInfo.gender == GenderCase.man.rawValue {
                         self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
+                        
                     } else {
                         self.womanAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
                     }
@@ -427,10 +437,11 @@ extension HomeViewController: CLLocationManagerDelegate {
                     }
                 }
                 
+                print("man:", self.manAnnotations.first?.coordinate)
+                print("woman:", self.womanAnnotations)
+                
                 self.addFilteredPin(gender: self.viewModel.searchGender.value)
                 
-                
-               
                 
             case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
                 // 토큰 만료 -> 갱신
@@ -446,18 +457,6 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     
-    @objc func myLocationButtonClicked() {
-        guard let currentLocation = locationManager.location else {
-            locationManager.requestWhenInUseAuthorization()
-            return
-        }
-        
-        mapView.showsUserLocation = true
-        mapView.setUserTrackingMode(.follow, animated: true)
-        
-    }
-    
-   
     
 }
 
@@ -541,6 +540,8 @@ extension HomeViewController: MKMapViewDelegate {
     
     
 }
+
+
 
 
 class CustomAnnotationView: MKAnnotationView {

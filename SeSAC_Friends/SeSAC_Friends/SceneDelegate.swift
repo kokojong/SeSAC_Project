@@ -42,9 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.getUserInfo(idToken: idToken) { myUserInfo, statuscode, error in
                         if let statuscode = statuscode {
                             switch statuscode {
-                            case 200:
+                            case UserStatusCodeCase.success.rawValue:
                                 changeRootView(vc: TabBarViewController())
-                            case 201:
+                            case UserStatusCodeCase.unAuthorized.rawValue:
                                 changeNavRootView(vc: AuthNicknameViewController())
                             default:
                                 changeNavRootView(vc: OnboardingViewController())

@@ -34,13 +34,14 @@ extension UIViewController {
         monitor.start(queue: queue)
     }
     
-    func setLeftArrowButton() {
-        let leftArrowButton = UIBarButtonItem(image: UIImage(named: "arrow_back"), style: .done, target: self, action: #selector(onBackArrowButtonClicked))
-        leftArrowButton.tintColor = .black
-        self.navigationItem.leftBarButtonItem = leftArrowButton
+    func setNavBackArrowButton() {
+        let bakcArrowButton = UIBarButtonItem(image: UIImage(named: "arrow_back"), style: .done, target: self, action: #selector(onNavBackArrowButtonClicked))
+        bakcArrowButton.tintColor = .black
+        self.navigationItem.leftBarButtonItem = bakcArrowButton
         
     }
-    @objc func onBackArrowButtonClicked() {
+    
+    @objc func onNavBackArrowButtonClicked() {
         self.navigationController?.popViewController(animated: true)
     }
     

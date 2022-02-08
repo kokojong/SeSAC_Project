@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 public enum CSButtonType {
     case inactiveButton

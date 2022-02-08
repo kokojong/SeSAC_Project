@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
         DispatchQueue.main.async {
             self.viewModel.getUserInfo { userInfo, status, error in
                 
+                
             }
         }
         
