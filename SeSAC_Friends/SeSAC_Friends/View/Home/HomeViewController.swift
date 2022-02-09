@@ -140,9 +140,10 @@ class HomeViewController: UIViewController, UiViewProtocol {
         view.addSubview(floatingButton)
         view.addSubview(myLocationButton)
         view.addSubview(genderButtonStackView)
+        genderButtonStackView.addArrangedSubview(searchAllButton)
         genderButtonStackView.addArrangedSubview(searchManButton)
         genderButtonStackView.addArrangedSubview(searchWomanButton)
-        genderButtonStackView.addArrangedSubview(searchAllButton)
+        
         view.addSubview(centerLocationView)
     }
     
@@ -359,12 +360,10 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print(#function)
         checkUserLocationServicesAuthorization()
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print(#function)
         checkUserLocationServicesAuthorization()
     }
     
@@ -418,7 +417,9 @@ extension HomeViewController: CLLocationManagerDelegate {
                 self.manAnnotations = []
                 self.womanAnnotations = []
                 
+                // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
+                    self.viewModel.fromRecommendHobby.value = otherUserInfo.hf
                 
                     if otherUserInfo.gender == GenderCase.man.rawValue {
                         self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
@@ -429,13 +430,17 @@ extension HomeViewController: CLLocationManagerDelegate {
                 }
                 
                 for otherUserInfo in onqueueResult.fromQueueDBRequested {
-                
+                    
+//                    self.viewModel.fromQueueDBHobby.value =
+                    
                     if otherUserInfo.gender == GenderCase.man.rawValue {
                         self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
                     } else {
                         self.womanAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
                     }
                 }
+                
+                self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
                 
                 print("man:", self.manAnnotations.first?.coordinate)
                 print("woman:", self.womanAnnotations)

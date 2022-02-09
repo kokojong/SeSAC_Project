@@ -22,11 +22,13 @@ class HomeViewModel {
     var centerRegion = Observable(0)
     
     var searchGender = Observable(2)
-//    var myLocation = O
     
     var isLocationEnable = Observable(false)
     
     var myStatus: Observable<Int> = Observable(0)
+    
+    var fromRecommendHobby: Observable<[String]> = Observable([])
+    var fromQueueDBHobby: Observable<[String]> = Observable([])
     
     func searchNearFriends(form: OnQueueForm, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
         QueueAPIService.onQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { onqueueResult, statuscode, error in
@@ -72,6 +74,8 @@ class HomeViewModel {
         }
         
     }
+    
+    
     
     
 }

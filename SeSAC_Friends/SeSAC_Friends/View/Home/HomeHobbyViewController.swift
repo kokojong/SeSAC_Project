@@ -22,26 +22,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         $0.text = "지금 주변에는"
     }
     
-//    let nearHobbyCollectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
-//
-//        $0.register(HomeNearHobbyCollectionVIewCell.self, forCellWithReuseIdentifier: HomeNearHobbyCollectionVIewCell.identifier)
-//
-//        let flowLayout = UICollectionViewFlowLayout()
-//        let spacing: CGFloat = 8
-//        let inset: CGFloat = 0
-//        flowLayout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-//        let width =
-////        flowLayout.itemSize = CGSize(width:totalWidth/2, height: 32)
-//        flowLayout.minimumLineSpacing = 8
-//        flowLayout.minimumInteritemSpacing = 8
-//        flowLayout.scrollDirection = .vertical
-//
-//        $0.collectionViewLayout = flowLayout
-//
-//
-//    }
-    
-    let nearHobbyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).then {
+    let nearHobbyCollectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: .init()).then {
         let layout = LeftAlignedCollectionViewFlowLayout()
         layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 8
@@ -60,9 +41,25 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         $0.text = "내가 하고 싶은"
     }
     
-//    let favoriteHobbyCollectionView = DynamicHeightCollectionView()
+    let favoriteHobbyCollectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: .init()).then {
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.scrollDirection = .vertical
+        
+        $0.isScrollEnabled = false
+        $0.collectionViewLayout = layout
+        $0.register(HomeFavoriteHobbyCollectionViewCell.self, forCellWithReuseIdentifier: HomeFavoriteHobbyCollectionViewCell.identifier)
+    }
+    
+    let searchButton = MainButton(type: .fill).then {
+        $0.setTitle("새싹 찾기", for: .normal)
+    }
     
     let hobbyList: [String] = ["아", "아아아", "아아아아", "asdfasdf","asfsdf","asdf"]
+    
+    var myFavoriteHobbyList: [String] = ["코딩","응 구라야", "땐스", "음주"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,14 +70,11 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         addViews()
         addConstraints()
         
-//        setupCollectionView()
-        
         nearHobbyCollectionView.delegate = self
         nearHobbyCollectionView.dataSource = self
-        nearHobbyCollectionView.register(HomeNearHobbyCollectionVIewCell.self, forCellWithReuseIdentifier: HomeNearHobbyCollectionVIewCell.identifier)
         
-//        favoriteHobbyCollectionView.delegate = self
-//        favoriteHobbyCollectionView.dataSource = self
+        favoriteHobbyCollectionView.delegate = self
+        favoriteHobbyCollectionView.dataSource = self
         
         backButton.addTarget(self, action: #selector(onBackArrowButtonClicked), for: .touchUpInside)
         
@@ -91,6 +85,9 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         view.addSubview(searchView)
         view.addSubview(nearHobbyLabel)
         view.addSubview(nearHobbyCollectionView)
+        view.addSubview(favoriteHobbyLabel)
+        view.addSubview(favoriteHobbyCollectionView)
+        view.addSubview(searchButton)
     }
     
     func addConstraints() {
@@ -103,7 +100,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalToSuperview().inset(16)
             make.leading.equalTo(backButton.snp.trailing).offset(8)
-//            make.height.equalTo(36)
         }
         
         nearHobbyLabel.snp.makeConstraints { make in
@@ -113,10 +109,28 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         
         nearHobbyCollectionView.snp.makeConstraints { make in
             make.top.equalTo(nearHobbyLabel.snp.bottom).offset(16)
-            make.leading.trailing.bottom.equalToSuperview().inset(16)
-//            make.height.equalTo(400)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        favoriteHobbyLabel.snp.makeConstraints { make in
+            make.top.equalTo(nearHobbyCollectionView.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        favoriteHobbyCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(favoriteHobbyLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
             
         }
+        
+        searchButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(48)
+            
+        }
+        
+        
     }
     
     private func setupCollectionView() {
@@ -186,13 +200,14 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             
             
             return cell
+            
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeNearHobbyCollectionVIewCell.identifier, for: indexPath) as? HomeNearHobbyCollectionVIewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFavoriteHobbyCollectionViewCell.identifier, for: indexPath) as? HomeFavoriteHobbyCollectionViewCell else {
                 return UICollectionViewCell()
             }
             
-            cell.hobbyLabel.text = "aaa"
-//            cell.configureLabelText(text: hobbyList[indexPath.row])
+            
+            cell.hobbyLabel.text = myFavoriteHobbyList[indexPath.row]
             cell.backgroundColor = .white
             
             return cell
@@ -203,15 +218,32 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let dummyCell = UILabel().then {
-            $0.font = .Title4_R14
-            $0.text = hobbyList[indexPath.row]
-            $0.sizeToFit()
-        }
-        let size = dummyCell.frame.size
-        print("size",size)
+        if collectionView == nearHobbyCollectionView {
+            let dummyCell = UILabel().then {
+                $0.font = .Title4_R14
+                $0.text = hobbyList[indexPath.row]
+                $0.sizeToFit()
+            }
+            let size = dummyCell.frame.size
+            print("size",size)
 
-        return CGSize(width: size.width+34, height: 32)
+            return CGSize(width: size.width+34, height: 32)
+            
+        } else {
+            let dummyCell = UILabel().then {
+                $0.font = .Title4_R14
+                $0.text = myFavoriteHobbyList[indexPath.row]
+                $0.sizeToFit()
+            }
+            let size = dummyCell.frame.size
+            print("size",size)
+
+            return CGSize(width: size.width+54, height: 32)
+            
+            
+        }
+        
+       
         
 //        return CGSize(width: 100, height: 50)
 
