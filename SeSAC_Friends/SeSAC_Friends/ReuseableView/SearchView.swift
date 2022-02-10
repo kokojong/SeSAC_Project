@@ -46,7 +46,7 @@ class SearchView: UIView, UiViewProtocol {
         }
         
         textField.snp.makeConstraints { make in
-            make.top.trailing.bottom.equalToSuperview().inset(8)
+            make.top.trailing.bottom.equalToSuperview()
             make.leading.equalTo(glassView.snp.trailing).offset(8)
         }
     }

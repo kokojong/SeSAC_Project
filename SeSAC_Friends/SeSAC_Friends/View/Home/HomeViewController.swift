@@ -313,7 +313,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             checkCurrentLocationAuthorization(authorizationStatus)
             
         } else {
-            print("ios 위치 서비스를 켜주세요")
+            view.makeToast("ios 위치 서비스를 켜주세요")
         }
         
     }
@@ -404,7 +404,6 @@ extension HomeViewController: CLLocationManagerDelegate {
                 guard let onqueueResult = onqueueResult else {
                     return
                 }
-                
                 
                 // 초기화
                 self.manAnnotations = []

@@ -15,6 +15,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     let backButton = BackButton()
     let searchView = SearchView().then {
         $0.textField.placeholder = "띄어쓰기로 복수 입력이 가능해요"
+        $0.textField.returnKeyType = UIReturnKeyType.done
     }
     
     let nearHobbyLabel = UILabel().then {
@@ -63,6 +64,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     
     // MARK: 내가 하고 싶은 취미 고른거(임시배열), 검색 버튼 누르면 VM에 저장하기
     var myFavoriteHobby: [String] = []
+    var newFavoriteHobby: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,10 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         backButton.addTarget(self, action: #selector(onBackArrowButtonClicked), for: .touchUpInside)
         searchButton.addTarget(self, action: #selector(onSearchButtonClicked), for: .touchUpInside)
         searchView.textField.addTarget(self, action: #selector(onSearchTextFieldEditingChanged), for: .editingChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
+        
 
     }
     
@@ -139,18 +145,22 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         
     }
     
-    func checkHobbyValidation(hobbys: [String]) -> Bool {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func checkHobbyValidation(newHobbys: [String]) -> Bool {
         var style = ToastStyle()
         style.titleColor = UIColor.white!
         
-        if myFavoriteHobby.count + hobbys.count > 8 {
-            view.makeToast("취미를 더 이상 추가할 수 없습니다. 최대 8개까지 추가가 가능합니다.", duration: 1.0, position: .center, style: style)
+        if myFavoriteHobby.count + newHobbys.count > 8 {
+            view.makeToast("취미를 더 이상 추가할 수 없습니다.\n취미는 최대 8개까지 추가가 가능합니다.", duration: 1.0, position: .center, style: style)
             return false
         }
         
-        for hobby in hobbys {
+        for hobby in newHobbys {
             if hobby.count > 8 {
-                view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
+                view.makeToast("취미는 최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
             }
         }
         
@@ -165,30 +175,51 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     @objc func onSearchButtonClicked() {
         print(#function)
                 
-        if checkHobbyValidation(hobbys: myFavoriteHobby) {
-//            viewModel.myFavoriteHobby.value = myFavoriteHobby
+        if checkHobbyValidation(newHobbys: []) {
             searchView.textField.endEditing(true)
+            viewModel.myFavoriteHobby.value = myFavoriteHobby
         }
         
         let form = PostQueueForm(type: 2, region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value, hf: viewModel.myFavoriteHobby.value)
         print(form)
         viewModel.postQueue(form: form) { statuscode, error in
             self.view.makeToast("statuscode is \(statuscode)")
-            print(error)
-            
             
         }
     }
     
     @objc func onSearchTextFieldEditingChanged() {
-        myFavoriteHobby = searchView.textField.text?.components(separatedBy: " ").filter({
+        
+        newFavoriteHobby = searchView.textField.text?.components(separatedBy: " ").filter({
             $0.count > 0
         }) ?? []
         
         print("myFavoriteHobby", myFavoriteHobby)
-        checkHobbyValidation(hobbys: myFavoriteHobby)
+        print("newFavoriteHobby",newFavoriteHobby)
+        checkHobbyValidation(newHobbys: newFavoriteHobby)
         
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+
+            searchButton.snp.remakeConstraints { make in
+                make.bottom.equalToSuperview().inset(keyboardSize.height)
+                make.leading.trailing.equalToSuperview()
+                make.height.equalTo(48)
+            }
+        }
+                
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        searchButton.snp.remakeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(48)
+        }
+    }
+    
     
     
 }
@@ -199,11 +230,21 @@ extension HomeHobbyViewController: UITextFieldDelegate {
         var style = ToastStyle()
         style.titleColor = UIColor.white!
         
-        if textField.text?.count == 0 {
-            view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
-        } else {
+        if textField.text?.count == 0 || newFavoriteHobby.filter({$0.count > 8}).count > 0 {
+            view.makeToast("취미는 최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
+        
+        } else if checkHobbyValidation(newHobbys: newFavoriteHobby) {
+            
             textField.resignFirstResponder()
+            
+            myFavoriteHobby.append(contentsOf: newFavoriteHobby.filter({
+                !myFavoriteHobby.contains($0)
+            }))
+            searchView.textField.text = ""
+            newFavoriteHobby = []
         }
+        
+        favoriteHobbyCollectionView.reloadData()
         
         
         return true
@@ -240,7 +281,8 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             }
             
         } else {
-            return viewModel.myFavoriteHobby.value.count
+//            return viewModel.myFavoriteHobby.value.count
+            return myFavoriteHobby.count
             
         }
     }
@@ -272,7 +314,8 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             }
             
             
-            cell.hobbyLabel.text = viewModel.myFavoriteHobby.value[indexPath.row]
+//            cell.hobbyLabel.text = viewModel.myFavoriteHobby.value[indexPath.row]
+            cell.hobbyLabel.text = myFavoriteHobby[indexPath.row]
             cell.backgroundColor = .white
             
             return cell
@@ -292,7 +335,7 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
                     $0.sizeToFit()
                 }
                 let size = dummyCell.frame.size
-                return CGSize(width: size.width+34, height: 34)
+                return CGSize(width: size.width+34, height: size.height+14)
           
             default:
                 let dummyCell = UILabel().then {
@@ -301,23 +344,55 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
                     $0.sizeToFit()
                 }
                 let size = dummyCell.frame.size
-                return CGSize(width: size.width+34, height: 34)
+                return CGSize(width: size.width+34, height: size.height+14)
             }
             
             
         } else {
             let dummyCell = UILabel().then {
                 $0.font = .Title4_R14
-                $0.text = viewModel.myFavoriteHobby.value[indexPath.row]
+//                $0.text = viewModel.myFavoriteHobby.value[indexPath.row]
+                $0.text = myFavoriteHobby[indexPath.row]
                 $0.sizeToFit()
             }
             let size = dummyCell.frame.size
-            print("size",size)
 
-            return CGSize(width: size.width+54, height: 34)
+            return CGSize(width: size.width+54, height: size.height+14)
             
             
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        if collectionView == nearHobbyCollectionView {
+            if checkHobbyValidation(newHobbys: []) {
+                switch indexPath.section {
+                case 0:
+                    if !myFavoriteHobby.contains(viewModel.fromRecommendHobby.value[indexPath.row]){
+                        myFavoriteHobby.append(viewModel.fromRecommendHobby.value[indexPath.row])
+                    }
+                   
+                default:
+                    if !myFavoriteHobby.contains(viewModel.fromNearFriendsHobby.value[indexPath.row]){
+                        myFavoriteHobby.append(viewModel.fromNearFriendsHobby.value[indexPath.row])
+                    }
+                    
+                }
+                
+            }
+            
+            
+        } else {
+            // MARK: 특정한 요소 삭제
+            if let index = myFavoriteHobby.firstIndex(of: myFavoriteHobby[indexPath.row]) {
+                myFavoriteHobby.remove(at: index)
+            }
+            
+        }
+        
+        favoriteHobbyCollectionView.reloadData()
+        
     }
     
     
