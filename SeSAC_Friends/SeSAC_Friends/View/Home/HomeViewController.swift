@@ -114,7 +114,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         addViews()
         addConstraints()
-        configViews()
         
         locationSettings()
         
@@ -176,9 +175,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
     }
     
-    func configViews() {
-        
-    }
     
     func locationSettings() {
         locationManager.delegate = self
@@ -192,9 +188,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         mapView.delegate = self
         mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
-        
-        
-  
         
     }
     
@@ -212,8 +205,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         default:
             mapView.addAnnotations(manAnnotations)
             mapView.addAnnotations(womanAnnotations)
-        
-            
         }
     }
     
@@ -419,11 +410,13 @@ extension HomeViewController: CLLocationManagerDelegate {
                 
                 // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
-                    self.viewModel.fromRecommendHobby.value = otherUserInfo.hf
+                    
+                    self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
+                    
+                    self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
                 
                     if otherUserInfo.gender == GenderCase.man.rawValue {
                         self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
-                        
                     } else {
                         self.womanAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
                     }
@@ -431,7 +424,9 @@ extension HomeViewController: CLLocationManagerDelegate {
                 
                 for otherUserInfo in onqueueResult.fromQueueDBRequested {
                     
-//                    self.viewModel.fromQueueDBHobby.value =
+                    self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
+                    
+                    self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
                     
                     if otherUserInfo.gender == GenderCase.man.rawValue {
                         self.manAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
@@ -542,12 +537,7 @@ extension HomeViewController: MKMapViewDelegate {
         
     }
     
-    
-    
 }
-
-
-
 
 class CustomAnnotationView: MKAnnotationView {
     

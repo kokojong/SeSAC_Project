@@ -57,10 +57,9 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         $0.setTitle("새싹 찾기", for: .normal)
     }
     
-    let hobbyList: [String] = ["아", "아아아", "아아아아", "asdfasdf","asfsdf","asdf"]
-    
-    var myFavoriteHobbyList: [String] = ["코딩","응 구라야", "땐스", "음주"]
 
+    var viewModel = HomeViewModel.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,7 +76,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         favoriteHobbyCollectionView.dataSource = self
         
         backButton.addTarget(self, action: #selector(onBackArrowButtonClicked), for: .touchUpInside)
-        
+        searchButton.addTarget(self, action: #selector(onSearchButtonClicked), for: .touchUpInside)
     }
     
     func addViews() {
@@ -133,24 +132,13 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         
     }
     
-    private func setupCollectionView() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 100
-        flowLayout.minimumInteritemSpacing = 8
-        flowLayout.scrollDirection = .vertical
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        
-        nearHobbyCollectionView.collectionViewLayout = flowLayout
-        nearHobbyCollectionView.delegate = self
-        nearHobbyCollectionView.dataSource = self
-        nearHobbyCollectionView.backgroundColor = .white
-        nearHobbyCollectionView.register(HomeNearHobbyCollectionVIewCell.self, forCellWithReuseIdentifier: HomeNearHobbyCollectionVIewCell.identifier)
-       }
-    
     @objc func onBackArrowButtonClicked() {
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    @objc func onSearchButtonClicked() {
+        print(#function)
     }
     
 }
@@ -161,8 +149,10 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
         switch collectionView {
         case nearHobbyCollectionView:
             return 2
-        default:
+        case favoriteHobbyCollectionView:
             return 1
+        default:
+            return 0
         }
     }
     
@@ -171,13 +161,20 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 3
-        case 1:
-            return 6
-        default:
-            return 0
+        
+        if collectionView == nearHobbyCollectionView{
+            switch section {
+            case 0:
+                return viewModel.fromRecommendHobby.value.count
+            case 1:
+                return viewModel.fromNearFriendsHobby.value.count
+            default:
+                return 0
+            }
+            
+        } else {
+            return viewModel.myFavoriteHobby.value.count
+            
         }
     }
     
@@ -192,12 +189,13 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             case 0:
                 cell.borderView.layer.borderColor = UIColor.errorColor?.cgColor
                 cell.hobbyLabel.textColor = .errorColor
-            default:
+                cell.hobbyLabel.text = viewModel.fromRecommendHobby.value[indexPath.row]
+            case 1:
                 cell.borderView.layer.borderColor = UIColor.gray4?.cgColor
+                cell.hobbyLabel.text = viewModel.fromNearFriendsHobby.value[indexPath.row]
+            default:
+                cell.hobbyLabel.text = ""
             }
-            
-            cell.hobbyLabel.text = hobbyList[indexPath.row]
-            
             
             return cell
             
@@ -207,7 +205,7 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             }
             
             
-            cell.hobbyLabel.text = myFavoriteHobbyList[indexPath.row]
+            cell.hobbyLabel.text = viewModel.myFavoriteHobby.value[indexPath.row]
             cell.backgroundColor = .white
             
             return cell
@@ -219,20 +217,31 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         if collectionView == nearHobbyCollectionView {
-            let dummyCell = UILabel().then {
-                $0.font = .Title4_R14
-                $0.text = hobbyList[indexPath.row]
-                $0.sizeToFit()
+            switch indexPath.section {
+            case 0:
+                let dummyCell = UILabel().then {
+                    $0.font = .Title4_R14
+                    $0.text = viewModel.fromRecommendHobby.value[indexPath.row]
+                    $0.sizeToFit()
+                }
+                let size = dummyCell.frame.size
+                return CGSize(width: size.width+34, height: 32)
+          
+            default:
+                let dummyCell = UILabel().then {
+                    $0.font = .Title4_R14
+                    $0.text = viewModel.fromNearFriendsHobby.value[indexPath.row]
+                    $0.sizeToFit()
+                }
+                let size = dummyCell.frame.size
+                return CGSize(width: size.width+34, height: 32)
             }
-            let size = dummyCell.frame.size
-            print("size",size)
-
-            return CGSize(width: size.width+34, height: 32)
+            
             
         } else {
             let dummyCell = UILabel().then {
                 $0.font = .Title4_R14
-                $0.text = myFavoriteHobbyList[indexPath.row]
+                $0.text = viewModel.myFavoriteHobby.value[indexPath.row]
                 $0.sizeToFit()
             }
             let size = dummyCell.frame.size
@@ -242,12 +251,6 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             
             
         }
-        
-       
-        
-//        return CGSize(width: 100, height: 50)
-
-
     }
     
     

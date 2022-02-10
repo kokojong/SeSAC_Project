@@ -27,12 +27,11 @@
 		04B6240F2797EB2000C3FE9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B6240E2797EB2000C3FE9B /* GoogleService-Info.plist */; };
 		04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA95F27A9427C00AB6FDD /* CommonMethod.swift */; };
 		04EAA96227A9461E00AB6FDD /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96127A9461E00AB6FDD /* Enums.swift */; };
-		04EAA96627A951FB00AB6FDD /* UpdateMypageForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96527A951FB00AB6FDD /* UpdateMypageForm.swift */; };
+		04EAA96627A951FB00AB6FDD /* APIForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96527A951FB00AB6FDD /* APIForm.swift */; };
 		04EAA96927ABB2DB00AB6FDD /* UiViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96827ABB2DB00AB6FDD /* UiViewProtocol.swift */; };
 		04EAA96B27AECFEB00AB6FDD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96A27AECFEB00AB6FDD /* HomeViewModel.swift */; };
 		04EAA96D27AF7EFC00AB6FDD /* QueueAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96C27AF7EFC00AB6FDD /* QueueAPIService.swift */; };
 		04EAA96F27AF7F0600AB6FDD /* QueueEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA96E27AF7F0600AB6FDD /* QueueEndPoint.swift */; };
-		04EAA97127AF818B00AB6FDD /* OnQueueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97027AF818B00AB6FDD /* OnQueueForm.swift */; };
 		04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */; };
 		04EAA97527B1752900AB6FDD /* HomeHobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */; };
 		04EAA97727B23B5500AB6FDD /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EAA97627B23B5500AB6FDD /* BackButton.swift */; };
@@ -58,7 +57,6 @@
 		04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C1F279A7D6D00A9136D /* GenderView.swift */; };
 		04EE3C22279A986000A9136D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C21279A986000A9136D /* UIView+Extension.swift */; };
 		04EE3C24279C06A200A9136D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C23279C06A200A9136D /* HomeViewController.swift */; };
-		04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C26279C2E6C00A9136D /* SignUpForm.swift */; };
 		04EE3C2B279D29A000A9136D /* MainSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C2A279D29A000A9136D /* MainSeperator.swift */; };
 		04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C2C279D2CBE00A9136D /* BirthView.swift */; };
 		04EE3C2F279D3CBB00A9136D /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EE3C2E279D3CBB00A9136D /* Test.storyboard */; };
@@ -105,12 +103,11 @@
 		04B624152797EF8D00C3FE9B /* SeSAC_Friends.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_Friends.entitlements; sourceTree = "<group>"; };
 		04EAA95F27A9427C00AB6FDD /* CommonMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMethod.swift; sourceTree = "<group>"; };
 		04EAA96127A9461E00AB6FDD /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		04EAA96527A951FB00AB6FDD /* UpdateMypageForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMypageForm.swift; sourceTree = "<group>"; };
+		04EAA96527A951FB00AB6FDD /* APIForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIForm.swift; sourceTree = "<group>"; };
 		04EAA96827ABB2DB00AB6FDD /* UiViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewProtocol.swift; sourceTree = "<group>"; };
 		04EAA96A27AECFEB00AB6FDD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		04EAA96C27AF7EFC00AB6FDD /* QueueAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPIService.swift; sourceTree = "<group>"; };
 		04EAA96E27AF7F0600AB6FDD /* QueueEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueEndPoint.swift; sourceTree = "<group>"; };
-		04EAA97027AF818B00AB6FDD /* OnQueueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQueueForm.swift; sourceTree = "<group>"; };
 		04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQueueResult.swift; sourceTree = "<group>"; };
 		04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHobbyViewController.swift; sourceTree = "<group>"; };
 		04EAA97627B23B5500AB6FDD /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
@@ -131,7 +128,6 @@
 		04EE3C1F279A7D6D00A9136D /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		04EE3C21279A986000A9136D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		04EE3C23279C06A200A9136D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		04EE3C26279C2E6C00A9136D /* SignUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpForm.swift; sourceTree = "<group>"; };
 		04EE3C2A279D29A000A9136D /* MainSeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSeperator.swift; sourceTree = "<group>"; };
 		04EE3C2C279D2CBE00A9136D /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		04EE3C2E279D3CBB00A9136D /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
@@ -286,9 +282,7 @@
 			children = (
 				04EE3C192799933400A9136D /* MyUserInfo.swift */,
 				04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */,
-				04EE3C26279C2E6C00A9136D /* SignUpForm.swift */,
-				04EAA96527A951FB00AB6FDD /* UpdateMypageForm.swift */,
-				04EAA97027AF818B00AB6FDD /* OnQueueForm.swift */,
+				04EAA96527A951FB00AB6FDD /* APIForm.swift */,
 				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
 				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 			);
@@ -523,7 +517,6 @@
 				04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */,
 				04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
-				04EE3C27279C2E6C00A9136D /* SignUpForm.swift in Sources */,
 				04EAA97F27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift in Sources */,
 				04EAA97927B23E3F00AB6FDD /* SearchView.swift in Sources */,
 				04EAA98127B39C7500AB6FDD /* DynamicHeightCollectionView.swift in Sources */,
@@ -533,7 +526,7 @@
 				04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */,
 				04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */,
 				04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */,
-				04EAA96627A951FB00AB6FDD /* UpdateMypageForm.swift in Sources */,
+				04EAA96627A951FB00AB6FDD /* APIForm.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
 				04EE3C5427A12E9500A9136D /* OpenedTableViewCell.swift in Sources */,
@@ -544,7 +537,6 @@
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
 				04A81FCA27968FBD00B658CD /* AuthRequestViewController.swift in Sources */,
 				04EE3C5B27A2844800A9136D /* ProfileDetailBottomView.swift in Sources */,
-				04EAA97127AF818B00AB6FDD /* OnQueueForm.swift in Sources */,
 				04A81FCC27968FCE00B658CD /* AuthCheckViewController.swift in Sources */,
 				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,
