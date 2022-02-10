@@ -75,6 +75,7 @@ class UserAPISevice {
             "hobby" : form.hobby
         ]
         
+        print("real token", idToken)
         AF.request(UserEndPoint.updateMypage.url.absoluteString, method: .post, parameters: parameters, headers: headers).responseString { response in
             completion(response.response?.statusCode)
         }

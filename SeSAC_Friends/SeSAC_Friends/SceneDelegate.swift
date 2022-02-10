@@ -25,6 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         
+        
+        
+        
         Auth.auth().currentUser?.getIDToken { idToken, error in
             if let error = error {
                 // MARK: 첫 실행시에 대한 분기처리 - idToken이 없으므로
@@ -41,6 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 DispatchQueue.main.async {
                     self.getUserInfo(idToken: idToken) { myUserInfo, statuscode, error in
                         if let statuscode = statuscode {
+                            print("statuscode adsfsdf",statuscode)
                             switch statuscode {
                             case UserStatusCodeCase.success.rawValue:
                                 changeRootView(vc: TabBarViewController())

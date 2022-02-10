@@ -28,8 +28,6 @@ class HomeViewModel {
     var myStatus: Observable<Int> = Observable(0)
     
     var fromRecommendHobby: Observable<[String]> = Observable([])
-//    var fromQueueDBHobby: Observable<[String]> = Observable([])
-//    var fromQueueDBRequestedHobby: Observable<[String]> = Observable([])
     var fromNearFriendsHobby: Observable<[String]> = Observable([])
     var myFavoriteHobby: Observable<[String]> = Observable(["코딩", "이 아니라", "땐스", "음주가무"])
     
@@ -78,6 +76,20 @@ class HomeViewModel {
         }
         
     }
+    
+    func postQueue(form: PostQueueForm ,completion: @escaping (Int?, Error?) -> Void) {
+        QueueAPIService.postQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode, error in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+            
+            completion(statuscode, error)
+            
+        }
+    }
+    
+    
     
     
     

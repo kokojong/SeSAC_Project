@@ -280,9 +280,9 @@
 		04EE3C25279C2E4C00A9136D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04EAA96527A951FB00AB6FDD /* APIForm.swift */,
 				04EE3C192799933400A9136D /* MyUserInfo.swift */,
 				04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */,
-				04EAA96527A951FB00AB6FDD /* APIForm.swift */,
 				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
 				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 			);

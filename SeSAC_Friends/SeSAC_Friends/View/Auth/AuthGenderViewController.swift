@@ -113,6 +113,7 @@ class AuthGenderViewController: UIViewController {
                     }
     
                     if let idToken = idToken {
+                        UserDefaults.standard.set(idToken, forKey: UserDefaultKeys.idToken.rawValue)
                         
                         // 회원가입 재요청
                         self.onSignUpButtonClicked()

@@ -227,11 +227,13 @@ class ProfileDetailViewController: UIViewController {
         let updateMypageForm = UpdateMypageForm(searchable: viewModel.searchable.value, ageMin: viewModel.ageMin.value, ageMax: viewModel.ageMax.value, gender: viewModel.gender.value, hobby: viewModel.hobby.value)
         viewModel.updateMypage(form: updateMypageForm) { statuscode in
 
+            
             switch statuscode {
             case UserStatusCodeCase.success.rawValue :
                 self.view.makeToast("수정이 완료되었습니다")
             case UserStatusCodeCase.firebaseTokenError.rawValue :
                 self.refreshFirebaseIdToken { idToken, error in
+                    
                     self.viewModel.updateMypage(form: updateMypageForm) { statuscode in
                         switch statuscode {
                         case UserStatusCodeCase.success.rawValue:

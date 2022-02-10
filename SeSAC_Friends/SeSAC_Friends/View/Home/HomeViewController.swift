@@ -68,6 +68,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
     var manAnnotations: [CustomAnnotation] = []
     var womanAnnotations: [CustomAnnotation] = []
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
@@ -404,9 +405,12 @@ extension HomeViewController: CLLocationManagerDelegate {
                     return
                 }
                 
+                
                 // 초기화
                 self.manAnnotations = []
                 self.womanAnnotations = []
+                
+                print(onqueueResult)
                 
                 // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
@@ -437,7 +441,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                 
                 self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
                 
-                print("man:", self.manAnnotations.first?.coordinate)
+                print("man:", self.manAnnotations)
                 print("woman:", self.womanAnnotations)
                 
                 self.addFilteredPin(gender: self.viewModel.searchGender.value)
@@ -493,6 +497,8 @@ extension HomeViewController: MKMapViewDelegate {
             sesacImage = UIImage(named: "sesac_face_3")
         case 3:
             sesacImage = UIImage(named: "sesac_face_4")
+        case 4:
+            sesacImage = UIImage(named: "sesac_face_5")
         default:
             sesacImage = UIImage(named: "sesac_face_1")
         }

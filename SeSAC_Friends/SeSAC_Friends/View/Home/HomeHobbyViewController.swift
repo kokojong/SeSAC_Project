@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Toast
 
 class HomeHobbyViewController: UIViewController, UiViewProtocol {
     
@@ -60,6 +61,9 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
 
     var viewModel = HomeViewModel.shared
     
+    // MARK: 내가 하고 싶은 취미 고른거(임시배열), 검색 버튼 누르면 VM에 저장하기
+    var myFavoriteHobby: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,8 +79,12 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         favoriteHobbyCollectionView.delegate = self
         favoriteHobbyCollectionView.dataSource = self
         
+        searchView.textField.delegate = self
+        
         backButton.addTarget(self, action: #selector(onBackArrowButtonClicked), for: .touchUpInside)
         searchButton.addTarget(self, action: #selector(onSearchButtonClicked), for: .touchUpInside)
+        searchView.textField.addTarget(self, action: #selector(onSearchTextFieldEditingChanged), for: .editingChanged)
+
     }
     
     func addViews() {
@@ -129,7 +137,24 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             
         }
         
+    }
+    
+    func checkHobbyValidation(hobbys: [String]) -> Bool {
+        var style = ToastStyle()
+        style.titleColor = UIColor.white!
         
+        if myFavoriteHobby.count + hobbys.count > 8 {
+            view.makeToast("취미를 더 이상 추가할 수 없습니다. 최대 8개까지 추가가 가능합니다.", duration: 1.0, position: .center, style: style)
+            return false
+        }
+        
+        for hobby in hobbys {
+            if hobby.count > 8 {
+                view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
+            }
+        }
+        
+        return true
     }
     
     @objc func onBackArrowButtonClicked() {
@@ -139,8 +164,50 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     
     @objc func onSearchButtonClicked() {
         print(#function)
+                
+        if checkHobbyValidation(hobbys: myFavoriteHobby) {
+//            viewModel.myFavoriteHobby.value = myFavoriteHobby
+            searchView.textField.endEditing(true)
+        }
+        
+        let form = PostQueueForm(type: 2, region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value, hf: viewModel.myFavoriteHobby.value)
+        print(form)
+        viewModel.postQueue(form: form) { statuscode, error in
+            self.view.makeToast("statuscode is \(statuscode)")
+            print(error)
+            
+            
+        }
     }
     
+    @objc func onSearchTextFieldEditingChanged() {
+        myFavoriteHobby = searchView.textField.text?.components(separatedBy: " ").filter({
+            $0.count > 0
+        }) ?? []
+        
+        print("myFavoriteHobby", myFavoriteHobby)
+        checkHobbyValidation(hobbys: myFavoriteHobby)
+        
+    }
+    
+    
+}
+
+extension HomeHobbyViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        var style = ToastStyle()
+        style.titleColor = UIColor.white!
+        
+        if textField.text?.count == 0 {
+            view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        
+        return true
+    }
 }
 
 extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -225,7 +292,7 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
                     $0.sizeToFit()
                 }
                 let size = dummyCell.frame.size
-                return CGSize(width: size.width+34, height: 32)
+                return CGSize(width: size.width+34, height: 34)
           
             default:
                 let dummyCell = UILabel().then {
@@ -234,7 +301,7 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
                     $0.sizeToFit()
                 }
                 let size = dummyCell.frame.size
-                return CGSize(width: size.width+34, height: 32)
+                return CGSize(width: size.width+34, height: 34)
             }
             
             
@@ -247,7 +314,7 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
             let size = dummyCell.frame.size
             print("size",size)
 
-            return CGSize(width: size.width+54, height: 32)
+            return CGSize(width: size.width+54, height: 34)
             
             
         }
