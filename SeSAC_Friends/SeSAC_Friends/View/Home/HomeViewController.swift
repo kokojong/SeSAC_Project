@@ -210,8 +210,20 @@ class HomeViewController: UIViewController, UiViewProtocol {
     }
     
     func checkMyStatus() {
-        let myStatus = UserDefaults.standard.integer(forKey: UserDefaultKeys.myStatus.rawValue)
-        viewModel.myStatus.value = myStatus
+        viewModel.myStatus.value = UserDefaults.standard.integer(forKey: UserDefaultKeys.myStatus.rawValue)
+        viewModel.myStatus.bind { status in
+            switch status {
+
+            case MyStatusCase.matching.rawValue:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_matching"), for: .normal)
+            case MyStatusCase.matched.rawValue:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_matched"), for: .normal)
+            default:
+                self.floatingButton.setImage(UIImage(named: "floatingButton_default"), for: .normal)
+            
+                
+            }
+        }
         
     }
     

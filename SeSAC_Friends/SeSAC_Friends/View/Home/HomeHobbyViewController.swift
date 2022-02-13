@@ -153,7 +153,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         var style = ToastStyle()
         style.titleColor = UIColor.white!
         
-        if myFavoriteHobby.count + newHobbys.count > 8 {
+        if myFavoriteHobby.count + newHobbys.count >= 8 {
             view.makeToast("취미를 더 이상 추가할 수 없습니다.\n취미는 최대 8개까지 추가가 가능합니다.", duration: 1.0, position: .center, style: style)
             return false
         }
@@ -181,9 +181,44 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         }
         
         let form = PostQueueForm(type: 2, region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value, hf: viewModel.myFavoriteHobby.value)
-        print(form)
+        
         viewModel.postQueue(form: form) { statuscode, error in
-            self.view.makeToast("statuscode is \(statuscode)")
+            self.view.makeToast("\(statuscode)")
+            switch statuscode {
+            case QueueStatusCodeCase.success.rawValue:
+                UserDefaults.standard.set(1, forKey: UserDefaultKeys.myStatus.rawValue)
+                self.navigationController?.pushViewController(HomeFindSesacViewController(), animated: true)
+            case QueueStatusCodeCase.blockedUser.rawValue:
+                self.view.makeToast("신고가 누적되어 이용하실 수 없습니다")
+            case QueueStatusCodeCase.cancelPanlty1.rawValue:
+                self.view.makeToast("약속 취소 패널티로, 1분동안 이용하실 수 없습니다")
+            case QueueStatusCodeCase.cancelPanlty2.rawValue:
+                self.view.makeToast("약속 취소 패널티로, 2분동안 이용하실 수 없습니다")
+            case QueueStatusCodeCase.cancelPanlty3.rawValue:
+                self.view.makeToast("연속으로 약속을 취소하셔서 3분동안 이용하실 수 없습니다")
+            case QueueStatusCodeCase.invalidGender.rawValue:
+                self.view.makeToast("새싹 찾기 기능을 이용하기 위해서는 성별이 필요해요")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.present(ProfileDetailViewController(), animated: true) {
+                        self.viewModel.getUserInfo { userInfo, statuscode, error in
+                            if let userInfo = userInfo {
+                                self.nearHobbyCollectionView.reloadData()
+                                self.favoriteHobbyCollectionView.reloadData()
+                            }
+                        }
+                    }
+                }
+            case QueueStatusCodeCase.firebaseTokenError.rawValue:
+                self.refreshFirebaseIdToken { idToken, error in
+                    if let idToken = idToken {
+                        self.onSearchButtonClicked()
+                    }
+                }
+                
+            default:
+                self.view.makeToast("취미를 함께할 친구 찾기에 실패했습니다. 잠시 후 다시 시도해주세요.")
+            }
+            
             
         }
     }
@@ -351,7 +386,6 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
         } else {
             let dummyCell = UILabel().then {
                 $0.font = .Title4_R14
-//                $0.text = viewModel.myFavoriteHobby.value[indexPath.row]
                 $0.text = myFavoriteHobby[indexPath.row]
                 $0.sizeToFit()
             }

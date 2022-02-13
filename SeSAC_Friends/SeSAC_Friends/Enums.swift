@@ -23,7 +23,7 @@ enum UserStatusCodeCase: Int {
     case clientError = 501
 }
 
-enum QueueStataCodeCase: Int {
+enum QueueStatusCodeCase: Int {
     case success = 200
     case blockedUser = 201
     case cancelPanlty1 = 203

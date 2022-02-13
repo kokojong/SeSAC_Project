@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048F80DE27B97CA600F32FA4 /* HomeFindSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFindSesacViewController.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				04A81FD927969E8B00B658CD /* AuthCommonView.swift */,
 				04EAA97627B23B5500AB6FDD /* BackButton.swift */,
 				04EAA97827B23E3F00AB6FDD /* SearchView.swift */,
+				04EE3C4D27A10EA300A9136D /* ProfileBackgroundView.swift */,
 				04EAA97C27B2EB4100AB6FDD /* LeftAlignedCollectionViewFlowLayout.swift */,
 				04EAA98027B39C7500AB6FDD /* DynamicHeightCollectionView.swift */,
 			);
@@ -329,6 +332,7 @@
 				04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */,
 				04EAA97A27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift */,
 				04EAA97E27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift */,
+				048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -340,7 +344,6 @@
 				04EE3C4B27A10A0100A9136D /* ProfileDetailViewController.swift */,
 				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
 				04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */,
-				04EE3C4D27A10EA300A9136D /* ProfileBackgroundView.swift */,
 				04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */,
 				04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */,
 				04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */,
@@ -522,6 +525,7 @@
 				04EAA98127B39C7500AB6FDD /* DynamicHeightCollectionView.swift in Sources */,
 				04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */,
 				04EAA96927ABB2DB00AB6FDD /* UiViewProtocol.swift in Sources */,
+				048F80DE27B97CA600F32FA4 /* HomeFindSesacViewController.swift in Sources */,
 				04A81FC82796828700B658CD /* Color+Extension.swift in Sources */,
 				04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */,
 				04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */,
