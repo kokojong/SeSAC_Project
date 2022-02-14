@@ -72,6 +72,8 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         title = "hobby"
         view.backgroundColor = .yellow
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         addViews()
         addConstraints()
         
@@ -183,11 +185,18 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         let form = PostQueueForm(type: 2, region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value, hf: viewModel.myFavoriteHobby.value)
         
         viewModel.postQueue(form: form) { statuscode, error in
+            guard let statuscode = statuscode else {
+                return
+            }
+
             self.view.makeToast("\(statuscode)")
             switch statuscode {
             case QueueStatusCodeCase.success.rawValue:
                 UserDefaults.standard.set(1, forKey: UserDefaultKeys.myStatus.rawValue)
                 self.navigationController?.pushViewController(HomeFindSesacViewController(), animated: true)
+//                let modalVC = HomeFindSesacViewController()
+//                modalVC.modalPresentationStyle = .fullScreen
+//                self.present(modalVC, animated: true, completion: nil)
             case QueueStatusCodeCase.blockedUser.rawValue:
                 self.view.makeToast("신고가 누적되어 이용하실 수 없습니다")
             case QueueStatusCodeCase.cancelPanlty1.rawValue:

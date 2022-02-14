@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		048F80DE27B97CA600F32FA4 /* HomeFindSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */; };
+		048F80E127BA28EE00F32FA4 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 048F80E027BA28EE00F32FA4 /* Tabman */; };
+		048F80E327BA2B4500F32FA4 /* HomeNearSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */; };
+		048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */; };
+		048F80E727BA33CA00F32FA4 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -83,6 +87,9 @@
 
 /* Begin PBXFileReference section */
 		048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFindSesacViewController.swift; sourceTree = "<group>"; };
+		048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNearSesacViewController.swift; sourceTree = "<group>"; };
+		048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecievedRequestsViewController.swift; sourceTree = "<group>"; };
+		048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +171,7 @@
 				04EE3C1427994FB400A9136D /* FirebaseAnalytics in Frameworks */,
 				04EE3C5927A18BF100A9136D /* Then in Frameworks */,
 				04EE3C012799323500A9136D /* Alamofire in Frameworks */,
+				048F80E127BA28EE00F32FA4 /* Tabman in Frameworks */,
 				04EE3C1627994FB400A9136D /* FirebaseAuth in Frameworks */,
 				04EE3BF02798430400A9136D /* Toast in Frameworks */,
 				5BE9E336CB4106406120D3EA /* Pods_SeSAC_Friends.framework in Frameworks */,
@@ -233,6 +241,7 @@
 				04EE3C4D27A10EA300A9136D /* ProfileBackgroundView.swift */,
 				04EAA97C27B2EB4100AB6FDD /* LeftAlignedCollectionViewFlowLayout.swift */,
 				04EAA98027B39C7500AB6FDD /* DynamicHeightCollectionView.swift */,
+				048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */,
 			);
 			path = ReuseableView;
 			sourceTree = "<group>";
@@ -333,6 +342,8 @@
 				04EAA97A27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift */,
 				04EAA97E27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift */,
 				048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */,
+				048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */,
+				048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -403,6 +414,7 @@
 				04EE3C1527994FB400A9136D /* FirebaseAuth */,
 				04EE3C1727994FB400A9136D /* FirebaseMessaging */,
 				04EE3C5827A18BF100A9136D /* Then */,
+				048F80E027BA28EE00F32FA4 /* Tabman */,
 			);
 			productName = SeSAC_Friends;
 			productReference = 04A81FB0279681DD00B658CD /* SeSAC_Friends.app */;
@@ -438,6 +450,7 @@
 				04EE3BFF2799323500A9136D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */,
+				048F80DF27BA28ED00F32FA4 /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 04A81FB1279681DD00B658CD /* Products */;
 			projectDirPath = "";
@@ -521,7 +534,9 @@
 				04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
 				04EAA97F27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift in Sources */,
+				048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */,
 				04EAA97927B23E3F00AB6FDD /* SearchView.swift in Sources */,
+				048F80E327BA2B4500F32FA4 /* HomeNearSesacViewController.swift in Sources */,
 				04EAA98127B39C7500AB6FDD /* DynamicHeightCollectionView.swift in Sources */,
 				04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */,
 				04EAA96927ABB2DB00AB6FDD /* UiViewProtocol.swift in Sources */,
@@ -530,6 +545,7 @@
 				04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */,
 				04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */,
 				04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */,
+				048F80E727BA33CA00F32FA4 /* EmptyResultView.swift in Sources */,
 				04EAA96627A951FB00AB6FDD /* APIForm.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
@@ -784,6 +800,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		048F80DF27BA28ED00F32FA4 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -827,6 +851,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		048F80E027BA28EE00F32FA4 /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 048F80DF27BA28ED00F32FA4 /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
+		};
 		04A81FD32796918D00B658CD /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */;

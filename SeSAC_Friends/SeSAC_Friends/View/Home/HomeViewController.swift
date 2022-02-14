@@ -275,20 +275,22 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 self.present(ProfileDetailViewController(), animated: true, completion: nil)
             }
         } else {
-            let modalVC = HomeHobbyViewController()
-            modalVC.modalPresentationStyle = .fullScreen
-            self.present(modalVC, animated: true, completion: nil)
-//            self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+            
+            switch viewModel.myStatus.value {
+            case MyStatusCase.matching.rawValue:
+                let vc = HomeFindSesacViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            case MyStatusCase.matched.rawValue:
+                print("")
+            default:
+                let vc = HomeHobbyViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+           
         }
         
-        switch viewModel.myStatus.value {
-        case MyStatusCase.matching.rawValue:
-            print("")
-        case MyStatusCase.matched.rawValue:
-            print("")
-        default:
-            print("")
-        }
+        
         
     }
     
