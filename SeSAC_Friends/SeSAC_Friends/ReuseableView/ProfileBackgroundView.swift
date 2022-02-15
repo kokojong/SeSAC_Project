@@ -14,6 +14,7 @@ class ProfileBackgroundView: UIView {
     
     let faceImageView = UIImageView()
     
+    let matchButton = MainButton(type: .fill)
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +29,7 @@ class ProfileBackgroundView: UIView {
     func configImageView() {
         addSubview(backgroundImageView)
         addSubview(faceImageView)
+        addSubview(matchButton)
         
         backgroundImageView.layer.cornerRadius = 8
         backgroundImageView.contentMode = .scaleAspectFill
@@ -42,6 +44,12 @@ class ProfileBackgroundView: UIView {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(9)
             make.size.equalTo(184)
+        }
+        
+        matchButton.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(12)
+            make.width.equalTo(80)
+            make.height.equalTo(40)
         }
     }
 

@@ -46,13 +46,13 @@ class OpenedTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setViews()
-        setConstraints()
+        addViews()
+        addConstraints()
         configViews()
         sesacTitleCollectionView.delegate = self
         sesacTitleCollectionView.dataSource = self
         sesacTitleCollectionView.register(SesacTitleCollectionViewCell.self, forCellWithReuseIdentifier: SesacTitleCollectionViewCell.identifier)
-        print("sesacTitleCollectionView.frame.height",sesacTitleCollectionView.frame.height)
+
         
         titleContainerView.isUserInteractionEnabled = false
         
@@ -62,7 +62,7 @@ class OpenedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setViews() {
+    func addViews() {
         addSubview(nicknameLabel)
         addSubview(moreButton)
         addSubview(reviewLabel)
@@ -74,7 +74,7 @@ class OpenedTableViewCell: UITableViewCell {
         
     }
     
-    func setConstraints() {
+    func addConstraints() {
         nicknameLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(16)
             make.trailing.equalTo(moreButton.snp.leading).inset(16)

@@ -26,20 +26,20 @@ class ProfileTableViewCell: UITableViewCell {
         titleLabel.font = .Title2_R16
         titleLabel.textColor = .black
         
-        setViews()
-        setConstraints()
+        addViews()
+        addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setViews() {
+    func addViews() {
         addSubview(iconImageView)
         addSubview(titleLabel)
     }
     
-    func setConstraints() {
+    func addConstraints() {
         iconImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(24)

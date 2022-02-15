@@ -13,7 +13,9 @@ class ProfileDetailViewController: UIViewController {
     
     let scrollView = UIScrollView()
     let contentView = UIView()
-    let backgroundView = ProfileBackgroundView()
+    let backgroundView = ProfileBackgroundView().then {
+        $0.matchButton.isHidden = true
+    }
     let toggleTableView = UITableView()
     let settingView = UIView()
     let bottomView = ProfileDetailBottomView()

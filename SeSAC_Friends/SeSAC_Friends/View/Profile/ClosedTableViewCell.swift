@@ -19,8 +19,8 @@ class ClosedTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setViews()
-        setConstraints()
+        addViews()
+        addConstraints()
         configViews()
     }
     
@@ -28,12 +28,12 @@ class ClosedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setViews() {
+    func addViews() {
         addSubview(nicknameLabel)
         addSubview(moreButton)
     }
     
-    func setConstraints() {
+    func addConstraints() {
         nicknameLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview().inset(16)
             make.trailing.equalTo(moreButton.snp.leading).inset(16)

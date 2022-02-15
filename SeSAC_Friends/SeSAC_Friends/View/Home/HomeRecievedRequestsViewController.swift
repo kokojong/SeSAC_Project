@@ -6,25 +6,61 @@
 //
 
 import UIKit
+import Tabman
+import Pageboy
 
-class HomeRecievedRequestsViewController: UIViewController {
+class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
+    
+    var viewModel = HomeViewModel.shared
+    
+    var mainTableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "받은 요청"
+        title = "받은 요청"
         view.backgroundColor = .red
+        
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addViews() {
+        view.addSubview(mainTableView)
     }
-    */
+    
+    func addConstraints() {
+        mainTableView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+    }
+}
 
+extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = viewModel.onQueueResult.value.fromQueueDBRequested.count
+        print("count", count)
+        if count != 0 {
+            tableView.backgroundView = nil
+            return count
+        } else {
+            let emptyView = EmptyResultView().then({
+                $0.titleLabel.text = "아쉽게도 주변 새싹이 없어요ㅠ"
+                $0.subtitleLabel.text = "취미를 변경하거나 조금만 더 기다려 주세요"
+            })
+            tableView.backgroundView = emptyView
+            
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        return UITableViewCell()
+    }
+    
+    
 }

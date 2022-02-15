@@ -12,6 +12,9 @@
 		048F80E327BA2B4500F32FA4 /* HomeNearSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */; };
 		048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */; };
 		048F80E727BA33CA00F32FA4 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */; };
+		048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */; };
+		048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */; };
+		048F80ED27BB7E1C00F32FA4 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -90,6 +93,9 @@
 		048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNearSesacViewController.swift; sourceTree = "<group>"; };
 		048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecievedRequestsViewController.swift; sourceTree = "<group>"; };
 		048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
+		048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedProfileTableViewCell.swift; sourceTree = "<group>"; };
+		048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedProfileTableViewCell.swift; sourceTree = "<group>"; };
+		048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 				04A81FD727969B8B00B658CD /* MainTextField.swift */,
 				04EE3C2A279D29A000A9136D /* MainSeperator.swift */,
 				04EE3C2C279D2CBE00A9136D /* BirthView.swift */,
+				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
 				04A81FD927969E8B00B658CD /* AuthCommonView.swift */,
 				04EAA97627B23B5500AB6FDD /* BackButton.swift */,
 				04EAA97827B23E3F00AB6FDD /* SearchView.swift */,
@@ -242,6 +249,7 @@
 				04EAA97C27B2EB4100AB6FDD /* LeftAlignedCollectionViewFlowLayout.swift */,
 				04EAA98027B39C7500AB6FDD /* DynamicHeightCollectionView.swift */,
 				048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */,
+				048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */,
 			);
 			path = ReuseableView;
 			sourceTree = "<group>";
@@ -344,6 +352,8 @@
 				048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */,
 				048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */,
 				048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */,
+				048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */,
+				048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -353,7 +363,6 @@
 			children = (
 				04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */,
 				04EE3C4B27A10A0100A9136D /* ProfileDetailViewController.swift */,
-				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
 				04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */,
 				04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */,
 				04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */,
@@ -531,7 +540,10 @@
 				04EE3C1C2799B7F900A9136D /* AuthEmailViewController.swift in Sources */,
 				04EE3C44279EF6A300A9136D /* UserDefaultKeys.swift in Sources */,
 				04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */,
+				048F80ED27BB7E1C00F32FA4 /* PopupViewController.swift in Sources */,
 				04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */,
+				048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */,
+				048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
 				04EAA97F27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift in Sources */,
 				048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */,

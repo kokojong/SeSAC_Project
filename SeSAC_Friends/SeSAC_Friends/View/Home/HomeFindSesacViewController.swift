@@ -12,6 +12,8 @@ import Pageboy
 class HomeFindSesacViewController: TabmanViewController {
     
     private var viewControllers = [HomeNearSesacViewController(), HomeRecievedRequestsViewController()]
+    
+    private let titleList = ["새싹 찾기", "받은 요청"]
 
     var viewModel = HomeViewModel.shared
     
@@ -57,7 +59,7 @@ extension HomeFindSesacViewController: PageboyViewControllerDataSource, TMBarDat
     }
     
     func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
-        
+        print(viewControllers[index])
         return viewControllers[index]
     }
     
@@ -66,7 +68,7 @@ extension HomeFindSesacViewController: PageboyViewControllerDataSource, TMBarDat
     }
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        let title = viewControllers[index].title ?? "\(index)"
+        let title = titleList[index]
         return TMBarItem(title: title)
     }
     

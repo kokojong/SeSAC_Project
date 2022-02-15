@@ -31,21 +31,21 @@ class MyProfileTableViewCell: UITableViewCell {
         
         moreButton.setImage(UIImage(named: "more_arrow_right"), for: .normal)
         
-        setViews()
-        setConstraints()
+        addViews()
+        addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setViews() {
+    func addViews() {
         addSubview(profileImageView)
         addSubview(usernameLabel)
         addSubview(moreButton)
     }
     
-    func setConstraints() {
+    func addConstraints() {
         
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(15)
