@@ -10,10 +10,15 @@ import SnapKit
 
 class PopupViewController: UIViewController, UiViewProtocol {
     
+    var otheruid = ""
+    
+    var isRequest = true
+    
+    var viewModel = HomeViewModel.shared
+    
     let mainView = UIView().then {
         $0.layer.cornerRadius = 8
         $0.backgroundColor = .white
-        
     }
     
     let titleLabel = UILabel().then {
@@ -50,6 +55,9 @@ class PopupViewController: UIViewController, UiViewProtocol {
         
         cancelButton.addTarget(self, action: #selector(onCancelButtonClicked), for: .touchUpInside)
         okButton.addTarget(self, action: #selector(onOkButtonClicked), for: .touchUpInside)
+        
+        otheruid = UserDefaults.standard.string(forKey: UserDefaultKeys.otherUid.rawValue) ?? ""
+        print(otheruid)
     }
     
     func addViews() {
@@ -98,7 +106,32 @@ class PopupViewController: UIViewController, UiViewProtocol {
     }
     
     @objc func onOkButtonClicked() {
-        self.dismiss(animated: true, completion: nil)
+        
+        if isRequest {
+            viewModel.hobbyRequest(otheruid: otheruid) { statuscode, error in
+                
+                guard let statuscode = statuscode else {
+                    return
+                }
+                
+                self.view.makeToast("\(statuscode)")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.dismiss(animated: true)
+                }
+            }
+        } else {
+            viewModel.hobbyAccept(otheruid: otheruid) { statuscode, error in
+                
+                guard let statuscode = statuscode else {
+                    return
+                }
+                
+                self.view.makeToast("\(statuscode)")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.dismiss(animated: true)
+                }
+            }
+        }
     }
     
 }

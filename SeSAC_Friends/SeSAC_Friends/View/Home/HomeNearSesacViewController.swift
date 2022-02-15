@@ -8,12 +8,29 @@
 import UIKit
 import SnapKit
 import Then
+import CoreLocation
 
-class HomeNearSesacViewController: UIViewController, UiViewProtocol{
+
+
+class HomeNearSesacViewController: UIViewController, UiViewProtocol {
     
     var viewModel = HomeViewModel.shared
     
     var mainTableView = UITableView()
+    
+    let buttonStackView = UIStackView().then {
+        $0.distribution = .fillProportionally
+        $0.spacing = 8
+        $0.axis = .horizontal
+    }
+    
+    let changeHobbyButton = MainButton(type: .fill).then {
+        $0.setTitle("취미 변경하기", for: .normal)
+    }
+    
+    let refreshButton = MainButton(type: .outline).then {
+        $0.setImage(UIImage(named: "refresh"), for: .normal)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,8 +52,10 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol{
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(OpenedProfileTableViewCell.self, forCellReuseIdentifier: OpenedProfileTableViewCell.identifier)
-        mainTableView.backgroundColor = .yellow
         
+        changeHobbyButton.addTarget(self, action: #selector(onChangeHobbyButtonClicked), for: .touchUpInside)
+        
+        refreshButton.addTarget(self, action: #selector(onRefreshButtonClicked), for: .touchUpInside)
         
         
         addViews()
@@ -45,6 +64,9 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol{
     
     func addViews() {
         view.addSubview(mainTableView)
+        view.addSubview(buttonStackView)
+        buttonStackView.addArrangedSubview(changeHobbyButton)
+        buttonStackView.addArrangedSubview(refreshButton)
     }
     
     func addConstraints() {
@@ -53,6 +75,27 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol{
             make.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(500)
         }
+        
+        buttonStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(48)
+        }
+        
+        refreshButton.snp.makeConstraints { make in
+            make.size.equalTo(48)
+        }
+    }
+    
+    
+    
+    @objc func onChangeHobbyButtonClicked() {
+        self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+    }
+    
+    @objc func onRefreshButtonClicked() {
+        print(#function)
+        searchNearFriends()
     }
     
     
@@ -60,13 +103,74 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol{
 
 }
 
+extension HomeNearSesacViewController: CLLocationManagerDelegate {
+    func searchNearFriends() {
+        print(#function)
+        
+        let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
+        viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
+            
+            switch statuscode {
+            case OnQueueStatusCodeCase.success.rawValue:
+                guard let onqueueResult = onqueueResult else {
+                    return
+                }
+                
+                print(onqueueResult)
+                
+                // MARK: onqueue의 결과를 VM에 저장
+                for otherUserInfo in onqueueResult.fromQueueDB {
+                    
+                    self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
+                    
+                    self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
+                    
+                }
+                
+                for otherUserInfo in onqueueResult.fromQueueDBRequested {
+                    
+                    self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
+                    
+                    self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
+                }
+                
+                self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
+                
+                self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
+                    $0.gender == self.viewModel.searchGender.value
+                })
+                
+                self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested.filter({
+                    $0.gender == self.viewModel.searchGender.value
+                })
+                
+                print("filteredQueueDB", self.viewModel.filteredQueueDB.value)
+                print("filteredQueueDBRequested", self.viewModel.filteredQueueDBRequested.value)
+                
+               
+               
+           case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
+               // 토큰 만료 -> 갱신
+               self.refreshFirebaseIdToken { idToken, error in
+                   if let idToken = idToken {
+                       self.searchNearFriends()
+                   }
+               }
+           default:
+               self.view.makeToast("주변 새싹 친구를 찾는데 실패했습니다. 잠시 후 다시 시도해주세요")
+           }
+       }
+   }
+}
+
 extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSource, matchButtonProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let count = viewModel.onQueueResult.value.fromQueueDB.count
+        let count = viewModel.filteredQueueDB.value.count
         print("count", count)
         if count != 0 {
             tableView.backgroundView = nil
+            buttonStackView.isHidden = true
             return count
         } else {
             let emptyView = EmptyResultView().then({
@@ -75,13 +179,14 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
             })
             tableView.backgroundView = emptyView
             
+            buttonStackView.isHidden = false
+            
             return 0
         }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OpenedProfileTableViewCell.identifier, for: indexPath) as? OpenedProfileTableViewCell else {
              return UITableViewCell()
@@ -90,20 +195,13 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
         guard let innerCell = cell.toggleTableView.dequeueReusableCell(withIdentifier: OpenedTableViewCell.identifier, for: indexPath) as? OpenedTableViewCell else {
             return UITableViewCell()
         }
-
-//        print(viewModel.onQueueResult.value.fromQueueDB[indexPath.row].nick)
         
-        viewModel.onQueueResult.bind {
-            
-            cell.otherUserInfoData = $0.fromQueueDB[indexPath.row]
-            
-            cell.toggleTableView.reloadData()
-
-        }
+        print("viewModel.filteredQueueDB.value",viewModel.filteredQueueDB.value)
+        cell.otherUserInfoData = viewModel.filteredQueueDB.value[indexPath.row]
         
+        cell.toggleTableView.reloadData()
         cell.delegate = self
-        
-        
+       
         
 //        cell.layoutIfNeeded()
         
@@ -117,18 +215,15 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
-    func matchButtonClicked(){
+    func matchButtonClicked() {
         let vc = PopupViewController() // Or however you want to create it.
         vc.titleLabel.text = "취미 같이 하기를 요청할게요"
         vc.subtitleLabel.text = "요청이 수락되면 30분 후에 리뷰를 남길 수 있어요"
         vc.modalTransitionStyle = . crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
+        vc.isRequest = true
         present(vc, animated: true, completion: nil)
     }
     
-    
-    @objc func onMatchButtonClicked() {
-        print(#function)
-    }
     
 }

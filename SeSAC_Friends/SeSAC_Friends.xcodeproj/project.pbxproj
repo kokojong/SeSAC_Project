@@ -291,8 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				04EE3BF627986D7100A9136D /* AuthViewModel.swift */,
-				04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */,
 				04EAA96A27AECFEB00AB6FDD /* HomeViewModel.swift */,
+				04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */,
 			);
 			name = Viewmodel;
 			sourceTree = "<group>";

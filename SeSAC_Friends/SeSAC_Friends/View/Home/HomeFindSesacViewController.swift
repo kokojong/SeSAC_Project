@@ -35,7 +35,13 @@ class HomeFindSesacViewController: TabmanViewController {
         title = "새싹 찾기"
         view.backgroundColor = .yellow
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         setNavBackArrowButton()
+        
+        let stopSearchBarButton = UIBarButtonItem(title: "찾기중단", style: .done, target: self, action: #selector(onStopSearchBarButtonClicked))
+        stopSearchBarButton.tintColor = .black
+        self.navigationItem.rightBarButtonItem = stopSearchBarButton
         
         self.dataSource = self
 //        let bar = TMBar.ButtonBar()
@@ -45,6 +51,24 @@ class HomeFindSesacViewController: TabmanViewController {
         
         // Add to view
         addBar(bar, dataSource: self, at: .top)
+        
+    }
+    
+    @objc func onStopSearchBarButtonClicked() {
+        print(#function)
+        
+        viewModel.deleteQueue { statuscode, error in
+            self.view.makeToast("\(statuscode)")
+            
+            
+            switch statuscode {
+            case QueueStatusCodeCase.success.rawValue:
+                UserDefaults.standard.set(0, forKey: UserDefaultKeys.myStatus.rawValue)
+                
+            default:
+                print(statuscode)
+            }
+        }
         
     }
     

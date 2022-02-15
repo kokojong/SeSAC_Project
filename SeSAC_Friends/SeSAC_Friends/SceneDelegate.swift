@@ -26,8 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         
-        
-        
         Auth.auth().currentUser?.getIDToken { idToken, error in
             if let error = error {
                 // MARK: 첫 실행시에 대한 분기처리 - idToken이 없으므로
@@ -43,6 +41,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 DispatchQueue.main.async {
                     self.getUserInfo(idToken: idToken) { myUserInfo, statuscode, error in
+                        
+                        if let error = error {
+                            print("error is",error)
+                        }
+                        
                         if let statuscode = statuscode {
                             print("statuscode adsfsdf",statuscode)
                             switch statuscode {
@@ -54,21 +57,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                 changeNavRootView(vc: OnboardingViewController())
                             }
                             
-                            // MARK: statuscode에 따른 분기처리 간소화
-                            /*
-                            if statuscode == 200 {
-                                self.window?.rootViewController = TabBarViewController()
-                                self.window?.makeKeyAndVisible()
-                                UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                                changeRootView(vc: TabBarViewController())
-                            } else {
-                                self.window?.rootViewController = OnboardingViewController()
-                                self.window?.makeKeyAndVisible()
-                                UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                                changeRootView(vc: OnboardingViewController())
-                            }
-                            */
                         }
+                        
+                        
                     }
                 }
                 

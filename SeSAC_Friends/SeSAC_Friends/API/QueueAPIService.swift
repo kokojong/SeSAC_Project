@@ -57,4 +57,50 @@ class QueueAPIService {
             }
     }
     
+    static func deleteQueue(idToken: String, completion: @escaping (Int?, Error?) -> Void) {
+        
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        AF.request(QueueEndPoint.postQueue.url.absoluteString, method: .delete, headers: headers)
+            .responseString { response in
+                
+                completion(response.response?.statusCode, response.error)
+            }
+    }
+    
+    static func hobbyRequest(idToken: String, otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+        
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters: Parameters = [
+            "otheruid": otheruid
+        ]
+        
+        AF.request(QueueEndPoint.hobbyRequest.url.absoluteString, method: .post, parameters: parameters, headers: headers)
+            .responseString { response in
+                
+                completion(response.response?.statusCode, response.error)
+            }
+        
+    }
+    
+    static func hobbyAccept(idToken: String, otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+        
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters: Parameters = [
+            "otheruid": otheruid
+        ]
+        
+        AF.request(QueueEndPoint.hobbyAccept.url.absoluteString, method: .post, parameters: parameters, headers: headers)
+            .responseString { response in
+                
+                completion(response.response?.statusCode, response.error)
+            }
+        
+    }
+    
 }

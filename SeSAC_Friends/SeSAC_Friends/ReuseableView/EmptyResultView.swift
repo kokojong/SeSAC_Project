@@ -31,7 +31,7 @@ class EmptyResultView: UIView, UiViewProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .green
+        backgroundColor = .white
         addViews()
         addConstraints()
        

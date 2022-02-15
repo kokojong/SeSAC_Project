@@ -10,6 +10,8 @@ import SnapKit
 import Toast
 import MapKit
 
+
+
 class HomeViewController: UIViewController, UiViewProtocol {
     
     let mapView = MKMapView().then {
@@ -71,6 +73,9 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
+        
         monitorNetwork()
         
         checkMyStatus()
@@ -110,6 +115,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let parentViewController = HomeNearSesacViewController()
+        
         monitorNetwork()
         view.backgroundColor = .white
         
@@ -143,7 +150,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         genderButtonStackView.addArrangedSubview(searchAllButton)
         genderButtonStackView.addArrangedSubview(searchManButton)
         genderButtonStackView.addArrangedSubview(searchWomanButton)
-        
         view.addSubview(centerLocationView)
     }
     
@@ -408,24 +414,27 @@ extension HomeViewController: CLLocationManagerDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    func searchNearFriends() {
-        
-        let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
-        viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
-            
-            switch statuscode {
-            case OnQueueStatusCodeCase.success.rawValue:
-                guard let onqueueResult = onqueueResult else {
-                    return
-                }
-                
-                // 초기화
-                self.manAnnotations = []
-                self.womanAnnotations = []
-                
-                print(onqueueResult)
-                
-                // MARK: onqueue의 결과를 VM에 저장
+     func searchNearFriends() {
+         print(#function)
+         
+         let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
+         viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
+             
+             switch statuscode {
+             case OnQueueStatusCodeCase.success.rawValue:
+                 guard let onqueueResult = onqueueResult else {
+                     return
+                 }
+                 
+                 // 초기화
+                 self.manAnnotations = []
+                 self.womanAnnotations = []
+                 
+                 print(onqueueResult)
+                 
+                 
+                 
+                 // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
                     
                     self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
@@ -439,7 +448,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                     }
                 }
                 
-                for otherUserInfo in onqueueResult.fromQueueDBRequested {
+                 for otherUserInfo in onqueueResult.fromQueueDBRequested {
                     
                     self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
                     
@@ -451,13 +460,42 @@ extension HomeViewController: CLLocationManagerDelegate {
                         self.womanAnnotations.append(CustomAnnotation(sesac_image: otherUserInfo.sesac, coordinate: CLLocationCoordinate2D(latitude: otherUserInfo.lat, longitude: otherUserInfo.long)))
                     }
                 }
-                
-                self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
-                
-                print("man:", self.manAnnotations)
-                print("woman:", self.womanAnnotations)
-                
-                self.addFilteredPin(gender: self.viewModel.searchGender.value)
+                 
+                 self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
+                 print("viewModel.searchGender.value",self.viewModel.searchGender.value)
+                 switch self.viewModel.searchGender.value {
+                     
+                 case GenderCase.man.rawValue, GenderCase.woman.rawValue:
+                     self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
+                         $0.gender == self.viewModel.searchGender.value
+                     })
+                     self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested.filter({
+                         $0.gender == self.viewModel.searchGender.value
+                         
+                     })
+                     
+//                 case GenderCase.all.rawValue:
+//                     self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
+                    
+                     
+                 default:
+                     self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
+                     self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
+                 }
+                 
+                 self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested.filter({
+                     $0.gender == self.viewModel.searchGender.value
+                 })
+                 
+                 
+                 print("man:", self.manAnnotations)
+                 print("woman:", self.womanAnnotations)
+                 
+                 print("filteredQueueDB", self.viewModel.filteredQueueDB.value)
+                 print(self.viewModel.filteredQueueDB.value.count)
+                 print("filteredQueueDBRequested", self.viewModel.filteredQueueDBRequested.value)
+                 
+                 self.addFilteredPin(gender: self.viewModel.searchGender.value)
                 
                 
             case OnQueueStatusCodeCase.firebaseTokenError.rawValue:

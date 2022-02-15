@@ -8,9 +8,11 @@
 import Foundation
 
 enum UserDefaultKeys: String {
-    case idToken = "idToken"
-    case FCMToken = "FCMToken"
+    case idToken
+    case FCMToken
     // 새싹 찾기전 0, 찾는중 1, 매칭완료 2
-    case myStatus = "myStatus"
+    case myStatus
+    
+    case otherUid
     
 }

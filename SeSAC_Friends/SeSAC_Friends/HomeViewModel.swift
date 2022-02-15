@@ -16,6 +16,10 @@ class HomeViewModel {
     
     var onQueueResult: Observable<OnQueueResult> = Observable(OnQueueResult(fromQueueDB: [], fromQueueDBRequested: [], fromRecommend: []))
     
+    var filteredQueueDB: Observable<[OnQueueResult.OtherUserInfo]> = Observable([])
+    var filteredQueueDBRequested:
+    Observable<[OnQueueResult.OtherUserInfo]> = Observable([])
+    
     // MARK: lat + long -> region
     var centerLat = Observable(0.0)
     var centerLong = Observable(0.0)
@@ -42,7 +46,6 @@ class HomeViewModel {
             self.onQueueResult.value = onqueueResult
 
             completion(onqueueResult, statuscode, error)
-            
         }
         
     }
@@ -85,13 +88,44 @@ class HomeViewModel {
             }
             
             completion(statuscode, error)
-            
         }
     }
     
+    func deleteQueue(completion: @escaping (Int?, Error?) -> Void) {
+        QueueAPIService.deleteQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { statuscode, error in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+            
+            completion(statuscode, error)
+        }
+        
+    }
     
+    func hobbyRequest(otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+        QueueAPIService.hobbyRequest(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, otheruid: otheruid) { statuscode, error in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+            
+            completion(statuscode, error)
+        }
+        
+    }
     
-    
+    func hobbyAccept(otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+        QueueAPIService.hobbyAccept(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, otheruid: otheruid) { statuscode, error in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+            
+            completion(statuscode, error)
+        }
+        
+    }
     
     
 }

@@ -75,9 +75,12 @@ class OpenedProfileTableViewCell: UITableViewCell, UiViewProtocol {
     
                
     @objc func onMatchButtonClicked() {
-        print(otherUserInfoData)
-        self.delegate.matchButtonClicked()
+        print("otherUserInfoData",otherUserInfoData)
         
+        UserDefaults.standard.set(otherUserInfoData.uid, forKey: UserDefaultKeys.otherUid.rawValue)
+        
+        self.delegate.matchButtonClicked()
+       
     }
                                           
 }

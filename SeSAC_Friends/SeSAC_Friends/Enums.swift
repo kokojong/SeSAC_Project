@@ -38,6 +38,7 @@ enum QueueStatusCodeCase: Int {
 
 enum OnQueueStatusCodeCase: Int {
     case success = 200
+    case matced = 201
     case firebaseTokenError = 401
     case unAuthorized = 406
     case serverError = 500
