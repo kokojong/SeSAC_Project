@@ -55,18 +55,17 @@ class HomeFindSesacViewController: TabmanViewController {
     }
     
     @objc func onStopSearchBarButtonClicked() {
-        print(#function)
         
         viewModel.deleteQueue { statuscode, error in
             self.view.makeToast("\(statuscode)")
             
-            
             switch statuscode {
             case QueueStatusCodeCase.success.rawValue:
-                UserDefaults.standard.set(0, forKey: UserDefaultKeys.myStatus.rawValue)
+                UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
                 
             default:
-                print(statuscode)
+                self.view.makeToast("오류가 발생했습니다. 잠시 후 다시 시도해주세요.")
             }
         }
         

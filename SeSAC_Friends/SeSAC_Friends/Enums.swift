@@ -45,6 +45,16 @@ enum OnQueueStatusCodeCase: Int {
     case clientError = 501
 }
 
+enum MyQueueStateCodeCase: Int {
+    case success = 200
+    case matchingCanceled = 201
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+    
+}
+
 enum MyStatusCase: Int {
     case normal = 0
     case matching = 1

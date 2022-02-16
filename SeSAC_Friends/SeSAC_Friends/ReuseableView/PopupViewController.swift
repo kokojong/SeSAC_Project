@@ -126,6 +126,13 @@ class PopupViewController: UIViewController, UiViewProtocol {
                     return
                 }
                 
+                switch statuscode {
+                case 200:
+                    UserDefaults.standard.set(MyStatusCase.matched.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                default:
+                    print("default")
+                }
+                
                 self.view.makeToast("\(statuscode)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.dismiss(animated: true)

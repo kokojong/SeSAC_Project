@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import CoreLocation
-
+import Toast
 
 
 class HomeNearSesacViewController: UIViewController, UiViewProtocol {
@@ -40,6 +40,8 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
             self.mainTableView.reloadData()
         }
+//
+        searchNearFriends()
         
     }
 
@@ -90,12 +92,28 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
     
     
     @objc func onChangeHobbyButtonClicked() {
-        self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+        
+        viewModel.deleteQueue { statuscode, error in
+            guard let statuscode = statuscode else {
+                return
+            }
+            self.view.makeToast("\(statuscode)")
+            
+            switch statuscode {
+            case QueueStatusCodeCase.success.rawValue:
+                UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+            default:
+                self.view.makeToast("오류가 발생했습니다. 잠시 후 다시 시도해주세요.")
+            }
+        }
+        
     }
     
     @objc func onRefreshButtonClicked() {
         print(#function)
         searchNearFriends()
+        view.makeToast("새싹 목록을 갱신했습니다.")
     }
     
     
@@ -136,13 +154,23 @@ extension HomeNearSesacViewController: CLLocationManagerDelegate {
                 
                 self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
                 
-                self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
-                    $0.gender == self.viewModel.searchGender.value
-                })
+//                self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
+//                    $0.gender == self.viewModel.searchGender.value
+//                })
+//
+//                self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
                 
-                self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested.filter({
-                    $0.gender == self.viewModel.searchGender.value
-                })
+                switch self.viewModel.searchGender.value {
+                    
+                case GenderCase.man.rawValue, GenderCase.woman.rawValue:
+                    self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
+                        $0.gender == self.viewModel.searchGender.value
+                    })
+                default:
+                    self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
+                }
+                
+                self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
                 
                 print("filteredQueueDB", self.viewModel.filteredQueueDB.value)
                 print("filteredQueueDBRequested", self.viewModel.filteredQueueDBRequested.value)
@@ -160,6 +188,8 @@ extension HomeNearSesacViewController: CLLocationManagerDelegate {
                self.view.makeToast("주변 새싹 친구를 찾는데 실패했습니다. 잠시 후 다시 시도해주세요")
            }
        }
+        
+        mainTableView.reloadData()
    }
 }
 
@@ -202,7 +232,6 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
         cell.toggleTableView.reloadData()
         cell.delegate = self
        
-        
 //        cell.layoutIfNeeded()
         
         DispatchQueue.main.async {

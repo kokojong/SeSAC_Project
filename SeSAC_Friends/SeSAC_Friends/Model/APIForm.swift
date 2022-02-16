@@ -37,3 +37,9 @@ struct UpdateMypageForm: Encodable {
     let gender: Int
     let hobby: String
 }
+
+struct WriteReviewFrom: Encodable {
+    let otheruid: String
+    let reputation: [Int]
+    let comment: String
+}

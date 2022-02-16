@@ -13,7 +13,9 @@ enum QueueEndPoint {
     case deleteQueue
     case hobbyRequest
     case hobbyAccept
-    
+    case myQueueState
+    case writeReview(id: String)
+    case dodge
 }
 
 extension QueueEndPoint {
@@ -27,6 +29,12 @@ extension QueueEndPoint {
             return .makeQueueEndPoint("hobbyrequest")
         case .hobbyAccept:
             return .makeQueueEndPoint("hobbyaccept")
+        case .myQueueState:
+            return .makeQueueEndPoint("myQueueState")
+        case .writeReview(id: let id):
+            return .makeQueueEndPoint("rate/\(id)")
+        case .dodge:
+            return .makeQueueEndPoint("dodge")
             
         }
         

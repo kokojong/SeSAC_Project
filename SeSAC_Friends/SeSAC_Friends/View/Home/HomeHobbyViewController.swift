@@ -192,7 +192,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             self.view.makeToast("\(statuscode)")
             switch statuscode {
             case QueueStatusCodeCase.success.rawValue:
-                UserDefaults.standard.set(1, forKey: UserDefaultKeys.myStatus.rawValue)
+                UserDefaults.standard.set(MyStatusCase.matching.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                 self.navigationController?.pushViewController(HomeFindSesacViewController(), animated: true)
 //                let modalVC = HomeFindSesacViewController()
 //                modalVC.modalPresentationStyle = .fullScreen

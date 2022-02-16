@@ -89,12 +89,26 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
     }
     
     @objc func onChangeHobbyButtonClicked() {
-        self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+        viewModel.deleteQueue { statuscode, error in
+            guard let statuscode = statuscode else {
+                return
+            }
+            self.view.makeToast("\(statuscode)")
+            
+            switch statuscode {
+            case QueueStatusCodeCase.success.rawValue:
+                UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+            default:
+                self.view.makeToast("오류가 발생했습니다. 잠시 후 다시 시도해주세요.")
+            }
+        }
     }
     
     @objc func onRefreshButtonClicked() {
         print(#function)
 //        searchNearFriends()
+        view.makeToast("새싹 목록을 갱신했습니다.")
     }
 }
 
@@ -132,12 +146,11 @@ extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDa
         cell.profileBackgroundView.matchButton.setTitle("수락하기", for: .normal)
         cell.profileBackgroundView.matchButton.backgroundColor = UIColor.successColor
         
-        cell.otherUserInfoData = viewModel.filteredQueueDB.value[indexPath.row]
+        print("viewModel.filteredQueueDBRequested.value",viewModel.filteredQueueDBRequested.value)
+        cell.otherUserInfoData = viewModel.filteredQueueDBRequested.value[indexPath.row]
         
         cell.toggleTableView.reloadData()
         cell.delegate = self
-        
-//        cell.layoutIfNeeded()
         
         DispatchQueue.main.async {
             self.mainTableView.snp.updateConstraints { make in

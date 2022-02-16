@@ -264,7 +264,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         searchNearFriends()
         
-      
     }
     
     @objc func onFloatginButtonClicked() {
@@ -292,11 +291,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 let vc = HomeHobbyViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            
-           
         }
-        
-        
         
     }
     
@@ -432,8 +427,6 @@ extension HomeViewController: CLLocationManagerDelegate {
                  
                  print(onqueueResult)
                  
-                 
-                 
                  // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
                     
@@ -462,38 +455,19 @@ extension HomeViewController: CLLocationManagerDelegate {
                 }
                  
                  self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
-                 print("viewModel.searchGender.value",self.viewModel.searchGender.value)
+                 
                  switch self.viewModel.searchGender.value {
                      
                  case GenderCase.man.rawValue, GenderCase.woman.rawValue:
                      self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
                          $0.gender == self.viewModel.searchGender.value
                      })
-                     self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested.filter({
-                         $0.gender == self.viewModel.searchGender.value
-                         
-                     })
-                     
-//                 case GenderCase.all.rawValue:
-//                     self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
-                    
-                     
+
                  default:
                      self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
-                     self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
                  }
                  
-                 self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested.filter({
-                     $0.gender == self.viewModel.searchGender.value
-                 })
-                 
-                 
-                 print("man:", self.manAnnotations)
-                 print("woman:", self.womanAnnotations)
-                 
-                 print("filteredQueueDB", self.viewModel.filteredQueueDB.value)
-                 print(self.viewModel.filteredQueueDB.value.count)
-                 print("filteredQueueDBRequested", self.viewModel.filteredQueueDBRequested.value)
+                 self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
                  
                  self.addFilteredPin(gender: self.viewModel.searchGender.value)
                 

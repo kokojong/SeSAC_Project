@@ -100,7 +100,62 @@ class QueueAPIService {
                 
                 completion(response.response?.statusCode, response.error)
             }
-        
     }
+    
+    static func checkMyQueueStatus(idToken: String, completion: @escaping (MyQueueStateResult?, Int?, Error?) -> Void) {
+        
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        
+        AF.request(QueueEndPoint.myQueueState.url.absoluteString, method: .get, headers: headers)
+            .responseDecodable(of: MyQueueStateResult.self) { response in
+                
+                let statusCode = response.response?.statusCode
+                
+                switch response.result {
+                case .success(let value):
+                    completion(response.value, statusCode, nil)
+                case .failure(let error):
+                    completion(nil, statusCode, error)
+                }
+                
+            }
+    }
+    
+    static func writeReview(idToken: String, form: WriteReviewFrom, completion: @escaping (Int?, Error?) -> Void) {
+        
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters: Parameters = [
+            "otheruid": form.otheruid,
+            "reputation": form.reputation,
+            "comment": form.comment
+        ]
+        
+        AF.request(QueueEndPoint.writeReview(id: form.otheruid).url.absoluteString, method: .post, parameters: parameters, headers: headers)
+            .responseString { response in
+                
+                completion(response.response?.statusCode, response.error)
+            }
+    }
+    
+    static func dodgeMatching(idToken: String, otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+        
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters: Parameters = [
+            "otheruid": otheruid
+        ]
+        
+        AF.request(QueueEndPoint.dodge.url.absoluteString, method: .post, parameters: parameters, headers: headers)
+            .responseString { response in
+                
+                completion(response.response?.statusCode, response.error)
+            }
+    }
+    
     
 }

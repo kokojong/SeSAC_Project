@@ -15,6 +15,7 @@
 		048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */; };
 		048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */; };
 		048F80ED27BB7E1C00F32FA4 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */; };
+		048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedProfileTableViewCell.swift; sourceTree = "<group>"; };
 		048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedProfileTableViewCell.swift; sourceTree = "<group>"; };
 		048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueStateResult.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				04A81FB5279681DD00B658CD /* SceneDelegate.swift */,
 				04EE3C2E279D3CBB00A9136D /* Test.storyboard */,
 				04EAA96127A9461E00AB6FDD /* Enums.swift */,
+				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 				04EE3BF827986DD800A9136D /* Observable.swift */,
 				04EAA95F27A9427C00AB6FDD /* CommonMethod.swift */,
 				04EE3C28279C3A2300A9136D /* API */,
@@ -303,8 +306,8 @@
 				04EAA96527A951FB00AB6FDD /* APIForm.swift */,
 				04EE3C192799933400A9136D /* MyUserInfo.swift */,
 				04EAA97227AF82E100AB6FDD /* OnQueueResult.swift */,
+				048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */,
 				04EE3C07279946FC00A9136D /* AuthResponse.swift */,
-				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */,
 				04EAA97B27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift in Sources */,
 				04EE3C22279A986000A9136D /* UIView+Extension.swift in Sources */,
+				048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */,
 				04A81FE52797D7C200B658CD /* AuthNicknameViewController.swift in Sources */,
 				04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */,
 				04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */,

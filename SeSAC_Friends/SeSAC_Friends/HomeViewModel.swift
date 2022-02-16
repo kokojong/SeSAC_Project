@@ -35,7 +35,6 @@ class HomeViewModel {
     var fromNearFriendsHobby: Observable<[String]> = Observable([])
     var myFavoriteHobby: Observable<[String]> = Observable(["코딩", "이 아니라", "땐스", "음주가무"])
     
-    
     func searchNearFriends(form: OnQueueForm, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
         QueueAPIService.onQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { onqueueResult, statuscode, error in
             
@@ -112,19 +111,51 @@ class HomeViewModel {
             
             completion(statuscode, error)
         }
-        
     }
     
-    func hobbyAccept(otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+    final func hobbyAccept(otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
         QueueAPIService.hobbyAccept(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, otheruid: otheruid) { statuscode, error in
             
             guard let statuscode = statuscode else {
                 return
             }
-            
+
             completion(statuscode, error)
         }
+    }
+    
+    final func checkMyQueueStatus(completion: @escaping (MyQueueStateResult?, Int?, Error?) -> Void) {
         
+        QueueAPIService.checkMyQueueStatus(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { myQueueState, statuscode, error in
+            
+            guard let myQueueState = myQueueState else {
+                return
+            }
+            
+            completion(myQueueState, statuscode, error)
+        }
+    }
+    
+    final func writeReview(form: WriteReviewFrom, completion: @escaping (Int?, Error?) -> Void) {
+        QueueAPIService.writeReview(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode, error in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+
+            completion(statuscode, error)
+        }
+    }
+    
+    final func dodgeMatching(otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+        QueueAPIService.dodgeMatching(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, otheruid: otheruid) { statuscode, error in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+
+            completion(statuscode, error)
+        }
     }
     
     
