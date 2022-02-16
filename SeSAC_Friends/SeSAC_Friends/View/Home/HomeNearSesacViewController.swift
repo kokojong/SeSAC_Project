@@ -51,6 +51,7 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         title = "주변 새싹"
         view.backgroundColor = .magenta
         
+        mainTableView.allowsSelection = false
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(OpenedProfileTableViewCell.self, forCellReuseIdentifier: OpenedProfileTableViewCell.identifier)
@@ -94,15 +95,19 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
     @objc func onChangeHobbyButtonClicked() {
         
         viewModel.deleteQueue { statuscode, error in
-            guard let statuscode = statuscode else {
-                return
-            }
+           
             self.view.makeToast("\(statuscode)")
             
             switch statuscode {
-            case QueueStatusCodeCase.success.rawValue:
+            case DeleteQueueStatusCodeCase.success.rawValue:
                 UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                 self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+            case DeleteQueueStatusCodeCase.matched.rawValue:
+                self.view.makeToast("누군가와 취미를 함께하기로 약속하셨어요!")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
+                }
+               
             default:
                 self.view.makeToast("오류가 발생했습니다. 잠시 후 다시 시도해주세요.")
             }
@@ -115,9 +120,6 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         searchNearFriends()
         view.makeToast("새싹 목록을 갱신했습니다.")
     }
-    
-    
-
 
 }
 
@@ -153,12 +155,6 @@ extension HomeNearSesacViewController: CLLocationManagerDelegate {
                 }
                 
                 self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
-                
-//                self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
-//                    $0.gender == self.viewModel.searchGender.value
-//                })
-//
-//                self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
                 
                 switch self.viewModel.searchGender.value {
                     
@@ -231,8 +227,6 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.toggleTableView.reloadData()
         cell.delegate = self
-       
-//        cell.layoutIfNeeded()
         
         DispatchQueue.main.async {
             self.mainTableView.snp.updateConstraints { make in
@@ -245,14 +239,13 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func matchButtonClicked() {
-        let vc = PopupViewController() // Or however you want to create it.
+        let vc = PopupViewController() 
         vc.titleLabel.text = "취미 같이 하기를 요청할게요"
         vc.subtitleLabel.text = "요청이 수락되면 30분 후에 리뷰를 남길 수 있어요"
         vc.modalTransitionStyle = . crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
-        vc.isRequest = true
+        vc.popupCase = PopupVCCase.hobbyRequest.rawValue
         present(vc, animated: true, completion: nil)
     }
-    
     
 }

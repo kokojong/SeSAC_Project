@@ -11,7 +11,7 @@ struct MyQueueStateResult: Codable {
     var dodged: Int
     var matched: Int
     var reviewed: Int
-    var matchedNick: String
-    var matchedUid: String
+    var matchedNick: String?
+    var matchedUid: String?
 }
 

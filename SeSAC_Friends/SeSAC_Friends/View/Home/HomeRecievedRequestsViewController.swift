@@ -47,6 +47,7 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
         title = "받은 요청"
         view.backgroundColor = .red
         
+        mainTableView.allowsSelection = false
         mainTableView.delegate = self
         mainTableView.dataSource = self
         
@@ -90,17 +91,22 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
     
     @objc func onChangeHobbyButtonClicked() {
         viewModel.deleteQueue { statuscode, error in
-            guard let statuscode = statuscode else {
-                return
-            }
+         
             self.view.makeToast("\(statuscode)")
             
             switch statuscode {
-            case QueueStatusCodeCase.success.rawValue:
+            case DeleteQueueStatusCodeCase.success.rawValue:
                 UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                 self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
+            case DeleteQueueStatusCodeCase.matched.rawValue:
+                self.view.makeToast("누군가와 취미를 함께하기로 약속하셨어요!")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
+                }
+               
             default:
                 self.view.makeToast("오류가 발생했습니다. 잠시 후 다시 시도해주세요.")
+                
             }
         }
     }
@@ -163,12 +169,12 @@ extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDa
     }
     
     func matchButtonClicked() {
-        let vc = PopupViewController() // Or however you want to create it.
+        let vc = PopupViewController() 
         vc.titleLabel.text = "취미 같이 하기를 수락할까요?"
         vc.subtitleLabel.text = "요청이 수락되면 채팅창에서 상대와 대화를 나눌 수 있어요"
         vc.modalTransitionStyle = . crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
-        vc.isRequest = false
+        vc.popupCase = PopupVCCase.hobbyAceept.rawValue
         present(vc, animated: true, completion: nil)
     }
     

@@ -36,6 +36,7 @@ class OpenedProfileTableViewCell: UITableViewCell, UiViewProtocol {
         addConstraints()
         
         toggleTableView.backgroundColor = .red
+        toggleTableView.allowsSelection = false
         
         toggleTableView.delegate = self
         toggleTableView.dataSource = self
@@ -96,6 +97,7 @@ extension OpenedProfileTableViewCell: UITableViewDelegate, UITableViewDataSource
              return UITableViewCell()
         }
         
+        
         cell.nicknameLabel.text = otherUserInfoData.nick
         
         cell.layoutIfNeeded()
@@ -110,5 +112,7 @@ extension OpenedProfileTableViewCell: UITableViewDelegate, UITableViewDataSource
         return cell
         
     }
+    
+  
     
 }

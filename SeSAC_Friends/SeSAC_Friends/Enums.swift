@@ -36,6 +36,16 @@ enum QueueStatusCodeCase: Int {
     case clientError = 501
 }
 
+enum DeleteQueueStatusCodeCase: Int {
+    case success = 200
+    case matched = 201
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+    
+}
+
 enum OnQueueStatusCodeCase: Int {
     case success = 200
     case matced = 201
@@ -45,9 +55,34 @@ enum OnQueueStatusCodeCase: Int {
     case clientError = 501
 }
 
-enum MyQueueStateCodeCase: Int {
+enum MyQueueStatusCodeCase: Int {
     case success = 200
     case matchingCanceled = 201
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+    
+}
+
+enum HobbyRequestStatusCodeCase: Int {
+    case success = 200
+    case alreadyRecievedRequest = 201 // 상대방이 이미 나에게 취미 함께하기 요청한 상태 -> hobbyaccept
+    case otherCanceledMatcting = 202 // 상대방이 새싹친구 찾기를 중단한 상태
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+    
+}
+
+enum HobbyAcceptStatusCodeCase: Int {
+    case success = 200
+    case alreadyOtherMatched = 201 // 상대방이 이미 다른 사용자와 매칭된 상태
+    case otherCanceledMatcting = 202 // 상대방이 새싹친구 찾기를 중단한 상태
+    case alreadyIMatched = 203 // 내가 이미 다른 사람과 매칭된 상태
+    // Toast 메시지 후 (GET, /queue/myQueueState) 호출
+    
     case firebaseTokenError = 401
     case unAuthorized = 406
     case serverError = 500
@@ -59,4 +94,10 @@ enum MyStatusCase: Int {
     case normal = 0
     case matching = 1
     case matched = 2
+}
+
+enum PopupVCCase: Int {
+    
+    case hobbyRequest = 1
+    case hobbyAceept = 2
 }
