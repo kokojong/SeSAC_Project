@@ -291,7 +291,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 let vc = HomeFindSesacViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             case MyStatusCase.matched.rawValue:
-                print("matched")
                 self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
             default:
                 let vc = HomeHobbyViewController()
@@ -431,7 +430,8 @@ extension HomeViewController: CLLocationManagerDelegate {
                  self.manAnnotations = []
                  self.womanAnnotations = []
                  
-                 print(onqueueResult)
+                 //MARK: 너무 많이 호출 되어서 주석 처리
+//                 print(onqueueResult)
                  
                  // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
@@ -551,7 +551,6 @@ extension HomeViewController: MKMapViewDelegate {
         let center = CLLocationCoordinate2D(latitude: lat, longitude: long)
         
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        print("region is",region)
         
         viewModel.calculateRegion(lat: lat, long: long)
         
@@ -565,7 +564,7 @@ extension HomeViewController: MKMapViewDelegate {
         let long = mapView.centerCoordinate.longitude
     
         let center = CLLocation(latitude: lat, longitude: long)
-        print("center is",center)
+        
         
         viewModel.calculateRegion(lat: lat, long: long)
         

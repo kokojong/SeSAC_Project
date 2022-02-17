@@ -51,7 +51,7 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         
-        mainTableView.register(OpenedProfileTableViewCell.self, forCellReuseIdentifier: OpenedProfileTableViewCell.identifier)
+        mainTableView.register(OpenedOtherProfileTableViewCell.self, forCellReuseIdentifier: OpenedOtherProfileTableViewCell.identifier)
         mainTableView.backgroundColor = .yellow
         
         changeHobbyButton.addTarget(self, action: #selector(onChangeHobbyButtonClicked), for: .touchUpInside)
@@ -141,7 +141,7 @@ extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OpenedProfileTableViewCell.identifier, for: indexPath) as? OpenedProfileTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: OpenedOtherProfileTableViewCell.identifier, for: indexPath) as? OpenedOtherProfileTableViewCell else {
              return UITableViewCell()
         }
         

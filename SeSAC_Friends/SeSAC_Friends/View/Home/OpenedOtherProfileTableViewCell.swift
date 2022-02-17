@@ -12,11 +12,11 @@ protocol matchButtonProtocol {
     func matchButtonClicked()
 }
 
-class OpenedProfileTableViewCell: UITableViewCell, UiViewProtocol {
+class OpenedOtherProfileTableViewCell: UITableViewCell, UiViewProtocol {
     
     var delegate: matchButtonProtocol!
     
-    static let identifier = "OpenedProfileTableViewCell"
+    static let identifier = "OpenedOtherProfileTableViewCell"
     
     let profileBackgroundView = ProfileBackgroundView().then {
         $0.matchButton.setTitle("요청하기", for: .normal)
@@ -86,7 +86,7 @@ class OpenedProfileTableViewCell: UITableViewCell, UiViewProtocol {
                                           
 }
 
-extension OpenedProfileTableViewCell: UITableViewDelegate, UITableViewDataSource {
+extension OpenedOtherProfileTableViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

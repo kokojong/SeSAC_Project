@@ -8,14 +8,24 @@
 import UIKit
 import Tabman
 import Pageboy
+import Toast
 
 class HomeFindSesacViewController: TabmanViewController {
     
     private var viewControllers = [HomeNearSesacViewController(), HomeRecievedRequestsViewController()]
     
+    var timer : Timer?
+    
     private let titleList = ["새싹 찾기", "받은 요청"]
 
     var viewModel = HomeViewModel.shared
+    
+    var style = ToastStyle()
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,8 +57,9 @@ class HomeFindSesacViewController: TabmanViewController {
         stopSearchBarButton.tintColor = .black
         self.navigationItem.rightBarButtonItem = stopSearchBarButton
         
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(refreshEvery5Sec), userInfo: nil, repeats: true)
+        
         self.dataSource = self
-//        let bar = TMBar.ButtonBar()
         let bar = TMBar.ButtonBar()
         bar.layout.transitionStyle = .snap // Customize
         bar.layout.contentMode = .fit
@@ -56,6 +67,49 @@ class HomeFindSesacViewController: TabmanViewController {
         // Add to view
         addBar(bar, dataSource: self, at: .top)
         
+        // ToastStyle
+        style.titleColor = UIColor.white!
+        
+    }
+    
+    @objc func refreshEvery5Sec() {
+        
+        print(#function)
+        viewModel.checkMyQueueStatus { myQueueStateResult, statuscode, error in
+            
+            switch statuscode {
+            case MyQueueStatusCodeCase.success.rawValue:
+                
+                guard let myQueueStateResult = myQueueStateResult else {
+                    return
+                }
+                
+                if myQueueStateResult.matched == 1 {
+                    UserDefaults.standard.set(MyStatusCase.matched.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                    UserDefaults.standard.set(myQueueStateResult.matchedUid, forKey: UserDefaultKeys.otherUid.rawValue)
+                    
+                    self.view.makeToast("\(myQueueStateResult.matchedNick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다.", duration: 1, position: .bottom, style: self.style) { didTap in
+                        self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
+                        
+                    }
+                }
+                
+            case MyQueueStatusCodeCase.matchingCanceled.rawValue:
+                
+                self.view.makeToast("오랜 시간 동안 매칭 되지 않아 새싹 친구 찾기를 그만둡니다", duration: 1, position: .bottom, style: self.style) { didTap in
+                    
+                    UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                    self.navigationController?.popToRootViewController(animated: true)
+                    
+                }
+                
+            default:
+                self.view.makeToast("자동 갱신에 실패했습니다.")
+                
+            }
+            
+            
+        }
     }
     
     @objc func onStopSearchBarButtonClicked() {
@@ -81,6 +135,7 @@ class HomeFindSesacViewController: TabmanViewController {
         }
         
     }
+    
     
     
 

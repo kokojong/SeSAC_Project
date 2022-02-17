@@ -12,8 +12,7 @@
 		048F80E327BA2B4500F32FA4 /* HomeNearSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */; };
 		048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */; };
 		048F80E727BA33CA00F32FA4 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */; };
-		048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */; };
-		048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */; };
+		048F80E927BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E827BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift */; };
 		048F80ED27BB7E1C00F32FA4 /* HobbyPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */; };
 		048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */; };
 		048F80F127BD4BE600F32FA4 /* HomeChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */; };
@@ -96,8 +95,7 @@
 		048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNearSesacViewController.swift; sourceTree = "<group>"; };
 		048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecievedRequestsViewController.swift; sourceTree = "<group>"; };
 		048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
-		048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedProfileTableViewCell.swift; sourceTree = "<group>"; };
-		048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedProfileTableViewCell.swift; sourceTree = "<group>"; };
+		048F80E827BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedOtherProfileTableViewCell.swift; sourceTree = "<group>"; };
 		048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyPopupViewController.swift; sourceTree = "<group>"; };
 		048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueStateResult.swift; sourceTree = "<group>"; };
 		048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingViewController.swift; sourceTree = "<group>"; };
@@ -359,8 +357,7 @@
 				048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */,
 				048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */,
 				048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */,
-				048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */,
-				048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */,
+				048F80E827BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift */,
 				048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */,
 				048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */,
 			);
@@ -552,8 +549,7 @@
 				04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */,
 				048F80ED27BB7E1C00F32FA4 /* HobbyPopupViewController.swift in Sources */,
 				04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */,
-				048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */,
-				048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */,
+				048F80E927BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift in Sources */,
 				04EE3C1A2799933400A9136D /* MyUserInfo.swift in Sources */,
 				04EAA97F27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift in Sources */,
 				048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */,

@@ -6,18 +6,27 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeChattingViewController: UIViewController {
     
     let resetButton = UIButton().then {
         $0.setTitle("reset", for: .normal)
     }
+    
+    let mainTableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .brown
         title = "채팅"
+        
+        setNavBackArrowButton()
+        let moreButton = UIBarButtonItem(image: UIImage(named: "ellipsis.vertical"), style: .done, target: self, action: #selector(onMoreButtonClicked))
+        moreButton.tintColor = .black
+        self.navigationItem.leftBarButtonItem = moreButton
+        
         
         resetButton.addTarget(self, action: #selector(onResetButtonClicked), for: .touchUpInside)
         
@@ -33,15 +42,8 @@ class HomeChattingViewController: UIViewController {
         UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func onMoreButtonClicked() {
+        print(#function)
     }
-    */
-
+    
 }

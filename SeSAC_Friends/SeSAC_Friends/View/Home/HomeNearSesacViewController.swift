@@ -54,7 +54,7 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         mainTableView.allowsSelection = false
         mainTableView.delegate = self
         mainTableView.dataSource = self
-        mainTableView.register(OpenedProfileTableViewCell.self, forCellReuseIdentifier: OpenedProfileTableViewCell.identifier)
+        mainTableView.register(OpenedOtherProfileTableViewCell.self, forCellReuseIdentifier: OpenedOtherProfileTableViewCell.identifier)
         
         changeHobbyButton.addTarget(self, action: #selector(onChangeHobbyButtonClicked), for: .touchUpInside)
         
@@ -96,15 +96,14 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         
         viewModel.deleteQueue { statuscode, error in
            
-            self.view.makeToast("\(statuscode)")
-            
+            print(statuscode)
             switch statuscode {
             case DeleteQueueStatusCodeCase.success.rawValue:
                 UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                 self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
             case DeleteQueueStatusCodeCase.matched.rawValue:
                 self.view.makeToast("누군가와 취미를 함께하기로 약속하셨어요!")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
                 }
                
@@ -214,7 +213,7 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OpenedProfileTableViewCell.identifier, for: indexPath) as? OpenedProfileTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: OpenedOtherProfileTableViewCell.identifier, for: indexPath) as? OpenedOtherProfileTableViewCell else {
              return UITableViewCell()
         }
         

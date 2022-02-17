@@ -165,6 +165,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         for hobby in newHobbys {
             if hobby.count > 8 {
                 view.makeToast("취미는 최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.0, position: .center,  style: style)
+                return false
             }
         }
         
@@ -179,10 +180,18 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     @objc func onSearchButtonClicked() {
         print(#function)
                 
-        if checkHobbyValidation(newHobbys: []) {
+        if myFavoriteHobby.count == 0 {
+            view.makeToast("취미를 한 개 이상 선택해주세요")
+            return
+        }
+        
+        if myFavoriteHobby.count > 0 && myFavoriteHobby.count <= 8 {
             searchView.textField.endEditing(true)
             viewModel.myFavoriteHobby.value = myFavoriteHobby
+        } else {
+            return
         }
+        
         
         let form = PostQueueForm(type: 2, region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value, hf: viewModel.myFavoriteHobby.value)
         
@@ -191,7 +200,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
                 return
             }
 
-            self.view.makeToast("\(statuscode)")
             switch statuscode {
             case QueueStatusCodeCase.success.rawValue:
                 UserDefaults.standard.set(MyStatusCase.matching.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
