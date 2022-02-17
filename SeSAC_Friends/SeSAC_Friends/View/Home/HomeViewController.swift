@@ -75,6 +75,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         monitorNetwork()
         
@@ -119,6 +120,9 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         monitorNetwork()
         view.backgroundColor = .white
+        
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         addViews()
         addConstraints()

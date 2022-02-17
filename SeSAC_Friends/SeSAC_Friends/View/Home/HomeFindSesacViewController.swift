@@ -20,6 +20,9 @@ class HomeFindSesacViewController: TabmanViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         viewModel.getUserInfo { userinfo, statuscode ,error in
             guard let userinfo = userinfo else {
                 return
@@ -36,6 +39,7 @@ class HomeFindSesacViewController: TabmanViewController {
         view.backgroundColor = .yellow
         
         self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         setNavBackArrowButton()
         
@@ -77,6 +81,7 @@ class HomeFindSesacViewController: TabmanViewController {
         }
         
     }
+    
     
 
   

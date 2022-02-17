@@ -73,7 +73,8 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         view.backgroundColor = .yellow
         
         self.tabBarController?.tabBar.isHidden = true
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+   
         addViews()
         addConstraints()
         
@@ -84,6 +85,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         favoriteHobbyCollectionView.dataSource = self
         
         searchView.textField.delegate = self
+    
         
         backButton.addTarget(self, action: #selector(onBackArrowButtonClicked), for: .touchUpInside)
         searchButton.addTarget(self, action: #selector(onSearchButtonClicked), for: .touchUpInside)
@@ -170,7 +172,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     }
     
     @objc func onBackArrowButtonClicked() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
         
     }
     
@@ -193,6 +195,29 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             switch statuscode {
             case QueueStatusCodeCase.success.rawValue:
                 UserDefaults.standard.set(MyStatusCase.matching.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                
+                let form = OnQueueForm(region: self.viewModel.centerRegion.value, lat: self.viewModel.centerLat.value, long: self.viewModel.centerLong.value)
+                self.viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
+                    
+                    guard let onqueueResult = onqueueResult else {
+                        return
+                    }
+                    
+                    switch self.viewModel.searchGender.value {
+                        
+                    case GenderCase.man.rawValue, GenderCase.woman.rawValue:
+                        self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
+                            $0.gender == self.viewModel.searchGender.value
+                        })
+
+                    default:
+                        self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
+                    }
+                    
+                    self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
+                    
+                }
+                
                 self.navigationController?.pushViewController(HomeFindSesacViewController(), animated: true)
 //                let modalVC = HomeFindSesacViewController()
 //                modalVC.modalPresentationStyle = .fullScreen

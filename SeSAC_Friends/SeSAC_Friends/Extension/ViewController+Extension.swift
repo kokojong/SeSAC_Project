@@ -42,7 +42,7 @@ extension UIViewController {
     }
     
     @objc func onNavBackArrowButtonClicked() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func refreshFirebaseIdToken(completion: @escaping (String?, Error?) -> Void) {

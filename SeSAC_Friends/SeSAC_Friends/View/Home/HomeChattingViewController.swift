@@ -8,12 +8,29 @@
 import UIKit
 
 class HomeChattingViewController: UIViewController {
+    
+    let resetButton = UIButton().then {
+        $0.setTitle("reset", for: .normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .brown
         title = "채팅"
+        
+        resetButton.addTarget(self, action: #selector(onResetButtonClicked), for: .touchUpInside)
+        
+        view.addSubview(resetButton)
+        resetButton.snp.makeConstraints { make in
+            make.center.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+    }
+    
+    @objc func onResetButtonClicked() {
+        print(#function)
+        UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
     }
     
 
