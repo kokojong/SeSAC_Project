@@ -239,9 +239,9 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func matchButtonClicked() {
-        let vc = PopupViewController() 
-        vc.titleLabel.text = "취미 같이 하기를 요청할게요"
-        vc.subtitleLabel.text = "요청이 수락되면 30분 후에 리뷰를 남길 수 있어요"
+        let vc = HobbyPopupViewController() 
+        vc.mainView.titleLabel.text = "취미 같이 하기를 요청할게요"
+        vc.mainView.subtitleLabel.text = "요청이 수락되면 30분 후에 리뷰를 남길 수 있어요"
         vc.modalTransitionStyle = . crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
         vc.popupCase = PopupVCCase.hobbyRequest.rawValue

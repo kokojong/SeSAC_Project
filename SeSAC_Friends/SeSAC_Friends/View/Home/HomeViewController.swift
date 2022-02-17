@@ -99,10 +99,11 @@ class HomeViewController: UIViewController, UiViewProtocol {
         searchNearFriends()
         
         viewModel.myStatus.bind {
+            
             switch $0 {
             case MyStatusCase.matching.rawValue:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_matching"), for: .normal)
-            case MyStatusCase.matching.rawValue:
+            case MyStatusCase.matched.rawValue:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_matched"), for: .normal)
             default:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_default"), for: .normal)
@@ -115,7 +116,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let parentViewController = HomeNearSesacViewController()
         
         monitorNetwork()
         view.backgroundColor = .white
@@ -132,7 +132,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
             switch $0 {
             case MyStatusCase.matching.rawValue:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_matching"), for: .normal)
-            case MyStatusCase.matching.rawValue:
+            case MyStatusCase.matched.rawValue:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_matched"), for: .normal)
             default:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_default"), for: .normal)
@@ -217,6 +217,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     func checkMyStatus() {
         viewModel.myStatus.value = UserDefaults.standard.integer(forKey: UserDefaultKeys.myStatus.rawValue)
+        print("myStatus.value",viewModel.myStatus.value)
         viewModel.myStatus.bind { status in
             switch status {
 
@@ -286,7 +287,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 let vc = HomeFindSesacViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             case MyStatusCase.matched.rawValue:
-                print("")
+                print("matched")
+                self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
             default:
                 let vc = HomeHobbyViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

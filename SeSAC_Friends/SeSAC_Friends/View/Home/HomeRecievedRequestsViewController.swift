@@ -169,9 +169,9 @@ extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDa
     }
     
     func matchButtonClicked() {
-        let vc = PopupViewController() 
-        vc.titleLabel.text = "취미 같이 하기를 수락할까요?"
-        vc.subtitleLabel.text = "요청이 수락되면 채팅창에서 상대와 대화를 나눌 수 있어요"
+        let vc = HobbyPopupViewController() 
+        vc.mainView.titleLabel.text = "취미 같이 하기를 수락할까요?"
+        vc.mainView.subtitleLabel.text = "요청이 수락되면 채팅창에서 상대와 대화를 나눌 수 있어요"
         vc.modalTransitionStyle = . crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
         vc.popupCase = PopupVCCase.hobbyAceept.rawValue

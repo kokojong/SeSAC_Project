@@ -29,7 +29,7 @@ class HomeViewModel {
     
     var isLocationEnable = Observable(false)
     
-    var myStatus: Observable<Int> = Observable(0)
+    var myStatus: Observable<Int> = Observable(UserDefaults.standard.integer(forKey: UserDefaultKeys.myStatus.rawValue))
     
     var fromRecommendHobby: Observable<[String]> = Observable([])
     var fromNearFriendsHobby: Observable<[String]> = Observable([])

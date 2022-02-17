@@ -14,9 +14,10 @@
 		048F80E727BA33CA00F32FA4 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */; };
 		048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */; };
 		048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */; };
-		048F80ED27BB7E1C00F32FA4 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */; };
+		048F80ED27BB7E1C00F32FA4 /* HobbyPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */; };
 		048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */; };
 		048F80F127BD4BE600F32FA4 /* HomeChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */; };
+		048F80F327BE11CD00F32FA4 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F227BE11CD00F32FA4 /* PopupView.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -97,9 +98,10 @@
 		048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedProfileTableViewCell.swift; sourceTree = "<group>"; };
 		048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedProfileTableViewCell.swift; sourceTree = "<group>"; };
-		048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyPopupViewController.swift; sourceTree = "<group>"; };
 		048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueStateResult.swift; sourceTree = "<group>"; };
 		048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingViewController.swift; sourceTree = "<group>"; };
+		048F80F227BE11CD00F32FA4 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -254,7 +256,7 @@
 				04EAA97C27B2EB4100AB6FDD /* LeftAlignedCollectionViewFlowLayout.swift */,
 				04EAA98027B39C7500AB6FDD /* DynamicHeightCollectionView.swift */,
 				048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */,
-				048F80EC27BB7E1C00F32FA4 /* PopupViewController.swift */,
+				048F80F227BE11CD00F32FA4 /* PopupView.swift */,
 			);
 			path = ReuseableView;
 			sourceTree = "<group>";
@@ -359,6 +361,7 @@
 				048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */,
 				048F80E827BAB08800F32FA4 /* OpenedProfileTableViewCell.swift */,
 				048F80EA27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift */,
+				048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */,
 				048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */,
 			);
 			path = Home;
@@ -547,7 +550,7 @@
 				04EE3C1C2799B7F900A9136D /* AuthEmailViewController.swift in Sources */,
 				04EE3C44279EF6A300A9136D /* UserDefaultKeys.swift in Sources */,
 				04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */,
-				048F80ED27BB7E1C00F32FA4 /* PopupViewController.swift in Sources */,
+				048F80ED27BB7E1C00F32FA4 /* HobbyPopupViewController.swift in Sources */,
 				04EAA97327AF82E100AB6FDD /* OnQueueResult.swift in Sources */,
 				048F80E927BAB08800F32FA4 /* OpenedProfileTableViewCell.swift in Sources */,
 				048F80EB27BAB09400F32FA4 /* ClosedProfileTableViewCell.swift in Sources */,
@@ -576,6 +579,7 @@
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
 				04A81FCA27968FBD00B658CD /* AuthRequestViewController.swift in Sources */,
 				04EE3C5B27A2844800A9136D /* ProfileDetailBottomView.swift in Sources */,
+				048F80F327BE11CD00F32FA4 /* PopupView.swift in Sources */,
 				04A81FCC27968FCE00B658CD /* AuthCheckViewController.swift in Sources */,
 				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,

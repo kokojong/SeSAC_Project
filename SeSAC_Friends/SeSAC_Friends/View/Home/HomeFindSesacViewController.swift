@@ -64,6 +64,8 @@ class HomeFindSesacViewController: TabmanViewController {
                 self.navigationController?.pushViewController(HomeHobbyViewController(), animated: true)
             case DeleteQueueStatusCodeCase.matched.rawValue:
                 self.view.makeToast("누군가와 취미를 함께하기로 약속하셨어요!")
+                UserDefaults.standard.set(MyStatusCase.matched.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                print(self.viewModel.myStatus.value)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
                 }
