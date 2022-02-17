@@ -17,6 +17,8 @@
 		048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */; };
 		048F80F127BD4BE600F32FA4 /* HomeChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */; };
 		048F80F327BE11CD00F32FA4 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F227BE11CD00F32FA4 /* PopupView.swift */; };
+		048F80F527BE886300F32FA4 /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F427BE886300F32FA4 /* ChattingView.swift */; };
+		048F80F727BEB77A00F32FA4 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F627BEB77A00F32FA4 /* MenuView.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -100,6 +102,8 @@
 		048F80EE27BCCF2E00F32FA4 /* MyQueueStateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueStateResult.swift; sourceTree = "<group>"; };
 		048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingViewController.swift; sourceTree = "<group>"; };
 		048F80F227BE11CD00F32FA4 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		048F80F427BE886300F32FA4 /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
+		048F80F627BEB77A00F32FA4 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 				04EAA98027B39C7500AB6FDD /* DynamicHeightCollectionView.swift */,
 				048F80E627BA33CA00F32FA4 /* EmptyResultView.swift */,
 				048F80F227BE11CD00F32FA4 /* PopupView.swift */,
+				048F80F427BE886300F32FA4 /* ChattingView.swift */,
+				048F80F627BEB77A00F32FA4 /* MenuView.swift */,
 			);
 			path = ReuseableView;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 				04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */,
 				04A81FE72797DA9E00B658CD /* AuthBirthViewController.swift in Sources */,
 				04EE3C4A279FC6F100A9136D /* ProfileViewModel.swift in Sources */,
+				048F80F727BEB77A00F32FA4 /* MenuView.swift in Sources */,
 				04EE3C4C27A10A0100A9136D /* ProfileDetailViewController.swift in Sources */,
 				04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */,
 				04EE3C46279EFB0F00A9136D /* ProfileTableViewCell.swift in Sources */,
@@ -591,6 +598,7 @@
 				04EE3C2B279D29A000A9136D /* MainSeperator.swift in Sources */,
 				04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */,
 				04EAA97B27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift in Sources */,
+				048F80F527BE886300F32FA4 /* ChattingView.swift in Sources */,
 				04EE3C22279A986000A9136D /* UIView+Extension.swift in Sources */,
 				048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */,
 				04A81FE52797D7C200B658CD /* AuthNicknameViewController.swift in Sources */,
