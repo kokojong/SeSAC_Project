@@ -149,7 +149,6 @@ extension HomeFindSesacViewController: PageboyViewControllerDataSource, TMBarDat
     }
     
     func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
-        print(viewControllers[index])
         return viewControllers[index]
     }
     

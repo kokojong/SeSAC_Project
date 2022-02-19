@@ -35,6 +35,8 @@ class HomeViewModel {
     var fromNearFriendsHobby: Observable<[String]> = Observable([])
     var myFavoriteHobby: Observable<[String]> = Observable(["코딩", "이 아니라", "땐스", "음주가무"])
     
+    var myQueueState = Observable(MyQueueStateResult(dodged: 0, matched: 0, reviewed: 0, matchedNick: "", matchedUid: ""))
+    
     func searchNearFriends(form: OnQueueForm, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
         QueueAPIService.onQueue(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { onqueueResult, statuscode, error in
             
@@ -129,9 +131,11 @@ class HomeViewModel {
         QueueAPIService.checkMyQueueStatus(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { myQueueState, statuscode, error in
             
             guard let myQueueState = myQueueState else {
+                completion(nil, statuscode, error)
                 return
             }
             
+            self.myQueueState.value = myQueueState
             completion(myQueueState, statuscode, error)
         }
     }

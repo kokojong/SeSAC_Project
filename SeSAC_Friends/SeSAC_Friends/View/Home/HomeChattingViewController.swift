@@ -10,7 +10,6 @@ import SnapKit
 import Then
 
 class HomeChattingViewController: UIViewController, UiViewProtocol {
-  
     
     let resetButton = UIButton().then {
         $0.setTitle("reset", for: .normal)
@@ -101,7 +100,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         }
         menuView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().inset(11)
+            make.top.equalToSuperview().offset(11)
             make.height.equalTo(50)
         }
         

@@ -98,5 +98,22 @@ class UserAPISevice {
         
     }
     
+    static func reportOtherUser(idToken: String, form: ReportOtherFrom, completion: @escaping (Int?) -> Void) {
+        let headers = ["idtoken": idToken,
+                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters : Parameters = [
+            "otheruid" : form.otheruid,
+            "reportedReputation" : form.reportedReputation,
+            "comment" : form.comment
+        ]
+            
+        AF.request(UserEndPoint.reportOtherUser.url.absoluteString, method: .post, parameters: parameters, headers: headers).responseString { response in
+            
+            completion(response.response?.statusCode)
+        }
+        
+    }
+    
     
 }

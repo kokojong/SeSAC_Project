@@ -35,7 +35,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         $0.isScrollEnabled = false
         $0.collectionViewLayout = layout
         $0.register(HomeNearHobbyCollectionVIewCell.self, forCellWithReuseIdentifier: HomeNearHobbyCollectionVIewCell.identifier)
-        
     }
     
     let favoriteHobbyLabel = UILabel().then {
@@ -95,7 +94,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
         
-
     }
     
     func addViews() {
@@ -179,7 +177,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
     }
     
     @objc func onSearchButtonClicked() {
-        print(#function)
                 
         if myFavoriteHobby.count == 0 {
             view.makeToast("취미를 한 개 이상 선택해주세요")
@@ -272,8 +269,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             $0.count > 0
         }) ?? []
         
-        print("myFavoriteHobby", myFavoriteHobby)
-        print("newFavoriteHobby",newFavoriteHobby)
         checkHobbyValidation(newHobbys: newFavoriteHobby)
         
     }
@@ -441,7 +436,7 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        
         if collectionView == nearHobbyCollectionView {
             if checkHobbyValidation(newHobbys: []) {
                 switch indexPath.section {

@@ -43,3 +43,9 @@ struct WriteReviewFrom: Encodable {
     let reputation: [Int]
     let comment: String
 }
+
+struct ReportOtherFrom: Encodable {
+    let otheruid: String
+    let reportedReputation: [Int]
+    let comment: String
+}

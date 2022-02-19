@@ -35,8 +35,6 @@ class ProfileViewModel {
     func updateMypage(form: UpdateMypageForm, completion: @escaping (Int?) -> Void) {
         UserAPISevice.updateMypage(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
             
-            print("")
-            
             guard let statuscode = statuscode else {
                 return
             }
