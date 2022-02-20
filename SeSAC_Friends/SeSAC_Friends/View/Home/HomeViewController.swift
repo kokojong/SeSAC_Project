@@ -53,6 +53,11 @@ class HomeViewController: UIViewController, UiViewProtocol {
         $0.layer.cornerRadius = $0.frame.size.width/2
     }
     
+    let gotoChattingButton = UIButton().then {
+        $0.setTitle("채팅으로 가기", for: .normal)
+        $0.setTitleColor(.red, for: .normal)
+    }
+    
     let myLocationButton = UIButton().then {
         $0.setImage(UIImage(named: "myLocation"), for: .normal)
         $0.backgroundColor = .white
@@ -131,6 +136,9 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         myLocationButton.addTarget(self, action: #selector(myLocationButtonClicked), for: .touchUpInside)
         floatingButton.addTarget(self, action: #selector(onFloatginButtonClicked), for: .touchUpInside)
+                
+        // MARK: 임시 버튼 -> 삭제 요망
+        gotoChattingButton.addTarget(self, action: #selector(gotoChattingClicked), for: .touchUpInside)
     
         viewModel.myStatus.bind {
             switch $0 {
@@ -155,6 +163,8 @@ class HomeViewController: UIViewController, UiViewProtocol {
         genderButtonStackView.addArrangedSubview(searchManButton)
         genderButtonStackView.addArrangedSubview(searchWomanButton)
         view.addSubview(centerLocationView)
+        
+        view.addSubview(gotoChattingButton)
     }
     
     func addConstraints() {
@@ -165,6 +175,12 @@ class HomeViewController: UIViewController, UiViewProtocol {
             make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.size.equalTo(64)
         }
+        
+        gotoChattingButton.snp.makeConstraints { make in
+            make.bottom.equalTo(floatingButton.snp.top).offset(-30)
+            make.leading.trailing.equalTo(floatingButton)
+        }
+        
         genderButtonStackView.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
@@ -310,6 +326,11 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
         
+    }
+    
+    // MARK: 임시 버튼 동작
+    @objc func gotoChattingClicked() {
+        self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
     }
 
 }

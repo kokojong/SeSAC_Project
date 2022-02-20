@@ -63,7 +63,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         
         resetButton.addTarget(self, action: #selector(onResetButtonClicked), for: .touchUpInside)
         
-        
+        menuView.reportButton.addTarget(self, action: #selector(reportButtonClicked), for: .touchUpInside)
         
     }
     
@@ -119,6 +119,17 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
     @objc func onMoreButtonClicked() {
         print(#function)
         moreView.isHidden.toggle()
+    }
+    
+    @objc func reportButtonClicked() {
+        print(#function)
+        moreView.isHidden.toggle()
+        
+        let vc = HomeChattingReportViewController()
+        vc.modalTransitionStyle = . crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+        
     }
     
 }

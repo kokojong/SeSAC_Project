@@ -19,6 +19,12 @@
 		048F80F327BE11CD00F32FA4 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F227BE11CD00F32FA4 /* PopupView.swift */; };
 		048F80F527BE886300F32FA4 /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F427BE886300F32FA4 /* ChattingView.swift */; };
 		048F80F727BEB77A00F32FA4 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F627BEB77A00F32FA4 /* MenuView.swift */; };
+		048F80F927C1366D00F32FA4 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80F827C1366D00F32FA4 /* MyChatTableViewCell.swift */; };
+		048F80FB27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80FA27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift */; };
+		048F80FD27C1FD6600F32FA4 /* ChattingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80FC27C1FD6600F32FA4 /* ChattingRateView.swift */; };
+		048F80FF27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80FE27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift */; };
+		048F810127C20C0000F32FA4 /* HomeChattingReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */; };
+		048F810327C22E8D00F32FA4 /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810227C22E8D00F32FA4 /* CellProtocol.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -104,6 +110,12 @@
 		048F80F227BE11CD00F32FA4 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		048F80F427BE886300F32FA4 /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
 		048F80F627BEB77A00F32FA4 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		048F80F827C1366D00F32FA4 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
+		048F80FA27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherChatTableViewCell.swift; sourceTree = "<group>"; };
+		048F80FC27C1FD6600F32FA4 /* ChattingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingRateView.swift; sourceTree = "<group>"; };
+		048F80FE27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingRateCollectionViewCell.swift; sourceTree = "<group>"; };
+		048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingReportViewController.swift; sourceTree = "<group>"; };
+		048F810227C22E8D00F32FA4 /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +273,8 @@
 				048F80F227BE11CD00F32FA4 /* PopupView.swift */,
 				048F80F427BE886300F32FA4 /* ChattingView.swift */,
 				048F80F627BEB77A00F32FA4 /* MenuView.swift */,
+				048F80FC27C1FD6600F32FA4 /* ChattingRateView.swift */,
+				048F80FE27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift */,
 			);
 			path = ReuseableView;
 			sourceTree = "<group>";
@@ -294,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				04EAA96827ABB2DB00AB6FDD /* UiViewProtocol.swift */,
+				048F810227C22E8D00F32FA4 /* CellProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -366,6 +381,9 @@
 				048F80E827BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift */,
 				048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */,
 				048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */,
+				048F80F827C1366D00F32FA4 /* MyChatTableViewCell.swift */,
+				048F80FA27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift */,
+				048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -545,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048F80FB27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift in Sources */,
 				04EE3C24279C06A200A9136D /* HomeViewController.swift in Sources */,
 				04EE3BF927986DD800A9136D /* Observable.swift in Sources */,
 				04EAA96F27AF7F0600AB6FDD /* QueueEndPoint.swift in Sources */,
@@ -570,6 +589,8 @@
 				04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */,
 				04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */,
 				048F80E727BA33CA00F32FA4 /* EmptyResultView.swift in Sources */,
+				048F80F927C1366D00F32FA4 /* MyChatTableViewCell.swift in Sources */,
+				048F80FD27C1FD6600F32FA4 /* ChattingRateView.swift in Sources */,
 				04EAA96627A951FB00AB6FDD /* APIForm.swift in Sources */,
 				04A81FE32797C06900B658CD /* Font+Extension.swift in Sources */,
 				04EE3C1E2799C2A900A9136D /* AuthGenderViewController.swift in Sources */,
@@ -578,6 +599,7 @@
 				04EAA96B27AECFEB00AB6FDD /* HomeViewModel.swift in Sources */,
 				04EAA97D27B2EB4100AB6FDD /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				04EE3BFE279930BD00A9136D /* UserAPISevice.swift in Sources */,
+				048F80FF27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift in Sources */,
 				04A81FCE2796900000B658CD /* MainButton.swift in Sources */,
 				04A81FCA27968FBD00B658CD /* AuthRequestViewController.swift in Sources */,
 				04EE3C5B27A2844800A9136D /* ProfileDetailBottomView.swift in Sources */,
@@ -596,12 +618,14 @@
 				04EAA96227A9461E00AB6FDD /* Enums.swift in Sources */,
 				04EE3BF2279843B400A9136D /* String+Extension.swift in Sources */,
 				04EE3C2B279D29A000A9136D /* MainSeperator.swift in Sources */,
+				048F810327C22E8D00F32FA4 /* CellProtocol.swift in Sources */,
 				04EE3C20279A7D6D00A9136D /* GenderView.swift in Sources */,
 				04EAA97B27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift in Sources */,
 				048F80F527BE886300F32FA4 /* ChattingView.swift in Sources */,
 				04EE3C22279A986000A9136D /* UIView+Extension.swift in Sources */,
 				048F80EF27BCCF2E00F32FA4 /* MyQueueStateResult.swift in Sources */,
 				04A81FE52797D7C200B658CD /* AuthNicknameViewController.swift in Sources */,
+				048F810127C20C0000F32FA4 /* HomeChattingReportViewController.swift in Sources */,
 				04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */,
 				04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */,
 				04EE3C4E27A10EA300A9136D /* ProfileBackgroundView.swift in Sources */,
