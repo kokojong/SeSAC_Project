@@ -63,7 +63,9 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         
         resetButton.addTarget(self, action: #selector(onResetButtonClicked), for: .touchUpInside)
         
+        
         menuView.reportButton.addTarget(self, action: #selector(reportButtonClicked), for: .touchUpInside)
+        menuView.dodgeButton.addTarget(self, action: #selector(dodgeButtonClicked), for: .touchUpInside)
         
     }
     
@@ -130,6 +132,16 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
         
+    }
+    
+    @objc func dodgeButtonClicked() {
+        print(#function)
+        moreView.isHidden.toggle()
+        
+        let vc = HomeChattingDodgeViewController()
+        vc.modalTransitionStyle = . crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
     }
     
 }

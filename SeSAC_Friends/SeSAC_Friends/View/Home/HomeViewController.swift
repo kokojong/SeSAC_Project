@@ -565,6 +565,9 @@ extension HomeViewController: MKMapViewDelegate {
     }
     // MARK: 사용자가 움직일 때
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        print(#function)
+        
         guard let location = locations.last else { return }
         
         let lat = location.coordinate.latitude
@@ -581,6 +584,9 @@ extension HomeViewController: MKMapViewDelegate {
     
     // MARK: region이 바뀔 때(지도를 움직임)
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        print(#function)
+        
         let lat = mapView.centerCoordinate.latitude
         let long = mapView.centerCoordinate.longitude
     

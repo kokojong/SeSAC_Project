@@ -162,5 +162,17 @@ class HomeViewModel {
         }
     }
     
+    final func reportOtherUser(form: ReportOtherFrom, completion: @escaping (Int) -> Void) {
+        UserAPISevice.reportOtherUser(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+
+            completion(statuscode)
+            
+        }
+        
+    }
     
 }

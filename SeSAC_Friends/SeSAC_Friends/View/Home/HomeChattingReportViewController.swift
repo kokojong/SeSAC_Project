@@ -10,7 +10,12 @@ import SnapKit
 import Then
 
 class HomeChattingReportViewController: UIViewController {
+    
+    var viewModel = HomeViewModel.shared
 
+    var reportTags = ["불법/사기", "불편한언행", "노쇼", "선정성", "인신공격", "기타"]
+    var reportTagsSelected = [0, 0, 0 ,0, 0, 0]
+    
     let chattingReportView = ChattingRateView().then {
         $0.titleLabel.text = "새싹 신고"
         $0.subtitleLabel.text = "다시는 해당 새싹과 매칭되지 않습니다"
@@ -25,7 +30,7 @@ class HomeChattingReportViewController: UIViewController {
             let inset: CGFloat = 0
             flowLayout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
             
-            let cellWidth = ($0.frame.size.width - spacing)/2
+            let cellWidth = (UIScreen.main.bounds.width - 16*4 - 2*spacing)/3
             flowLayout.itemSize = CGSize(width: cellWidth, height: 32)
             
             flowLayout.minimumLineSpacing = 8
@@ -34,6 +39,11 @@ class HomeChattingReportViewController: UIViewController {
             
             $0.collectionViewLayout = flowLayout
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     override func viewDidLoad() {
@@ -45,13 +55,24 @@ class HomeChattingReportViewController: UIViewController {
         addConstraints()
         
         chattingReportView.rateTextView.delegate = self
+        chattingReportView.rateTagCollectionView.delegate = self
+        chattingReportView.rateTagCollectionView.dataSource = self
+        chattingReportView.rateTagCollectionView.isUserInteractionEnabled = true
+        chattingReportView.rateTagCollectionView.allowsMultipleSelection = true
+        
+        chattingReportView.cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
+        
+        chattingReportView.rateButton.addTarget(self, action: #selector(onRateButtonClicked), for: .touchUpInside)
+        
       
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func addViews(){
         view.addSubview(chattingReportView)
-        
-        
     }
     
     func addConstraints(){
@@ -59,10 +80,51 @@ class HomeChattingReportViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
         }
-        
     }
     
+    func checkValidation() {
+        if reportTagsSelected.reduce(0, +) > 0 {
+            chattingReportView.rateButton.style = .fill
+        } else {
+            chattingReportView.rateButton.style = .disable
+        }
+    }
+    
+    
+    @objc func cancelButtonClicked() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    @objc func onRateButtonClicked() {
+        print(#function)
+        if chattingReportView.rateButton.style == .fill {
+            
+            var comment = ""
+            if chattingReportView.rateTextView.textColor == .black {
+                comment = chattingReportView.rateTextView.text
+            } else {
+                comment = ""
+            }
+            
+            let form = ReportOtherFrom(otheruid: UserDefaults.standard.string(forKey: UserDefaultKeys.otherUid.rawValue)!, reportedReputation: reportTagsSelected, comment: comment)
+            viewModel.reportOtherUser(form: form) { statuscode in
+                
+                
+                switch statuscode {
+                case ReportOtherStatusCodeCase.success.rawValue:
+                    self.view.makeToast("신고 완료")
+                case ReportOtherStatusCodeCase.reported.rawValue:
+                    self.view.makeToast("이미 신고한 유저입니다")
+                default:
+                    self.view.makeToast("오류가 발생했습니다. 잠시 후 다시 시도해주세요")
+                }
+            }
+            
+        } else {
+            self.view.endEditing(true)
+            view.makeToast("최소 한 개의 신고 항목을 선택해주세요")
+        }
+    }
 
 }
 
@@ -76,6 +138,7 @@ extension HomeChattingReportViewController: UITextViewDelegate {
         }
         
     }
+    
     // UITextView의 placeholder
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -83,5 +146,38 @@ extension HomeChattingReportViewController: UITextViewDelegate {
             textView.textColor = UIColor.lightGray
         }
     }
+    
+}
+
+extension HomeChattingReportViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingRateCollectionViewCell.identifier, for: indexPath) as? ChattingRateCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+                
+        cell.rateButton.setTitle(reportTags[indexPath.row], for: .normal)
+        
+        return cell
+            
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        reportTagsSelected[indexPath.row] = 1
+        checkValidation()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print(#function)
+        reportTagsSelected[indexPath.row] = 0
+        checkValidation()
+    }
+    
     
 }

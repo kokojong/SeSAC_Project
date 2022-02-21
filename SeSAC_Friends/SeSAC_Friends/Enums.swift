@@ -65,6 +65,16 @@ enum MyQueueStatusCodeCase: Int {
     
 }
 
+enum ReportOtherStatusCodeCase: Int {
+    case success = 200
+    case reported = 201
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+    
+}
+
 enum HobbyRequestStatusCodeCase: Int {
     case success = 200
     case alreadyRecievedRequest = 201 // 상대방이 이미 나에게 취미 함께하기 요청한 상태 -> hobbyaccept
