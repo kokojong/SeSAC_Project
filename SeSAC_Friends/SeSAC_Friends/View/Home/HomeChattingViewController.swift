@@ -82,7 +82,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         mainTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(chatView.snp.top)
+//            make.bottom.equalTo(chatView.snp.top)
         }
         
         resetButton.snp.makeConstraints { make in
@@ -90,6 +90,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         }
         
         chatView.snp.makeConstraints { make in
+            make.top.equalTo(mainTableView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
 //            make.height.equalTo(chatView.textView.contentSize.height+28)

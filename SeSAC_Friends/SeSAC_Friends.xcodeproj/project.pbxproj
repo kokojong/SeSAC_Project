@@ -26,6 +26,7 @@
 		048F810127C20C0000F32FA4 /* HomeChattingReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */; };
 		048F810327C22E8D00F32FA4 /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810227C22E8D00F32FA4 /* CellProtocol.swift */; };
 		048F810727C37BA500F32FA4 /* HomeChattingDodgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810627C37BA500F32FA4 /* HomeChattingDodgeViewController.swift */; };
+		048F810927C3E81C00F32FA4 /* HomeChattingRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810827C3E81C00F32FA4 /* HomeChattingRateViewController.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingReportViewController.swift; sourceTree = "<group>"; };
 		048F810227C22E8D00F32FA4 /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		048F810627C37BA500F32FA4 /* HomeChattingDodgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingDodgeViewController.swift; sourceTree = "<group>"; };
+		048F810827C3E81C00F32FA4 /* HomeChattingRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChattingRateViewController.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				048F80FA27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift */,
 				048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */,
 				048F810627C37BA500F32FA4 /* HomeChattingDodgeViewController.swift */,
+				048F810827C3E81C00F32FA4 /* HomeChattingRateViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				04EE3BF927986DD800A9136D /* Observable.swift in Sources */,
 				04EAA96F27AF7F0600AB6FDD /* QueueEndPoint.swift in Sources */,
 				04EE3C3D279E961C00A9136D /* ShopViewController.swift in Sources */,
+				048F810927C3E81C00F32FA4 /* HomeChattingRateViewController.swift in Sources */,
 				048F80F127BD4BE600F32FA4 /* HomeChattingViewController.swift in Sources */,
 				04EE3C1C2799B7F900A9136D /* AuthEmailViewController.swift in Sources */,
 				04EE3C44279EF6A300A9136D /* UserDefaultKeys.swift in Sources */,

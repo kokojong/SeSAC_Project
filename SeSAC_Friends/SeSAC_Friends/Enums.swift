@@ -67,6 +67,16 @@ enum MyQueueStatusCodeCase: Int {
 
 enum ReportOtherStatusCodeCase: Int {
     case success = 200
+    case wrongOtherUid = 201
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+    
+}
+
+enum DodgeStatusCodeCase: Int {
+    case success = 200
     case reported = 201
     case firebaseTokenError = 401
     case unAuthorized = 406

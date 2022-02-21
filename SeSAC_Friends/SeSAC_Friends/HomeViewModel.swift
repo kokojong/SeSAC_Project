@@ -151,14 +151,14 @@ class HomeViewModel {
         }
     }
     
-    final func dodgeMatching(otheruid: String, completion: @escaping (Int?, Error?) -> Void) {
+    final func dodgeMatching(otheruid: String, completion: @escaping (Int?) -> Void) {
         QueueAPIService.dodgeMatching(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, otheruid: otheruid) { statuscode, error in
             
             guard let statuscode = statuscode else {
                 return
             }
 
-            completion(statuscode, error)
+            completion(statuscode)
         }
     }
     

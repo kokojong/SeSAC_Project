@@ -21,15 +21,15 @@ class HomeChattingDodgeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.backgroundColor = UIColor.black?.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor.black?.withAlphaComponent(0.5)
+        
+        popupView.backgroundColor = .red.withAlphaComponent(0.5)
         
         addViews()
         addConstraints()
         
         popupView.okButton.addTarget(self, action: #selector(onOkButtonClicked), for: .touchUpInside)
         popupView.cancelButton.addTarget(self, action: #selector(onCancelButtonClicked), for: .touchUpInside)
-        
-        
     }
     
     func addViews(){
@@ -39,12 +39,30 @@ class HomeChattingDodgeViewController: UIViewController {
     func addConstraints(){
         popupView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
+            make.top.bottom.equalToSuperview().inset(100)
             make.centerY.equalToSuperview()
         }
     }
 
     @objc func onOkButtonClicked() {
         print(#function)
+        viewModel.dodgeMatching(otheruid: UserDefaults.standard.string(forKey: UserDefaultKeys.otherUid.rawValue)!) { statuscode in
+            
+            guard let statuscode = statuscode else {
+                return
+            }
+            
+            switch statuscode {
+            case DodgeStatusCodeCase.success.rawValue:
+                self.navigationController?.popToRootViewController(animated: true)
+            case DodgeStatusCodeCase.unAuthorized.rawValue:
+                self.view.makeToast("잘못된 상대입니다. 상대를 다시 확인해주세요")
+            default:
+                self.view.makeToast("약속 취소에 실패했습니다. 잠시 후 다시 시도해주세요")
+            }
+            
+        }
+        
     }
     
     @objc func onCancelButtonClicked() {
