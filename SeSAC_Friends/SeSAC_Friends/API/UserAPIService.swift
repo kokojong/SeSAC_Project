@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 
-class UserAPISevice {
+class UserAPIService {
     
     static func getMyUserInfo(idToken: String, completion: @escaping (MyUserInfo? , Int?, Error?) -> Void) {
         let headers = ["idtoken": idToken] as HTTPHeaders
