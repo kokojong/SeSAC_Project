@@ -69,7 +69,7 @@ class HomeViewModel {
     }
     
     func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
-        UserAPISevice.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
+        UserAPIService.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
          
             guard let userInfo = userInfo else {
                 return
@@ -163,7 +163,7 @@ class HomeViewModel {
     }
     
     final func reportOtherUser(form: ReportOtherFrom, completion: @escaping (Int) -> Void) {
-        UserAPISevice.reportOtherUser(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
+        UserAPIService.reportOtherUser(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
             
             guard let statuscode = statuscode else {
                 return

@@ -18,6 +18,7 @@ class OtherChatTableViewCell: UITableViewCell, UiViewProtocol {
     let borderView = UIView().then {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray4?.cgColor
+        $0.layer.cornerRadius = 8
     }
     
     let messageLabel = UILabel().then {

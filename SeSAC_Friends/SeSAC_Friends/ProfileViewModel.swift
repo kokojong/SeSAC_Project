@@ -33,7 +33,7 @@ class ProfileViewModel {
     }
     
     func updateMypage(form: UpdateMypageForm, completion: @escaping (Int?) -> Void) {
-        UserAPISevice.updateMypage(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
+        UserAPIService.updateMypage(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode in
             
             guard let statuscode = statuscode else {
                 return
@@ -44,7 +44,7 @@ class ProfileViewModel {
     }
     
     func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
-        UserAPISevice.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
+        UserAPIService.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
          
             guard let userInfo = userInfo else {
                 return

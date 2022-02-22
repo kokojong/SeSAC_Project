@@ -90,6 +90,15 @@ enum RateStatusCodeCase: Int {
     case clientError = 501
 }
 
+enum ChatStatusCodeCase: Int {
+    case success = 200
+    case fail = 201 // 매칭 해제 상태, 기획서 참고
+    case firebaseTokenError = 401
+    case unAuthorized = 406
+    case serverError = 500
+    case clientError = 501
+}
+
 enum HobbyRequestStatusCodeCase: Int {
     case success = 200
     case alreadyRecievedRequest = 201 // 상대방이 이미 나에게 취미 함께하기 요청한 상태 -> hobbyaccept

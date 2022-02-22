@@ -103,7 +103,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     
     func getUserInfo(idToken: String, completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
-        UserAPISevice.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
+        UserAPIService.getMyUserInfo(idToken: idToken) { userInfo, statuscode, error  in
             print(#function)
             print(error)
             print(userInfo)

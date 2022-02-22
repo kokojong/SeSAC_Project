@@ -13,6 +13,7 @@ class ChattingView: UIView, UiViewProtocol {
     let textView = UITextView().then {
         $0.tintColor = .black
         $0.backgroundColor = .yellow
+        $0.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
     }
     
@@ -48,10 +49,11 @@ class ChattingView: UIView, UiViewProtocol {
             make.leading.equalToSuperview().inset(12)
             make.top.bottom.equalToSuperview().inset(14)
             make.trailing.equalTo(sendMessageButton.snp.leading).offset(-10)
+            make.height.equalTo(14)
         }
         
         sendMessageButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(14)
+            make.centerY.equalTo(textView)
             make.trailing.equalToSuperview().inset(14)
             make.size.equalTo(20)
         }

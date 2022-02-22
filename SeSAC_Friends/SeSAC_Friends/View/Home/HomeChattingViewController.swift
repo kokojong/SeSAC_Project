@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Alamofire
 
 class HomeChattingViewController: UIViewController, UiViewProtocol {
     
@@ -38,11 +39,20 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
     }
     
     var viewModel = HomeViewModel.shared
+    
+    var chatViewModel = ChatViewModel.shared
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        SocketIOManager.shared.closeConnection()
+        
+        chatViewModel.chatList.bind { _ in
+            self.mainTableView.reloadData()
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -74,7 +84,22 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         menuView.dodgeButton.addTarget(self, action: #selector(dodgeButtonClicked), for: .touchUpInside)
         menuView.rateButton.addTarget(self, action: #selector(rateButtonClicked), for: .touchUpInside)
         
+        // MARK: 채팅
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessage(noti:)), name: NSNotification.Name("getMessage"), object: nil)
+        
+        chatView.sendMessageButton.addTarget(self, action: #selector(sendMessageButtonClicked), for: .touchUpInside)
+        
+        requestChats()
+        
+        print("otherUid: ",UserDefaults.standard.string(forKey: UserDefaultKeys.otherUid.rawValue))
+        
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     
     func addViews() {
         view.addSubview(mainTableView)
@@ -120,6 +145,82 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         }
     }
     
+    func requestChats() {
+        print(#function)
+//    from: viewModel.myUserInfo.value.uid
+        chatViewModel.recieveMessage(lastchatDate: self.chatViewModel.tmpLastChatDate,from: UserDefaults.standard.string(forKey: UserDefaultKeys.otherUid.rawValue)! ) { chats, statuscode in
+            print("requestChats",statuscode)
+            self.view.makeToast("\(statuscode)")
+            
+            
+            switch statuscode {
+            case ChatStatusCodeCase.success.rawValue:
+                guard let chats = chats else {
+                    return
+                }
+                print(chats)
+                
+                self.mainTableView.reloadData()
+                self.mainTableView.scrollToRow(at: IndexPath(row: self.chatViewModel.chatList.value.count, section: 0), at: .bottom, animated: false)
+                
+                SocketIOManager.shared.establishConnection()
+        
+                
+            default:
+                self.view.makeToast("채팅 내역을 불러오는데 실패했습니다")
+            }
+            
+        }
+        
+       
+        
+    }
+    
+    // 올리는애는 응답을 처리 안해도 된다
+    func postChat(chat: String) {
+        print(#function)
+        
+        chatViewModel.sendMessage(chat: chat, to: UserDefaults.standard.string(forKey: UserDefaultKeys.otherUid.rawValue)!) { chat, statuscode in
+            print("postChat",statuscode)
+            self.view.makeToast("\(statuscode)")
+            
+            switch statuscode {
+            case ChatStatusCodeCase.success.rawValue:
+                print("success")
+                self.requestChats()
+            case ChatStatusCodeCase.fail.rawValue:
+                self.view.makeToast("매칭이 해제된 상태입니다.")
+                
+            default:
+                self.view.makeToast("메세지 전송에 실패했습니다.")
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    @objc func getMessage(noti: NSNotification) {
+        print(#function)
+        
+        let from = noti.userInfo!["from"] as! String
+        let to = noti.userInfo!["to"] as! String
+        let chat = noti.userInfo!["chat"] as! String
+        let id = noti.userInfo!["id"] as! String
+        let createdAt = noti.userInfo!["createdAt"] as! String
+        let v = noti.userInfo!["v"] as! Int
+        
+        // 모델에 추가
+        let value = Chat(from: from, to: to, chat: chat, id: id, createdAt: createdAt, v: v)
+        
+        self.chatViewModel.chatList.value.append(value)
+        
+        self.mainTableView.reloadData()
+        self.mainTableView.scrollToRow(at: IndexPath(row: chatViewModel.chatList.value.count, section: 0), at: .bottom, animated: true)
+        
+    }
     
     @objc func onResetButtonClicked() {
         print(#function)
@@ -162,46 +263,85 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         present(vc, animated: true, completion: nil)
         
     }
+    
+    @objc func sendMessageButtonClicked() {
+        if chatView.sendMessageButton.image(for: .normal) == UIImage(named: "sendButton_fill") { // 가능할때만
+            postChat(chat: chatView.textView.text)
+            
+            
+        }
+        
+    }
+    
 }
 
 extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 6 + chatViewModel.chatList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row%2 == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else {
-                return UITableViewCell()
-            }
+        if indexPath.row < 6 {
             
-            if indexPath.row == 0 {
-                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+            if indexPath.row%2 == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                if indexPath.row == 0 {
+                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+                } else {
+                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+                }
+                cell.timeLabel.text = "04:28"
+                
+                return cell
+                
             } else {
-                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherChatTableViewCell.identifier, for: indexPath) as? OtherChatTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                if indexPath.row == 0 {
+                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+                } else {
+                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+                }
+                cell.timeLabel.text = "04:28"
+                
+                return cell
+                
             }
-            cell.timeLabel.text = "04:28"
+        } else { // index 6이상
             
-            return cell
+            // from 나 -> 내가 보낸거
+            let row = chatViewModel.chatList.value[indexPath.row-6]
             
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherChatTableViewCell.identifier, for: indexPath) as? OtherChatTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            if indexPath.row == 0 {
-                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+            if row.from == UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue) {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.messageLabel.text = row.chat
+                cell.timeLabel.text = row.createdAt
+                
+                return cell
             } else {
-                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherChatTableViewCell.identifier, for: indexPath) as? OtherChatTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.messageLabel.text = row.chat
+                cell.timeLabel.text = row.createdAt
+                
+                return cell
+                
             }
-            cell.timeLabel.text = "04:28"
             
-            return cell
+            
             
         }
-        
-   
         
         
        
@@ -230,11 +370,30 @@ extension HomeChattingViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == UIColor.lightGray || textView.text.count == 0 {
             chatView.sendMessageButton.setImage(UIImage(named: "sendButton"), for: .normal)
         } else {
             chatView.sendMessageButton.setImage(UIImage(named: "sendButton_fill"), for: .normal)
         }
+        
+        let contentHeight = textView.contentSize.height
+        DispatchQueue.main.async {
+            if contentHeight <= 20 {
+                self.chatView.textView.snp.updateConstraints {
+                    $0.height.equalTo(14)
+                }
+            } else if contentHeight <= 30 {
+                self.chatView.textView.snp.updateConstraints {
+                    $0.height.equalTo(28)
+                }
+            } else {
+                self.chatView.textView.snp.updateConstraints {
+                    $0.height.equalTo(42)
+                }
+            }
+        }
     }
     
+  
 }
+

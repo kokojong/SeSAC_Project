@@ -128,7 +128,7 @@ class AuthViewModel {
     }
     
     func getUserInfo(completion: @escaping (MyUserInfo?, Int?, Error?) -> Void) {
-        UserAPISevice.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
+        UserAPIService.getMyUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { userInfo, statuscode, error  in
          
             completion(userInfo,statuscode,error)
         }
@@ -140,7 +140,7 @@ class AuthViewModel {
         
         let form = SignUpForm(phoneNumber: "+82" + onlyNumber.value, FCMtoken: fcmToken, nick: nickname.value, email: email.value, birth: birthday.value, gender: gender.value)
         
-        UserAPISevice.signUpUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode, error in
+        UserAPIService.signUpUserInfo(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode, error in
        
             completion(statuscode, error)
             

@@ -169,7 +169,7 @@ class ProfileDetailViewController: UIViewController {
     
     func withDrawSignUp() {
         
-        UserAPISevice.withdrawSignUp(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { statuscode, error in
+        UserAPIService.withdrawSignUp(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!) { statuscode, error in
             
             switch statuscode {
             case UserStatusCodeCase.success.rawValue, UserStatusCodeCase.unAuthorized.rawValue:

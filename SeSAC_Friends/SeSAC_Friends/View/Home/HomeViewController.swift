@@ -255,7 +255,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
     }
     
     func updateFCMToken(newFCMToken: String) {
-        UserAPISevice.updateFCMToken(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, fcmToken: newFCMToken) { statuscode in
+        UserAPIService.updateFCMToken(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, fcmToken: newFCMToken) { statuscode in
             
             switch statuscode {
             case UserStatusCodeCase.success.rawValue:
@@ -264,7 +264,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 }
             case UserStatusCodeCase.firebaseTokenError.rawValue:
                 self.refreshFirebaseIdToken { idtoken, error in
-                    UserAPISevice.updateFCMToken(idToken: idtoken!, fcmToken: UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue)!) { statuscode in
+                    UserAPIService.updateFCMToken(idToken: idtoken!, fcmToken: UserDefaults.standard.string(forKey: UserDefaultKeys.FCMToken.rawValue)!) { statuscode in
                     }
                 }
             default:

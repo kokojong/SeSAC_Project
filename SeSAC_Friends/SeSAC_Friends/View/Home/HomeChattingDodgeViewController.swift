@@ -40,6 +40,10 @@ class HomeChattingDodgeViewController: UIViewController {
         popupView.cancelButton.addTarget(self, action: #selector(onCancelButtonClicked), for: .touchUpInside)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func addViews(){
         view.addSubview(popupView)
     }
@@ -51,6 +55,7 @@ class HomeChattingDodgeViewController: UIViewController {
             make.height.equalTo(156)
         }
     }
+    
 
     @objc func onOkButtonClicked() {
         print(#function)
