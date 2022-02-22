@@ -134,7 +134,7 @@ class QueueAPIService {
             "comment": form.comment
         ]
         
-        AF.request(QueueEndPoint.writeReview(id: form.otheruid).url.absoluteString, method: .post, parameters: parameters, headers: headers)
+        AF.request(QueueEndPoint.writeReview(id: form.otheruid).url.absoluteString, method: .post, parameters: parameters, encoding: URLEncoding(arrayEncoding: .noBrackets),headers: headers)
             .responseString { response in
                 
                 completion(response.response?.statusCode, response.error)

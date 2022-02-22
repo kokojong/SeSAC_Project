@@ -108,7 +108,7 @@ class UserAPISevice {
             "comment" : form.comment
         ]
             
-        AF.request(UserEndPoint.reportOtherUser.url.absoluteString, method: .post, parameters: parameters, headers: headers).responseString { response in
+        AF.request(UserEndPoint.reportOtherUser.url.absoluteString, method: .post, parameters: parameters, encoding: URLEncoding(arrayEncoding: .noBrackets), headers: headers).responseString { response in
             
             completion(response.response?.statusCode)
         }

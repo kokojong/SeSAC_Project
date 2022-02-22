@@ -175,6 +175,7 @@ class ProfileDetailViewController: UIViewController {
             case UserStatusCodeCase.success.rawValue, UserStatusCodeCase.unAuthorized.rawValue:
                 if statuscode == UserStatusCodeCase.success.rawValue {
                     self.view.makeToast("회원탈퇴에 성공했습니다. 첫 화면으로 돌아갑니다")
+                    UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                 } else {
                     self.view.makeToast("이미 탈퇴 처리된 회원입니다. 첫 화면으로 돌아갑니다")
                 }

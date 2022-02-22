@@ -140,14 +140,14 @@ class HomeViewModel {
         }
     }
     
-    final func writeReview(form: WriteReviewFrom, completion: @escaping (Int?, Error?) -> Void) {
+    final func writeReview(form: WriteReviewFrom, completion: @escaping (Int?) -> Void) {
         QueueAPIService.writeReview(idToken: UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!, form: form) { statuscode, error in
             
             guard let statuscode = statuscode else {
                 return
             }
 
-            completion(statuscode, error)
+            completion(statuscode)
         }
     }
     

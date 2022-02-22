@@ -16,6 +16,15 @@ class HomeChattingDodgeViewController: UIViewController {
     let popupView = PopupView().then {
         $0.titleLabel.text = "약속을 취소하시겠습니까?"
         $0.subtitleLabel.text = "약속을 취소하시면 패널티가 부과됩니다"
+        $0.layer.cornerRadius = 8
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.checkMyQueueStatus { myQueueStateResult, statuscode, error in
+            
+            UserDefaults.standard.set(myQueueStateResult?.matchedUid, forKey: UserDefaultKeys.otherUid.rawValue)
+        }
     }
     
     override func viewDidLoad() {
@@ -23,7 +32,6 @@ class HomeChattingDodgeViewController: UIViewController {
 
         view.backgroundColor = UIColor.black?.withAlphaComponent(0.5)
         
-        popupView.backgroundColor = .red.withAlphaComponent(0.5)
         
         addViews()
         addConstraints()
@@ -39,8 +47,8 @@ class HomeChattingDodgeViewController: UIViewController {
     func addConstraints(){
         popupView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.bottom.equalToSuperview().inset(100)
             make.centerY.equalToSuperview()
+            make.height.equalTo(156)
         }
     }
 
@@ -54,11 +62,13 @@ class HomeChattingDodgeViewController: UIViewController {
             
             switch statuscode {
             case DodgeStatusCodeCase.success.rawValue:
-                self.navigationController?.popToRootViewController(animated: true)
+                UserDefaults.standard.set(MyStatusCase.normal.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                changeRootView(vc: TabBarViewController())
             case DodgeStatusCodeCase.unAuthorized.rawValue:
                 self.view.makeToast("잘못된 상대입니다. 상대를 다시 확인해주세요")
             default:
-                self.view.makeToast("약속 취소에 실패했습니다. 잠시 후 다시 시도해주세요")
+//                self.view.makeToast("약속 취소에 실패했습니다. 잠시 후 다시 시도해주세요")
+                self.view.makeToast("\(statuscode)")
             }
             
         }

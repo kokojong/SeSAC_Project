@@ -60,12 +60,19 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         self.navigationItem.rightBarButtonItem = moreButton
         
         chatView.textView.delegate = self
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        mainTableView.register(MyChatTableViewCell.self, forCellReuseIdentifier: MyChatTableViewCell.identifier)
+        mainTableView.register(OtherChatTableViewCell.self, forCellReuseIdentifier: OtherChatTableViewCell.identifier)
+        
+        mainTableView.estimatedRowHeight = UITableView.automaticDimension
+        
         
         resetButton.addTarget(self, action: #selector(onResetButtonClicked), for: .touchUpInside)
         
-        
         menuView.reportButton.addTarget(self, action: #selector(reportButtonClicked), for: .touchUpInside)
         menuView.dodgeButton.addTarget(self, action: #selector(dodgeButtonClicked), for: .touchUpInside)
+        menuView.rateButton.addTarget(self, action: #selector(rateButtonClicked), for: .touchUpInside)
         
     }
     
@@ -145,7 +152,65 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         present(vc, animated: true, completion: nil)
     }
     
+    @objc func rateButtonClicked() {
+        print(#function)
+        moreView.isHidden.toggle()
+        
+        let vc = HomeChattingRateViewController()
+        vc.modalTransitionStyle = . crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+        
+    }
 }
+
+extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row%2 == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            if indexPath.row == 0 {
+                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+            } else {
+                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+            }
+            cell.timeLabel.text = "04:28"
+            
+            return cell
+            
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherChatTableViewCell.identifier, for: indexPath) as? OtherChatTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            if indexPath.row == 0 {
+                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+            } else {
+                cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
+            }
+            cell.timeLabel.text = "04:28"
+            
+            return cell
+            
+        }
+        
+   
+        
+        
+       
+        
+    }
+    
+    
+}
+
 
 extension HomeChattingViewController: UITextViewDelegate {
     
@@ -154,13 +219,21 @@ extension HomeChattingViewController: UITextViewDelegate {
             textView.text = nil // 텍스트를 날려줌
             textView.textColor = UIColor.black
         }
-        
     }
     // UITextView의 placeholder
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
+            resetButton.tintColor = .gray1
             textView.text = "메세지를 입력하세요"
             textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            chatView.sendMessageButton.setImage(UIImage(named: "sendButton"), for: .normal)
+        } else {
+            chatView.sendMessageButton.setImage(UIImage(named: "sendButton_fill"), for: .normal)
         }
     }
     
