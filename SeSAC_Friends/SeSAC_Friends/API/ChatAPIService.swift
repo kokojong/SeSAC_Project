@@ -13,13 +13,13 @@ class ChatAPIService {
     static func sendMessage(idToken: String, chat: String, to: String, completion: @escaping (Chat?, Int?) -> Void) {
         
         let headers = ["idtoken": idToken,
-                       "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+                       "Content-Type": "application/json"] as HTTPHeaders
         
-        let parameters : Parameters = [
+        let parameters = [
             "chat" : chat
         ]
         
-        AF.request(ChatEndPoint.sendChat(chat: chat).url.absoluteString, method: .post, parameters: parameters, headers: headers).responseDecodable(of: Chat.self) { response in
+        AF.request(ChatEndPoint.sendChat(to: to).url.absoluteString, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: headers).responseDecodable(of: Chat.self) { response in
             
             let statusCode = response.response?.statusCode
             

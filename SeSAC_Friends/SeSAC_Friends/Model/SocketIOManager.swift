@@ -25,11 +25,11 @@ class SocketIOManager: NSObject {
         super.init()
     
     
-        manager = SocketManager(socketURL: url, config: [
+        manager = SocketManager(socketURL: URL(string: "http://test.monocoding.com:35484")! , config: [
             .log(true), // debug 가능하도록함
-            .compress, // websocket 전송에서 compression을 가능하게함
-            .extraHeaders([
-                "idtoken": UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!]) // header를 부여
+            .compress // websocket 전송에서 compression을 가능하게함
+            
+//                .extraHeaders(["idtoken": UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!]) // header를 부여
             
         ])
         
@@ -38,6 +38,7 @@ class SocketIOManager: NSObject {
         // 소켓 연결 메서드(귀를 열기 전에 연결 먼저)
         socket.on(clientEvent: .connect) { data, ack in
             print("socket is connected", data, ack)
+            self.socket.emit("changesocketid", UserDefaults.standard.string(forKey: UserDefaultKeys.myUid.rawValue)!)
         }
         
         // 소켓 연결 해제 메서드
@@ -49,15 +50,16 @@ class SocketIOManager: NSObject {
         // 소켓 채팅 듣는 메서드, sesac 이벤트로 날아온 데이터를 수신
         // 데이터 수신 -> 디코딩 -> 모델에 추가 -> 갱신
         // event의 String (서버에서 미리 약속한거)
-        socket.on("sesac") { dataArr, ack in
+        socket.on("chat") { dataArr, ack in
             print("sesac received", dataArr, ack)
+            
             let data = dataArr[0] as! NSDictionary
             let from = data["from"] as! String
             let to = data["to"] as! String
             let chat = data["chat"] as! String
             let createdAt = data["createdAt"] as! String
-            let id = data["id"] as! String
-            let v = data["v"] as! String
+            let id = data["_id"] as! String
+            let v = data["__v"] as! Int
             
             print("check data",from, to, chat, createdAt, id, v)
             
@@ -66,8 +68,8 @@ class SocketIOManager: NSObject {
                 "to" : to,
                 "chat" : chat,
                 "createdAt" : createdAt,
-                "id" : id,
-                "v" : v
+                "_id" : id,
+                "__v" : v
             ])
             
         }

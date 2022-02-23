@@ -21,7 +21,7 @@ class HomeChattingRateViewController: UIViewController {
     let chattingRateView = ChattingRateView().then {   $0.titleLabel.text = "리뷰 등록"
         $0.subtitleLabel.text = "님과의 취미 활동은 어떠셨나요?"
         $0.rateTextView.text = "자세한 피드백은 다른 새싹 친구들에게 큰 도움이 됩니다."
-        $0.rateButton.setTitle("신고하기", for: .normal)
+        $0.rateButton.setTitle("리뷰 등록하기", for: .normal)
         $0.rateTagCollectionView.then {
             
             $0.register(ChattingRateCollectionViewCell.self, forCellWithReuseIdentifier: ChattingRateCollectionViewCell.identifier)
@@ -47,9 +47,13 @@ class HomeChattingRateViewController: UIViewController {
         
         viewModel.checkMyQueueStatus { myQueueStateResult, statuscode, error in
             
-            self.chattingRateView.subtitleLabel.text = "\(myQueueStateResult?.matchedNick)님과의 취미 활동은 어떠셨나요?"
+            guard let myQueueStateResult = myQueueStateResult else {
+                return
+            }
+
+            self.chattingRateView.subtitleLabel.text = "\(myQueueStateResult.matchedNick!)님과의 취미 활동은 어떠셨나요?"
             
-            UserDefaults.standard.set(myQueueStateResult?.matchedUid, forKey: UserDefaultKeys.otherUid.rawValue)
+            UserDefaults.standard.set(myQueueStateResult.matchedUid, forKey: UserDefaultKeys.otherUid.rawValue)
         }
         
         

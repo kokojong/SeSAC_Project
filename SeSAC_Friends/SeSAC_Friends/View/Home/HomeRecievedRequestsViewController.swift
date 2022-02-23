@@ -8,6 +8,7 @@
 import UIKit
 import Tabman
 import Pageboy
+import CoreLocation
 
 class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
     
@@ -38,6 +39,11 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
             self.mainTableView.reloadData()
         }
         
+        viewModel.onQueueResult.bind { _ in
+            self.mainTableView.reloadData()
+        }
+
+        
     }
     
     
@@ -45,7 +51,7 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
         super.viewDidLoad()
 
         title = "받은 요청"
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         
         mainTableView.allowsSelection = false
         mainTableView.delegate = self
@@ -113,9 +119,75 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
     
     @objc func onRefreshButtonClicked() {
         print(#function)
-//        searchNearFriends()
+        searchNearFriends()
         view.makeToast("새싹 목록을 갱신했습니다.")
     }
+}
+
+extension HomeRecievedRequestsViewController: CLLocationManagerDelegate {
+    func searchNearFriends() {
+        print(#function)
+        
+        let form = OnQueueForm(region: viewModel.centerRegion.value, lat: viewModel.centerLat.value, long: viewModel.centerLong.value)
+        viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
+            
+            switch statuscode {
+            case OnQueueStatusCodeCase.success.rawValue:
+                guard let onqueueResult = onqueueResult else {
+                    return
+                }
+                
+                print(onqueueResult)
+                
+                // MARK: onqueue의 결과를 VM에 저장
+                for otherUserInfo in onqueueResult.fromQueueDB {
+                    
+                    self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
+                    
+                    self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
+                    
+                }
+                
+                for otherUserInfo in onqueueResult.fromQueueDBRequested {
+                    
+                    self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
+                    
+                    self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
+                }
+                
+                self.viewModel.fromRecommendHobby.value =  onqueueResult.fromRecommend
+                
+                switch self.viewModel.searchGender.value {
+                    
+                case GenderCase.man.rawValue, GenderCase.woman.rawValue:
+                    self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB.filter({
+                        $0.gender == self.viewModel.searchGender.value
+                    })
+                default:
+                    self.viewModel.filteredQueueDB.value = onqueueResult.fromQueueDB
+                }
+                
+                self.viewModel.filteredQueueDBRequested.value = onqueueResult.fromQueueDBRequested
+                
+                print("filteredQueueDB", self.viewModel.filteredQueueDB.value)
+                print("filteredQueueDBRequested", self.viewModel.filteredQueueDBRequested.value)
+                
+               
+               
+           case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
+               // 토큰 만료 -> 갱신
+               self.refreshFirebaseIdToken { idToken, error in
+                   if let idToken = idToken {
+                       self.searchNearFriends()
+                   }
+               }
+           default:
+               self.view.makeToast("주변 새싹 친구를 찾는데 실패했습니다. 잠시 후 다시 시도해주세요")
+           }
+       }
+        
+        mainTableView.reloadData()
+   }
 }
 
 extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDataSource, matchButtonProtocol {
@@ -152,7 +224,6 @@ extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDa
         cell.profileBackgroundView.matchButton.setTitle("수락하기", for: .normal)
         cell.profileBackgroundView.matchButton.backgroundColor = UIColor.successColor
         
-        print("viewModel.filteredQueueDBRequested.value",viewModel.filteredQueueDBRequested.value)
         cell.otherUserInfoData = viewModel.filteredQueueDBRequested.value[indexPath.row]
         
         cell.toggleTableView.reloadData()

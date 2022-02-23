@@ -28,12 +28,12 @@
 		048F810727C37BA500F32FA4 /* HomeChattingDodgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810627C37BA500F32FA4 /* HomeChattingDodgeViewController.swift */; };
 		048F810927C3E81C00F32FA4 /* HomeChattingRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810827C3E81C00F32FA4 /* HomeChattingRateViewController.swift */; };
 		048F810B27C4C61700F32FA4 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810A27C4C61700F32FA4 /* SocketIOManager.swift */; };
-		048F810E27C4C72000F32FA4 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 048F810D27C4C72000F32FA4 /* SocketIO */; };
 		048F811027C4C87E00F32FA4 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F810F27C4C87E00F32FA4 /* URL+Extension.swift */; };
 		048F811227C4C91D00F32FA4 /* ChatEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811127C4C91D00F32FA4 /* ChatEndPoint.swift */; };
 		048F811427C511BB00F32FA4 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811327C511BB00F32FA4 /* Chat.swift */; };
 		048F811627C5164B00F32FA4 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811527C5164B00F32FA4 /* ChatViewModel.swift */; };
 		048F811827C51DBA00F32FA4 /* ChatAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811727C51DBA00F32FA4 /* ChatAPIService.swift */; };
+		048F811B27C6294600F32FA4 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 048F811A27C6294600F32FA4 /* SocketIO */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -212,7 +212,7 @@
 				04EE3C1827994FB400A9136D /* FirebaseMessaging in Frameworks */,
 				04A81FD42796918D00B658CD /* SnapKit in Frameworks */,
 				04EE3C1427994FB400A9136D /* FirebaseAnalytics in Frameworks */,
-				048F810E27C4C72000F32FA4 /* SocketIO in Frameworks */,
+				048F811B27C6294600F32FA4 /* SocketIO in Frameworks */,
 				04EE3C5927A18BF100A9136D /* Then in Frameworks */,
 				04EE3C012799323500A9136D /* Alamofire in Frameworks */,
 				048F80E127BA28EE00F32FA4 /* Tabman in Frameworks */,
@@ -480,7 +480,7 @@
 				04EE3C1727994FB400A9136D /* FirebaseMessaging */,
 				04EE3C5827A18BF100A9136D /* Then */,
 				048F80E027BA28EE00F32FA4 /* Tabman */,
-				048F810D27C4C72000F32FA4 /* SocketIO */,
+				048F811A27C6294600F32FA4 /* SocketIO */,
 			);
 			productName = SeSAC_Friends;
 			productReference = 04A81FB0279681DD00B658CD /* SeSAC_Friends.app */;
@@ -517,7 +517,7 @@
 				04EE3C1227994FB400A9136D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				04EE3C5727A18BF000A9136D /* XCRemoteSwiftPackageReference "Then" */,
 				048F80DF27BA28ED00F32FA4 /* XCRemoteSwiftPackageReference "Tabman" */,
-				048F810C27C4C71F00F32FA4 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				048F811927C6294600F32FA4 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 04A81FB1279681DD00B658CD /* Products */;
 			projectDirPath = "";
@@ -896,12 +896,12 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		048F810C27C4C71F00F32FA4 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		048F811927C6294600F32FA4 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
 				kind = exactVersion;
-				version = 16.0.1;
+				version = 15.2.0;
 			};
 		};
 		04A81FD22796918D00B658CD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -952,9 +952,9 @@
 			package = 048F80DF27BA28ED00F32FA4 /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
 		};
-		048F810D27C4C72000F32FA4 /* SocketIO */ = {
+		048F811A27C6294600F32FA4 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 048F810C27C4C71F00F32FA4 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = 048F811927C6294600F32FA4 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
 		};
 		04A81FD32796918D00B658CD /* SnapKit */ = {

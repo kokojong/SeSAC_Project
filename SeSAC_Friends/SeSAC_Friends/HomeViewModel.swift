@@ -76,6 +76,8 @@ class HomeViewModel {
             }
             self.myUserInfo.value = userInfo
             
+            UserDefaults.standard.set(userInfo.uid, forKey: UserDefaultKeys.myUid.rawValue)
+            
             completion(userInfo,statuscode,error)
         }
         

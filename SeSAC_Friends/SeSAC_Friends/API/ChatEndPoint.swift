@@ -9,15 +9,15 @@ import Foundation
 
 enum ChatEndPoint {
     
-    case sendChat(chat: String)
+    case sendChat(to: String)
     case recieveChat(from: String, lastchatDate: String)
 }
 
 extension ChatEndPoint {
     var url: URL {
         switch self {
-        case .sendChat(chat: let chat):
-            return .makeChatEndPoint(chat)
+        case .sendChat(to: let to):
+            return .makeChatEndPoint(to)
         case .recieveChat(from: let from, lastchatDate: let lastchatDate):
             return .makeChatEndPoint( from + "?lastchatDate=" + lastchatDate)
         }

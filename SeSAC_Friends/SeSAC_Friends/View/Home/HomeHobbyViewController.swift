@@ -70,7 +70,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
         super.viewDidLoad()
 
         title = "hobby"
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)

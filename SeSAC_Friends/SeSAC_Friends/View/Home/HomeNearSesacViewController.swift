@@ -40,6 +40,11 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         viewModel.searchNearFriends(form: form) { onqueueResult, statuscode, error in
             self.mainTableView.reloadData()
         }
+        
+        viewModel.onQueueResult.bind { _ in
+            self.mainTableView.reloadData()
+        }
+        
 //
         searchNearFriends()
         
@@ -49,7 +54,7 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
         super.viewDidLoad()
 
         title = "주변 새싹"
-        view.backgroundColor = .magenta
+        view.backgroundColor = .white
         
         mainTableView.allowsSelection = false
         mainTableView.delegate = self

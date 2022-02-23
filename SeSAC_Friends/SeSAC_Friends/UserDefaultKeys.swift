@@ -14,4 +14,5 @@ enum UserDefaultKeys: String {
     case myStatus
     
     case otherUid
+    case myUid
 }

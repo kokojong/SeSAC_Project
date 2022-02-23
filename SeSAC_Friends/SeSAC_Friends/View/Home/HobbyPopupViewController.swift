@@ -46,14 +46,12 @@ class HobbyPopupViewController: UIViewController {
             
             viewModel.hobbyRequest(otheruid: self.otheruid) { statuscode, error in
                 
-                self.view.makeToast("\(statuscode)")
-                
                 switch statuscode {
                     
                 case HobbyRequestStatusCodeCase.success.rawValue:
                     self.view.makeToast("취미 함께 하기 요청을 보냈습니다")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.dismiss(animated: true)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 case HobbyRequestStatusCodeCase.alreadyRecievedRequest.rawValue:
                     // MARK: 서로 요청 보낸 상태 -> 수락
@@ -64,6 +62,7 @@ class HobbyPopupViewController: UIViewController {
                             UserDefaults.standard.set(MyStatusCase.matched.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                             self.view.makeToast("상대방도 취미 함께 하기를 요청했습니다. 채팅방으로 이동합니다")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.dismiss(animated: true, completion: nil)
                                 self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
                             }
                             
@@ -72,8 +71,8 @@ class HobbyPopupViewController: UIViewController {
                         case HobbyAcceptStatusCodeCase.otherCanceledMatcting.rawValue:
                             self.view.makeToast("상대방이 취미 함께 하기를 그만두었습니다")
                         case HobbyAcceptStatusCodeCase.alreadyIMatched.rawValue:
-                            self.view.makeToast("앗! 누군가가 나의 취미 함께 하기를 수락하였어요!")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.view.makeToast("앗! 누군가가 나의 취미 함께 하기를 수락하였어요! 채팅방으로 이동합니다")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.viewModel.checkMyQueueStatus { myQueueStateResult, statuscode, error in
                                     // TODO: 내 상태 확인 -> 다음 동작(기획서)
                                     switch statuscode {
@@ -104,6 +103,8 @@ class HobbyPopupViewController: UIViewController {
                             
                         }
                         
+                        self.dismiss(animated: true, completion: nil)
+                        
                     }
                 case HobbyRequestStatusCodeCase.otherCanceledMatcting.rawValue:
                     self.view.makeToast("상대방이 취미 함께 하기를 그만두었습니다")
@@ -121,10 +122,10 @@ class HobbyPopupViewController: UIViewController {
         case PopupVCCase.hobbyAceept.rawValue:
             // 수락하기(받은 요청)
             viewModel.hobbyAccept(otheruid: otheruid) { statuscode, error in
-                self.view.makeToast("\(statuscode)")
                 switch statuscode {
                 case HobbyAcceptStatusCodeCase.success.rawValue:
                     UserDefaults.standard.set(MyStatusCase.matched.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
+                    self.dismiss(animated: true, completion: nil)
                     self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
                 case HobbyAcceptStatusCodeCase.alreadyOtherMatched.rawValue:
                     self.view.makeToast("상대방이 이미 다른 사람과 취미를 함께하는 중입니다")

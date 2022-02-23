@@ -46,7 +46,7 @@ class HomeFindSesacViewController: TabmanViewController {
         super.viewDidLoad()
 
         title = "새싹 찾기"
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -88,7 +88,7 @@ class HomeFindSesacViewController: TabmanViewController {
                     UserDefaults.standard.set(MyStatusCase.matched.rawValue, forKey: UserDefaultKeys.myStatus.rawValue)
                     UserDefaults.standard.set(myQueueStateResult.matchedUid, forKey: UserDefaultKeys.otherUid.rawValue)
                     
-                    self.view.makeToast("\(myQueueStateResult.matchedNick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다.", duration: 1, position: .bottom, style: self.style) { didTap in
+                    self.view.makeToast("\(myQueueStateResult.matchedNick!)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다.", duration: 1, position: .bottom, style: self.style) { didTap in
                         self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
                         
                     }
