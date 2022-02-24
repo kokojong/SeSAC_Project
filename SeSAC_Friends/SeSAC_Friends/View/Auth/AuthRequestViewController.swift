@@ -20,7 +20,6 @@ class AuthRequestViewController: UIViewController {
     
     var onlyPhoneNumber = ""
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
@@ -75,9 +74,7 @@ class AuthRequestViewController: UIViewController {
             viewModel.requestCode { verificationID, error in
                 guard let verificationID = verificationID else {
                     // error가 존재
-                    print("error",error!.localizedDescription)
-                    print("error",error.debugDescription)
-
+                    
                     switch error!.localizedDescription {
                     case AuthResponse.blocked.rawValue: self.view.makeToast("과도한 인증 시도가 있었습니다.\n나중에 다시 시도해주세요")
 
@@ -111,25 +108,8 @@ class AuthRequestViewController: UIViewController {
         viewModel.addHyphen()
         viewModel.onlyNumber.value = viewModel.phoneNumber.value.components(separatedBy: ["-"]).joined()
         viewModel.checkValidPhoneNumber(phone: viewModel.phoneNumber.value)
-        
-        
-//        phoneNumber = mainView.mainTextField.text ?? ""
-        
-//        mainView.mainTextField.text = phoneNumber.toPhoneNumberPattern(pattern: "###-####-####", replacmentCharacter: "#")
-        
-//        print("phoneNumber", phoneNumber)
-//        if isValidPhone(phone: phoneNumber){
-//            mainView.mainButton.style = .fill
-//        } else {
-//            mainView.mainButton.style = .disable
-//        }
-//
+ 
     }
-    
-   
-    
-    
-    
 
 }
 

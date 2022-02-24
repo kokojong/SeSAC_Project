@@ -31,7 +31,6 @@ class AuthCheckViewController: UIViewController {
     
     var limitTime = 60
     
-    
     override func loadView() {
         self.view = mainView
     }
@@ -67,6 +66,13 @@ class AuthCheckViewController: UIViewController {
     
     @objc func onCheckButtonClicked() {
         
+        view.endEditing(true)
+        
+        if limitTime == 0 {
+            view.makeToast("시간이 초과 되었습니다. 인증번호를 재전송해주세요")
+            return
+        }
+        
         if isValidCode(code: self.viewModel.verificationCode) == false {
             view.makeToast("6자리의 인증번호를 입력해주세요")
             return
@@ -76,7 +82,6 @@ class AuthCheckViewController: UIViewController {
             
             guard authresult != nil else {
                 self.view.makeToast("전화 번호 인증 실패")
-                
                 return
             }
 
@@ -149,7 +154,6 @@ class AuthCheckViewController: UIViewController {
                 
             }
         
-        
     }
     
     func addViews() {
@@ -210,6 +214,7 @@ class AuthCheckViewController: UIViewController {
         if limitTime != 0 {
             perform(#selector(countDownTimer), with: nil, afterDelay: 1.0)
         } else { // 남은 시간 0초
+            
             view.makeToast("휴대폰 번호 인증 실패")
         }
         

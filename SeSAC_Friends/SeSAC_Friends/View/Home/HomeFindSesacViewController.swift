@@ -107,8 +107,6 @@ class HomeFindSesacViewController: TabmanViewController {
                 self.view.makeToast("자동 갱신에 실패했습니다.")
                 
             }
-            
-            
         }
     }
     
@@ -133,13 +131,8 @@ class HomeFindSesacViewController: TabmanViewController {
                 
             }
         }
-        
     }
     
-    
-    
-
-  
 }
 
 extension HomeFindSesacViewController: PageboyViewControllerDataSource, TMBarDataSource  {
@@ -160,6 +153,5 @@ extension HomeFindSesacViewController: PageboyViewControllerDataSource, TMBarDat
         let title = titleList[index]
         return TMBarItem(title: title)
     }
-    
     
 }

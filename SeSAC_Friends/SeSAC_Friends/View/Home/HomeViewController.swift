@@ -53,10 +53,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         $0.layer.cornerRadius = $0.frame.size.width/2
     }
     
-    let gotoChattingButton = UIButton().then {
-        $0.setTitle("채팅으로 가기", for: .normal)
-        $0.setTitleColor(.red, for: .normal)
-    }
     
     let myLocationButton = UIButton().then {
         $0.setImage(UIImage(named: "myLocation"), for: .normal)
@@ -66,9 +62,7 @@ class HomeViewController: UIViewController, UiViewProtocol {
     
     let locationManager = CLLocationManager()
     var myLocation: CLLocation!
-    let sesacCampusCoordinate = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
-    let sesacCampusCoordinate2 = CLLocationCoordinate2D(latitude: 37.516535, longitude: 126.886466)
-    let sesacCampusCoordinate3 = CLLocationCoordinate2D(latitude: 37.516509, longitude: 126.885025)
+    let sesacCampusCoordinate = CLLocationCoordinate2D(latitude: 37.516509, longitude: 126.885025)
     
     var viewModel = HomeViewModel.shared
     
@@ -136,9 +130,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         
         myLocationButton.addTarget(self, action: #selector(myLocationButtonClicked), for: .touchUpInside)
         floatingButton.addTarget(self, action: #selector(onFloatginButtonClicked), for: .touchUpInside)
-                
-        // MARK: 임시 버튼 -> 삭제 요망
-        gotoChattingButton.addTarget(self, action: #selector(gotoChattingClicked), for: .touchUpInside)
     
         viewModel.myStatus.bind {
             switch $0 {
@@ -164,7 +155,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         genderButtonStackView.addArrangedSubview(searchWomanButton)
         view.addSubview(centerLocationView)
         
-        view.addSubview(gotoChattingButton)
     }
     
     func addConstraints() {
@@ -176,10 +166,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
             make.size.equalTo(64)
         }
         
-        gotoChattingButton.snp.makeConstraints { make in
-            make.bottom.equalTo(floatingButton.snp.top).offset(-30)
-            make.leading.trailing.equalTo(floatingButton)
-        }
         
         genderButtonStackView.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -247,7 +233,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
                 self.floatingButton.setImage(UIImage(named: "floatingButton_matched"), for: .normal)
             default:
                 self.floatingButton.setImage(UIImage(named: "floatingButton_default"), for: .normal)
-            
                 
             }
         }
@@ -589,9 +574,6 @@ extension HomeViewController: MKMapViewDelegate {
         
         let lat = mapView.centerCoordinate.latitude
         let long = mapView.centerCoordinate.longitude
-    
-        let center = CLLocation(latitude: lat, longitude: long)
-        
         
         viewModel.calculateRegion(lat: lat, long: long)
         

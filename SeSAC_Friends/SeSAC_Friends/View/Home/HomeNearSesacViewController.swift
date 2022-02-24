@@ -45,7 +45,6 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
             self.mainTableView.reloadData()
         }
         
-//
         searchNearFriends()
         
     }
@@ -140,15 +139,12 @@ extension HomeNearSesacViewController: CLLocationManagerDelegate {
                     return
                 }
                 
-                print(onqueueResult)
-                
                 // MARK: onqueue의 결과를 VM에 저장
                 for otherUserInfo in onqueueResult.fromQueueDB {
                     
                     self.viewModel.fromNearFriendsHobby.value.append(contentsOf: otherUserInfo.hf)
                     
                     self.viewModel.fromNearFriendsHobby.value = Array(Set(self.viewModel.fromNearFriendsHobby.value))
-                    
                 }
                 
                 for otherUserInfo in onqueueResult.fromQueueDBRequested {
@@ -175,8 +171,6 @@ extension HomeNearSesacViewController: CLLocationManagerDelegate {
                 print("filteredQueueDB", self.viewModel.filteredQueueDB.value)
                 print("filteredQueueDBRequested", self.viewModel.filteredQueueDBRequested.value)
                 
-               
-               
            case OnQueueStatusCodeCase.firebaseTokenError.rawValue:
                // 토큰 만료 -> 갱신
                self.refreshFirebaseIdToken { idToken, error in

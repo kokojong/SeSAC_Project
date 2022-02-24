@@ -100,7 +100,6 @@ class AuthViewModel {
        
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if error == nil {
-                print("로그인 성공!")
 
                 let currentUser = Auth.auth().currentUser
                 currentUser?.getIDTokenForcingRefresh(true) { idToken, error in

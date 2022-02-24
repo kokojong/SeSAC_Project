@@ -19,7 +19,6 @@ class ProfileViewController: UIViewController {
         DispatchQueue.main.async {
             self.viewModel.getUserInfo { userInfo, status, error in
                 
-                
             }
         }
         
@@ -34,7 +33,7 @@ class ProfileViewController: UIViewController {
         mainTableView.register(MyProfileTableViewCell.self, forCellReuseIdentifier: MyProfileTableViewCell.identifier)
         mainTableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         mainTableView.rowHeight = UITableView.automaticDimension
-        mainTableView.backgroundColor = .magenta
+        mainTableView.backgroundColor = .white
        
         view.backgroundColor = .white
         view.addSubview(mainTableView)

@@ -315,7 +315,7 @@ extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource
                 }
                 
                 cell.messageLabel.text = row.chat
-                cell.timeLabel.text = row.createdAt
+                cell.timeLabel.text = row.createdAt.toDate
                 cell.selectionStyle = .none
                 
                 return cell
@@ -326,7 +326,7 @@ extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource
                 }
                 
                 cell.messageLabel.text = row.chat
-                cell.timeLabel.text = row.createdAt
+                cell.timeLabel.text = row.createdAt.toDate
                 cell.selectionStyle = .none
                 
                 return cell
@@ -367,15 +367,15 @@ extension HomeChattingViewController: UITextViewDelegate {
         DispatchQueue.main.async {
             if contentHeight <= 20 {
                 self.chatView.textView.snp.updateConstraints {
-                    $0.height.equalTo(14)
+                    $0.height.equalTo(16)
                 }
-            } else if contentHeight <= 30 {
+            } else if contentHeight <= 40 {
                 self.chatView.textView.snp.updateConstraints {
-                    $0.height.equalTo(28)
+                    $0.height.equalTo(32)
                 }
             } else {
                 self.chatView.textView.snp.updateConstraints {
-                    $0.height.equalTo(42)
+                    $0.height.equalTo(48)
                 }
             }
         }

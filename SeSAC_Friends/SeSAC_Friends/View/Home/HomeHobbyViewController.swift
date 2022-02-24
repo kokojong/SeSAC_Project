@@ -225,9 +225,7 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
                 }
                 
                 self.navigationController?.pushViewController(HomeFindSesacViewController(), animated: true)
-//                let modalVC = HomeFindSesacViewController()
-//                modalVC.modalPresentationStyle = .fullScreen
-//                self.present(modalVC, animated: true, completion: nil)
+                
             case QueueStatusCodeCase.blockedUser.rawValue:
                 self.view.makeToast("신고가 누적되어 이용하실 수 없습니다")
             case QueueStatusCodeCase.cancelPanlty1.rawValue:
@@ -258,8 +256,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             default:
                 self.view.makeToast("취미를 함께할 친구 찾기에 실패했습니다. 잠시 후 다시 시도해주세요.")
             }
-            
-            
         }
     }
     
@@ -292,8 +288,6 @@ class HomeHobbyViewController: UIViewController, UiViewProtocol {
             make.height.equalTo(48)
         }
     }
-    
-    
     
 }
 
@@ -448,10 +442,8 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
                 default:
                     if !myFavoriteHobby.contains(viewModel.fromNearFriendsHobby.value[indexPath.row]){
                         myFavoriteHobby.append(viewModel.fromNearFriendsHobby.value[indexPath.row])
-                    }
-                    
+                    }   
                 }
-                
             }
             
             
@@ -466,9 +458,5 @@ extension HomeHobbyViewController: UICollectionViewDataSource, UICollectionViewD
         favoriteHobbyCollectionView.reloadData()
         
     }
-    
-    
-    
-    
     
 }

@@ -119,7 +119,7 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
     @objc func onRefreshButtonClicked() {
         print(#function)
         searchNearFriends()
-        view.makeToast("새싹 목록을 갱신했습니다.")
+        view.makeToast("받은 요청 목록을 갱신했습니다.")
     }
 }
 
