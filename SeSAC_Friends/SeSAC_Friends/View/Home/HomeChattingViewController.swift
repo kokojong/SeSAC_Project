@@ -43,8 +43,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
     var viewModel = HomeViewModel.shared
     
     var chatViewModel = ChatViewModel.shared
-    
-    var list: [Chat] = []
+
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -74,9 +73,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         }
         
         
-        chatViewModel.chatList.bind {
-            self.list = $0
-            print("self.list",self.list)
+        chatViewModel.chatList.bind { _ in
             self.mainTableView.reloadData()
         }
         
@@ -189,14 +186,9 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
                 
                 self.mainTableView.reloadData()
                 
-                if self.list.count > 0 {
+                if self.chatViewModel.chatList.value.count > 0 {
                     self.mainTableView.scrollToRow(at: IndexPath(row: self.chatViewModel.chatList.value.count-1, section: 0), at: .bottom, animated: false)
                 }
-                
-             
-                
-//                SocketIOManager.shared.establishConnection()
-        
                 
             default:
                 self.view.makeToast("채팅 내역을 불러오는데 실패했습니다")
@@ -225,11 +217,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
                 
             default:
                 self.view.makeToast("메세지 전송에 실패했습니다.")
-                
-                
             }
-            
-            
         }
     }
     
@@ -248,9 +236,10 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         let value = Chat(from: from, to: to, chat: chat, id: id, createdAt: createdAt, v: v)
         
         self.chatViewModel.chatList.value.append(value)
+
         
         self.mainTableView.reloadData()
-        if list.count > 0 {
+        if self.chatViewModel.chatList.value.count > 0 {
             self.mainTableView.scrollToRow(at: IndexPath(row: self.chatViewModel.chatList.value.count-1, section: 0), at: .bottom, animated: false)
         }
         
@@ -312,51 +301,15 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
 
 extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 6 + chatViewModel.chatList.value.count
-        return list.count
+        return chatViewModel.chatList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        if indexPath.row < 6 {
-//
-//            if indexPath.row%2 == 0 {
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else {
-//                    return UITableViewCell()
-//                }
-//
-//                if indexPath.row == 0 {
-//                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
-//                } else {
-//                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
-//                }
-//                cell.timeLabel.text = "04:28"
-//                cell.selectionStyle = .none
-//                return cell
-//
-//            } else {
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherChatTableViewCell.identifier, for: indexPath) as? OtherChatTableViewCell else {
-//                    return UITableViewCell()
-//                }
-//
-//                if indexPath.row == 0 {
-//                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
-//                } else {
-//                    cell.messageLabel.text = "안여랸마ㅣㅇ럼ㄴㅇ리ㅏ"
-//                }
-//                cell.timeLabel.text = "04:28"
-//                cell.selectionStyle = .none
-//
-//                return cell
-//
-//            }
-//        }
-        
-         
-            
+   
             // from 나 -> 내가 보낸거
-//            let row = chatViewModel.chatList.value[indexPath.row-6]
-            let row = list[indexPath.row]
+            let row = chatViewModel.chatList.value[indexPath.row]
+//            let row = list[indexPath.row]
+            
             
             if row.from == viewModel.myUserInfo.value.uid {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else {
@@ -368,6 +321,7 @@ extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource
                 cell.selectionStyle = .none
                 
                 return cell
+                
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherChatTableViewCell.identifier, for: indexPath) as? OtherChatTableViewCell else {
                     return UITableViewCell()
