@@ -48,7 +48,7 @@ class UserAPIService {
         
         AF.request(UserEndPoint.postMyUserInfo.url.absoluteString, method: .post, parameters: parameters, headers: headers)
             .responseString { response in
-                print("responseString", response.response)
+                
                 completion(response.response?.statusCode, nil)
             }
     }
@@ -75,7 +75,6 @@ class UserAPIService {
             "hobby" : form.hobby
         ]
         
-        print("real token", idToken)
         AF.request(UserEndPoint.updateMypage.url.absoluteString, method: .post, parameters: parameters, headers: headers).responseString { response in
             completion(response.response?.statusCode)
         }

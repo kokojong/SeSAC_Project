@@ -29,10 +29,8 @@ class OnboardingView: UIView {
         titleLabel.textAlignment = .center
         titleLabel.textColor = .black
 
-        
         imageView.contentMode = .scaleAspectFit
       
-       
     }
     
     required init?(coder: NSCoder) {
@@ -51,8 +49,6 @@ class OnboardingView: UIView {
         imageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(8)
             make.centerY.equalTo(self.safeAreaLayoutGuide)
-//            make.top.equalTo(self.safeAreaLayoutGuide)
-//            make.bottom.equalToSuperview()
             make.height.equalTo(imageView.snp.width)
             
         }

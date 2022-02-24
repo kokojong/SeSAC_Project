@@ -68,8 +68,6 @@ class PopupView: UIView, UiViewProtocol {
         mainView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
-//            make.top.bottom.equalToSuperview().inset(100)
-//            make.height.equalTo(500)
         }
         
         titleLabel.snp.makeConstraints { make in

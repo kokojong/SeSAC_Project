@@ -58,7 +58,6 @@ class HomeRecievedRequestsViewController: TabmanViewController, UiViewProtocol {
         mainTableView.dataSource = self
         
         mainTableView.register(OpenedOtherProfileTableViewCell.self, forCellReuseIdentifier: OpenedOtherProfileTableViewCell.identifier)
-        mainTableView.backgroundColor = .yellow
         
         changeHobbyButton.addTarget(self, action: #selector(onChangeHobbyButtonClicked), for: .touchUpInside)
         

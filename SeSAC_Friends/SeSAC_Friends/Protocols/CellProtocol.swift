@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 //protocol CellReusable {
 //    static var reuseIdentifier: String { get }
 //}

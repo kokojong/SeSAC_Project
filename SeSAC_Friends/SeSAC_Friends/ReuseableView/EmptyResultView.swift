@@ -14,13 +14,11 @@ class EmptyResultView: UIView, UiViewProtocol {
     let titleLabel = MainLabel().then {
         $0.font = .Title1_M16
         $0.textColor = .black
-//        $0.text = "아쉽게도 주변 새싹이 없어요ㅠ"
     }
     
     let subtitleLabel = MainLabel().then {
         $0.font = .Title4_R14
         $0.textColor = .gray7
-//        $0.text = "취미를 변경하거나 조금만 더 기다려 주세요"
     }
     
     let emptyResultImageView = UIImageView().then {
@@ -65,5 +63,3 @@ class EmptyResultView: UIView, UiViewProtocol {
     
     
 }
-
-//empty_result

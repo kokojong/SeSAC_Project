@@ -23,14 +23,11 @@ class OnboardingViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = .white
-        
         dataSource = self
         delegate = self
         
         pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
         
-        // create an array of viewController
         let page1 = ViewController1()
         let page2 = ViewController2()
         let page3 = ViewController3()
@@ -49,16 +46,11 @@ class OnboardingViewController: UIPageViewController {
         
         mainButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
         
-        
         view.addSubview(pageControl)
         pageControl.snp.makeConstraints { make in
-//            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(106)
             make.leading.trailing.equalToSuperview().inset(20)
-            
         }
-        
-        
         
         mainButton.setTitle("시작하기", for: .normal)
         mainButton.tintColor = .white
@@ -77,7 +69,6 @@ class OnboardingViewController: UIPageViewController {
     @objc func nextTapped(_ sender: UIButton) {
         pageControl.currentPage += 1
         goToNextPage()
-        //        animateControlsIfNeeded()
     }
     
     func goToNextPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {

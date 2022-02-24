@@ -57,11 +57,13 @@ class ProfileDetailViewController: UIViewController {
                     self.bottomView.ageSlider.selectedMaxValue = CGFloat(self.viewModel.myUserInfo.value.ageMax)
                     self.bottomView.ageSlider.selectedMinValue = CGFloat(userInfo.ageMin)
                     
-                    // MARK: Refresh를 위해서 minvalue와 maxValue에 대한 적용을 bind에서 해준다
+                    // MARK: Refresh를 위해서 minvalue와 maxValue에 대한 적용을 bind에서 해줌
                     self.bottomView.ageSlider.minValue = 18
                     self.bottomView.ageSlider.maxValue = 65
                     
                     self.bottomView.reloadInputViews()
+                    
+                    
                     
                 }
                 
@@ -294,6 +296,9 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
             
             viewModel.myUserInfo.bind { userInfo in
                 cell.nicknameLabel.text = userInfo.nick
+                cell.myReviewLabel.text = userInfo.comment.last ?? "첫 리뷰를 기다리는 중이에요"
+                cell.reputationCount = userInfo.reputation
+                    
             }
             
             cell.layoutIfNeeded()

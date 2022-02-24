@@ -28,7 +28,6 @@ class TabBarViewController: UITabBarController {
         profileVC.tabBarItem.image = UIImage(named: "profileGray")
         profileVC.tabBarItem.title = "내정보"
         
-        
         viewControllers = [homeVC, shopVC, profileVC]
     }
     

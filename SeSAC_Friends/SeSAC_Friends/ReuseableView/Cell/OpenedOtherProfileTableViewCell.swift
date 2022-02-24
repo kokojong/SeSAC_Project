@@ -29,6 +29,8 @@ class OpenedOtherProfileTableViewCell: UITableViewCell, UiViewProtocol {
     
     var otherUserInfoData: OnQueueResult.OtherUserInfo!
     
+    var reputationCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -54,8 +56,6 @@ class OpenedOtherProfileTableViewCell: UITableViewCell, UiViewProtocol {
     func addViews() {
         contentView.addSubview(profileBackgroundView)
         contentView.addSubview(toggleTableView)
-//        addSubview(profileBackgroundView)
-//        addSubview(toggleTableView)
     }
     
     func addConstraints() {
@@ -99,6 +99,9 @@ extension OpenedOtherProfileTableViewCell: UITableViewDelegate, UITableViewDataS
         
         
         cell.nicknameLabel.text = otherUserInfoData.nick
+        
+        cell.reputationCount = otherUserInfoData.reputation
+        cell.myReviewLabel.text = otherUserInfoData.reviews.last ?? "첫 리뷰를 기다리는 중이에요"
         
         cell.layoutIfNeeded()
         

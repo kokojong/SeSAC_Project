@@ -7,10 +7,10 @@
 
 import UIKit
 
-/// UICollectionViewCell 최대한 왼쪽정렬시켜주는 flowLayout
+/// UICollectionViewCell 최대한 왼쪽 정렬 시켜주는 flowLayout
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
   override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-    // 재정의 오버라이드 메소드 임으로 리턴값으로 layout 속성값들을 받습니다.
+
     let attributes = super.layoutAttributesForElements(in: rect)
     
     // contentView의 left 여백
@@ -19,7 +19,7 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     attributes?.forEach { layoutAttribute in
         // cell일경우
       if layoutAttribute.representedElementCategory == .cell {
-        // 한 cell의 y 값이 이전 cell들이 들어갔더 line의 y값보다 크다면
+        // 한 cell의 y 값이 이전 cell들이 들어갔던 line의 y값보다 크다면
         // 디폴트값을 -1을 줬기 때문에 처음은 무조건 발동, x좌표 left에서 시작
         if layoutAttribute.frame.origin.y >= maxY {
           leftMargin = sectionInset.left

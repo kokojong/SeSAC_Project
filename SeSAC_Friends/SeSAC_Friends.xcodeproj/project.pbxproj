@@ -34,6 +34,7 @@
 		048F811627C5164B00F32FA4 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811527C5164B00F32FA4 /* ChatViewModel.swift */; };
 		048F811827C51DBA00F32FA4 /* ChatAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811727C51DBA00F32FA4 /* ChatAPIService.swift */; };
 		048F811B27C6294600F32FA4 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 048F811A27C6294600F32FA4 /* SocketIO */; };
+		048F811E27C7C24400F32FA4 /* ChattingHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F811D27C7C24400F32FA4 /* ChattingHeaderTableViewCell.swift */; };
 		04A81FB4279681DD00B658CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB3279681DD00B658CD /* AppDelegate.swift */; };
 		04A81FB6279681DD00B658CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A81FB5279681DD00B658CD /* SceneDelegate.swift */; };
 		04A81FBD279681E000B658CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A81FBC279681E000B658CD /* Assets.xcassets */; };
@@ -133,6 +134,7 @@
 		048F811327C511BB00F32FA4 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		048F811527C5164B00F32FA4 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		048F811727C51DBA00F32FA4 /* ChatAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIService.swift; sourceTree = "<group>"; };
+		048F811D27C7C24400F32FA4 /* ChattingHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		04A81FB0279681DD00B658CD /* SeSAC_Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Friends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A81FB3279681DD00B658CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A81FB5279681DD00B658CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048F811C27C7B5D400F32FA4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04EAA97A27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift */,
+				04EAA97E27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift */,
+				048F80E827BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift */,
+				048F811D27C7C24400F32FA4 /* ChattingHeaderTableViewCell.swift */,
+				048F80F827C1366D00F32FA4 /* MyChatTableViewCell.swift */,
+				048F80FA27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift */,
+				048F80FE27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift */,
+				04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */,
+				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
+				04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */,
+				04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */,
+				04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		04A81FA7279681DD00B658CD = {
 			isa = PBXGroup;
 			children = (
@@ -274,13 +295,13 @@
 		04A81FCF2796900C00B658CD /* ReuseableView */ = {
 			isa = PBXGroup;
 			children = (
+				048F811C27C7B5D400F32FA4 /* Cell */,
 				04A81FCD2796900000B658CD /* MainButton.swift */,
 				04A81FD52796965D00B658CD /* MainLabel.swift */,
 				04EE3C1F279A7D6D00A9136D /* GenderView.swift */,
 				04A81FD727969B8B00B658CD /* MainTextField.swift */,
 				04EE3C2A279D29A000A9136D /* MainSeperator.swift */,
 				04EE3C2C279D2CBE00A9136D /* BirthView.swift */,
-				04EE3C47279EFC4400A9136D /* MyProfileTableViewCell.swift */,
 				04A81FD927969E8B00B658CD /* AuthCommonView.swift */,
 				04EAA97627B23B5500AB6FDD /* BackButton.swift */,
 				04EAA97827B23E3F00AB6FDD /* SearchView.swift */,
@@ -292,7 +313,6 @@
 				048F80F427BE886300F32FA4 /* ChattingView.swift */,
 				048F80F627BEB77A00F32FA4 /* MenuView.swift */,
 				048F80FC27C1FD6600F32FA4 /* ChattingRateView.swift */,
-				048F80FE27C204A500F32FA4 /* ChattingRateCollectionViewCell.swift */,
 			);
 			path = ReuseableView;
 			sourceTree = "<group>";
@@ -397,16 +417,11 @@
 			children = (
 				04EE3C23279C06A200A9136D /* HomeViewController.swift */,
 				04EAA97427B1752900AB6FDD /* HomeHobbyViewController.swift */,
-				04EAA97A27B27B7B00AB6FDD /* HomeNearHobbyCollectionVIewCell.swift */,
-				04EAA97E27B3893600AB6FDD /* HomeFavoriteHobbyCollectionViewCell.swift */,
 				048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */,
 				048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */,
 				048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */,
-				048F80E827BAB08800F32FA4 /* OpenedOtherProfileTableViewCell.swift */,
 				048F80EC27BB7E1C00F32FA4 /* HobbyPopupViewController.swift */,
 				048F80F027BD4BE600F32FA4 /* HomeChattingViewController.swift */,
-				048F80F827C1366D00F32FA4 /* MyChatTableViewCell.swift */,
-				048F80FA27C1FC2D00F32FA4 /* OtherChatTableViewCell.swift */,
 				048F810027C20C0000F32FA4 /* HomeChattingReportViewController.swift */,
 				048F810627C37BA500F32FA4 /* HomeChattingDodgeViewController.swift */,
 				048F810827C3E81C00F32FA4 /* HomeChattingRateViewController.swift */,
@@ -419,10 +434,6 @@
 			children = (
 				04EE3C3A279E8D3F00A9136D /* ProfileViewController.swift */,
 				04EE3C4B27A10A0100A9136D /* ProfileDetailViewController.swift */,
-				04EE3C45279EFB0F00A9136D /* ProfileTableViewCell.swift */,
-				04EE3C5327A12E9500A9136D /* OpenedTableViewCell.swift */,
-				04EE3C5527A131D500A9136D /* SesacTitleCollectionViewCell.swift */,
-				04EE3C5127A12A3300A9136D /* ClosedTableViewCell.swift */,
 				04EE3C5A27A2844800A9136D /* ProfileDetailBottomView.swift */,
 			);
 			path = Profile;
@@ -615,6 +626,7 @@
 				04EAA96927ABB2DB00AB6FDD /* UiViewProtocol.swift in Sources */,
 				048F80DE27B97CA600F32FA4 /* HomeFindSesacViewController.swift in Sources */,
 				04A81FC82796828700B658CD /* Color+Extension.swift in Sources */,
+				048F811E27C7C24400F32FA4 /* ChattingHeaderTableViewCell.swift in Sources */,
 				04EE3C5227A12A3300A9136D /* ClosedTableViewCell.swift in Sources */,
 				04EAA96027A9427C00AB6FDD /* CommonMethod.swift in Sources */,
 				04EE3C5627A131D500A9136D /* SesacTitleCollectionViewCell.swift in Sources */,

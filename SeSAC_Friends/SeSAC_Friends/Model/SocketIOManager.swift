@@ -28,14 +28,11 @@ class SocketIOManager: NSObject {
         manager = SocketManager(socketURL: URL(string: "http://test.monocoding.com:35484")! , config: [
             .log(true), // debug 가능하도록함
             .compress // websocket 전송에서 compression을 가능하게함
-            
-//                .extraHeaders(["idtoken": UserDefaults.standard.string(forKey: UserDefaultKeys.idToken.rawValue)!]) // header를 부여
-            
         ])
         
         socket = manager.defaultSocket // 디폴트로 "/" 로 된 룸
         
-        // 소켓 연결 메서드(귀를 열기 전에 연결 먼저)
+        // 소켓 연결 메서드(귀를 열기 전에 연결 먼저하기!)
         socket.on(clientEvent: .connect) { data, ack in
             print("socket is connected", data, ack)
             self.socket.emit("changesocketid", UserDefaults.standard.string(forKey: UserDefaultKeys.myUid.rawValue)!)
@@ -45,7 +42,6 @@ class SocketIOManager: NSObject {
         socket.on(clientEvent: .disconnect) { data, ack in
             print("socket is disconnected", data, ack)
         }
-        
         
         // 소켓 채팅 듣는 메서드, sesac 이벤트로 날아온 데이터를 수신
         // 데이터 수신 -> 디코딩 -> 모델에 추가 -> 갱신
@@ -83,8 +79,5 @@ class SocketIOManager: NSObject {
     func closeConnection() {
         socket.disconnect()
     }
-    
-    
-    
     
 }
