@@ -55,11 +55,9 @@ class SignInViewController: UIViewController {
                 self.view.makeToast("로그인 실패")
             } else {
                 self.view.makeToast("로그인 완료")
-                sleep(UInt32(0.5))
                 print("token : ", self.viewModel.signIn.value.jwt)
-
                 
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
                     windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: PostMainViewController())
                     windowScene.windows.first?.makeKeyAndVisible()
@@ -76,7 +74,7 @@ extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == signInView.emailTextField {
-            signInView.passwordTextField.isFirstResponder
+            signInView.passwordTextField.becomeFirstResponder()
         } else {
             signInView.passwordTextField.resignFirstResponder()
         }

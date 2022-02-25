@@ -74,8 +74,6 @@ class CommentWriteViewController: UIViewController {
             }
         }
         
-        
-        
     }
     @objc func onCancelButtonClicked() {
         

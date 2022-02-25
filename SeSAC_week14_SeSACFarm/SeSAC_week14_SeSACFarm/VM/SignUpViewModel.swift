@@ -28,7 +28,6 @@ class SignUpViewModel {
             }
             self.newUser.value = newUser
             UserDefaults.standard.set(newUser.user.email, forKey: "newUserEmail")
-            print("newUserEmail : ",UserDefaults.standard.string(forKey: "newUserEmail"))
             
             completion(nil)
             

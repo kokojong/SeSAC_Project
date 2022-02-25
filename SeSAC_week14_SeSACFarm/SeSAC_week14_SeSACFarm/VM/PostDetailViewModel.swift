@@ -21,8 +21,6 @@ class PostDetailViewModel {
     func fetchComment(id: Int,completion: @escaping () -> Void){
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.getComment(token: token, postId: id) { post, error in
-//            print("post",post)
-//            print("error",error)
             checkToken(error: error)
             
             guard let post = post else {
@@ -71,9 +69,7 @@ class PostDetailViewModel {
         APIService.writeComment(token: token, comment: comment, PostId: postId) { comment, error in
             
             checkToken(error: error)
-            
-            print("comment:",comment)
-            
+
             guard let comment = comment else {
                 return
             }
@@ -117,11 +113,9 @@ class PostDetailViewModel {
         
     }
     
-    
 }
 
 func checkToken(error: APIError?) {
-    print("checkToken")
     if let error = error {
         if error == .unauthorized {
             print("unauthorized")

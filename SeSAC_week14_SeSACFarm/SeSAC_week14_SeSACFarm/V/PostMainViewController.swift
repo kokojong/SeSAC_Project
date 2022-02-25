@@ -166,12 +166,4 @@ extension PostMainViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        viewModel.getAllPosts {
-//            self.postMainView.tableView.reloadData()
-//            self.view.makeToast("피드 새로고침 완료")
-//        }
-//    }
-    
-    
 }

@@ -18,7 +18,6 @@ enum Method: String {
 enum Endpoint {
     case signUp
     case signIn
-//    case boardDetail(id: Int)
     case changePW
     case getPosts(desc: String) // desc : 최신순, asc : 오래된 순
     case getOnePost(postId: Int)
@@ -29,8 +28,6 @@ enum Endpoint {
     case postComment
     case updateComment(commentId: Int)
     case deleteComment(commentId: Int)
-    
-    
 }
 
 extension Endpoint {
@@ -38,8 +35,6 @@ extension Endpoint {
         switch self {
         case .signUp: return .makeEndPoint("auth/local/register")
         case .signIn: return .makeEndPoint("auth/local")
-//        case .boardDetail(id: let id):
-//            return .makeEndPoint("boards/\(id)")
         case .changePW: return .makeEndPoint("custom/change-password")
         case .getPosts(desc: let desc): return .makeEndPoint("posts?_sort=created_at:\(desc)")
         case .postPost : return .makeEndPoint("posts?_sort=created_at:desc")
@@ -77,11 +72,8 @@ extension URLSession {
     }
 
     static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIError?) -> Void) {
-        // shared 나 default 등을 쓰려고
+
         session.dataTask2(endpoint) { data, response, error in
-//            print("data",data)
-//            print("response",response)
-//            print("error",error)
             DispatchQueue.main.async {
                 guard error == nil else {
                     completion(nil, .failed)
@@ -119,8 +111,6 @@ extension URLSession {
                 }
                 
             }
-            
-            
             
         }
     }

@@ -15,8 +15,6 @@ class PostWriteViewModel {
     func writeNewPost(text: String, completion: @escaping () -> Void) {
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         APIService.writePost(token: token, text: text) { postElement, error in
-//            print("postElement : ",postElement)
-//            print("error: ",error)
             
             checkToken(error: error)
             
