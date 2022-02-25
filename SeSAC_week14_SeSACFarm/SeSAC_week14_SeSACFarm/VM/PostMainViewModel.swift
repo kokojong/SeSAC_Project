@@ -10,6 +10,8 @@ import UIKit
 
 class PostMainViewModel {
     
+    static let shared = PostMainViewModel()
+    
     var allPosts: Observable<Post> = Observable(Post())
     
     var desc: Observable<String> = Observable("desc") // 디폴트를 최신순으로 설정

@@ -70,7 +70,7 @@ extension URLSession {
         
         return task
     }
-
+    
     static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping (T?, APIError?) -> Void) {
 
         session.dataTask2(endpoint) { data, response, error in

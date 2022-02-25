@@ -11,7 +11,7 @@ class PostMainViewController: UIViewController {
 
     let postMainView = PostMainView()
     
-    var viewModel = PostMainViewModel()
+    var viewModel = PostMainViewModel.shared
     
     let writeButton: UIButton = {
         let button = UIButton()
@@ -104,7 +104,7 @@ class PostMainViewController: UIViewController {
     
     @objc func onChangePW() {
         let vc = ChangePWViewController()
-        vc.viewModel = self.viewModel
+//        vc.viewModel = self.viewModel
         present(vc, animated: true, completion: nil)
     }
     

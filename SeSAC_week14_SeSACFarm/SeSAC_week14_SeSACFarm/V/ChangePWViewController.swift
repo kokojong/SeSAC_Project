@@ -9,7 +9,8 @@ import UIKit
 
 class ChangePWViewController: UIViewController {
     
-    var viewModel: PostMainViewModel!
+//    var viewModel: PostMainViewModel!
+    var viewModel = PostMainViewModel.shared
     
     let currentPasswordTextField: UITextField = {
         let textField = UITextField()
@@ -121,8 +122,6 @@ class ChangePWViewController: UIViewController {
 
         }
     }
-
-
 
 }
 

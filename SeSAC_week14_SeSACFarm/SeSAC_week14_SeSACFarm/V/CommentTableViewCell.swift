@@ -29,7 +29,6 @@ class CommentTableViewCell: UITableViewCell {
        let button = UIButton()
         button.setImage(UIImage(named: "ellipsis.vertical"), for: .normal)
         button.tintColor = .black
-//        button.addTarget(self, action: #selector(onOptionButtonClicked), for: .touchUpInside)
         return button
     }()
     
