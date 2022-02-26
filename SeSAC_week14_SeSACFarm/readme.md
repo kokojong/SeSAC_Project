@@ -1,6 +1,6 @@
 ![SeSAC_Farm_all](https://user-images.githubusercontent.com/61327153/155844973-ec7d1b25-9cab-4cbd-9dc2-101594bdba1f.png)
 
-# 새싹  🌱
+# 새싹 농장 🌱
 
 - SeSAC과정을 함께 수강하는 친구들과 게시글, 댓글을 통해서 소통하는 app
 - 서버 통신을 이용한 회원가입, 로그인 기능과 게시글 및 댓글 CRUD 기능
