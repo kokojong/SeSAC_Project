@@ -1,4 +1,6 @@
+![SeSAC_Friends_all](https://user-images.githubusercontent.com/61327153/156196496-0956b04c-f0cf-43c0-967b-57daccc219cf.png)
 
+</br>
 
 # 새싹 프렌즈 🌱
 
@@ -29,10 +31,11 @@
 
 | 온보딩 화면 | 문자 인증 | 회원가입 |
 | ------ | ------ | ------ |
+| ![sesacFriends_Onboarding](https://user-images.githubusercontent.com/61327153/156191700-4d10d392-3a1b-4e5e-9225-8ddc875494f8.gif) | ![sesacFriends_auth](https://user-images.githubusercontent.com/61327153/156191653-09da23b4-31dd-4ee7-ad54-000f2cac4b8a.gif) | ![sesacFriends_Signup](https://user-images.githubusercontent.com/61327153/156191706-f6145205-e9a6-4e1e-b6ea-4413e2e70a05.gif) |
 
-
-| 내 정보  | 취미 기반 친구 찾기, 매칭 요청, 수락 | 실시간 채팅, 신고, 취소, 리뷰 |
+| 내 정보 수정 | 취미 기반 친구 찾기, 매칭 요청, 수락 | 실시간 채팅, 신고, 취소, 리뷰 |
 | ------ | ------ | ------ |
+| ![sesacFriends_profile](https://user-images.githubusercontent.com/61327153/156191702-ae62096f-3c02-4a06-9d35-8d509f9c5ac5.gif) | ![sesacFriends_matching](https://user-images.githubusercontent.com/61327153/156191684-42cae2d8-8a84-4a53-be36-9a9306b9c8d5.gif) | ![sesacFriends_chatting](https://user-images.githubusercontent.com/61327153/156191671-3323415e-e421-48f4-b330-20a9025a4b1d.gif) |
 
 
 </br>
