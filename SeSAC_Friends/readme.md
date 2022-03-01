@@ -2,7 +2,7 @@
 
 # 새싹 프렌즈 🌱
 
-- 내 위치와 취미를 바탕으로 주변 사용자와 매칭 후 채팅까지 이어지는 app
+**내 위치와 취미를 바탕으로 주변 사용자와 매칭 후 채팅까지 이어지는 app**
 - 첫 실행 시, 회원 탈퇴 시 온보딩 화면 제공
 - FirebaseAuth를 이용한 문자 인증, 회원가입, 로그인, 회원탈퇴
 - MapKit과 CLLocation을 이용한 내 주변 친구 표시 기능
@@ -122,4 +122,31 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
     }
 }
     
+```
+
+</br>
+
+- Alamofire를 이용한 API 구성 중 Array가 포함된 Body의 encoding 오류 -> `encoding: URLEncoding(arrayEncoding: .noBrackets)`를 추가
+
+```swift
+static func postQueue(idToken: String, form: PostQueueForm, completion: @escaping (Int?, Error?) -> Void) {
+        
+    let headers = ["idtoken": idToken,
+                   "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+
+    let parameters: Parameters = [
+        "type": form.type,
+        "region": form.region,
+        "long": form.long,
+        "lat": form.lat,
+        "hf": form.hf // [String]
+    ]
+
+    AF.request(QueueEndPoint.postQueue.url.absoluteString, method: .post, parameters: parameters, encoding: URLEncoding(arrayEncoding: .noBrackets), headers: headers)
+        .responseString { response in
+
+            completion(response.response?.statusCode, response.error)
+        }
+}
+
 ```
