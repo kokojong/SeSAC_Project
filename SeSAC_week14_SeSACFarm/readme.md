@@ -18,17 +18,6 @@
  
  </br>
  
-## UI
-
-| 회원가입, 로그인 | 로그아웃 | 게시글 정렬, 비밀번호 변경 |
-| ------ | ------ | ------ |
-|![sesacfarm_signup](https://user-images.githubusercontent.com/61327153/155847199-8aaa19d9-ce53-4e5e-bd9d-4a5ddce4003e.gif)| ![sesacfarm_logout](https://user-images.githubusercontent.com/61327153/155847224-c2e3ed02-1c0e-45dc-bdb6-436360282e6f.gif) | ![sesacfarm_menu](https://user-images.githubusercontent.com/61327153/155847228-a60fa2d8-0e45-4b7a-987c-d6b6fd7de27b.gif) |
-
-| 게시글 작성, 수정, 삭제 | 댓글 작성, 수정, 삭제 |
-| ------ | ------ |
-| ![sesacfarm_post](https://user-images.githubusercontent.com/61327153/155847303-ca288d95-17c3-4885-bb77-8d109021a763.gif) | ![sesacfarm_comment](https://user-images.githubusercontent.com/61327153/155847305-02c4fdc9-0911-4e5d-a934-4796676b36aa.gif) |
-
-</br>
 
 ## 새로 배운 것
 
@@ -86,3 +75,17 @@ extension PostMainViewModel {
     
 }
 ```
+
+</br>
+
+## UI
+
+| 회원가입, 로그인 | 로그아웃 | 게시글 정렬, 비밀번호 변경 |
+| ------ | ------ | ------ |
+|![sesacfarm_signup](https://user-images.githubusercontent.com/61327153/155847199-8aaa19d9-ce53-4e5e-bd9d-4a5ddce4003e.gif)| ![sesacfarm_logout](https://user-images.githubusercontent.com/61327153/155847224-c2e3ed02-1c0e-45dc-bdb6-436360282e6f.gif) | ![sesacfarm_menu](https://user-images.githubusercontent.com/61327153/155847228-a60fa2d8-0e45-4b7a-987c-d6b6fd7de27b.gif) |
+
+| 게시글 작성, 수정, 삭제 | 댓글 작성, 수정, 삭제 |
+| ------ | ------ |
+| ![sesacfarm_post](https://user-images.githubusercontent.com/61327153/155847303-ca288d95-17c3-4885-bb77-8d109021a763.gif) | ![sesacfarm_comment](https://user-images.githubusercontent.com/61327153/155847305-02c4fdc9-0911-4e5d-a934-4796676b36aa.gif) |
+
+</br>
