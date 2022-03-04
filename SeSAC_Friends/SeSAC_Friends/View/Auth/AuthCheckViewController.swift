@@ -12,7 +12,7 @@ import Toast
 
 class AuthCheckViewController: UIViewController {
 
-    var viewModel: AuthViewModel!
+    var viewModel = AuthViewModel.shared
     
     let mainView = AuthCommonView()
     

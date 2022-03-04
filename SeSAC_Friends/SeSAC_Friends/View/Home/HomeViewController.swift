@@ -312,11 +312,6 @@ class HomeViewController: UIViewController, UiViewProtocol {
         mapView.setUserTrackingMode(.follow, animated: true)
         
     }
-    
-    // MARK: 임시 버튼 동작
-    @objc func gotoChattingClicked() {
-        self.navigationController?.pushViewController(HomeChattingViewController(), animated: true)
-    }
 
 }
 
@@ -549,21 +544,22 @@ extension HomeViewController: MKMapViewDelegate {
             
     }
     // MARK: 사용자가 움직일 때
+    // MARK: 미세한 움직임에도 동작, 움직이면서 사용하면 다른 지역에서 사용 불가능 -> 주석 처리
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print(#function)
+//        print(#function)
         
-        guard let location = locations.last else { return }
-        
-        let lat = location.coordinate.latitude
-        let long = location.coordinate.longitude
-        let center = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        
-        viewModel.calculateRegion(lat: lat, long: long)
-        
-        mapView.setRegion(region, animated: true)
+//        guard let location = locations.last else { return }
+//
+//        let lat = location.coordinate.latitude
+//        let long = location.coordinate.longitude
+//        let center = CLLocationCoordinate2D(latitude: lat, longitude: long)
+//
+//        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
+//
+//        viewModel.calculateRegion(lat: lat, long: long)
+//
+//        mapView.setRegion(region, animated: true)
         
     }
     

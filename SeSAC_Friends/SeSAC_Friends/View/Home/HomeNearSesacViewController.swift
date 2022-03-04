@@ -95,7 +95,6 @@ class HomeNearSesacViewController: UIViewController, UiViewProtocol {
     }
     
     
-    
     @objc func onChangeHobbyButtonClicked() {
         
         viewModel.deleteQueue { statuscode, error in
@@ -221,7 +220,14 @@ extension HomeNearSesacViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         print("viewModel.filteredQueueDB.value",viewModel.filteredQueueDB.value)
-        cell.otherUserInfoData = viewModel.filteredQueueDB.value[indexPath.row]
+        
+        let row = viewModel.filteredQueueDB.value[indexPath.row]
+    
+        cell.otherUserInfoData = row
+        
+        cell.profileBackgroundView.faceImageView.image = UIImage(named: "sesac_face_\(row.sesac+1)")
+        cell.profileBackgroundView.backgroundImageView.image = UIImage(named: "sesac_background_\(row.background+1)")
+        
         
         cell.toggleTableView.reloadData()
         cell.delegate = self

@@ -15,7 +15,7 @@ class AuthEmailViewController: UIViewController {
     
     let subLabel = MainLabel()
     
-    var viewModel: AuthViewModel!
+    var viewModel = AuthViewModel.shared
 
     override func loadView() {
         self.view = mainView

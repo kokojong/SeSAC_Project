@@ -47,7 +47,7 @@ class QueueAPIService {
             "region": form.region,
             "long": form.long,
             "lat": form.lat,
-            "hf": form.hf
+            "hf": form.hf // [String]
         ]
         
         AF.request(QueueEndPoint.postQueue.url.absoluteString, method: .post, parameters: parameters, encoding: URLEncoding(arrayEncoding: .noBrackets), headers: headers)

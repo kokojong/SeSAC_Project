@@ -16,7 +16,7 @@ class AuthGenderViewController: UIViewController {
     
     let subLabel = MainLabel()
     
-    var viewModel: AuthViewModel!
+    var viewModel = AuthViewModel.shared
     
     var genderManView = GenderView(type: .inactive)
     

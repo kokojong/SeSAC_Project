@@ -10,6 +10,8 @@ import FirebaseAuth
 
 class AuthViewModel {
     
+    static let shared = AuthViewModel()
+    
     var phoneNumber = Observable("")
     var onlyNumber = Observable("")
     

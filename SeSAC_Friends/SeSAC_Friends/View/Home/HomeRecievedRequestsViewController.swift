@@ -223,7 +223,12 @@ extension HomeRecievedRequestsViewController: UITableViewDelegate, UITableViewDa
         cell.profileBackgroundView.matchButton.setTitle("수락하기", for: .normal)
         cell.profileBackgroundView.matchButton.backgroundColor = UIColor.successColor
         
-        cell.otherUserInfoData = viewModel.filteredQueueDBRequested.value[indexPath.row]
+        let row = viewModel.filteredQueueDBRequested.value[indexPath.row]
+    
+        cell.otherUserInfoData = row
+        
+        cell.profileBackgroundView.faceImageView.image = UIImage(named: "sesac_face_\(row.sesac+1)")
+        cell.profileBackgroundView.backgroundImageView.image = UIImage(named: "sesac_background_\(row.background+1)")
         
         cell.toggleTableView.reloadData()
         cell.delegate = self

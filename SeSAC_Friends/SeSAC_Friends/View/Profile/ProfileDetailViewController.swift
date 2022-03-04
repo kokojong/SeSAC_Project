@@ -61,6 +61,9 @@ class ProfileDetailViewController: UIViewController {
                     self.bottomView.ageSlider.minValue = 18
                     self.bottomView.ageSlider.maxValue = 65
                     
+                    self.setSesacFaceView(face: userInfo.sesac)
+                    self.setSesacBackgroundView(background: userInfo.background)
+                    
                     self.bottomView.reloadInputViews()
                     
                     
@@ -168,6 +171,15 @@ class ProfileDetailViewController: UIViewController {
         scrollView.backgroundColor = .white
         contentView.backgroundColor = .white
     }
+    
+    func setSesacFaceView(face: Int) {
+        backgroundView.faceImageView.image = UIImage(named: "sesac_face_\(face+1)")
+    }
+    
+    func setSesacBackgroundView(background: Int) {
+        backgroundView.backgroundImageView.image = UIImage(named: "sesac_background_\(background+1)")
+    }
+    
     
     func withDrawSignUp() {
         

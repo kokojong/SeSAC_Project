@@ -13,7 +13,7 @@ class AuthNicknameViewController: UIViewController {
 
     let mainView = AuthCommonView()
     
-    var viewModel: AuthViewModel!
+    var viewModel = AuthViewModel.shared
     
     override func loadView() {
         self.view = mainView

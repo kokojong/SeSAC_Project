@@ -13,7 +13,7 @@ class AuthBirthViewController: UIViewController {
 
     let mainView = AuthCommonView()
     
-    var viewModel: AuthViewModel!
+    var viewModel = AuthViewModel.shared
     
     let birthPicker = UIDatePicker()
     

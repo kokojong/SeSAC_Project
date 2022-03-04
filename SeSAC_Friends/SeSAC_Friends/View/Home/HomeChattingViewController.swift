@@ -97,6 +97,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
         
         mainTableView.estimatedRowHeight = UITableView.automaticDimension
         mainTableView.separatorStyle = .none
+        mainTableView.keyboardDismissMode = .onDrag
         
         menuView.reportButton.addTarget(self, action: #selector(reportButtonClicked), for: .touchUpInside)
         menuView.dodgeButton.addTarget(self, action: #selector(dodgeButtonClicked), for: .touchUpInside)
@@ -232,6 +233,7 @@ class HomeChattingViewController: UIViewController, UiViewProtocol {
     
     @objc func onMoreButtonClicked() {
         moreView.isHidden.toggle()
+        view.endEditing(true)
     }
     
     @objc func reportButtonClicked() {
@@ -301,6 +303,7 @@ extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource
             
             let nick = viewModel.myQueueState.value.matchedNick ?? ""
             
+            
             cell.titleLabel.text = "\(nick)님과 매칭되었습니다"
             
             return cell
@@ -336,6 +339,9 @@ extension HomeChattingViewController: UITableViewDelegate, UITableViewDataSource
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        view.endEditing(true)
+    }
 }
 
 

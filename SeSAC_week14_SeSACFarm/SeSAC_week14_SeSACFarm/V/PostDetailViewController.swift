@@ -258,13 +258,9 @@ class PostDetailViewController: UIViewController {
 
     }
     
-    
     @objc private func keyboardWillShow(_ notification: Notification) {
         print(#function)
         self.view.frame.origin.y = -301
-        
-
-       
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
