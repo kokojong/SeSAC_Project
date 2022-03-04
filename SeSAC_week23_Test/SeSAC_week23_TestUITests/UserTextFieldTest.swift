@@ -26,8 +26,26 @@ class UserTextFieldTest: XCTestCase {
     }
 
     func testExample() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+//        app.textFields["firstTextField"].tap()
+//        app.textFields["firstTextField"].typeText("하이하이")
+        
+        app.textFields["secondTextField"].tap()
+        app.textFields["secondTextField"].typeText("하이2")
+        
+        app.textFields["thirdTextField"].tap()
+        app.textFields["thirdTextField"].typeText("하이3")
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+//        app.buttons["first_button"].tap()
+//        app.staticTexts["First"].tap()
+        
+        
+        XCTAssertEqual(app.staticTexts.element(matching: .any, identifier: "result_label").label, "하이하이", "뭔가 이상해!")
     }
 
 }

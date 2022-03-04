@@ -6,13 +6,16 @@
 //
 
 import XCTest
+@testable import SeSAC_week23_Test
 
 class LoginVCTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var sut: LoginViewController!
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    override func setUpWithError() throws {
+       // system under test
+        sut = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        sut.loadViewIfNeeded()
         continueAfterFailure = false
 
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
@@ -22,12 +25,43 @@ class LoginVCTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+       sut = nil
     }
 
-    func testExample() throws {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    
+    // BDD(Behavior Driven Development): Given, When, Then
+    // TDD(Test Driven Development): Arrange, Act, Assert
+//    func testLoginVC_ValidID_ReturnTrue() throws {
+//        // Given, Arrange
+//        sut.idTextField.text = "ko@koko.com"
+//        // When, Act
+//        let valid = sut.isValidID()
+//        // Then, Assert
+//        XCTAssertTrue(valid, "아이디에 @가 없거나 6자 미만!")
+//        
+//    }
+//    
+//    func testLoginVC_InvalidPW_ReturnFalse() throws {
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//        vc.loadViewIfNeeded()
+//        
+//        vc.pwTextField.text = "1234"
+//        
+//        let valid = vc.isValidPW()
+//        
+//        XCTAssertFalse(valid, "패스워드 로직")
+//    }
+//    
+//    func testLoginVC_idTextField_ReturnNil() throws {
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//        vc.loadViewIfNeeded()
+//        
+//        vc.pwTextField = nil
+//    
+//        let value = vc.idTextField
+//        
+//        XCTAssertNil(value, "nilnil")
+//    }
+    
 
 }

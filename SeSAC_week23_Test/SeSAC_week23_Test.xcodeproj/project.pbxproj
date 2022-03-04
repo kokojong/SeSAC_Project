@@ -16,6 +16,14 @@
 		048F816327CC598900F32FA4 /* SeSAC_week23_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F816227CC598900F32FA4 /* SeSAC_week23_TestTests.swift */; };
 		048F816D27CC598900F32FA4 /* SeSAC_week23_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F816C27CC598900F32FA4 /* SeSAC_week23_TestUITests.swift */; };
 		048F816F27CC598900F32FA4 /* SeSAC_week23_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F816E27CC598900F32FA4 /* SeSAC_week23_TestUITestsLaunchTests.swift */; };
+		048F817C27CC622C00F32FA4 /* UserTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F817B27CC622C00F32FA4 /* UserTextFieldTest.swift */; };
+		048F817E27CEFBD700F32FA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F817D27CEFBD700F32FA4 /* LoginViewController.swift */; };
+		048F818027CEFE3F00F32FA4 /* LoginVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F817F27CEFE3F00F32FA4 /* LoginVCTests.swift */; };
+		048F818227CF041D00F32FA4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F818127CF041D00F32FA4 /* Validator.swift */; };
+		048F818427CF04B800F32FA4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F818327CF04B800F32FA4 /* User.swift */; };
+		048F818627CF064800F32FA4 /* ValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F818527CF064800F32FA4 /* ValidationTests.swift */; };
+		048F818827D0449D00F32FA4 /* APIServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F818727D0449D00F32FA4 /* APIServiceTest.swift */; };
+		048F818A27D044E500F32FA4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F818927D044E400F32FA4 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		048F816827CC598900F32FA4 /* SeSAC_week23_TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSAC_week23_TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		048F816C27CC598900F32FA4 /* SeSAC_week23_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSAC_week23_TestUITests.swift; sourceTree = "<group>"; };
 		048F816E27CC598900F32FA4 /* SeSAC_week23_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSAC_week23_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		048F817B27CC622C00F32FA4 /* UserTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextFieldTest.swift; sourceTree = "<group>"; };
+		048F817D27CEFBD700F32FA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		048F817F27CEFE3F00F32FA4 /* LoginVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCTests.swift; sourceTree = "<group>"; };
+		048F818127CF041D00F32FA4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		048F818327CF04B800F32FA4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		048F818527CF064800F32FA4 /* ValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTests.swift; sourceTree = "<group>"; };
+		048F818727D0449D00F32FA4 /* APIServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTest.swift; sourceTree = "<group>"; };
+		048F818927D044E400F32FA4 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +118,14 @@
 				048F814B27CC598600F32FA4 /* AppDelegate.swift */,
 				048F814D27CC598600F32FA4 /* SceneDelegate.swift */,
 				048F814F27CC598600F32FA4 /* ViewController.swift */,
+				048F817D27CEFBD700F32FA4 /* LoginViewController.swift */,
 				048F815127CC598600F32FA4 /* Main.storyboard */,
 				048F815427CC598900F32FA4 /* Assets.xcassets */,
 				048F815627CC598900F32FA4 /* LaunchScreen.storyboard */,
 				048F815927CC598900F32FA4 /* Info.plist */,
+				048F818127CF041D00F32FA4 /* Validator.swift */,
+				048F818327CF04B800F32FA4 /* User.swift */,
+				048F818927D044E400F32FA4 /* APIService.swift */,
 			);
 			path = SeSAC_week23_Test;
 			sourceTree = "<group>";
@@ -114,6 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				048F816227CC598900F32FA4 /* SeSAC_week23_TestTests.swift */,
+				048F817F27CEFE3F00F32FA4 /* LoginVCTests.swift */,
+				048F818527CF064800F32FA4 /* ValidationTests.swift */,
+				048F818727D0449D00F32FA4 /* APIServiceTest.swift */,
 			);
 			path = SeSAC_week23_TestTests;
 			sourceTree = "<group>";
@@ -123,6 +146,7 @@
 			children = (
 				048F816C27CC598900F32FA4 /* SeSAC_week23_TestUITests.swift */,
 				048F816E27CC598900F32FA4 /* SeSAC_week23_TestUITestsLaunchTests.swift */,
+				048F817B27CC622C00F32FA4 /* UserTextFieldTest.swift */,
 			);
 			path = SeSAC_week23_TestUITests;
 			sourceTree = "<group>";
@@ -258,7 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048F817E27CEFBD700F32FA4 /* LoginViewController.swift in Sources */,
+				048F818A27D044E500F32FA4 /* APIService.swift in Sources */,
 				048F815027CC598600F32FA4 /* ViewController.swift in Sources */,
+				048F818427CF04B800F32FA4 /* User.swift in Sources */,
+				048F818227CF041D00F32FA4 /* Validator.swift in Sources */,
 				048F814C27CC598600F32FA4 /* AppDelegate.swift in Sources */,
 				048F814E27CC598600F32FA4 /* SceneDelegate.swift in Sources */,
 			);
@@ -268,6 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048F818027CEFE3F00F32FA4 /* LoginVCTests.swift in Sources */,
+				048F818627CF064800F32FA4 /* ValidationTests.swift in Sources */,
+				048F818827D0449D00F32FA4 /* APIServiceTest.swift in Sources */,
 				048F816327CC598900F32FA4 /* SeSAC_week23_TestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048F817C27CC622C00F32FA4 /* UserTextFieldTest.swift in Sources */,
 				048F816D27CC598900F32FA4 /* SeSAC_week23_TestUITests.swift in Sources */,
 				048F816F27CC598900F32FA4 /* SeSAC_week23_TestUITestsLaunchTests.swift in Sources */,
 			);

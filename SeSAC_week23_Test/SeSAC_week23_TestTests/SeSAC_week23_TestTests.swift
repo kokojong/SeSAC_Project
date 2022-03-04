@@ -21,6 +21,25 @@ class SeSAC_week23_TestTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let array = [3,6,2,8]
+        let sortedArray = array.sorted()
+        
+        XCTAssertEqual(sortedArray, [2,3,6,8])
+        
+    }
+    
+    func testTextFieldCount() throws {
+//        let vc = ViewController()
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        vc.loadViewIfNeeded() // 이걸 먼저 해줘야 한다
+        
+        vc.firstTextField.text = "코코종"
+        
+        let count = vc.calculateTextFieldCount()
+
+        XCTAssertEqual(count, 3)
     }
 
     func testPerformanceExample() throws {

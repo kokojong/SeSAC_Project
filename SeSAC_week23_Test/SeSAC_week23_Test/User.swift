@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct User {
+    let id: String
+    let password: String
+    let check: String
+}
