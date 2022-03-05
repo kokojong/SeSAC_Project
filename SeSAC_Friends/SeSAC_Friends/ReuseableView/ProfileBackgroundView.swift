@@ -10,7 +10,10 @@ import SnapKit
 
 class ProfileBackgroundView: UIView {
 
-    let backgroundImageView = UIImageView()
+    let backgroundImageView = UIImageView().then {
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 8
+    }
     
     let faceImageView = UIImageView()
     
@@ -19,6 +22,7 @@ class ProfileBackgroundView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configImageView()
+    
         
     }
     
