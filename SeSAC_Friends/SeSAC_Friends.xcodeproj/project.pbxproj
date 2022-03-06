@@ -91,7 +91,6 @@
 		04EE3C24279C06A200A9136D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C23279C06A200A9136D /* HomeViewController.swift */; };
 		04EE3C2B279D29A000A9136D /* MainSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C2A279D29A000A9136D /* MainSeperator.swift */; };
 		04EE3C2D279D2CBE00A9136D /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C2C279D2CBE00A9136D /* BirthView.swift */; };
-		04EE3C2F279D3CBB00A9136D /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EE3C2E279D3CBB00A9136D /* Test.storyboard */; };
 		04EE3C31279D82F600A9136D /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C30279D82F600A9136D /* ViewController+Extension.swift */; };
 		04EE3C33279E699500A9136D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C32279E699500A9136D /* OnboardingViewController.swift */; };
 		04EE3C36279E763600A9136D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE3C35279E763600A9136D /* OnboardingView.swift */; };
@@ -192,7 +191,6 @@
 		04EE3C23279C06A200A9136D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		04EE3C2A279D29A000A9136D /* MainSeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSeperator.swift; sourceTree = "<group>"; };
 		04EE3C2C279D2CBE00A9136D /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
-		04EE3C2E279D3CBB00A9136D /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		04EE3C30279D82F600A9136D /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		04EE3C32279E699500A9136D /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		04EE3C35279E763600A9136D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 				04B624152797EF8D00C3FE9B /* SeSAC_Friends.entitlements */,
 				04A81FB3279681DD00B658CD /* AppDelegate.swift */,
 				04A81FB5279681DD00B658CD /* SceneDelegate.swift */,
-				04EE3C2E279D3CBB00A9136D /* Test.storyboard */,
 				04EAA96127A9461E00AB6FDD /* Enums.swift */,
 				04EE3C43279EF6A300A9136D /* UserDefaultKeys.swift */,
 				04EE3BF827986DD800A9136D /* Observable.swift */,
@@ -556,7 +553,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04EE3C2F279D3CBB00A9136D /* Test.storyboard in Resources */,
 				04A81FE02797BF9800B658CD /* NotoSansKR-Medium.otf in Resources */,
 				04A81FC0279681E000B658CD /* LaunchScreen.storyboard in Resources */,
 				04B6240F2797EB2000C3FE9B /* GoogleService-Info.plist in Resources */,
