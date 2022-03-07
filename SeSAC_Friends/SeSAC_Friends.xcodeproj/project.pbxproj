@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		041ABD4B27D3850200879C4D /* FaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041ABD4A27D3850200879C4D /* FaceCollectionViewCell.swift */; };
 		041ABD4D27D3851200879C4D /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041ABD4C27D3851200879C4D /* BackgroundTableViewCell.swift */; };
+		041ABD4F27D64AB300879C4D /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041ABD4E27D64AB300879C4D /* ShopViewModel.swift */; };
 		048F80DE27B97CA600F32FA4 /* HomeFindSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */; };
 		048F80E127BA28EE00F32FA4 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 048F80E027BA28EE00F32FA4 /* Tabman */; };
 		048F80E327BA2B4500F32FA4 /* HomeNearSesacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */; };
@@ -114,6 +115,7 @@
 /* Begin PBXFileReference section */
 		041ABD4A27D3850200879C4D /* FaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		041ABD4C27D3851200879C4D /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
+		041ABD4E27D64AB300879C4D /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		048F80DD27B97CA600F32FA4 /* HomeFindSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFindSesacViewController.swift; sourceTree = "<group>"; };
 		048F80E227BA2B4400F32FA4 /* HomeNearSesacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNearSesacViewController.swift; sourceTree = "<group>"; };
 		048F80E427BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecievedRequestsViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				04EAA96A27AECFEB00AB6FDD /* HomeViewModel.swift */,
 				04EE3C49279FC6F100A9136D /* ProfileViewModel.swift */,
 				048F811527C5164B00F32FA4 /* ChatViewModel.swift */,
+				041ABD4E27D64AB300879C4D /* ShopViewModel.swift */,
 			);
 			name = Viewmodel;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				048F80E527BA2B9400F32FA4 /* HomeRecievedRequestsViewController.swift in Sources */,
 				04EAA97927B23E3F00AB6FDD /* SearchView.swift in Sources */,
 				048F80E327BA2B4500F32FA4 /* HomeNearSesacViewController.swift in Sources */,
+				041ABD4F27D64AB300879C4D /* ShopViewModel.swift in Sources */,
 				04EAA98127B39C7500AB6FDD /* DynamicHeightCollectionView.swift in Sources */,
 				04EE3C3B279E8D3F00A9136D /* ProfileViewController.swift in Sources */,
 				04EAA96927ABB2DB00AB6FDD /* UiViewProtocol.swift in Sources */,
